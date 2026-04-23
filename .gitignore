@@ -42,3 +42,8 @@ __pycache__/
 # Published third-party ORM/SMJ/JoM template PDFs used for editorial design
 # reference; copyright-restricted, not redistributable
 11_manuscript/30_reviews/template_pdfs/
+
+# Expanded reference library PDFs are OA (arXiv/PMC/author-deposit)
+# but vary in redistribution licensing — exclude from public repo,
+# document only via STATUS.md and manifest.md
+11_manuscript/20_citations/expanded_reference_library/pdfs/
