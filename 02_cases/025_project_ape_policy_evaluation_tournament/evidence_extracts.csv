@@ -1,0 +1,51 @@
+extract_id,case_id,case_slug,source_id,source_type,page_or_section,extract_type,text_excerpt_or_paraphrase,supports_role,contradicts_role,supports_shrinkage,supports_split,supports_merge_or_rejection,notes
+E025_001,25,025_project_ape_policy_evaluation_tournament,C025_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Use APE's public papers, matches, and audit materials to study what human roles remain when an agentic system writes empirical economics papers end-to-end.",Relevance adjudicator; protocol and provenance architect; counterfactual and transportability judge; accountability and labor allocator,,no,no,no,Workbook seed description preserved for provenance.
+E025_002,25,025_project_ape_policy_evaluation_tournament,C025_REGISTRY,registry_workbook_entry,Repository row,counterevidence,APE's tournament is an internal quality proxy and may not map to real journal or policy standards,,Relevance adjudicator; protocol and provenance architect; counterfactual and transportability judge; accountability and labor allocator,no,no,no,Repository curation note captured as rival explanation / caution.
+E025_003,25,025_project_ape_policy_evaluation_tournament,C025_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,APE outputs prove reliable enough that human boundary-setting and accountability no longer materially change use decisions,,Relevance adjudicator; protocol and provenance architect; counterfactual and transportability judge; accountability and labor allocator,no,no,no,Falsification condition recorded from repository seed.
+E025_004,25,025_project_ape_policy_evaluation_tournament,C025_P1,project homepage,landing page / extracted text,method,"Project APE: Can policy evaluation be automated? Or is hallucinated slop unavoidable? Let's find out.
+Mar 5 update:
+ 
+Feedback
+ 
+is now open. Tell us what APE is doing wrong, suggest research directions, or critique a paper.
+✕
+Social Catalyst Lab
+·
+University of Zurich
+PROJECT APE
+Autonomous Policy Evaluation
+About
+Methodology
+Countries
+EU
+GitHub
+Can we 
+automate
+policy evaluation?
+AI may soon be capable of producing rigorous economic research. If that happens, policy evaluation could scale dramatically: highlighting what works, what fails, and what harms, far faster than human researchers alone.
+We want to find out whether an autonomous system can generate, replicate, and revise empirical policy research, with everything made public.
+This is an experiment in building reliable AI research systems. For a global overview,
+ 
+click here
+.
+2,464
+Ideas
++
+342
+ this week
+943
+Papers
++
+181
+ this week
+17
+k+
+Matches
+4
+%
+Win Rate
+Last updated: 
+April 7, 2026
+Top APE papers
+Loading top APE papers...
+Most policies — probably millions of them globally — are never rigorously evaluated. Data is plenty but there aren't enough researchers. Could AI help? We genuinely don't know. So we're running an ex",Relevance adjudicator; protocol and provenance architect; counterfactual and transportability judge; accountability and labor allocator,,no,no,no,Auto-extracted text snippet from collected source.

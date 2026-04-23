@@ -1,0 +1,51 @@
+{
+  "headline_family": {
+    "chi2": 87.67,
+    "df": 35,
+    "p_asymptotic": 2.075406781407509e-06,
+    "V": 0.26,
+    "min_exp_count": 0.08,
+    "n_cells_exp_lt5": 26,
+    "n_cells_total": 48,
+    "mc_p_10000_perms_seed20260423": 0.0001
+  },
+  "headline_capability": {
+    "chi2": 29.8,
+    "df": 10,
+    "p_asymptotic": 0.0009244212386387076,
+    "V": 0.24,
+    "mc_p_10000_perms_seed20260424": 0.0011
+  },
+  "high_confidence_family": {
+    "n_rows": 204,
+    "chi2": 72.76,
+    "df": 35,
+    "V": 0.267
+  },
+  "high_confidence_capability": {
+    "chi2": 17.12,
+    "df": 10,
+    "V": 0.205
+  },
+  "paired_per_role": {
+    "n_roles": 17,
+    "n_positive_diff": 14,
+    "n_negative_diff": 2,
+    "n_ties": 0,
+    "sign_test_p_two_sided": 0.0042,
+    "wilcoxon_W": NaN,
+    "wilcoxon_p_two_sided": NaN,
+    "median_V_family": 0.587,
+    "median_V_capability": 0.441
+  },
+  "software": {
+    "python": "3.x",
+    "pandas": "3.0.1",
+    "scipy": "scipy.stats 1.17.1"
+  },
+  "seeds": {
+    "mc_family": 20260423,
+    "mc_capability": 20260424
+  },
+  "script": "/Users/ryanwong/Human roles/p1_role_systems_db/11_manuscript/10_drafts/10_manuscript_versions/editorial_loop/computed_stats_v03.json"
+}

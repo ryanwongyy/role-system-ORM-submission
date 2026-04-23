@@ -1,0 +1,20 @@
+# Gate Decisions
+
+Gate model version: `autonomy_split_v1`
+
+| Gate | Autonomy class | Status | Decision state | Current decision | Next action | Audit artifact |
+|---|---|---|---|---|---|---|
+| Provisional journal target | auto_constrain_then_escalate | non_blocking | auto_constrained | Use `orm` as the drafting target for this pass. | Escalate only if the drafting target must change or a submission-facing framing lock is required. | 00_brief/final_journal_decision.md |
+| Framing lock | human_resolved_only | closed | waived | Keep journal targeting provisional until a human records an irreversible framing lock. | Human resolves before submission-facing target lock or irreversible journal positioning. | 00_brief/final_journal_decision.md |
+| Safe claim floor | auto_constrain_then_escalate | non_blocking | auto_constrained | Keep the manuscript at the safe claim floor of `framework` for this pass. | Escalate only if stronger rhetoric than the safe floor must persist. | 30_reviews/theory_novelty_memo.md |
+| Claim escalation | human_resolved_only | closed | waived | No stronger-than-floor claim escalation is active in this pass. | Human resolves only when a ceiling above the safe floor must be retained. | 30_reviews/theory_novelty_memo.md |
+| Role ontology freeze | auto_constrain_then_escalate | non_blocking | auto_constrained | Freeze the current role ontology and codebook for this pass. | Escalate only if the ontology itself must change. | 30_reviews/gate_decisions.md |
+| Boundary/autonomy interpretation | auto_constrain_then_escalate | non_blocking | auto_constrained | Treat autonomy-heavy systems as boundary-pressure cases rather than disappearance proof. | Escalate only if stronger autonomy-disappearance language is requested. | 30_reviews/theory_novelty_memo.md |
+| Novelty risk downgrade | auto_constrain_then_escalate | non_blocking | auto_constrained | Use bounded methods/framework contribution language and suppress stronger novelty rhetoric. | Escalate only if strong novelty framing must persist. | 30_reviews/theory_novelty_memo.md |
+| Novelty endorsement | human_resolved_only | closed | waived | Strong novelty endorsement is not being pursued in this pass. | Human resolves only if strong novelty framing is later retained. | 30_reviews/theory_novelty_memo.md |
+| Reference hygiene | auto_constrain_then_escalate | non_blocking | auto_constrained | Prepared a conservative reference hygiene packet from the database and supplemental reference pack. | Escalate only if bibliography scope changes argument framing. | 20_citations/reference_inclusion_decisions.md |
+| Final reference scope | human_resolved_only | closed | waived | Keep the hygiene-updated working set provisional until a human locks the final submission bibliography. | Human resolves in `submission_prep` before any final submission bibliography freeze. | 20_citations/reference_inclusion_decisions.md |
+| Disclosure packet completeness | auto_constrain_then_escalate | non_blocking | auto_constrained | Generated the most conservative journal-facing disclosure packet supported by the local run record. | Escalate only if disclosure wording is narrowed or softened. | 30_reviews/disclosure_statement.md |
+| Disclosure signoff | human_resolved_only | closed | waived | Keep the disclosure packet provisional until a human signs off the final wording. | Human resolves in `submission_prep` before disclosure becomes submission-facing. | 30_reviews/disclosure_statement.md |
+| Submission packet ready | auto_constrain_then_escalate | non_blocking | auto_constrained | Prepared a submission packet for `draft` mode under `accelerated_local` and kept irreversible submission blocked. | Escalate only if final submit authority is requested. | 30_reviews/submission_decision.md |
+| Final submit authority | human_resolved_only | closed | waived | The packet is ready for review but no human submission authority is recorded. | Human resolves in `submission_prep` before any external submission action. | 30_reviews/submission_decision.md |

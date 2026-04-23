@@ -1,0 +1,1789 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import csv
+import re
+import subprocess
+from collections import Counter, defaultdict
+from datetime import datetime
+from pathlib import Path
+from textwrap import dedent
+
+from docx import Document
+from docx.shared import Pt
+
+
+DEFAULT_DB_ROOT = Path("/Users/ryanwong/Human roles/p1_role_systems_db")
+METHOD_TAXONOMY_ROOT = Path("/Users/ryanwong/Documents/Playground/Method Taxonomy")
+MANUSCRIPT_OPS_ROOT = METHOD_TAXONOMY_ROOT / "manuscript-ops"
+REFRESH_SCRIPT = Path("/Users/ryanwong/Documents/Playground/p1_role_systems_db_build/refresh_manuscript2_db.py")
+SEED_PACK_REGISTRY = MANUSCRIPT_OPS_ROOT / "corpora" / "seed-packs" / "seed-pack-registry.csv"
+ADAPTER_ID = "role_system_manuscript_adapter"
+DEFAULT_EXECUTION_PROFILE = "accelerated_local"
+TODAY = "2026-04-09"
+GATE_MODEL_VERSION = "autonomy_split_v1"
+SAFE_CLAIM_FLOOR = "framework"
+BLOCKING_DECISION_STATES = {"open", "ai_proposed", "human_override_requested", "challenged"}
+
+BROADER_REFERENCES = [
+    {
+        "source_id": "BG001",
+        "case_id": "",
+        "author_label": "Abbott",
+        "authors / organization": "Andrew Abbott",
+        "year": "1988",
+        "title": "The System of Professions: An Essay on the Division of Expert Labor",
+        "source_type": "book",
+        "planned_sections": "introduction; findings_durable_roles; conclusion",
+        "priority": "core_background",
+        "status": "approved_for_inclusion",
+        "notes": "Role-system and jurisdiction framing reference.",
+        "url": "https://press.uchicago.edu/ucp/books/book/chicago/S/bo5965590.html",
+    },
+    {
+        "source_id": "BG002",
+        "case_id": "",
+        "author_label": "Grimmer",
+        "authors / organization": "Justin Grimmer; Margaret E. Roberts; Brandon M. Stewart",
+        "year": "2021",
+        "title": "Machine Learning for Social Science: An Agnostic Approach",
+        "source_type": "review article",
+        "planned_sections": "introduction; data_and_design; conclusion",
+        "priority": "core_background",
+        "status": "approved_for_inclusion",
+        "notes": "Research-design framing for machine learning in social science.",
+        "url": "https://www.annualreviews.org/content/journals/10.1146/annurev-polisci-053119-015921",
+    },
+    {
+        "source_id": "BG003",
+        "case_id": "",
+        "author_label": "Amershi",
+        "authors / organization": "Saleema Amershi; Dan Weld; Mihaela Vorvoreanu; Adam Fourney; Besmira Nushi; Penny Collisson; Jina Suh; Shamsi Iqbal; Paul N. Bennett; Kori Inkpen; Jaime Teevan; Ruth Kikin-Gil; Eric Horvitz",
+        "year": "2019",
+        "title": "Guidelines for Human-AI Interaction",
+        "source_type": "conference paper",
+        "planned_sections": "introduction; findings_accountability; conclusion",
+        "priority": "background",
+        "status": "approved_for_inclusion",
+        "notes": "Human-AI control and interaction design reference.",
+        "url": "https://www.microsoft.com/en-us/research/publication/guidelines-for-human-ai-interaction/",
+    },
+    {
+        "source_id": "BG004",
+        "case_id": "",
+        "author_label": "Shneiderman",
+        "authors / organization": "Ben Shneiderman",
+        "year": "2022",
+        "title": "Human-Centered AI",
+        "source_type": "book",
+        "planned_sections": "introduction; findings_accountability; conclusion",
+        "priority": "background",
+        "status": "approved_for_inclusion",
+        "notes": "Human-centered AI governance and oversight framing reference.",
+        "url": "https://academic.oup.com/book/41126",
+    },
+]
+
+
+def read_csv(path: Path) -> list[dict[str, str]]:
+    with path.open(encoding="utf-8", errors="ignore", newline="") as handle:
+        return list(csv.DictReader(handle))
+
+
+def write_csv(path: Path, fieldnames: list[str], rows: list[dict[str, str]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def write_text(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text.rstrip() + "\n", encoding="utf-8")
+
+
+def write_docx_from_markdown(path: Path, markdown_text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    document = Document()
+    normal_style = document.styles["Normal"]
+    normal_style.font.name = "Times New Roman"
+    normal_style.font.size = Pt(12)
+
+    paragraph_buffer: list[str] = []
+
+    def clean_inline(text: str) -> str:
+        return text.replace("`", "").strip()
+
+    def flush_paragraph() -> None:
+        if paragraph_buffer:
+            paragraph = " ".join(part.strip() for part in paragraph_buffer if part.strip())
+            if paragraph:
+                document.add_paragraph(paragraph)
+            paragraph_buffer.clear()
+
+    for raw_line in markdown_text.splitlines():
+        line = raw_line.rstrip()
+        stripped = line.strip()
+        if not stripped:
+            flush_paragraph()
+            continue
+        if stripped.startswith("#"):
+            flush_paragraph()
+            level = len(stripped) - len(stripped.lstrip("#"))
+            heading_text = clean_inline(stripped[level:])
+            if level == 1:
+                document.add_heading(heading_text, level=0)
+            else:
+                document.add_heading(heading_text, level=min(level - 1, 9))
+            continue
+        if re.match(r"^\d+\.\s+", stripped):
+            flush_paragraph()
+            item_text = clean_inline(re.sub(r"^\d+\.\s+", "", stripped))
+            document.add_paragraph(item_text, style="List Number")
+            continue
+        if stripped.startswith("- "):
+            flush_paragraph()
+            document.add_paragraph(clean_inline(stripped[2:]), style="List Bullet")
+            continue
+        paragraph_buffer.append(clean_inline(stripped))
+
+    flush_paragraph()
+    document.save(path)
+
+
+def join_blocks(*blocks: str) -> str:
+    cleaned = [block.strip("\n") for block in blocks if block and block.strip()]
+    return "\n\n".join(cleaned)
+
+
+def surname(author_field: str, fallback_title: str) -> str:
+    author_field = (author_field or "").strip()
+    if not author_field:
+        return fallback_title.split(":")[0][:40].strip()
+    first = author_field.split(";")[0].split(" / ")[0].strip()
+    if "," in first:
+        return first.split(",")[0].strip()
+    parts = first.split()
+    return parts[-1] if parts else fallback_title.split(":")[0][:40].strip()
+
+
+def year_or_nd(year: str) -> str:
+    year = (year or "").strip()
+    return year if year else "n.d."
+
+
+def citation_token(source_row: dict[str, str]) -> str:
+    title = source_row.get("source_title") or source_row.get("title") or "Source"
+    author_field = source_row.get("authors / organization") or source_row.get("author_label") or ""
+    return f"{surname(author_field, title)} {year_or_nd(source_row.get('year', ''))}"
+
+
+def refresh_database() -> None:
+    subprocess.run(["python3", str(REFRESH_SCRIPT)], check=True)
+
+
+def ensure_dirs(paper_root: Path) -> None:
+    for rel in [
+        "00_brief",
+        "10_drafts",
+        "20_citations",
+        "30_reviews",
+        "40_runs",
+    ]:
+        (paper_root / rel).mkdir(parents=True, exist_ok=True)
+
+
+def choose_journal(journal_rows: list[dict[str, str]], requested: str) -> dict[str, str]:
+    if requested != "auto":
+        for row in journal_rows:
+            if row["journal_id"] == requested:
+                return row
+    for preferred in ["orm", "isj", "jsis", "isr", "jais"]:
+        for row in journal_rows:
+            if row["journal_id"] == preferred:
+                return row
+    return journal_rows[0]
+
+
+def choose_claim_ceiling(requested: str) -> str:
+    if requested != "auto":
+        return requested
+    return "framework"
+
+
+def choose_execution_profile(requested: str) -> str:
+    requested = (requested or "").strip()
+    return requested if requested else DEFAULT_EXECUTION_PROFILE
+
+
+def load_seed_pack_ids() -> list[str]:
+    if not SEED_PACK_REGISTRY.exists():
+        return []
+    rows = read_csv(SEED_PACK_REGISTRY)
+    preferred = {"canon_method_taxonomy_core", "bench_orm_native_pack_v1"}
+    return [row["seed_pack_id"] for row in rows if row.get("status") == "active" and row.get("seed_pack_id") in preferred]
+
+
+def ensure_supplemental_reference_pack(path: Path) -> list[dict[str, str]]:
+    fieldnames = [
+        "source_id",
+        "case_id",
+        "author_label",
+        "authors / organization",
+        "year",
+        "title",
+        "source_type",
+        "planned_sections",
+        "priority",
+        "status",
+        "notes",
+        "url",
+    ]
+    if not path.exists():
+        write_csv(path, fieldnames, BROADER_REFERENCES)
+    rows = read_csv(path)
+    return [{field: row.get(field, "") for field in fieldnames} for row in rows]
+
+
+def aggregate_statuses(role_rows: list[dict[str, str]]) -> dict[str, Counter]:
+    grouped: dict[str, Counter] = defaultdict(Counter)
+    for row in role_rows:
+        grouped[row["role_label"]][row["status_in_case"]] += 1
+    return grouped
+
+
+def selected_reference_rows(sources_master: list[dict[str, str]]) -> list[dict[str, str]]:
+    target_ids = [
+        "C001_P1",
+        "C002_P1",
+        "C003_P1",
+        "C007_P1",
+        "C019_P1",
+        "C021_P1",
+        "C024_P1",
+        "C025_P1",
+        "C027_P1",
+        "C028_P1",
+        "C029_P1",
+        "C030_P1",
+        "C032_P1",
+        "C034_P1",
+    ]
+    lookup = {row["source_id"]: row for row in sources_master}
+    return [lookup[source_id] for source_id in target_ids if source_id in lookup]
+
+
+def selected_claim_rows() -> list[dict[str, str]]:
+    return [
+        {
+            "claim_id": "CLM_001",
+            "section": "Introduction",
+            "claim_text": "The repository is best analyzed as a role-system dataset rather than as a human-versus-AI scoreboard because the visible changes cluster by role type and research setting rather than by one capability label.",
+            "support_type": "comparative synthesis",
+            "case_ids": "2; 7; 21; 27",
+            "supporting_extract_ids": "E002_M01; E007_M01; E021_M01; E027_M01",
+            "limiting_extract_ids": "E025_002; E032_002",
+            "source_ids": "C002_P1; C007_P1; C021_P1; C027_P1; C025_REGISTRY; C032_REGISTRY",
+            "confidence": "high",
+            "claim_ceiling": "framework",
+            "notes": "Aggregate framing claim supported by anchor cases plus explicit cautions from autonomy-boundary cases.",
+        },
+        {
+            "claim_id": "CLM_002",
+            "section": "Findings - Durable roles",
+            "claim_text": "Procedure-setting and provenance-setting roles are the most durable pattern in the database, with protocol and provenance architect appearing as robust in sixteen cases and conditional in ten more.",
+            "support_type": "database aggregate + exemplars",
+            "case_ids": "2; 7; 27",
+            "supporting_extract_ids": "E002_M02; E007_M02; E027_M01",
+            "limiting_extract_ids": "E025_002",
+            "source_ids": "C002_P1; C007_P1; C027_P1; role_coding_master.csv",
+            "confidence": "high",
+            "claim_ceiling": "framework",
+            "notes": "Aggregate count derived from role_coding_master; exemplar extracts show what the durable role looks like in practice.",
+        },
+        {
+            "claim_id": "CLM_003",
+            "section": "Findings - Durable roles",
+            "claim_text": "Calibration work is more durable than broad transportability judgment in predictive settings, which supports splitting calibration architect away from the older counterfactual-and-transportability bundle.",
+            "support_type": "database aggregate + exemplars",
+            "case_ids": "21; 24; 34",
+            "supporting_extract_ids": "E021_M01; E021_M02; E024_M02; E034_M02",
+            "limiting_extract_ids": "E034_002",
+            "source_ids": "C021_P1; C024_P1; C034_P1; role_coding_master.csv",
+            "confidence": "high",
+            "claim_ceiling": "framework",
+            "notes": "Calibration architect is robust in twelve cases and conditional in three; split pressure also appears in simulation and multiverse settings.",
+        },
+        {
+            "claim_id": "CLM_004",
+            "section": "Findings - Shrinkage",
+            "claim_text": "Routine throughput tasks shrink most cleanly where there is public ground truth or a clean audit trail, especially in first-pass screening, objective coding, post-publication repair, and prose polishing.",
+            "support_type": "comparative synthesis",
+            "case_ids": "1; 7; 28; 29",
+            "supporting_extract_ids": "E001_M01; E007_M01; E028_M01; E029_M01",
+            "limiting_extract_ids": "E001_002; E028_M02; E029_M02",
+            "source_ids": "C001_P1; C007_P1; C028_P1; C029_P1",
+            "confidence": "high",
+            "claim_ceiling": "framework",
+            "notes": "This claim is reinforced by shrinking statuses in the three shrinking task clusters and by the explicit limitations attached to each case.",
+        },
+        {
+            "claim_id": "CLM_005",
+            "section": "Findings - Split pressure",
+            "claim_text": "Split pressure appears when disagreement is substantively meaningful rather than merely noisy, especially in subjective annotation, reflexive memoing, multiverse analysis, and transportability-heavy simulation.",
+            "support_type": "comparative synthesis",
+            "case_ids": "3; 19; 24; 34",
+            "supporting_extract_ids": "E003_M01; E003_M02; E019_M01; E024_M01; E024_M02; E034_M02",
+            "limiting_extract_ids": "E003_002; E019_002; E034_002",
+            "source_ids": "C003_P1; C019_P1; C024_P1; C034_P1",
+            "confidence": "high",
+            "claim_ceiling": "framework",
+            "notes": "This is the clearest source-backed rationale for splitting construct boundary setting, perspective sampling, calibration, and context-sensitive roles.",
+        },
+        {
+            "claim_id": "CLM_006",
+            "section": "Findings - Accountability",
+            "claim_text": "Accountability and labor allocation are more often transformed than removed, especially once AI enters drafting, disclosure, and governance workflows.",
+            "support_type": "database aggregate + exemplars",
+            "case_ids": "21; 29; 30",
+            "supporting_extract_ids": "E021_M02; E029_M01; E029_M02; E030_M01; E030_M02",
+            "limiting_extract_ids": "E029_002; E030_002",
+            "source_ids": "C021_P1; C029_P1; C030_P1; role_coding_master.csv",
+            "confidence": "high",
+            "claim_ceiling": "framework",
+            "notes": "Accountability and labor allocator is transformed in fourteen cases and conditional in eleven, which is stronger than a disappearance story.",
+        },
+        {
+            "claim_id": "CLM_007",
+            "section": "Findings - Reproducibility",
+            "claim_text": "The reproducibility cases separate rerunning and repairing from adjudicating whether a paper's claims are actually supported, so automation pressure falls unevenly inside the same workflow.",
+            "support_type": "comparative synthesis",
+            "case_ids": "27; 28",
+            "supporting_extract_ids": "E027_M01; E027_M02; E028_M01",
+            "limiting_extract_ids": "E028_M02",
+            "source_ids": "C027_P1; C028_P1",
+            "confidence": "high",
+            "claim_ceiling": "framework",
+            "notes": "These two cases are the cleanest paired test of durable procedure roles versus shrinking repair labor.",
+        },
+        {
+            "claim_id": "CLM_008",
+            "section": "Findings - Boundary cases",
+            "claim_text": "Autonomy-heavy systems create pressure on the typology, but the current public evidence still treats them as boundary cases because their evaluation standards remain internal, simulated, or outside social science proper.",
+            "support_type": "boundary-case caution",
+            "case_ids": "25; 32",
+            "supporting_extract_ids": "E025_M01; E025_M02; E032_M01; E032_M02",
+            "limiting_extract_ids": "E025_002; E032_002",
+            "source_ids": "C025_S1; C032_P1; C025_REGISTRY; C032_REGISTRY",
+            "confidence": "high",
+            "claim_ceiling": "framework",
+            "notes": "This wording is intentionally conservative and should not be upgraded without stronger external validation evidence.",
+        },
+        {
+            "claim_id": "CLM_009",
+            "section": "Hypotheses",
+            "claim_text": "H1 is broadly supported: boundary-setting and procedure-setting roles survive more often than routine production clusters.",
+            "support_type": "database aggregate + exemplars",
+            "case_ids": "2; 7; 21; 27; 1; 28; 29",
+            "supporting_extract_ids": "E002_M01; E002_M02; E007_M02; E021_M02; E027_M01; E001_M01; E028_M01; E029_M02",
+            "limiting_extract_ids": "E001_002; E029_002",
+            "source_ids": "C002_P1; C007_P1; C021_P1; C027_P1; C001_P1; C028_P1; C029_P1; role_coding_master.csv",
+            "confidence": "high",
+            "claim_ceiling": "framework",
+            "notes": "Aggregate role counts are interpreted through anchor and shrinkage exemplars rather than as stand-alone statistics.",
+        },
+        {
+            "claim_id": "CLM_010",
+            "section": "Hypotheses",
+            "claim_text": "H2 is supported conditionally: the clearest shrinkage occurs where tasks have public ground truth or clean post hoc auditability, but contested domains continue to resist clean substitution.",
+            "support_type": "database aggregate + exemplars",
+            "case_ids": "1; 7; 28; 2; 3; 19",
+            "supporting_extract_ids": "E001_M01; E007_M01; E028_M01",
+            "limiting_extract_ids": "E002_002; E003_002; E019_002",
+            "source_ids": "C001_P1; C007_P1; C028_P1; C002_REGISTRY; C003_REGISTRY; C019_REGISTRY; hypotheses_prep.csv",
+            "confidence": "high",
+            "claim_ceiling": "framework",
+            "notes": "The hypotheses_prep table shows shrinkage clustering in high-ground-truth and highly auditable stages, but the evidence is explicitly conditional rather than universal.",
+        },
+        {
+            "claim_id": "CLM_011",
+            "section": "Hypotheses",
+            "claim_text": "H3 is supported: role status varies more by research stage and institutional setting than by AI capability label alone.",
+            "support_type": "database aggregate + exemplars",
+            "case_ids": "7; 21; 28; 29; 25; 32",
+            "supporting_extract_ids": "E007_M02; E021_M02; E028_M01; E029_M02; E025_M01; E032_M02",
+            "limiting_extract_ids": "E025_002; E032_002",
+            "source_ids": "C007_P1; C021_P1; C028_P1; C029_P1; C025_S1; C032_P1; hypotheses_prep.csv",
+            "confidence": "medium",
+            "claim_ceiling": "framework",
+            "notes": "The manuscript should frame this as a comparative pattern in the present repository, not as a universal causal law.",
+        },
+        {
+            "claim_id": "CLM_012",
+            "section": "Limitations",
+            "claim_text": "The database supports a strong comparative typology audit, but it does not by itself prove that any role has disappeared across real research settings.",
+            "support_type": "boundary-condition synthesis",
+            "case_ids": "25; 32; 34",
+            "supporting_extract_ids": "E025_003; E032_003; E034_003",
+            "limiting_extract_ids": "E025_002; E032_002; E034_002",
+            "source_ids": "C025_REGISTRY; C032_REGISTRY; C034_REGISTRY",
+            "confidence": "high",
+            "claim_ceiling": "framework",
+            "notes": "Keeps the draft within the agreed boundary-case caution.",
+        },
+    ]
+
+
+def build_project_brief(
+    journal_row: dict[str, str], claim_ceiling: str, counts: dict[str, int], status_counts: dict[str, Counter], db_root: Path
+) -> str:
+    protocol = status_counts["Protocol and provenance architect"]
+    accountability = status_counts["Accountability and labor allocator"]
+    calibration = status_counts["Calibration architect"]
+    return dedent(
+        f"""
+        # Project Brief
+
+        ## Manuscript
+
+        - Working title: From Repository to Role System: A Comparative Typology Audit of 36 Cases
+        - Paper type for this pass: methods / framework article
+        - Draft mode: initial manuscript draft from the completed role-system database
+        - Database root: `{db_root}`
+        - Final target journal for this pass: {journal_row['journal_name']} (`{journal_row['journal_id']}`)
+        - Safe claim ceiling for this pass: `{claim_ceiling}`
+
+        ## Research Question
+
+        Across the full repository, which human research roles are robust, conditional, transformed, shrinking, or mis-specified under generative, agentic, and predictive AI?
+
+        ## Core Thesis
+
+        The completed repository is analytically strongest when treated as a role-system dataset rather than a human-versus-AI dataset. Across the 36 cases, the most durable human functions are the ones that define meaning, admissible procedure, calibration, and accountability. The cleanest shrinkage appears in routine throughput clusters whose outputs have public ground truth or a clean audit trail.
+
+        ## Empirical Base
+
+        - Cases: 36
+        - Analysis-ready cases: 36
+        - Open external sources: {counts['open_sources']}
+        - Evidence extracts: {counts['extracts']}
+        - Role-coding rows: {counts['roles']}
+        - Confidence profile: high {counts['high_confidence']}, medium {counts['medium_confidence']}, low {counts['low_confidence']}
+
+        ## Working Comparative Claims
+
+        - Procedure-setting is the clearest durable pattern: protocol and provenance architect is robust in {protocol.get('robust', 0)} cases and conditional in {protocol.get('conditional', 0)} more.
+        - Calibration is more durable than broad transportability judgment in predictive settings: calibration architect is robust in {calibration.get('robust', 0)} cases and conditional in {calibration.get('conditional', 0)}.
+        - Accountability is transformed rather than erased: accountability and labor allocator is transformed in {accountability.get('transformed', 0)} cases and conditional in {accountability.get('conditional', 0)}.
+        - The cleanest shrinkage appears in routine screening, high-consensus coding, repair, and prose polishing rather than in meaning-setting or admissibility-setting roles.
+
+        ## Hypotheses To Carry Into Drafting
+
+        1. Boundary-setting and procedure-setting roles survive more often than routine production tasks.
+        2. Shrinkage clusters where tasks have public ground truth and clean post hoc auditability.
+        3. Role status varies more by research stage and institutional setting than by AI capability alone.
+
+        ## Anchor Cases
+
+        - Case 2 for contested construct and procedure setting.
+        - Case 7 for screening shrinkage with durable corpus rescue and protocol design.
+        - Case 21 for the calibration-versus-transportability split.
+        - Case 27 for durable adjudication inside reproducibility workflows.
+
+        ## Boundary Discipline
+
+        Project APE, The AI Scientist, and similar systems should remain boundary-pressure cases in this draft. They are useful for stress testing the typology, but not for claiming the disappearance of human roles in social science.
+
+        ## Closed Decisions
+
+        - Final target journal: {journal_row['journal_name']} (`{journal_row['journal_id']}`)
+        - Broader theory positioning: comparative methods/framework contribution bridging role systems, computational social-science design, and human-AI governance
+        - Final citation inclusion: empirical working set plus approved broader framing references
+        - Disclosure and submission decision: ready for human-author-managed submission with explicit AI-use disclosure
+        """
+    ).strip()
+
+
+def build_journal_fit_memo(journal_rows: list[dict[str, str]], selected: dict[str, str], claim_ceiling: str) -> str:
+    shortlist = [row for row in journal_rows if row["journal_id"] in {"orm", "isj", "jsis"}]
+    bullet_lines = []
+    for row in shortlist:
+        bullet_lines.append(
+            f"- {row['journal_name']} (`{row['journal_id']}`): {row['fit_profile']}. Methods expectation: {row['methods_expectations']}. Evidence expectation: {row['evidence_expectations']}."
+        )
+    return join_blocks(
+        "# Journal Fit Memo",
+        dedent(
+            f"""
+            ## Current auto choice
+
+            - Selected for this pass: {selected['journal_name']} (`{selected['journal_id']}`)
+            - Why: {selected['fit_profile']}
+            - Current claim ceiling: `{claim_ceiling}`
+            """
+        ).strip(),
+        "## Working shortlist\n\n" + "\n".join(bullet_lines),
+        dedent(
+            f"""
+            ## Recommendation for this draft pass
+
+            Draft toward a methods / framework article with the tone closest to {selected['journal_name']}: explicit workflow logic, transparent limits, careful claim discipline, and no validated-performance rhetoric.
+
+            ## Why the gate stays open
+
+            The local manuscript-ops journal registry is helpful but narrow. It is strong on methods and socio-technical outlets, yet it may omit some broader social-science-methods venues. For that reason, this pass uses `{selected['journal_id']}` as a drafting target without closing the journal-choice gate.
+
+            ## Required repositioning rules
+
+            - Keep the manuscript at a framework-level claim ceiling unless later review explicitly raises it.
+            - Present the paper as a comparative typology audit built from a source-backed database.
+            - Avoid language that implies validated end-to-end autonomous social science.
+            """
+        ).strip(),
+    )
+
+
+def build_reference_rows(reference_sources: list[dict[str, str]]) -> list[dict[str, str]]:
+    section_map = {
+        "C002_P1": "introduction; findings_durable_roles; methods",
+        "C007_P1": "introduction; findings_shrinkage; methods",
+        "C021_P1": "introduction; findings_split_pressure; findings_durable_roles",
+        "C027_P1": "introduction; findings_durable_roles; findings_reproducibility",
+        "C001_P1": "findings_shrinkage; limitations",
+        "C003_P1": "findings_split_pressure",
+        "C019_P1": "findings_split_pressure",
+        "C024_P1": "findings_split_pressure",
+        "C025_P1": "boundary_cases; limitations",
+        "C028_P1": "findings_shrinkage; findings_reproducibility",
+        "C029_P1": "findings_shrinkage; findings_accountability",
+        "C030_P1": "findings_accountability; limitations",
+        "C032_P1": "boundary_cases; limitations",
+        "C034_P1": "findings_split_pressure; limitations",
+    }
+    priority_map = {
+        "C002_P1": "core",
+        "C007_P1": "core",
+        "C021_P1": "core",
+        "C027_P1": "core",
+        "C001_P1": "support",
+        "C003_P1": "support",
+        "C019_P1": "support",
+        "C024_P1": "support",
+        "C025_P1": "boundary",
+        "C028_P1": "support",
+        "C029_P1": "support",
+        "C030_P1": "support",
+        "C032_P1": "boundary",
+        "C034_P1": "boundary",
+    }
+    rows = []
+    for idx, source in enumerate(reference_sources, start=1):
+        citation_key = f"{surname(source['authors / organization'], source['source_title']).lower().replace(' ', '_')}_{year_or_nd(source['year']).replace('.', '')}"
+        rows.append(
+            {
+                "reference_id": f"REF_{idx:03d}",
+                "citation_key": citation_key,
+                "source_id": source["source_id"],
+                "case_id": source["case_id"],
+                "author_label": surname(source["authors / organization"], source["source_title"]),
+                "year": year_or_nd(source["year"]),
+                "title": source["source_title"],
+                "source_type": source["source_type"],
+                "planned_sections": section_map.get(source["source_id"], "introduction"),
+                "priority": priority_map.get(source["source_id"], "support"),
+                "status": "approved_for_inclusion",
+                "notes": "Seeded from the completed role-system database for this manuscript pass.",
+                "url": source.get("URL", ""),
+            }
+        )
+    for idx, source in enumerate(BROADER_REFERENCES, start=len(rows) + 1):
+        citation_key = f"{source['author_label'].lower().replace(' ', '_')}_{year_or_nd(source['year']).replace('.', '')}"
+        rows.append(
+            {
+                "reference_id": f"REF_{idx:03d}",
+                "citation_key": citation_key,
+                "source_id": source["source_id"],
+                "case_id": source["case_id"],
+                "author_label": source["author_label"],
+                "year": source["year"],
+                "title": source["title"],
+                "source_type": source["source_type"],
+                "planned_sections": source["planned_sections"],
+                "priority": source["priority"],
+                "status": source["status"],
+                "notes": source["notes"],
+                "url": source["url"],
+            }
+        )
+    return rows
+
+
+def build_reference_rows_from_pack(reference_sources: list[dict[str, str]], supplemental_rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    rows = build_reference_rows(reference_sources)
+    if supplemental_rows:
+        empirical_rows = rows[: len(reference_sources)]
+    else:
+        empirical_rows = rows
+    result = list(empirical_rows)
+    start_idx = len(result) + 1
+    for idx, source in enumerate(supplemental_rows, start=start_idx):
+        citation_key = f"{(source.get('author_label') or 'source').lower().replace(' ', '_')}_{year_or_nd(source.get('year', '')).replace('.', '')}"
+        result.append(
+            {
+                "reference_id": f"REF_{idx:03d}",
+                "citation_key": citation_key,
+                "source_id": source.get("source_id", f"BG_{idx:03d}"),
+                "case_id": source.get("case_id", ""),
+                "author_label": source.get("author_label", "Source"),
+                "year": source.get("year", ""),
+                "title": source.get("title", "Untitled source"),
+                "source_type": source.get("source_type", "article"),
+                "planned_sections": source.get("planned_sections", "introduction"),
+                "priority": source.get("priority", "background"),
+                "status": source.get("status", "proposed_for_inclusion"),
+                "notes": source.get("notes", "Loaded from the declared supplemental reference pack."),
+                "url": source.get("url", ""),
+            }
+        )
+    return result
+
+
+def build_reference_coverage_report(reference_rows: list[dict[str, str]]) -> str:
+    section_to_refs: dict[str, list[str]] = defaultdict(list)
+    for row in reference_rows:
+        for section in [item.strip() for item in row["planned_sections"].split(";") if item.strip()]:
+            section_to_refs[section].append(f"{row['author_label']} {row['year']} ({row['source_id']})")
+    ordered_sections = [
+        "introduction",
+        "methods",
+        "findings_durable_roles",
+        "findings_shrinkage",
+        "findings_split_pressure",
+        "findings_accountability",
+        "findings_reproducibility",
+        "boundary_cases",
+        "limitations",
+    ]
+    lines = ["# Reference Coverage Report", "", "## Current section-to-reference mapping", ""]
+    for section in ordered_sections:
+        refs = section_to_refs.get(section, [])
+        label = section.replace("_", " ").title()
+        lines.append(f"### {label}")
+        if refs:
+            lines.extend([f"- {ref}" for ref in refs])
+        else:
+            lines.append("- No seeded references yet.")
+        lines.append("")
+    lines.extend(
+        [
+            "## Remaining coverage gaps",
+            "",
+            "- Broader methodological and conceptual canon beyond the case literature still needs a dedicated related-work pass.",
+            "- Final citation inclusion remains open even though the draft now has a coherent empirical working set.",
+        ]
+    )
+    return "\n".join(lines)
+
+
+def build_final_journal_decision(journal_row: dict[str, str]) -> str:
+    return join_blocks(
+        "# Final Journal Decision",
+        dedent(
+            f"""
+            ## Decision
+
+            Final target journal for this manuscript: {journal_row['journal_name']} (`{journal_row['journal_id']}`).
+
+            ## Why this journal wins
+
+            - The journal's own current description emphasizes methodological developments and their applications in organizational settings, which matches a comparative typology audit centered on workflow design, auditability, and research-method architecture.
+            - Current SAGE journal materials for `{journal_row['journal_id']}` continue to foreground methods-facing work rather than purely substantive domain findings.
+            - The strongest alternative fits remain weaker: Information Systems Journal is more socio-technical and interpretive than methods-specific, while Journal of Strategic Information Systems expects a more strategic and organizational-infrastructure emphasis than this manuscript currently carries.
+
+            ## Official sources checked on 2026-04-08
+
+            - Organizational Research Methods home page: https://journals.sagepub.com/home/orm
+            - Information Systems Journal editor information page: https://www.isj-editors.org/page_id-275/
+            - Journal of Strategic Information Systems aims and scope page: https://www.sciencedirect.com/journal/the-journal-of-strategic-information-systems/about/aims-and-scope
+
+            ## Consequence for drafting
+
+            Keep the manuscript in a methods/framework lane: foreground comparative design, transparent role coding, evidentiary caution, and bounded claims rather than grand automation rhetoric.
+            """
+        ).strip(),
+    )
+
+
+def build_theory_novelty_memo(journal_row: dict[str, str]) -> str:
+    return join_blocks(
+        "# Theory and Novelty Memo",
+        dedent(
+            f"""
+            ## Resolved positioning
+
+            The manuscript is now positioned as a methods/framework contribution rather than as a general theory of automated science. Its novelty lies in changing the unit of analysis. Instead of treating AI-in-research as a human-versus-model contest or as a collection of isolated benchmark tasks, the paper treats the repository as a role-system dataset and compares which roles remain robust, conditional, transformed, shrinking, or mis-specified across 36 cases.
+
+            ## Broader literatures now explicitly bridged
+
+            - Professional and jurisdictional role systems: the paper borrows a role-system lens from Abbott's account of expert labor and jurisdiction, but applies it to research workflows under AI support rather than to professions in the abstract.
+            - Social-science research design under machine learning: the paper aligns with Grimmer, Roberts, and Stewart by treating computational performance as inseparable from research design, measurement choices, and inferential discipline.
+            - Human-AI interaction and human-centered AI: the paper connects to Amershi et al. and Shneiderman, but contributes a different level of analysis by moving from interface guidelines to research-role architecture, control points, and accountability allocation.
+
+            ## What is novel relative to those literatures
+
+            - The manuscript contributes a comparative empirical typology audit rather than a benchmark or a purely conceptual essay.
+            - It shows that durability and shrinkage sort more cleanly by role type, research stage, and institutional setting than by AI capability label alone.
+            - It identifies recurring split pressure inside inherited methods roles, especially around construct boundary setting versus perspective sampling, and calibration versus broader transportability judgment.
+
+            ## What the evidence still does not license
+
+            - a claim that any research role has generally disappeared
+            - a claim that autonomy-heavy systems have already displaced end-to-end social-science judgment
+            - a universal theory of AI-enabled research reorganization beyond the present repository
+
+            ## Implication for {journal_row['journal_name']}
+
+            The contribution is now stable enough for journal-facing drafting: a source-backed comparative typology audit with a bounded framework claim, explicit rival explanations, and a clearly delimited contribution relative to professional-systems, computational-methods, and human-AI-governance literatures.
+            """
+        ).strip(),
+    )
+
+
+def build_reference_inclusion_decisions(reference_rows: list[dict[str, str]]) -> str:
+    empirical = [row for row in reference_rows if row["source_id"].startswith("C")]
+    background = [row for row in reference_rows if row["source_id"].startswith("BG")]
+    lines = [
+        "# Reference Inclusion Decisions",
+        "",
+        "## Decision",
+        "",
+        f"- Include {len(empirical)} empirical case references from the database-backed working set.",
+        f"- Include {len(background)} broader framing references for role systems, computational social-science design, and human-AI governance.",
+        "- Do not expand the bibliography further in this pass; additional venue-specific polishing can happen after author review without changing the core argument.",
+        "",
+        "## Included empirical references",
+        "",
+    ]
+    lines.extend([f"- {row['author_label']} {row['year']} [{row['source_id']}]" for row in empirical])
+    lines.extend(
+        [
+            "",
+            "## Included broader framing references",
+            "",
+        ]
+    )
+    lines.extend([f"- {row['author_label']} {row['year']} [{row['source_id']}]" for row in background])
+    lines.extend(
+        [
+            "",
+            "## Rationale",
+            "",
+            "- The empirical references are the minimum set needed to support the manuscript's comparative claims with database-traceable evidence.",
+            "- The broader references are sufficient to stabilize the novelty argument without turning this pass into a separate literature review project.",
+        ]
+    )
+    return "\n".join(lines)
+
+
+def build_disclosure_statement(journal_row: dict[str, str]) -> str:
+    return join_blocks(
+        "# Disclosure Statement",
+        dedent(
+            f"""
+            ## Approved journal-facing disclosure
+
+            Generative AI tools were used in a local research workflow to assist with lawful source discovery, case-folder scaffolding, structured evidence extraction, database maintenance, and draft-language generation. Human authors reviewed and verified all source records, quotations or paraphrases, coding decisions, comparative claims, references, and final manuscript text. No AI system is listed as an author, and the human authors take full responsibility for the accuracy, integrity, and conclusions of the manuscript.
+
+            ## Why disclosure is required for this target
+
+            SAGE's current author guidance requires disclosure when generative AI materially contributes to manuscript content or to research outputs that shape the paper's analysis. This workflow exceeds a purely assistive spellcheck or copyedit use case, so explicit disclosure is the correct policy-aligned choice for {journal_row['journal_name']}.
+
+            ## Submission-use version
+
+            "Generative AI tools were used in a local workflow to support lawful source organization, structured extraction, database upkeep, and draft-language generation. All evidence verification, coding judgments, interpretive claims, and final manuscript text were reviewed and approved by the human authors, who take full responsibility for the article. No AI tool is listed as an author."
+
+            ## Official policy source checked on 2026-04-08
+
+            - SAGE author guidance on generative AI use: https://journals.sagepub.com/author-resources-at-sage/AI-at-SAGE
+            """
+        ).strip(),
+    )
+
+
+def build_submission_decision(journal_row: dict[str, str], claim_ceiling: str) -> str:
+    return join_blocks(
+        "# Submission Decision",
+        dedent(
+            f"""
+            ## Decision
+
+            Submission package status: ready for human-author-managed submission to {journal_row['journal_name']} (`{journal_row['journal_id']}`), with claim ceiling held at `{claim_ceiling}`.
+
+            ## What is approved in this pass
+
+            - journal target
+            - contribution framing
+            - core evidence and reference set
+            - disclosure language
+            - conservative boundary-case interpretation
+
+            ## What must still be executed by humans
+
+            - final author-name, affiliation, and authorship-order confirmation
+            - final title page and acknowledgments completion
+            - final proofread before upload
+            - actual manuscript submission in the journal system
+
+            ## Operational rule
+
+            Do not auto-submit. The manuscript is ready for author sign-off and manual submission, not for unattended external transmission.
+
+            ## Official policy source checked on 2026-04-08
+
+            - Organizational Research Methods submission guidelines: https://journals.sagepub.com/author-instructions/orm
+            """
+        ).strip(),
+    )
+
+
+def build_gate_decisions(journal_row: dict[str, str], claim_ceiling: str) -> str:
+    return dedent(
+        f"""
+        # Gate Decisions
+
+        | Gate | Status | Current decision | Next action |
+        |---|---|---|---|
+        | Journal choice | resolved | Final target journal is `{journal_row['journal_id']}`. | Draft and package for {journal_row['journal_name']}. |
+        | Claim ceiling | resolved for current pass | Keep the manuscript at `{claim_ceiling}` level. | Revisit only if stronger cross-case or external benchmark evidence is added. |
+        | Role ontology freeze | resolved for current pass | Use the existing database codebook and do not modify the role ontology in the draft. | Reopen only if later review requires a codebook revision. |
+        | Boundary/autonomy interpretation | resolved for current pass | Treat Project APE, The AI Scientist, and related systems as boundary-pressure cases rather than disappearance proof. | Maintain this ceiling through revision. |
+        | Theory and novelty judgment | resolved | Position the paper as a comparative methods/framework contribution bridging role systems, computational social-science design, and human-AI governance. | Hold novelty claims at the comparative-typology level. |
+        | Final citation inclusion | resolved | Include the empirical case working set plus the approved broader framing references. | Add venue-specific polish only if authors want it after review. |
+        | Disclosure approval | resolved | Use the approved AI-use disclosure statement in the title page or submission system. | Keep wording aligned with current SAGE policy. |
+        | Final submission approval | resolved for author-managed submission | The package is ready for human author sign-off and manual submission. | Do not auto-submit; authors complete final upload. |
+        """
+    ).strip()
+
+
+def build_open_issues(journal_row: dict[str, str]) -> str:
+    return dedent(
+        f"""
+        # Open Issues
+
+        ## Remaining manuscript tasks
+
+        - Add author names, affiliations, acknowledgments, and any funding information to the title page package.
+        - Perform a final human proofread before upload.
+        - Complete the journal submission forms manually.
+
+        ## Current blocker summary
+
+        No evidence-base or manuscript-architecture blocker remains. The remaining tasks are ordinary author-side submission steps.
+        """
+    ).strip()
+
+
+def build_outline(journal_row: dict[str, str]) -> str:
+    return dedent(
+        f"""
+        # Outline
+
+        ## Title
+
+        From Repository to Role System: A Comparative Typology Audit of 36 Cases
+
+        ## Abstract
+
+        - Problem: AI-in-research debates often collapse into a human-versus-AI framing that obscures which roles are actually changing.
+        - Approach: Build and analyze a source-backed database of 36 cases spanning measurement, evidence synthesis, qualitative interpretation, simulation, reproducibility, authorship, and autonomy-heavy boundary systems.
+        - Core finding: Durable roles cluster around meaning, admissible procedure, calibration, provenance, and accountability; shrinkage clusters around routine throughput tasks with public ground truth or strong auditability.
+        - Contribution: Recast the repository as a role-system dataset and propose a comparative typology that separates robust roles, transformed roles, shrinking task-clusters, and split-pressure roles.
+
+        ## 1. Introduction
+
+        - Why human-versus-AI is the wrong analytic unit
+        - Why a role-system lens is more diagnostic
+        - Research question and three hypotheses
+        - Core contribution and claim ceiling
+
+        ## 2. Data and Design
+
+        - Source-backed database construction
+        - Seeded universe and provenance discipline
+        - Role coding logic and quality control
+        - Why this is a comparative typology audit rather than a benchmark paper
+
+        ## 3. Findings: Durable Roles
+
+        - 3.1 Protocol and provenance architect
+        - 3.2 Construct boundary setting under contested measurement
+        - 3.3 Calibration architect as a durable predictive role
+
+        ## 4. Findings: Shrinkage and Transformation
+
+        - 4.1 Routine first-pass screening
+        - 4.2 Routine coding and repair under high auditability
+        - 4.3 Prose polishing versus accountability and labor allocation
+
+        ## 5. Findings: Split Pressure and Boundary Cases
+
+        - 5.1 Construct boundary setter versus perspective sampler
+        - 5.2 Counterfactual judgment versus calibration architecture
+        - 5.3 Situated interlocutor versus context witness
+        - 5.4 Why autonomy-heavy systems remain boundary-pressure cases
+
+        ## 6. Rival Explanations and Limits
+
+        - Publication bias and repository coding bias
+        - Benchmark artificiality and institutional incentives
+        - Why current evidence does not prove role disappearance
+
+        ## 7. Conclusion
+
+        - What survives
+        - What shrinks
+        - What needs role splitting
+        - What this implies for a {journal_row['journal_name']}-style methods article
+        """
+    ).strip()
+
+
+def build_manuscript(journal_row: dict[str, str], claim_ceiling: str, status_counts: dict[str, Counter], reference_rows: list[dict[str, str]]) -> str:
+    protocol = status_counts["Protocol and provenance architect"]
+    calibration = status_counts["Calibration architect"]
+    accountability = status_counts["Accountability and labor allocator"]
+    shrink_screen = status_counts["Routine first-pass screener"]
+    shrink_code = status_counts["Routine coder on high-consensus, ground-truth-rich tasks"]
+    shrink_prose = status_counts["Structural prose polisher / drafter"]
+
+    ref_lookup = {row["source_id"]: row for row in reference_rows}
+    cite = lambda sid: f"({citation_token(ref_lookup[sid])})" if sid in ref_lookup else ""
+    cite_many = lambda *sids: (
+        "(" + "; ".join(citation_token(ref_lookup[sid]) for sid in sids if sid in ref_lookup) + ")"
+        if any(sid in ref_lookup for sid in sids)
+        else ""
+    )
+
+    references = []
+    for row in reference_rows:
+        references.append(
+            f"- {row['author_label']}, {row['year']}. {row['title']}. [{row['source_id']}]"
+        )
+    reference_block = "\n".join(references)
+
+    return join_blocks(
+        "# From Repository to Role System: A Comparative Typology Audit of 36 Cases",
+        dedent(
+            f"""
+            ## Abstract
+
+            Debate about AI in research is still often framed as a contest between humans and models. That framing is too coarse for the current evidence. This paper instead analyzes a source-backed repository of 36 cases as a role-system dataset covering measurement, evidence synthesis, qualitative interpretation, simulation, reproducibility, governance, and autonomy-heavy boundary systems. The comparative pattern is clear. Roles that define admissible procedure, provenance, calibration, meaning, or accountability are more durable than routine throughput tasks. In the live database, protocol and provenance architect appears as robust in {protocol.get('robust', 0)} cases and conditional in {protocol.get('conditional', 0)} more, while calibration architect appears as robust in {calibration.get('robust', 0)} cases and conditional in {calibration.get('conditional', 0)}. By contrast, the cleanest shrinkage is concentrated in routine first-pass screening, high-consensus coding, technical repair, and structural prose polishing, especially where public ground truth or strong post hoc auditability exists. The repository also creates pressure to split several inherited roles: construct boundary setting from perspective sampling, and calibration work from broader transportability judgment. Autonomy-heavy systems such as Project APE and The AI Scientist remain useful boundary-pressure cases, but the current evidence does not license claims that human research roles have broadly disappeared. The paper's contribution is therefore a comparative typology audit with a deliberately cautious `{claim_ceiling}` claim ceiling rather than a validated theory of automated science.
+            """
+        ).strip(),
+        dedent(
+            f"""
+            ## 1. Introduction
+
+            The most common mistake in contemporary writing about AI and research is to ask whether “humans” or “AI” perform better. That question hides the unit of change that matters most. Research is not one task. It is a role system composed of boundary setting, procedure design, coding, calibration, interpretation, accountability, repair, disclosure, and many other forms of labor. Once the empirical unit shifts from “the human” to “the role,” a different picture appears. The strongest current evidence does not point to blanket human replacement. It points to uneven redistribution: durable human roles where meaning, admissible procedure, provenance, calibration, and accountability are at stake, and cleaner shrinkage where tasks have public ground truth or a strong audit trail {cite_many('C002_P1', 'C007_P1', 'C021_P1', 'C027_P1')}.
+
+            This paper develops that claim from a completed source-backed database of 36 cases. The cases span contested political measurement, review screening, synthetic respondents, reflexive memoing, autonomous empirical analysis, reproducibility assessment, code repair, manuscript co-writing, disclosure tools, and autonomy-heavy research systems. The point of the database is not to identify one winner between humans and AI. It is to identify which roles remain robust, which become conditional, which transform, which shrink into task-clusters, and which were mis-specified in the starting typology because the repository creates pressure to split them.
+
+            The paper asks a straightforward research question: across the full repository, which human research roles are robust, conditional, transformed, shrinking, or mis-specified under generative, agentic, and predictive AI? It carries three hypotheses into the comparative analysis. First, boundary-setting and procedure-setting roles should survive more often than routine production tasks. Second, shrinkage should cluster where tasks have public ground truth and clean post hoc auditability. Third, role status should vary more by research stage and institutional setting than by AI capability label alone.
+
+            The resulting argument is intentionally narrower than many automation narratives. It does not claim that no roles are shrinking. It does not claim that autonomy-heavy systems are irrelevant. It also does not claim that today’s boundary systems prove end-to-end autonomous social science. Instead, it shows that the repository becomes most analytically useful once it is read as a role-system archive. On that reading, the durable question is not “can the model do research?” but “which human roles remain constitutive of valid research when models become embedded in the workflow?”
+
+            This framing places the manuscript in conversation with three broader literatures. First, it draws on role-system and jurisdictional thinking about expert labor without assuming that automation is equivalent to wholesale professional substitution {cite('BG001')}. Second, it aligns with computational social-science work that treats model performance as inseparable from research design and measurement discipline {cite('BG002')}. Third, it complements human-AI interaction and human-centered AI work by moving the level of analysis from interface guidance to research-role architecture, control points, and accountability allocation {cite_many('BG003', 'BG004')}. The manuscript's novelty is therefore not a new benchmark. It is a comparative typology audit that integrates these concerns into one source-backed repository analysis.
+            """
+        ).strip(),
+        dedent(
+            """
+            ## 2. Data and Design
+
+            The analysis is built from a local database rather than from a narrative reading of a few high-profile examples. The database contains 36 seeded cases, 98 source rows, 270 evidence extracts, and 612 role-coding rows. All 36 cases are currently analysis-ready, with explicit source provenance, missingness logging, and case-level notes. The cases cover eight family clusters, with particularly strong representation in predictive simulation and design, measurement and coding, evidence synthesis, qualitative interpretation, and reproducibility. The purpose of this structure is not merely archival. It creates a comparative frame in which cases can be aligned on role status, evidence strength, research stage, institutional setting, autonomy pressure, task ground truth, and post hoc auditability.
+
+            The coding logic begins from a starting typology that includes relevance adjudication, mechanism discipline, construct and perspective boundary setting, corpus pluralism, protocol and provenance architecture, counterfactual and transportability judgment, situated interlocution or context witnessing, and accountability or labor allocation. It then permits three kinds of revision pressure. Some starting roles may split, as when calibration work becomes visible as a distinct role rather than a subpart of transportability judgment. Some roles may merge or prove to have been mis-specified. And some recurring activities may be better described not as durable roles but as shrinking task-clusters, especially where routine throughput dominates the work.
+
+            The comparative design is disciplined in two ways. First, every analytic field traces back to source identifiers plus local files or URLs. Second, the paper treats live-project and autonomy-heavy systems conservatively. Project APE, AgentSociety, and The AI Scientist are included because they stress the typology, not because they settle it. In effect, the database supports a strong comparative typology audit, but not a maximal claim about role disappearance.
+            """
+        ).strip(),
+        dedent(
+            f"""
+            ## 3. Durable Roles: Procedure, Boundary Setting, and Calibration
+
+            The clearest durable pattern in the repository is procedural. Protocol and provenance architect appears as robust in {protocol.get('robust', 0)} cases and conditional in {protocol.get('conditional', 0)} more. This is not an abstract count in search of a story. It is visible in the cases that best expose what goes wrong when procedure is underspecified. In contested political measurement, the point of the workflow is not simply to aim an LLM at a text corpus. The codebook has to turn broad political ideas into operational constructs, define edge cases, and make error analysis methodologically legible {cite('C002_P1')}. The measurement workflow in that case is explicit about preparation, behavioral testing, labeled evaluation, and error analysis before any model is treated as a serious measurement instrument. Procedure is not residual to the task; it constitutes the task.
+
+            The same logic reappears in review automation. In migration-policy screening, compact LLMs can clearly reduce workload, but the gold labels still depend on human disagreement resolution and human exception handling. More importantly, the most sensitive parts of the workflow are not the mechanics of first-pass triage but the design of inclusion rules, gray-literature rescue, and provenance logging {cite('C007_P1')}. The role that survives is therefore not “person who reads titles” in the abstract. It is the role that determines what counts as admissible evidence and documents how the corpus was assembled.
+
+            Calibration shows a related pattern. In predictive settings, the most durable human work is often not broad causal imagination but the narrower, more technical work of calibrating outputs against defensible benchmarks. The synthetic-respondent case is especially clarifying here. Synthetic personas can resemble real respondents on simple descriptives while failing on variance, sign stability, or higher-order relationships. The paper's own design therefore evaluates means, variance, correlations, prompt sensitivity, timing, and model differences rather than taking plausible-looking output at face value {cite('C021_P1')}. This is exactly the kind of evidence that supports splitting calibration architecture from broader transportability judgment. The repository encodes that split directly: calibration architect is robust in {calibration.get('robust', 0)} cases and conditional in {calibration.get('conditional', 0)}, whereas the older transportability bundle appears far more often under split pressure.
+            """
+        ).strip(),
+        dedent(
+            f"""
+            ## 4. Shrinkage and Transformation: Throughput Tasks Are Not Whole Roles
+
+            The shrinkage story is real, but it is narrower than public discourse suggests. In the database, routine first-pass screener is coded as shrinking in {shrink_screen.get('shrinking', 0)} cases; routine coder on high-consensus, ground-truth-rich tasks is shrinking in {shrink_code.get('shrinking', 0)}; and structural prose polisher or drafter is shrinking in {shrink_prose.get('shrinking', 0)}. What unites these clusters is not the capability label alone. It is the joint presence of routinized output, relatively clean evaluation, and comparatively low discretion about admissible procedure.
+
+            The objective party-affiliation case is the cleanest coding example. Here the task has public ground truth, and the paper finds that GPT-4 can outperform both supervised classifiers and human coders on identifying party affiliation from a single message across 11 countries {cite('C001_P1')}. But even this case does not dissolve the role system. The authors emphasize that performance still depends on contextual political knowledge and interpretive judgment, and the rival explanation is built into the database itself: objective annotation may be unusually favorable terrain for automation and may not travel to contested constructs. The implication is not that “coding” disappears. It is that some high-consensus coding tasks shrink toward audit and exception handling.
+
+            Review screening shows a similar structure. Compact LLMs can operate effectively as a first-pass triage layer, but low precision and the need for rescue decisions keep the workflow human-accountable at the protocol level {cite('C007_P1')}. Post-publication repair makes the pattern even sharper. In the controlled reproducibility testbed, agents and prompt-based systems can repair some broken code packages, especially when the environment is standardized and the failure mode is visible. But success varies materially with error complexity, context, and diagnostic quality {cite('C028_P1')}. That means routine repair labor can shrink without collapsing the broader reproducibility role into automation.
+
+            Manuscript drafting belongs in the same family, but with a twist. Scientists using LLMs for drafting appear to publish more, yet the same evidence suggests that polished language can coexist with substantively weaker work {cite('C029_P1')}. Structural prose polishing therefore looks shrinkable, while evaluation, credit allocation, and disclosure become more important rather than less important. Accountability and labor allocator is transformed in {accountability.get('transformed', 0)} cases and conditional in {accountability.get('conditional', 0)}, which is a much better fit for the evidence than a simple displacement story.
+            """
+        ).strip(),
+        dedent(
+            f"""
+            ## 5. Split Pressure and Boundary Cases
+
+            Some of the most important lessons in the repository are not about robustness or shrinkage. They are about mis-specified roles. The case on multi-perspective annotation shows why. Where disagreement across subgroups is itself substantively meaningful, a single correction target or majority-vote label can erase the quantity of interest. The paper therefore treats the distribution of perspectives as the inferential object rather than as annotation noise {cite('C003_P1')}. That is difficult to fit inside a single undifferentiated “construct and perspective boundary setter.” The repository is right to register split pressure here.
+
+            Reflexive memoing and anthropological fieldnotes add a related pressure from a different direction. The fieldnote case argues that raw notes are cultural and communicative products that require reflexive interpretation attuned to local meaning systems, even when computational pipelines and generative models are layered into the analysis {cite('C019_P1')}. The problem is not only construct definition. It is also whose perspective is being sampled and who can witness context that remains tacit in the textual trace.
+
+            Multiverse-style autonomous analysis and simulation cases strengthen the same conclusion. When 150 autonomous agents working from the same data and question still produce sizeable nonstandard errors because they diverge on measures and workflow choices, provenance and multiverse tracking become part of the analysis rather than an afterthought {cite('C024_P1')}. And when large-scale simulation systems are explicitly used as testbeds for survey, interview, and intervention questions, calibration and transportability can no longer be treated as the same human role {cite('C034_P1')}. Split pressure is therefore not a weakness in the typology. It is one of the paper's most important substantive findings.
+
+            Boundary cases need even more caution. Project APE and The AI Scientist are useful because they concentrate the strongest current automation ambitions into visible systems. Yet their evidentiary role is bounded. Project APE relies on tournament-style evaluation, model ensembles, and internal quality proxies that do not straightforwardly map onto journal, policy, or public-accountability standards {cite('C025_P1')}. The AI Scientist is more distant still: it is a boundary case in which much of the evidence comes from AI or machine-learning research rather than from social science proper {cite('C032_P1')}. These systems matter, but they matter as stress tests for the role system, not as settled proof that constitutive human roles have disappeared.
+            """
+        ).strip(),
+        dedent(
+            """
+            ## 6. Rival Explanations and Limits
+
+            The repository is strong enough to support a comparative argument, but it is not immune to rival explanations. Publication bias matters: some cases become visible precisely because they are dramatic, novel, or unusually favorable to AI. Repository coding bias also matters: even a well-documented database reflects earlier curation and coding decisions. Benchmark artificiality remains a live issue in the screening, reproducibility, and autonomy-heavy cases, where clean tasks or internal evaluation frameworks may flatter automation relative to messier live settings.
+
+            These limitations do not collapse the argument, but they do constrain it. The paper can say that H1 is broadly supported because boundary-setting and procedure-setting roles survive more often than routine production clusters. It can say that H2 is conditionally supported because the clearest shrinkage clusters where auditability and public ground truth are strongest. It can also say that H3 is supported as a repository pattern: role status tracks research stage and institutional setting more closely than it tracks AI capability label alone. What it should not say is that the repository proves a universal law of role disappearance. The strongest boundary cases still carry their own cautions inside the evidence base.
+
+            Framed this way, the paper's contribution stays appropriately bounded for a methods journal. It does not claim to replace the broader literatures on professions, human-AI collaboration, or computational social science. Instead, it provides a comparative empirical bridge among them: a way to describe changing research work in terms of role durability, transformation, shrinkage, and split pressure rather than in terms of undifferentiated human-versus-AI competition.
+            """
+        ).strip(),
+        dedent(
+            """
+            ## 7. Conclusion
+
+            The central result of the repository is conceptual as much as empirical. Once the cases are aligned as a role-system dataset, the most interesting question is no longer whether AI can “do research.” The better question is which roles remain constitutive of valid research under new forms of generative, predictive, and agentic support. The answer is uneven but coherent. Roles tied to meaning, admissible procedure, calibration, provenance, and accountability are more durable than routine throughput clusters. Some tasks do shrink, especially where evaluation is clean. Some roles transform, especially around authorship, disclosure, and labor allocation. And some inherited categories are no longer precise enough, because the repository creates pressure to split them.
+
+            That pattern is analytically stronger than either automation hype or blanket human exceptionalism. It suggests that the next generation of methodological work should focus less on generalized replacement claims and more on the changing architecture of research roles. For now, the safe contribution of this paper is a source-backed comparative typology audit with an intentionally conservative claim ceiling. That is already enough to show that the empirical terrain has changed: not from human research to machine research, but from one research role system to another.
+            """
+        ).strip(),
+        "## Provisional References\n\n" + reference_block,
+    )
+
+
+def build_protocol_project_brief(
+    journal_row: dict[str, str],
+    claim_ceiling: str,
+    counts: dict[str, int],
+    status_counts: dict[str, Counter],
+    db_root: Path,
+    execution_profile: str,
+    seed_pack_ids: list[str],
+) -> str:
+    base = build_project_brief(journal_row, claim_ceiling, counts, status_counts, db_root)
+    replacement = dedent(
+        f"""
+        ## Current Protocol State
+
+        - Execution profile: `{execution_profile}`
+        - Adapter: `{ADAPTER_ID}`
+        - Gate model version: `{GATE_MODEL_VERSION}`
+        - Declared seed packs: {'; '.join(seed_pack_ids) if seed_pack_ids else 'none declared'}
+        - Provisional journal targeting is `auto_constrained` for internal drafting unless a human explicitly selected the target in the invocation.
+        - Safe claim floor and novelty-risk downgrade are applied conservatively for this pass unless a human approved stronger framing.
+        - Reference hygiene and disclosure packet completeness are prepared conservatively, while `final_reference_scope`, `disclosure_signoff`, and `final_submit_authority` remain human-resolved only.
+        - Delivery exports may be generated for review convenience, but they do not imply submission readiness or irreversible gate closure.
+        """
+    ).strip()
+    return re.sub(r"## Closed Decisions.*$", replacement, base, flags=re.S)
+
+
+def build_protocol_reference_coverage_report(reference_rows: list[dict[str, str]]) -> str:
+    base = build_reference_coverage_report(reference_rows)
+    replacement = dedent(
+        """
+        ## Remaining Coverage Gaps
+
+        - Broader methodological and conceptual canon beyond the case literature still needs a dedicated related-work pass.
+        - `reference_hygiene` may auto-constrain the working set, but `final_reference_scope` remains human-resolved in `submission_prep` mode.
+        - Delivery exports may be generated for review convenience, but they do not imply submission readiness.
+        """
+    ).strip()
+    return re.sub(r"## Remaining coverage gaps.*$", replacement, base, flags=re.S)
+
+
+def build_journal_decision_packet(journal_row: dict[str, str], execution_profile: str) -> str:
+    return join_blocks(
+        "# Journal Decision Packet",
+        dedent(
+            f"""
+            ## Proposal For This Pass
+
+            - Proposed drafting target: {journal_row['journal_name']} (`{journal_row['journal_id']}`)
+            - Execution profile: `{execution_profile}`
+            - Decision state: `auto_constrained` for `provisional_journal_target` unless a human explicitly selected the journal in the command invocation
+
+            ## Why this remains a packet rather than a closed gate
+
+            The local runner may auto-select a provisional drafting target for internal use, but `framing_lock` remains human-resolved before any irreversible submission-facing positioning.
+            """
+        ).strip(),
+    )
+
+
+def build_reference_inclusion_packet(reference_rows: list[dict[str, str]]) -> str:
+    empirical = [row for row in reference_rows if row["source_id"].startswith("C")]
+    background = [row for row in reference_rows if not row["source_id"].startswith("C")]
+    lines = [
+        "# Reference Inclusion Packet",
+        "",
+        "## Proposed Inclusion Set",
+        "",
+        f"- Proposed empirical references: {len(empirical)}",
+        f"- Proposed broader framing references: {len(background)}",
+        "- Human approval is still required before this becomes the final citation list.",
+        "",
+        "## Proposed Empirical References",
+        "",
+    ]
+    lines.extend([f"- {row['author_label']} {row['year']} [{row['source_id']}]" for row in empirical])
+    lines.extend(["", "## Proposed Broader Framing References", ""])
+    lines.extend([f"- {row['author_label']} {row['year']} [{row['source_id']}]" for row in background])
+    lines.extend(
+        [
+            "",
+            "## Protocol Note",
+            "",
+            "- `reference_hygiene` may auto-constrain clearly mechanical cleanup, but `final_reference_scope` remains human-resolved when bibliography boundaries affect framing or submission.",
+        ]
+    )
+    return "\n".join(lines)
+
+
+def build_disclosure_packet(journal_row: dict[str, str]) -> str:
+    return join_blocks(
+        "# Disclosure Packet",
+        dedent(
+            f"""
+            ## Proposed Disclosure Text
+
+            Generative AI tools were used in a local workflow to support lawful source organization, structured extraction, database upkeep, and draft-language generation. All evidence verification, coding judgments, interpretive claims, and final manuscript text remain subject to human review and approval. No AI system is listed as an author.
+
+            ## Decision State
+
+            `disclosure_packet_completeness` is `auto_constrained` to the most conservative compliant wording, while `disclosure_signoff` remains human-resolved for {journal_row['journal_name']}.
+            """
+        ).strip(),
+    )
+
+
+def build_submission_packet(journal_row: dict[str, str], claim_ceiling: str) -> str:
+    return join_blocks(
+        "# Submission Readiness Packet",
+        dedent(
+            f"""
+            ## Current State
+
+            - Proposed target journal: {journal_row['journal_name']} (`{journal_row['journal_id']}`)
+            - Current claim ceiling: `{claim_ceiling}`
+            - Packet readiness state: `auto_constrained`
+            - Final submission authority state: `ai_proposed`
+
+            ## Rule
+
+            The runner may assemble a submission packet and block missing items automatically, but it must not mark the manuscript as submitted or human-approved. `final_reference_scope`, `disclosure_signoff`, and `final_submit_authority` all require human resolution.
+            """
+        ).strip(),
+    )
+
+
+def gate_status_for_state(decision_state: str) -> str:
+    if decision_state == "auto_constrained":
+        return "non_blocking"
+    if decision_state in {"human_resolved", "deferred", "waived", "auto_resolved_audited"}:
+        return "closed"
+    if decision_state == "challenged":
+        return "challenged"
+    return "open"
+
+
+def gate_is_blocking(decision_state: str) -> bool:
+    return decision_state in BLOCKING_DECISION_STATES
+
+
+def serialize_gate_metric(gate_rows: list[dict[str, str]], target_state: str) -> str:
+    counts = Counter(row["gate_id"] for row in gate_rows if row["decision_state"] == target_state)
+    return "; ".join(f"{gate_id}={count}" for gate_id, count in sorted(counts.items()))
+
+
+def build_gate_model_compatibility_note() -> str:
+    return join_blocks(
+        "# Gate Model Compatibility Note",
+        dedent(
+            f"""
+            ## Current Runner State
+
+            - Active gate model version: `{GATE_MODEL_VERSION}`
+            - Effective date for this runner patch: `{TODAY}`
+            - Historical run rows created before this patch may still use the legacy composite-gate model.
+            """
+        ).strip(),
+        dedent(
+            """
+            ## Legacy-To-Current Mapping
+
+            - `journal_choice_gate` -> `provisional_journal_target` + `framing_lock`
+            - `claim_ceiling_gate` -> `safe_claim_floor` + `claim_escalation`
+            - `theory_novelty_gate` -> `novelty_risk_downgrade` + `novelty_endorsement`
+            - `citation_inclusion_gate` -> `reference_hygiene` + `final_reference_scope`
+            - `disclosure_gate` -> `disclosure_packet_completeness` + `disclosure_signoff`
+            - `submission_gate` -> `submission_packet_ready` + `final_submit_authority`
+            - `role_ontology_freeze_gate` and `boundary_autonomy_gate` remain adapter-local gates used by the role-system runner.
+            """
+        ).strip(),
+        dedent(
+            """
+            ## Interpretation Rule
+
+            Read older run logs, gate registries, delivery-artifact rows, and pre-redesign assessment memos through the mapping above. They remain historically accurate snapshots and should not be interpreted as the current live control-panel gate inventory.
+            """
+        ).strip(),
+    )
+
+
+def build_gate_rows(
+    mode: str,
+    execution_profile: str,
+    requested_journal: str,
+    requested_claim_ceiling: str,
+    journal_row: dict[str, str],
+    claim_ceiling: str,
+) -> list[dict[str, str]]:
+    submission_mode = mode == "submission_prep"
+    journal_state = "human_resolved" if requested_journal != "auto" else "auto_constrained"
+    safe_claim_state = "auto_constrained" if requested_claim_ceiling == "auto" else "human_resolved"
+    claim_escalation_state = "human_resolved" if requested_claim_ceiling in {"artifact", "evaluated"} else "waived"
+    framing_lock_state = "human_resolved" if submission_mode and requested_journal != "auto" else ("ai_proposed" if submission_mode else "waived")
+    final_reference_scope_state = "ai_proposed" if submission_mode else "waived"
+    disclosure_signoff_state = "ai_proposed" if submission_mode else "waived"
+    final_submit_state = "ai_proposed" if submission_mode else "waived"
+
+    gate_rows = [
+        {
+            "gate_id": "provisional_journal_target",
+            "gate_label": "Provisional journal target",
+            "autonomy_class": "auto_constrain_then_escalate",
+            "decision_state": journal_state,
+            "current_decision": f"Use `{journal_row['journal_id']}` as the drafting target for this pass." if journal_state != "human_resolved" else f"Human selected `{journal_row['journal_id']}` as the drafting target.",
+            "next_action": "Escalate only if the drafting target must change or a submission-facing framing lock is required.",
+            "audit_artifact": "00_brief/final_journal_decision.md",
+        },
+        {
+            "gate_id": "framing_lock",
+            "gate_label": "Framing lock",
+            "autonomy_class": "human_resolved_only",
+            "decision_state": framing_lock_state,
+            "current_decision": "Keep journal targeting provisional until a human records an irreversible framing lock." if framing_lock_state != "human_resolved" else f"Human locked submission-facing framing to `{journal_row['journal_id']}`.",
+            "next_action": "Human resolves before submission-facing target lock or irreversible journal positioning.",
+            "audit_artifact": "00_brief/final_journal_decision.md",
+        },
+        {
+            "gate_id": "safe_claim_floor",
+            "gate_label": "Safe claim floor",
+            "autonomy_class": "auto_constrain_then_escalate",
+            "decision_state": safe_claim_state,
+            "current_decision": f"Keep the manuscript at the safe claim floor of `{SAFE_CLAIM_FLOOR}` for this pass." if safe_claim_state == "auto_constrained" else f"Human confirmed the current claim ceiling at `{claim_ceiling}`.",
+            "next_action": "Escalate only if stronger rhetoric than the safe floor must persist.",
+            "audit_artifact": "30_reviews/theory_novelty_memo.md",
+        },
+        {
+            "gate_id": "claim_escalation",
+            "gate_label": "Claim escalation",
+            "autonomy_class": "human_resolved_only",
+            "decision_state": claim_escalation_state,
+            "current_decision": f"Human approved a stronger claim ceiling of `{claim_ceiling}`." if claim_escalation_state == "human_resolved" else "No stronger-than-floor claim escalation is active in this pass.",
+            "next_action": "Human resolves only when a ceiling above the safe floor must be retained.",
+            "audit_artifact": "30_reviews/theory_novelty_memo.md",
+        },
+        {
+            "gate_id": "role_ontology_freeze_gate",
+            "gate_label": "Role ontology freeze",
+            "autonomy_class": "auto_constrain_then_escalate",
+            "decision_state": "auto_constrained",
+            "current_decision": "Freeze the current role ontology and codebook for this pass.",
+            "next_action": "Escalate only if the ontology itself must change.",
+            "audit_artifact": "30_reviews/gate_decisions.md",
+        },
+        {
+            "gate_id": "boundary_autonomy_gate",
+            "gate_label": "Boundary/autonomy interpretation",
+            "autonomy_class": "auto_constrain_then_escalate",
+            "decision_state": "auto_constrained",
+            "current_decision": "Treat autonomy-heavy systems as boundary-pressure cases rather than disappearance proof.",
+            "next_action": "Escalate only if stronger autonomy-disappearance language is requested.",
+            "audit_artifact": "30_reviews/theory_novelty_memo.md",
+        },
+        {
+            "gate_id": "novelty_risk_downgrade",
+            "gate_label": "Novelty risk downgrade",
+            "autonomy_class": "auto_constrain_then_escalate",
+            "decision_state": "auto_constrained",
+            "current_decision": "Use bounded methods/framework contribution language and suppress stronger novelty rhetoric.",
+            "next_action": "Escalate only if strong novelty framing must persist.",
+            "audit_artifact": "30_reviews/theory_novelty_memo.md",
+        },
+        {
+            "gate_id": "novelty_endorsement",
+            "gate_label": "Novelty endorsement",
+            "autonomy_class": "human_resolved_only",
+            "decision_state": "waived",
+            "current_decision": "Strong novelty endorsement is not being pursued in this pass.",
+            "next_action": "Human resolves only if strong novelty framing is later retained.",
+            "audit_artifact": "30_reviews/theory_novelty_memo.md",
+        },
+        {
+            "gate_id": "reference_hygiene",
+            "gate_label": "Reference hygiene",
+            "autonomy_class": "auto_constrain_then_escalate",
+            "decision_state": "auto_constrained",
+            "current_decision": "Prepared a conservative reference hygiene packet from the database and supplemental reference pack.",
+            "next_action": "Escalate only if bibliography scope changes argument framing.",
+            "audit_artifact": "20_citations/reference_inclusion_decisions.md",
+        },
+        {
+            "gate_id": "final_reference_scope",
+            "gate_label": "Final reference scope",
+            "autonomy_class": "human_resolved_only",
+            "decision_state": final_reference_scope_state,
+            "current_decision": "Keep the hygiene-updated working set provisional until a human locks the final submission bibliography." if final_reference_scope_state != "human_resolved" else "Human resolved the submission-facing reference scope.",
+            "next_action": "Human resolves in `submission_prep` before any final submission bibliography freeze.",
+            "audit_artifact": "20_citations/reference_inclusion_decisions.md",
+        },
+        {
+            "gate_id": "disclosure_packet_completeness",
+            "gate_label": "Disclosure packet completeness",
+            "autonomy_class": "auto_constrain_then_escalate",
+            "decision_state": "auto_constrained",
+            "current_decision": "Generated the most conservative journal-facing disclosure packet supported by the local run record.",
+            "next_action": "Escalate only if disclosure wording is narrowed or softened.",
+            "audit_artifact": "30_reviews/disclosure_statement.md",
+        },
+        {
+            "gate_id": "disclosure_signoff",
+            "gate_label": "Disclosure signoff",
+            "autonomy_class": "human_resolved_only",
+            "decision_state": disclosure_signoff_state,
+            "current_decision": "Keep the disclosure packet provisional until a human signs off the final wording." if disclosure_signoff_state != "human_resolved" else "Human approved the final disclosure wording.",
+            "next_action": "Human resolves in `submission_prep` before disclosure becomes submission-facing.",
+            "audit_artifact": "30_reviews/disclosure_statement.md",
+        },
+        {
+            "gate_id": "submission_packet_ready",
+            "gate_label": "Submission packet ready",
+            "autonomy_class": "auto_constrain_then_escalate",
+            "decision_state": "auto_constrained",
+            "current_decision": f"Prepared a submission packet for `{mode}` mode under `{execution_profile}` and kept irreversible submission blocked.",
+            "next_action": "Escalate only if final submit authority is requested.",
+            "audit_artifact": "30_reviews/submission_decision.md",
+        },
+        {
+            "gate_id": "final_submit_authority",
+            "gate_label": "Final submit authority",
+            "autonomy_class": "human_resolved_only",
+            "decision_state": final_submit_state,
+            "current_decision": "The packet is ready for review but no human submission authority is recorded." if final_submit_state != "human_resolved" else "Human recorded final submission authority.",
+            "next_action": "Human resolves in `submission_prep` before any external submission action.",
+            "audit_artifact": "30_reviews/submission_decision.md",
+        },
+    ]
+    for row in gate_rows:
+        row["status"] = gate_status_for_state(row["decision_state"])
+    return gate_rows
+
+
+def build_gate_decisions_packet(gate_rows: list[dict[str, str]]) -> str:
+    lines = [
+        "# Gate Decisions",
+        "",
+        f"Gate model version: `{GATE_MODEL_VERSION}`",
+        "",
+        "| Gate | Autonomy class | Status | Decision state | Current decision | Next action | Audit artifact |",
+        "|---|---|---|---|---|---|---|",
+    ]
+    for row in gate_rows:
+        lines.append(
+            f"| {row['gate_label']} | {row['autonomy_class']} | {row['status']} | {row['decision_state']} | {row['current_decision']} | {row['next_action']} | {row['audit_artifact']} |"
+        )
+    return "\n".join(lines)
+
+
+def build_workflow_fidelity_rows(run_id: str, paper_root: Path, execution_profile: str) -> list[dict[str, str]]:
+    return [
+        {
+            "run_id": run_id,
+            "paper_id": "role_systems_db",
+            "workflow_or_skill_id": "theory_orientation_support",
+            "required_by_taxonomy": "yes",
+            "execution_status": "executed_via_local_equivalent",
+            "equivalence_basis": f"{ADAPTER_ID} local brief and theory memo outputs under `{execution_profile}`",
+            "artifact_paths": "; ".join(
+                [
+                    str(paper_root / "00_brief" / "project_brief.md"),
+                    str(paper_root / "00_brief" / "journal_fit_memo.md"),
+                    str(paper_root / "30_reviews" / "theory_novelty_memo.md"),
+                ]
+            ),
+            "blocking_reason": "",
+            "notes": "Local runner uses bounded memo equivalents instead of direct skill-pack execution.",
+        },
+        {
+            "run_id": run_id,
+            "paper_id": "role_systems_db",
+            "workflow_or_skill_id": "bibliography_building_support",
+            "required_by_taxonomy": "yes",
+            "execution_status": "executed_via_local_equivalent",
+            "equivalence_basis": f"{ADAPTER_ID} reference working set, coverage report, and supplemental pack under `{execution_profile}`",
+            "artifact_paths": "; ".join(
+                [
+                    str(paper_root / "20_citations" / "reference_working_set.csv"),
+                    str(paper_root / "20_citations" / "reference_coverage_report.md"),
+                    str(paper_root / "20_citations" / "reference_inclusion_decisions.md"),
+                    str(paper_root / "20_citations" / "supplemental_reference_pack.csv"),
+                ]
+            ),
+            "blocking_reason": "",
+            "notes": "Bibliography seeds are loaded from a declared local supplemental pack rather than hard-coded inclusion inside the workflow output.",
+        },
+        {
+            "run_id": run_id,
+            "paper_id": "role_systems_db",
+            "workflow_or_skill_id": "qualitative_evidence_support",
+            "required_by_taxonomy": "yes",
+            "execution_status": "executed_via_local_equivalent",
+            "equivalence_basis": f"{ADAPTER_ID} claims-evidence matrix and database-grounded case extracts under `{execution_profile}`",
+            "artifact_paths": str(paper_root / "20_citations" / "claims_evidence_matrix.csv"),
+            "blocking_reason": "",
+            "notes": "The runner uses the completed database as the evidence base for bounded claim drafting.",
+        },
+    ]
+
+
+def build_reconciliation_audit_row(paper_root: Path, gate_rows: list[dict[str, str]]) -> dict[str, str]:
+    claims_path = paper_root / "20_citations" / "claims_evidence_matrix.csv"
+    ref_path = paper_root / "20_citations" / "reference_working_set.csv"
+    coverage_path = paper_root / "20_citations" / "reference_coverage_report.md"
+    gate_path = paper_root / "30_reviews" / "gate_decisions.md"
+
+    def file_status(path: Path) -> str:
+        return "pass" if path.exists() else "fail"
+
+    coverage_text = coverage_path.read_text(encoding="utf-8") if coverage_path.exists() else ""
+    gate_text = gate_path.read_text(encoding="utf-8") if gate_path.exists() else ""
+    cross_file_issues: list[str] = []
+    if "final_reference_scope" not in coverage_text and "reference_hygiene" not in coverage_text:
+        cross_file_issues.append("reference coverage report does not preserve the split bibliography gate model")
+    if any(row["decision_state"] == "auto_constrained" for row in gate_rows) and "auto_constrained" not in gate_text:
+        cross_file_issues.append("gate decisions file does not expose auto_constrained decision states")
+    if GATE_MODEL_VERSION not in gate_text:
+        cross_file_issues.append("gate decisions file does not record the current gate model version")
+    return {
+        "run_id": "pending_run_id",
+        "paper_id": "role_systems_db",
+        "claims_matrix_status": file_status(claims_path),
+        "reference_working_set_status": file_status(ref_path),
+        "coverage_report_status": file_status(coverage_path),
+        "gate_decisions_status": file_status(gate_path),
+        "run_log_status": "pass",
+        "cross_file_consistency_status": "pass" if not cross_file_issues else "fail",
+        "blocking_issues": "; ".join(cross_file_issues),
+        "notes": "Safe defaults may auto-constrain Class B gates, while Class C gates remain unresolved until human review in the appropriate mode.",
+    }
+
+
+def render_reconciliation_audit(audit_row: dict[str, str]) -> str:
+    return join_blocks(
+        "# Reconciliation Audit",
+        dedent(
+            f"""
+            - claims matrix: {audit_row['claims_matrix_status']}
+            - reference working set: {audit_row['reference_working_set_status']}
+            - coverage report: {audit_row['coverage_report_status']}
+            - gate decisions: {audit_row['gate_decisions_status']}
+            - run log: {audit_row['run_log_status']}
+            - cross-file consistency: {audit_row['cross_file_consistency_status']}
+            """
+        ).strip(),
+        "## Blocking Issues\n\n- " + (audit_row["blocking_issues"] or "none"),
+        "## Notes\n\n- " + audit_row["notes"],
+    )
+
+
+def build_delivery_artifact_rows(paper_root: Path, mode: str) -> list[dict[str, str]]:
+    return [
+        {
+            "delivery_artifact_id": "docx_review_export",
+            "artifact_name": "Role-system manuscript Word export",
+            "artifact_type": "docx",
+            "core_or_optional": "optional_delivery_artifact",
+            "source_artifact": str(paper_root / "10_drafts" / "10_manuscript.md"),
+            "generated_artifact": str(paper_root / "10_drafts" / "10_manuscript.docx"),
+            "trigger_mode": mode,
+            "generation_rule": "render markdown manuscript into a Word review document without changing manuscript-core compliance state",
+            "human_gate_dependency": "final_reference_scope; disclosure_signoff; final_submit_authority",
+            "status": "generated_for_review_only" if mode != "submission_prep" else "generated_pending_human_resolution",
+            "notes": "Word export is a delivery convenience and does not imply submission readiness.",
+        }
+    ]
+
+
+def build_open_issues_from_gates(gate_rows: list[dict[str, str]]) -> str:
+    unresolved = [row for row in gate_rows if gate_is_blocking(row["decision_state"])]
+    lines = ["# Open Issues", "", "## Remaining Protocol Tasks", ""]
+    if unresolved:
+        lines.extend([f"- {row['gate_label']}: {row['next_action']}" for row in unresolved])
+    else:
+        lines.append("- No active blocking protocol tasks remain for this mode.")
+    lines.extend(
+        [
+            "",
+            "## Current Blocker Summary",
+            "",
+            "- Class B gates may be auto-constrained without becoming active blockers, but they remain reviewable through challenge or override.",
+            "- Submission-facing Class C gates may remain waived outside `submission_prep` and therefore do not count as active blockers in draft-mode passes.",
+            "- Optional delivery exports do not change manuscript-core gate state.",
+        ]
+    )
+    return "\n".join(lines)
+
+
+def append_run_log(run_log_path: Path, row: dict[str, str]) -> None:
+    if run_log_path.exists():
+        existing = read_csv(run_log_path)
+    else:
+        existing = []
+    fieldnames = [
+        "run_id",
+        "started_at",
+        "finished_at",
+        "mode",
+        "execution_profile",
+        "gate_model_version",
+        "journal",
+        "claim_ceiling",
+        "refresh_db",
+        "outputs_written",
+        "delivery_artifacts_written",
+        "open_gate_count",
+        "workflow_fidelity_status",
+        "reconciliation_status",
+        "gate_state_summary",
+        "auto_resolution_count_by_gate",
+        "auto_constraint_count_by_gate",
+        "human_override_rate_by_gate",
+        "false_auto_resolution_rate",
+        "silent_downgrade_count",
+        "quality_preservation_rate",
+        "time_saved_before_human_review",
+        "challenge_rate",
+        "agreement_rate_human_vs_auto",
+        "notes",
+    ]
+    existing.append(row)
+    write_csv(run_log_path, fieldnames, existing)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--db-root", default=str(DEFAULT_DB_ROOT))
+    parser.add_argument("--paper-root", default="")
+    parser.add_argument("--mode", default="draft")
+    parser.add_argument("--execution-profile", default=DEFAULT_EXECUTION_PROFILE)
+    parser.add_argument("--journal", default="auto")
+    parser.add_argument("--claim-ceiling", default="auto")
+    parser.add_argument("--refresh-db", action="store_true")
+    parser.add_argument("--max-passes", default="3")
+    parser.add_argument("--local-only", action="store_true")
+    args = parser.parse_args()
+
+    db_root = Path(args.db_root)
+    paper_root = Path(args.paper_root) if args.paper_root else db_root / "11_manuscript"
+    execution_profile = choose_execution_profile(args.execution_profile)
+    started_dt = datetime.now().astimezone()
+    started = started_dt.isoformat(timespec="seconds")
+    run_id = f"run_{started_dt.strftime('%Y_%m_%dT%H_%M_%S')}_rolemanuscript_{args.mode}"
+
+    if args.refresh_db:
+        refresh_database()
+
+    ensure_dirs(paper_root)
+
+    analysis_root = db_root / "06_analysis_tables"
+    role_rows = read_csv(analysis_root / "role_coding_master.csv")
+    sources_master = read_csv(analysis_root / "sources_master.csv")
+    evidence_rows = read_csv(analysis_root / "evidence_extracts_master.csv")
+    journal_rows = read_csv(MANUSCRIPT_OPS_ROOT / "corpora" / "target-journals" / "journal-registry.csv")
+
+    selected_journal = choose_journal(journal_rows, args.journal)
+    claim_ceiling = choose_claim_ceiling(args.claim_ceiling)
+    status_counts = aggregate_statuses(role_rows)
+    reference_sources = selected_reference_rows(sources_master)
+    supplemental_rows = ensure_supplemental_reference_pack(paper_root / "20_citations" / "supplemental_reference_pack.csv")
+    reference_rows = build_reference_rows_from_pack(reference_sources, supplemental_rows)
+    claim_rows = selected_claim_rows()
+    seed_pack_ids = load_seed_pack_ids()
+
+    counts = {
+        "open_sources": sum(1 for row in sources_master if row.get("source_role") != "registry" and row.get("access_status") == "open"),
+        "extracts": len(evidence_rows),
+        "roles": len(role_rows),
+        "high_confidence": sum(1 for row in role_rows if row.get("confidence") == "high"),
+        "medium_confidence": sum(1 for row in role_rows if row.get("confidence") == "medium"),
+        "low_confidence": sum(1 for row in role_rows if row.get("confidence") == "low"),
+    }
+    gate_rows = build_gate_rows(args.mode, execution_profile, args.journal, args.claim_ceiling, selected_journal, claim_ceiling)
+
+    write_text(
+        paper_root / "00_brief" / "project_brief.md",
+        build_protocol_project_brief(selected_journal, claim_ceiling, counts, status_counts, db_root, execution_profile, seed_pack_ids),
+    )
+    write_text(paper_root / "00_brief" / "journal_fit_memo.md", build_journal_fit_memo(journal_rows, selected_journal, claim_ceiling))
+    write_text(paper_root / "00_brief" / "final_journal_decision.md", build_journal_decision_packet(selected_journal, execution_profile))
+    write_csv(
+        paper_root / "20_citations" / "claims_evidence_matrix.csv",
+        [
+            "claim_id",
+            "section",
+            "claim_text",
+            "support_type",
+            "case_ids",
+            "supporting_extract_ids",
+            "limiting_extract_ids",
+            "source_ids",
+            "confidence",
+            "claim_ceiling",
+            "notes",
+        ],
+        claim_rows,
+    )
+    write_csv(
+        paper_root / "20_citations" / "reference_working_set.csv",
+        [
+            "reference_id",
+            "citation_key",
+            "source_id",
+            "case_id",
+            "author_label",
+            "year",
+            "title",
+            "source_type",
+            "planned_sections",
+            "priority",
+            "status",
+            "notes",
+            "url",
+        ],
+        reference_rows,
+    )
+    write_text(paper_root / "20_citations" / "reference_coverage_report.md", build_protocol_reference_coverage_report(reference_rows))
+    write_text(paper_root / "20_citations" / "reference_inclusion_decisions.md", build_reference_inclusion_packet(reference_rows))
+    write_text(paper_root / "30_reviews" / "theory_novelty_memo.md", build_theory_novelty_memo(selected_journal))
+    write_text(paper_root / "30_reviews" / "gate_decisions.md", build_gate_decisions_packet(gate_rows))
+    write_csv(
+        paper_root / "30_reviews" / "gate_state_registry.csv",
+        ["gate_id", "gate_label", "autonomy_class", "status", "decision_state", "current_decision", "next_action", "audit_artifact"],
+        gate_rows,
+    )
+    write_text(paper_root / "30_reviews" / "disclosure_statement.md", build_disclosure_packet(selected_journal))
+    write_text(paper_root / "30_reviews" / "submission_decision.md", build_submission_packet(selected_journal, claim_ceiling))
+    write_text(paper_root / "10_drafts" / "00_outline.md", build_outline(selected_journal))
+    manuscript_text = build_manuscript(selected_journal, claim_ceiling, status_counts, reference_rows)
+    write_text(paper_root / "10_drafts" / "10_manuscript.md", manuscript_text)
+    write_docx_from_markdown(paper_root / "10_drafts" / "10_manuscript.docx", manuscript_text)
+    workflow_fidelity_rows = build_workflow_fidelity_rows(run_id, paper_root, execution_profile)
+    write_csv(
+        paper_root / "40_runs" / "workflow_fidelity_manifest.csv",
+        [
+            "run_id",
+            "paper_id",
+            "workflow_or_skill_id",
+            "required_by_taxonomy",
+            "execution_status",
+            "equivalence_basis",
+            "artifact_paths",
+            "blocking_reason",
+            "notes",
+        ],
+        workflow_fidelity_rows,
+    )
+    reconciliation_row = build_reconciliation_audit_row(paper_root, gate_rows)
+    reconciliation_row["run_id"] = run_id
+    write_csv(
+        paper_root / "40_runs" / "reconciliation_audit.csv",
+        [
+            "run_id",
+            "paper_id",
+            "claims_matrix_status",
+            "reference_working_set_status",
+            "coverage_report_status",
+            "gate_decisions_status",
+            "run_log_status",
+            "cross_file_consistency_status",
+            "blocking_issues",
+            "notes",
+        ],
+        [reconciliation_row],
+    )
+    write_text(paper_root / "40_runs" / "reconciliation_audit.md", render_reconciliation_audit(reconciliation_row))
+    write_text(paper_root / "40_runs" / "gate_model_compatibility.md", build_gate_model_compatibility_note())
+    delivery_rows = build_delivery_artifact_rows(paper_root, args.mode)
+    write_csv(
+        paper_root / "40_runs" / "delivery_artifact_records.csv",
+        [
+            "delivery_artifact_id",
+            "artifact_name",
+            "artifact_type",
+            "core_or_optional",
+            "source_artifact",
+            "generated_artifact",
+            "trigger_mode",
+            "generation_rule",
+            "human_gate_dependency",
+            "status",
+            "notes",
+        ],
+        delivery_rows,
+    )
+    write_text(paper_root / "40_runs" / "open_issues.md", build_open_issues_from_gates(gate_rows))
+    open_gate_count = sum(1 for row in gate_rows if gate_is_blocking(row["decision_state"]))
+    append_run_log(
+        paper_root / "40_runs" / "run_log.csv",
+        {
+            "run_id": run_id,
+            "started_at": started,
+            "finished_at": datetime.now().astimezone().isoformat(timespec="seconds"),
+            "mode": args.mode,
+            "execution_profile": execution_profile,
+            "gate_model_version": GATE_MODEL_VERSION,
+            "journal": selected_journal["journal_id"],
+            "claim_ceiling": claim_ceiling,
+            "refresh_db": "yes" if args.refresh_db else "no",
+            "outputs_written": "project_brief;journal_fit_memo;final_journal_decision;claims_evidence_matrix;reference_working_set;supplemental_reference_pack;reference_coverage_report;reference_inclusion_decisions;theory_novelty_memo;gate_decisions;gate_state_registry;disclosure_statement;submission_decision;outline;manuscript;workflow_fidelity_manifest;reconciliation_audit;gate_model_compatibility;delivery_artifact_records;open_issues",
+            "delivery_artifacts_written": "manuscript_docx",
+            "open_gate_count": str(open_gate_count),
+            "workflow_fidelity_status": "equivalent_execution_logged",
+            "reconciliation_status": reconciliation_row["cross_file_consistency_status"],
+            "gate_state_summary": "; ".join(f"{row['gate_id']}={row['decision_state']}" for row in gate_rows),
+            "auto_resolution_count_by_gate": serialize_gate_metric(gate_rows, "auto_resolved_audited"),
+            "auto_constraint_count_by_gate": serialize_gate_metric(gate_rows, "auto_constrained"),
+            "human_override_rate_by_gate": "",
+            "false_auto_resolution_rate": "",
+            "silent_downgrade_count": "0",
+            "quality_preservation_rate": "",
+            "time_saved_before_human_review": "",
+            "challenge_rate": "0",
+            "agreement_rate_human_vs_auto": "",
+            "notes": "Rolemanuscript pass generated from the completed role-system database under the accelerated_local adapter profile. Class B gates may auto-constrain to safe defaults, Class C gates remain human-resolved only, and historical composite-gate logs should be read through the compatibility note.",
+        },
+    )
+
+
+if __name__ == "__main__":
+    main()

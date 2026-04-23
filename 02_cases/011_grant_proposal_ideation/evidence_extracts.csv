@@ -1,0 +1,110 @@
+extract_id,case_id,case_slug,source_id,source_type,page_or_section,extract_type,text_excerpt_or_paraphrase,supports_role,contradicts_role,supports_shrinkage,supports_split,supports_merge_or_rejection,notes
+E011_001,11,011_grant_proposal_ideation,C011_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Compare AI-assisted and non-assisted proposal ideation under real funding calls to test whether AI changes what gets proposed, not just how it is written.",Relevance adjudicator; accountability and labor allocator,,no,no,no,Workbook seed description preserved for provenance.
+E011_002,11,011_grant_proposal_ideation,C011_REGISTRY,registry_workbook_entry,Repository row,counterevidence,"Austerity, field maturity, and call design can compress agendas even without AI",,Relevance adjudicator; accountability and labor allocator,no,no,no,Repository curation note captured as rival explanation / caution.
+E011_003,11,011_grant_proposal_ideation,C011_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,AI use leaves distinctiveness and stakeholder relevance unchanged or improves both,,Relevance adjudicator; accountability and labor allocator,no,no,no,Falsification condition recorded from repository seed.
+E011_004,11,011_grant_proposal_ideation,C011_P1,preprint,landing page / extracted text,method,"[2601.15485] The Rise of Large Language Models and the Direction and Impact of US Federal Research Funding
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2601.15485
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Digital Libraries
+
+arXiv:2601.15485
+ (cs)
+ 
+
+ [Submitted on 21 Jan 2026]
+
+Title:
+The Rise of Large Language Models and the Direction and Impact of US Federal Research Funding
+
+Authors:
+Yifan Qian
+, 
+Zhe Wen
+, 
+Alexander C. Furnas
+, 
+Yue Bai
+, 
+Erzhuo Shao
+, 
+Dashun Wang
+ 
+View a PDF of the paper titled The Rise of Large Language Models and the Direction and Impact of US Federal Research Funding, by Yifan Qian and 5 other authors
+
+View PDF
+
+HTML (experimental)
+
+Abstract:
+Federal research funding shapes the direction, diversity, and im",Relevance adjudicator; accountability and labor allocator,,no,no,no,Auto-extracted text snippet from collected source.

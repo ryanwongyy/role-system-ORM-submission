@@ -1,0 +1,102 @@
+extract_id,case_id,case_slug,source_id,source_type,page_or_section,extract_type,text_excerpt_or_paraphrase,supports_role,contradicts_role,supports_shrinkage,supports_split,supports_merge_or_rejection,notes
+E020_001,20,020_reflexive_content_analysis_redesign,C020_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Use reflexive content analysis to test whether AI support works only when human researchers redesign prompts, codebooks, and interpretive checkpoints.",Construct boundary setter; context witness; protocol architect,,no,no,no,Workbook seed description preserved for provenance.
+E020_002,20,020_reflexive_content_analysis_redesign,C020_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Method-specific guidance may overfit a narrow coding style,,Construct boundary setter; context witness; protocol architect,no,no,no,Repository curation note captured as rival explanation / caution.
+E020_003,20,020_reflexive_content_analysis_redesign,C020_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Simple one-shot prompting performs as well as redesigned reflexive workflows,,Construct boundary setter; context witness; protocol architect,no,no,no,Falsification condition recorded from repository seed.
+E020_004,20,020_reflexive_content_analysis_redesign,C020_P1,journal article,landing page / extracted text,method,"Scaling hermeneutics: a guide to qualitative coding with LLMs for reflexive content analysis | EPJ Data Science | Springer Nature Link
+
+Skip to main content
+
+SpringerOpen journals have moved to Springer Nature Link. 
+Learn more about website changes.
+
+Log in
+
+Menu
+
+ Find a journal
+ 
+
+ Publish with us
+ 
+
+ Track your research
+ 
+
+Search
+
+Saved research
+
+Cart
+
+Home
+
+EPJ Data Science
+
+Article
+
+Scaling hermeneutics: a guide to qualitative coding with LLMs for reflexive content analysis
+
+Research
+
+Open access
+
+ Published: 
+02 April 2025
+
+Volume 14
+, article number 
+28
+, (
+2025
+)
+ 
+ 
+
+Cite this article
+
+ You have full access to this 
+open access
+ article
+
+Download PDF
+
+Save article
+
+View saved research
+
+EPJ Data Science
+
+ Aims and scope
+ 
+
+ Submit manuscript
+ 
+
+ Scaling hermeneutics: a guide to qualitative coding with LLMs for reflexive content analysis
+ 
+
+Download PDF
+
+Zackary Okun Dunivin
+ 
+ 
+ORCID: 
+orcid.org/0000-0002-1860-7199
+1
+ 
+
+10k 
+Accesses
+
+34 
+Citations
+
+2 
+
+ Altmetric
+ 
+
+Explore all metrics 
+
+Abstract
+Qualitative coding, or content analysis, is more than just labeling text: it is a reflexive interpretive practice that shapes research questions, refines theoretical insights, an",Construct boundary setter; context witness; protocol architect,,no,no,no,Auto-extracted text snippet from collected source.

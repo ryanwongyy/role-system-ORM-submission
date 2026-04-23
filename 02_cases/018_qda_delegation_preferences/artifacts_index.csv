@@ -1,0 +1,4 @@
+artifact_id,case_id,artifact_type,artifact_description,local_path,source_id,usable_for_analysis,notes
+A018_001,18,other,Preference interviews,/Users/ryanwong/Documents/Playground/p1_role_systems_db_build/p1_role_systems_db/03_raw_sources/018_qda_delegation_preferences/C018_P1.html,C018_P1,yes,"Artifact aligned to the best-matching collected supplement, materials page, or benchmark trace."
+A018_002,18,other,scenario rankings,/Users/ryanwong/Documents/Playground/p1_role_systems_db_build/p1_role_systems_db/03_raw_sources/018_qda_delegation_preferences/C018_P1.html,C018_P1,yes,"Artifact aligned to the best-matching collected supplement, materials page, or benchmark trace."
+A018_003,18,other,trust/ownership themes,/Users/ryanwong/Documents/Playground/p1_role_systems_db_build/p1_role_systems_db/03_raw_sources/018_qda_delegation_preferences/C018_P1.html,C018_P1,yes,"Artifact aligned to the best-matching collected supplement, materials page, or benchmark trace."

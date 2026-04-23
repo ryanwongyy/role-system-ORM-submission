@@ -1,0 +1,65 @@
+extract_id,case_id,case_slug,source_id,source_type,page_or_section,extract_type,text_excerpt_or_paraphrase,supports_role,contradicts_role,supports_shrinkage,supports_split,supports_merge_or_rejection,notes
+E027_001,27,027_repro_bench_reproducibility_assessment,C027_REGISTRY,registry_workbook_entry,Repository row,role_claim,Benchmark whether agents can assess computational reproducibility by aligning paper claims with code/data packages and reproduction reports.,Protocol and provenance architect; accountability and labor allocator,,no,no,no,Workbook seed description preserved for provenance.
+E027_002,27,027_repro_bench_reproducibility_assessment,C027_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Benchmark tasks still provide agents with unusually convenient access to code and data,,Protocol and provenance architect; accountability and labor allocator,no,no,no,Repository curation note captured as rival explanation / caution.
+E027_003,27,027_repro_bench_reproducibility_assessment,C027_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Agents match human reproducibility judgments on real social-science packages,,Protocol and provenance architect; accountability and labor allocator,no,no,no,Falsification condition recorded from repository seed.
+E027_004,27,027_repro_bench_reproducibility_assessment,C027_P1,conference paper,landing page / extracted text,method,"REPRO-Bench: Can Agentic AI Systems Assess the Reproducibility of Social Science Research? - ACL Anthology
+
+ACL Anthology
+
+News
+(current)
+FAQ
+(current)
+Corrections
+(current)
+Submissions
+(current)
+GitHub
+
+REPRO
+-Bench: Can Agentic 
+AI
+ Systems Assess the Reproducibility of Social Science Research?
+Chuxuan Hu
+,
+
+Liyun Zhang
+,
+
+Yeji Lim
+,
+
+Aum Wadhwani
+,
+
+Austin Peters
+,
+
+Daniel Kang
+Correct Metadata for 
+Use this form to create a GitHub issue with structured data describing the correction. You will need a GitHub account.
+Once you create that issue, the correction will be reviewed by a staff member.
+⚠️ Mobile Users: Submitting this form to create a new issue will only work with github.com, not the GitHub Mobile app.
+Important
+: The Anthology treat PDFs as authoritative. Please use this form only to correct data
+that is out of line with the PDF. See 
+our corrections
+guidelines
+ if you need to change the PDF.
+Title
+
+Adjust the title. Retain tags such as
+<fixed-case>.
+
+Authors
+
+Adjust author names and order to match the
+PDF.
+Add Author
+Abstract
+
+Correct abstract if needed. Retain XML formatting tags such as <tex-math>. You may use <b>...</b> for 
+bold
+, <i>...</i> for 
+italic
+, and <url>",Protocol and provenance architect; accountability and labor allocator,,no,no,no,Auto-extracted text snippet from collected source.

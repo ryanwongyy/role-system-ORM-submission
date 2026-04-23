@@ -1,0 +1,160 @@
+extract_id,case_id,case_slug,source_id,source_type,page_or_section,extract_type,text_excerpt_or_paraphrase,supports_role,contradicts_role,supports_shrinkage,supports_split,supports_merge_or_rejection,notes
+E006_001,6,006_maternal_health_interview_coding,C006_REGISTRY,registry_workbook_entry,Repository row,role_claim,Use semistructured maternal-health interviews to test what is gained and lost when GenAI performs inductive coding and theme extraction.,Construct boundary setter; situated interlocutor; context witness,,no,no,no,Workbook seed description preserved for provenance.
+E006_002,6,006_maternal_health_interview_coding,C006_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Applied health interviews may not generalize to more theory-laden or politically contested domains,,Construct boundary setter; situated interlocutor; context witness,no,no,no,Repository curation note captured as rival explanation / caution.
+E006_003,6,006_maternal_health_interview_coding,C006_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,LLM coding captures nuance and downstream interpretive usefulness as well as human coding,,Construct boundary setter; situated interlocutor; context witness,no,no,no,Falsification condition recorded from repository seed.
+E006_004,6,006_maternal_health_interview_coding,C006_P1,journal article,landing page / extracted text,method,"Generative AI for thematic analysis in a maternal health study: coding semistructured interviews using large language models - PMC
+ 
+
+ Skip to main content
+ 
+
+ An official website of the United States government
+ 
+
+Here's how you know
+
+Here's how you know
+
+Official websites use .gov
+
+ A
+ 
+.gov
+ website belongs to an official
+ government organization in the United States.
+ 
+
+Secure .gov websites use HTTPS
+
+ A 
+lock
+ (
+ 
+
+Lock
+
+ Locked padlock icon
+ 
+
+) or 
+https://
+ means you've safely
+ connected to the .gov website. Share sensitive
+ information only on official, secure websites.
+ 
+
+ Search
+ 
+
+ 
+ 
+ 
+ 
+
+Log in
+
+ 
+
+ 
+ Dashboard
+ 
+
+ 
+ 
+
+ 
+
+ 
+ Publications
+ 
+
+ 
+ 
+
+ 
+
+ 
+ Account settings
+ 
+
+ 
+ 
+
+ 
+ 
+
+ Log out
+
+ 
+ 
+ 
+ 
+
+ Search…
+ 
+
+ Search NCBI
+ 
+
+ Primary site navigation
+ 
+
+ Search
+ 
+
+ Logged in as:
+ 
+
+ 
+
+ 
+ Dashboard
+ 
+
+ 
+ 
+
+ 
+
+ 
+ Publications
+ 
+
+ 
+ 
+
+ 
+
+ 
+ Account settings
+ 
+
+ 
+ 
+
+ 
+ 
+
+ Log in
+
+ 
+ 
+ 
+ 
+
+Search PMC Full-Text Archive
+
+Search in PMC
+
+ Journal List
+ 
+
+ User Guide
+ 
+
+PERMALINK
+
+Copy
+
+ As a library, NLM provides access to scientific literature. Inclusion in an NLM database does not imply endorsement of, or agreement with,
+ the contents by NLM or the National Institutes of He",Construct boundary setter; situated interlocutor; context witness,,no,no,no,Auto-extracted text snippet from collected source.

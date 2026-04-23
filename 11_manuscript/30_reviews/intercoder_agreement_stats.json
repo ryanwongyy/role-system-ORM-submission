@@ -1,0 +1,35 @@
+{
+  "n_cells": 68,
+  "pooled_kappa_7_categories": 0.289,
+  "pooled_kappa_CI95": [
+    0.147,
+    0.439
+  ],
+  "per_status_kappa": {
+    "robust": {
+      "kappa": 0.402,
+      "n_either_coder_used": 13
+    },
+    "conditional": {
+      "kappa": 0.009,
+      "n_either_coder_used": 21
+    },
+    "transformed": {
+      "kappa": 0.0,
+      "n_either_coder_used": 10
+    },
+    "shrinking": {
+      "kappa": 0.549,
+      "n_either_coder_used": 5
+    },
+    "split_pressure": {
+      "kappa": 0.0,
+      "n_either_coder_used": 2
+    },
+    "merge_pressure": null
+  },
+  "n_disagreements": 32,
+  "agreement_rate": 0.529,
+  "bootstrap_B": 2000,
+  "bootstrap_seed": 20260423
+}

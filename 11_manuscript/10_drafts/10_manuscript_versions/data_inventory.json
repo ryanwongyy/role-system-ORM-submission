@@ -1,0 +1,41 @@
+{
+  "role_coding_master": "/Users/ryanwong/Human roles/p1_role_systems_db/06_analysis_tables/role_coding_master.csv",
+  "case_registry": "/Users/ryanwong/Human roles/p1_role_systems_db/01_registry/cases_master.csv",
+  "known_statistics": {
+    "total_cases": 36,
+    "total_role_coding_rows": 612,
+    "high_confidence_rows": 437,
+    "medium_confidence_rows": 165,
+    "low_confidence_rows": 10,
+    "source_rows": 93,
+    "external_sources": 57,
+    "evidence_extracts": 144,
+    "chi2_family": 87.67,
+    "df_family": 35,
+    "cramers_v_family": 0.26,
+    "chi2_capability": 29.8,
+    "df_capability": 10,
+    "cramers_v_capability": 0.24,
+    "roles_with_family_stronger": 14,
+    "total_roles": 17,
+    "median_v_family": 0.587,
+    "median_v_capability": 0.442,
+    "shrinking_obs_all": 40,
+    "shrinking_obs_excl_boundary": 29,
+    "merge_pressure_obs_total": 2,
+    "protocol_robust": 15,
+    "protocol_conditional": 5,
+    "protocol_transformed": 7,
+    "calibration_robust": 8,
+    "calibration_conditional": 10,
+    "boundary_cases_excluded": 5
+  },
+  "exemplar_claims": {
+    "Case 2 Keith 2026": "Protocol and provenance architect = robust",
+    "Case 7 Baccolini 2026": "Protocol and provenance architect = conditional",
+    "Case 29 Yin n.d.": "Accountability and labor allocator = transformed",
+    "Case 1 Tornberg 2025": "Routine coder on high-consensus tasks = shrinking",
+    "Case 3 Gligori\u0107 n.d.": "Construct and perspective boundary setter = split_pressure (on starting_role)",
+    "Case 10 Hajishirzi 2026": "Protocol-and-provenance \u2194 accountability-and-labor = merge_pressure"
+  }
+}

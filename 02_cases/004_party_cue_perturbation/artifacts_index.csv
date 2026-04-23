@@ -1,0 +1,4 @@
+artifact_id,case_id,artifact_type,artifact_description,local_path,source_id,usable_for_analysis,notes
+A004_001,4,other,Cue-perturbation experiments,/Users/ryanwong/Documents/Playground/p1_role_systems_db_build/p1_role_systems_db/03_raw_sources/004_party_cue_perturbation/C004_P1.html,C004_P1,yes,Artifact inferred from repository traces and aligned to the best-matching collected source.
+A004_002,4,other,confidence shifts,/Users/ryanwong/Documents/Playground/p1_role_systems_db_build/p1_role_systems_db/03_raw_sources/004_party_cue_perturbation/C004_P1.html,C004_P1,yes,Artifact inferred from repository traces and aligned to the best-matching collected source.
+A004_003,4,other,divergence from human labels,/Users/ryanwong/Documents/Playground/p1_role_systems_db_build/p1_role_systems_db/03_raw_sources/004_party_cue_perturbation/C004_P1.html,C004_P1,yes,Artifact inferred from repository traces and aligned to the best-matching collected source.

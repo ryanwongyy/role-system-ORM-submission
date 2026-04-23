@@ -1,0 +1,2 @@
+run_id,paper_id,claims_matrix_status,reference_working_set_status,coverage_report_status,gate_decisions_status,run_log_status,cross_file_consistency_status,blocking_issues,notes
+run_2026_04_09T16_15_33_rolemanuscript_draft,role_systems_db,pass,pass,pass,pass,pass,pass,,"Safe defaults may auto-constrain Class B gates, while Class C gates remain unresolved until human review in the appropriate mode."

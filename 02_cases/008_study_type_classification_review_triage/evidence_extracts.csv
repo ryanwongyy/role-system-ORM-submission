@@ -1,0 +1,106 @@
+extract_id,case_id,case_slug,source_id,source_type,page_or_section,extract_type,text_excerpt_or_paraphrase,supports_role,contradicts_role,supports_shrinkage,supports_split,supports_merge_or_rejection,notes
+E008_001,8,008_study_type_classification_review_triage,C008_REGISTRY,registry_workbook_entry,Repository row,role_claim,Benchmark specialized classifiers and LLMs for study-type classification in reviews where social-policy evidence mixes methods and weak metadata.,Corpus pluralist; protocol architect,,no,no,no,Workbook seed description preserved for provenance.
+E008_002,8,008_study_type_classification_review_triage,C008_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Benchmark corpora may be cleaner than actual policy-review inputs,,Corpus pluralist; protocol architect,no,no,no,Repository curation note captured as rival explanation / caution.
+E008_003,8,008_study_type_classification_review_triage,C008_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Predictive triage works equally well on heterogeneous and poorly structured sources,,Corpus pluralist; protocol architect,no,no,no,Falsification condition recorded from repository seed.
+E008_004,8,008_study_type_classification_review_triage,C008_P1,journal article,landing page / extracted text,method,"StudyTypeTeller—Large language models to automatically classify research study types for systematic reviews | Research Synthesis Methods | Cambridge Core
+
+ Skip to main content
+
+ Accessibility help
+
+Login Alert
+
+Cancel
+
+Log in
+
+×
+
+×
+
+ Discover Content 
+ Products and Services 
+Register
+Log In
+ (0) Cart 
+
+ Logo for Cambridge Core from Cambridge University Press. Click to return to homepage. 
+Search
+ Logo for Cambridge Core from Cambridge University Press. Click to return to homepage. 
+Browse
+Services
+Open research
+Institution Login
+Search
+
+ 
+
+ Hostname: page-component-77f85d65b8-lfk5g
+ Total loading time: 0
+ Render date: 2026-04-07T11:00:08.789Z
+ Has data issue: false
+ hasContentIssue false
+ 
+ 
+ 
+Home
+ 
+>
+Journals
+ 
+>
+Research Synthesis Methods
+ 
+>
+Volume 16 Issue 6
+ 
+>
+StudyTypeTeller—Large language models to automatically...
+ 
+English
+
+ Français
+ 
+ 
+ 
+ 
+ 
+Research Synthesis Methods
+ 
+ 
+ 
+ 
+ 
+Article contents
+ 
+Abstract
+ 
+ 
+Highlights
+ 
+Abbreviations
+ 
+Introduction
+ 
+Materials and methods
+ 
+Results
+ 
+Discussion
+ 
+Author contributions
+ 
+Competing interest statement
+ 
+Data availability statement
+ 
+Funding statement
+ 
+Ethics statement
+ 
+Footnotes
+ 
+References
+ 
+ 
+StudyTypeTeller—Large",Corpus pluralist; protocol architect,,no,no,no,Auto-extracted text snippet from collected source.

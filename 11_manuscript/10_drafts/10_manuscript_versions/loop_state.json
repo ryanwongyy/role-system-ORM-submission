@@ -1,0 +1,18 @@
+{
+  "iteration": 0,
+  "scope": "transplant-touched sections only: abstract, \u00a72 around Table 1, \u00a73.0 Exemplars, \u00a73.1 opening, \u00a76 two-lens paragraph, \u00a77 final paragraph",
+  "max_iterations": 2,
+  "agents": [
+    "A_methodology",
+    "C_ORM_editor",
+    "F_data_auditor"
+  ],
+  "do_not_change": [
+    "all statistics (chi2, Cramers V, counts)",
+    "exemplar case IDs (verified against DB)",
+    "table numbers",
+    "\u00a7\u00a74, 5 narrative",
+    "\u00a76 rival-explanations opener (line 100)"
+  ],
+  "scores": []
+}

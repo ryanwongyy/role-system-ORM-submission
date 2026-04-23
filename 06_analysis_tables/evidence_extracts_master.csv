@@ -1,0 +1,3227 @@
+extract_id,case_id,case_slug,source_id,source_type,page_or_section,extract_type,text_excerpt_or_paraphrase,supports_role,contradicts_role,supports_shrinkage,supports_split,supports_merge_or_rejection,notes
+E001_001,1,001_objective_party_annotation,C001_REGISTRY,registry_workbook_entry,Repository row,role_claim,Use politician social-media posts with known party labels to test when human coders can be demoted from primary coders to auditors.,Construct boundary setter; shrinking routine coder,,yes,no,no,Workbook seed description preserved for provenance.
+E001_002,1,001_objective_party_annotation,C001_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Task is unusually objective; may not generalize to contested constructs,,Construct boundary setter; shrinking routine coder,no,no,no,Repository curation note captured as rival explanation / caution.
+E001_003,1,001_objective_party_annotation,C001_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Humans continue to outperform or materially change downstream conclusions on objective tasks,,Construct boundary setter; shrinking routine coder,no,no,no,Falsification condition recorded from repository seed.
+E001_004,1,001_objective_party_annotation,C001_P1,journal article,landing page / extracted text,method,Just a moment...,Construct boundary setter; shrinking routine coder,,yes,no,no,Auto-extracted text snippet from collected source.
+E002_001,2,002_contested_codebook_measurement,C002_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Compare AI-only, human-only, and hybrid codebook workflows on contested political-science constructs with hard negatives and transport tests.",Construct boundary setter,,no,no,no,Workbook seed description preserved for provenance.
+E002_002,2,002_contested_codebook_measurement,C002_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Extra labels may be confounded with better construct work,,Construct boundary setter,no,no,no,Repository curation note captured as rival explanation / caution.
+E002_003,2,002_contested_codebook_measurement,C002_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,AI-only codebooks match human-revised codebooks on edge cases and transport,,Construct boundary setter,no,no,no,Falsification condition recorded from repository seed.
+E002_004,2,002_contested_codebook_measurement,C002_P1,journal article,landing page / extracted text,method,"Codebook LLMs: Evaluating LLMs as Measurement Tools for Political Science Concepts | Political Analysis | Cambridge Core
+
+ Skip to main content
+
+ Accessibility help
+
+Login Alert
+
+Cancel
+
+Log in
+
+×
+
+×
+
+ Discover Content 
+ Products and Services 
+Register
+Log In
+ (0) Cart 
+
+ Logo for Cambridge Core from Cambridge University Press. Click to return to homepage. 
+Search
+ Logo for Cambridge Core from Cambridge University Press. Click to return to homepage. 
+Browse
+Services
+Open research
+Institution Login
+Search
+
+ 
+
+ Hostname: page-component-77f85d65b8-t6st2
+ Total loading time: 0
+ Render date: 2026-04-06T14:00:07.042Z
+ Has data issue: false
+ hasContentIssue false
+ 
+ 
+ 
+Home
+ 
+>
+Journals
+ 
+>
+Political Analysis
+ 
+>
+Volume 34 Issue 2
+ 
+>
+Codebook LLMs: Evaluating LLMs as Measurement Tools...
+ 
+English
+
+ Français
+ 
+ 
+ 
+ 
+ 
+Political Analysis
+ 
+ 
+ 
+ 
+ 
+Article contents
+ 
+Abstract
+ 
+ 
+Introduction
+ 
+A Framework for Codebook-LLM Measurement
+ 
+Related Work
+ 
+Empirical Set-Up: Data and LLMs
+ 
+Stage 0: Codebook Preparation
+ 
+Stage 1: Label-Free Behavioral Testing
+ 
+Stage 2: Zero-Shot Evaluation With Labels
+ 
+Stage 3: Zero-Shot Error Analysis
+ 
+Stage 4: Supervised Fine-tuning
+ 
+Future Work
+ 
+Conclus",Construct boundary setter,,no,no,no,Auto-extracted text snippet from collected source.
+E003_001,3,003_multi_perspective_annotation,C003_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Label the same texts by demographic or partisan subgroups and compare majority-vote, AI-only, and targeted human-sampling corrections.",Construct boundary setter; perspective sampler,,no,yes,no,Workbook seed description preserved for provenance.
+E003_002,3,003_multi_perspective_annotation,C003_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Task underspecification may masquerade as genuine perspectival disagreement,,Construct boundary setter; perspective sampler,no,no,no,Repository curation note captured as rival explanation / caution.
+E003_003,3,003_multi_perspective_annotation,C003_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Majority-vote or AI-only labels preserve subgroup-specific inferences equally well,,Construct boundary setter; perspective sampler,no,no,no,Falsification condition recorded from repository seed.
+E003_004,3,003_multi_perspective_annotation,C003_P1,preprint,landing page / extracted text,method,"[2603.21404] Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2603.21404
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Computation and Language
+
+arXiv:2603.21404
+ (cs)
+ 
+
+ [Submitted on 22 Mar 2026]
+
+Title:
+Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks
+
+Authors:
+Navya Mehrotra
+, 
+Adam Visokay
+, 
+Kristina Gligorić
+ 
+View a PDF of the paper titled Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks, by Navya Mehrotra and 1 other authors
+
+View PDF
+
+HTML (experimental)
+
+Abstract:
+Large language models are increasingly used to annotate texts, but their outputs reflect some human perspectives better than others. Existing methods",Construct boundary setter; perspective sampler,,no,yes,no,Auto-extracted text snippet from collected source.
+E004_001,4,004_party_cue_perturbation,C004_REGISTRY,registry_workbook_entry,Repository row,role_claim,Hold policy text constant while varying party cues to test whether AI coding tracks politically loaded labels rather than substantive content.,Construct boundary setter; bias auditor,,no,yes,no,Workbook seed description preserved for provenance.
+E004_002,4,004_party_cue_perturbation,C004_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Party labels can sometimes be substantively relevant context rather than pure bias,,Construct boundary setter; bias auditor,no,no,no,Repository curation note captured as rival explanation / caution.
+E004_003,4,004_party_cue_perturbation,C004_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Cue changes do not systematically move outputs,,Construct boundary setter; bias auditor,no,no,no,Falsification condition recorded from repository seed.
+E004_004,4,004_party_cue_perturbation,C004_P1,journal article,landing page / extracted text,method,"LLMs as annotators: the effect of party cues on labelling decisions by large language models | Humanities and Social Sciences Communications
+
+Skip to main content
+
+Thank you for visiting nature.com. You are using a browser version with limited support for CSS. To obtain
+ the best experience, we recommend you use a more up to date browser (or turn off compatibility mode in
+ Internet Explorer). In the meantime, to ensure continued support, we are displaying the site without styles
+ and JavaScript.
+
+Advertisement
+
+View all journals
+
+Search
+
+Log in
+
+Content
+
+Explore content
+
+About 
+the journal
+
+Publish 
+with us
+
+Sign up for alerts
+
+RSS feed
+
+nature
+
+humanities and social sciences communications
+
+articles
+
+article
+
+ LLMs as annotators: the effect of party cues on labelling decisions by large language models
+ 
+
+Download PDF
+
+Download PDF
+
+Article
+
+Open access
+
+Published: 
+29 September 2025
+
+LLMs as annotators: the effect of party cues on labelling decisions by large language models
+
+Sebastián Vallejo Vera
+1
+ & 
+Hunter Driggers
+1
+ 
+
+Humanities and Social Sciences Communications
+
+volume
+ 12
+, Article number: 
+1530
+ (
+2025
+)
+ 
+Cite this article
+
+2286 
+Accesses
+
+1 
+Citations
+
+16 
+Altmetric",Construct boundary setter; bias auditor,,no,yes,no,Auto-extracted text snippet from collected source.
+E005_001,5,005_human_developed_codebooks,C005_REGISTRY,registry_workbook_entry,Repository row,role_claim,Compare AI coding quality when the codebook is supplied by policy experts versus when AI proposes themes and labels first.,Construct boundary setter; context witness; protocol architect,,no,no,no,Workbook seed description preserved for provenance.
+E005_002,5,005_human_developed_codebooks,C005_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Policy interviews may be more structured than ethnographic or highly sensitive data,,Construct boundary setter; context witness; protocol architect,no,no,no,Repository curation note captured as rival explanation / caution.
+E005_003,5,005_human_developed_codebooks,C005_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,AI-first thematic analysis without human codebook development is equally specific and usable,,Construct boundary setter; context witness; protocol architect,no,no,no,Falsification condition recorded from repository seed.
+E005_004,5,005_human_developed_codebooks,C005_P1,journal article,landing page / extracted text,method,Just a moment...,Construct boundary setter; context witness; protocol architect,,no,no,no,Auto-extracted text snippet from collected source.
+E006_001,6,006_maternal_health_interview_coding,C006_REGISTRY,registry_workbook_entry,Repository row,role_claim,Use semistructured maternal-health interviews to test what is gained and lost when GenAI performs inductive coding and theme extraction.,Construct boundary setter; situated interlocutor; context witness,,no,no,no,Workbook seed description preserved for provenance.
+E006_002,6,006_maternal_health_interview_coding,C006_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Applied health interviews may not generalize to more theory-laden or politically contested domains,,Construct boundary setter; situated interlocutor; context witness,no,no,no,Repository curation note captured as rival explanation / caution.
+E006_003,6,006_maternal_health_interview_coding,C006_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,LLM coding captures nuance and downstream interpretive usefulness as well as human coding,,Construct boundary setter; situated interlocutor; context witness,no,no,no,Falsification condition recorded from repository seed.
+E006_004,6,006_maternal_health_interview_coding,C006_P1,journal article,landing page / extracted text,method,"Generative AI for thematic analysis in a maternal health study: coding semistructured interviews using large language models - PMC
+ 
+
+ Skip to main content
+ 
+
+ An official website of the United States government
+ 
+
+Here's how you know
+
+Here's how you know
+
+Official websites use .gov
+
+ A
+ 
+.gov
+ website belongs to an official
+ government organization in the United States.
+ 
+
+Secure .gov websites use HTTPS
+
+ A 
+lock
+ (
+ 
+
+Lock
+
+ Locked padlock icon
+ 
+
+) or 
+https://
+ means you've safely
+ connected to the .gov website. Share sensitive
+ information only on official, secure websites.
+ 
+
+ Search
+ 
+
+ 
+ 
+ 
+ 
+
+Log in
+
+ 
+
+ 
+ Dashboard
+ 
+
+ 
+ 
+
+ 
+
+ 
+ Publications
+ 
+
+ 
+ 
+
+ 
+
+ 
+ Account settings
+ 
+
+ 
+ 
+
+ 
+ 
+
+ Log out
+
+ 
+ 
+ 
+ 
+
+ Search…
+ 
+
+ Search NCBI
+ 
+
+ Primary site navigation
+ 
+
+ Search
+ 
+
+ Logged in as:
+ 
+
+ 
+
+ 
+ Dashboard
+ 
+
+ 
+ 
+
+ 
+
+ 
+ Publications
+ 
+
+ 
+ 
+
+ 
+
+ 
+ Account settings
+ 
+
+ 
+ 
+
+ 
+ 
+
+ Log in
+
+ 
+ 
+ 
+ 
+
+Search PMC Full-Text Archive
+
+Search in PMC
+
+ Journal List
+ 
+
+ User Guide
+ 
+
+PERMALINK
+
+Copy
+
+ As a library, NLM provides access to scientific literature. Inclusion in an NLM database does not imply endorsement of, or agreement with,
+ the contents by NLM or the National Institutes of He",Construct boundary setter; situated interlocutor; context witness,,no,no,no,Auto-extracted text snippet from collected source.
+E007_001,7,007_agentic_title_abstract_screening,C007_REGISTRY,registry_workbook_entry,Repository row,role_claim,Test AI-first screening on mixed corpora to see whether first-pass screening shrinks while protocol design and corpus rescue remain human.,Protocol and provenance architect; corpus pluralist; shrinking first-pass screener,,yes,no,no,Workbook seed description preserved for provenance.
+E007_002,7,007_agentic_title_abstract_screening,C007_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Access to subscriptions and topic difficulty can mimic AI effects,,Protocol and provenance architect; corpus pluralist; shrinking first-pass screener,no,no,no,Repository curation note captured as rival explanation / caution.
+E007_003,7,007_agentic_title_abstract_screening,C007_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,AI-first workflows preserve gray and multilingual evidence without human rescue,,Protocol and provenance architect; corpus pluralist; shrinking first-pass screener,no,no,no,Falsification condition recorded from repository seed.
+E007_004,7,007_agentic_title_abstract_screening,C007_P1,journal article,landing page / extracted text,method,"Compact large language models for title and abstract screening in systematic reviews: An assessment of feasibility, accuracy, and workload reduction | Research Synthesis Methods | Cambridge Core
+
+ Skip to main content
+
+ Accessibility help
+
+Login Alert
+
+Cancel
+
+Log in
+
+×
+
+×
+
+ Discover Content 
+ Products and Services 
+Register
+Log In
+ (0) Cart 
+
+ Logo for Cambridge Core from Cambridge University Press. Click to return to homepage. 
+Search
+ Logo for Cambridge Core from Cambridge University Press. Click to return to homepage. 
+Browse
+Services
+Open research
+Institution Login
+Search
+
+ 
+
+ Hostname: page-component-77f85d65b8-pkds5
+ Total loading time: 0
+ Render date: 2026-04-06T00:42:22.911Z
+ Has data issue: false
+ hasContentIssue false
+ 
+ 
+ 
+Home
+ 
+>
+Journals
+ 
+>
+Research Synthesis Methods
+ 
+>
+Volume 17 Issue 2
+ 
+>
+Compact large language models for title and abstract...
+ 
+English
+
+ Français
+ 
+ 
+ 
+ 
+ 
+Research Synthesis Methods
+ 
+ 
+ 
+ 
+ 
+Article contents
+ 
+Abstract
+ 
+ 
+Highlights
+ 
+Introduction
+ 
+Methods
+ 
+Results
+ 
+Discussion
+ 
+Conclusions
+ 
+Author contributions
+ 
+Competing interest statement
+ 
+Data availability statement
+ 
+Funding statement
+ 
+Ethics approval statement
+ 
+Footnotes
+ 
+Refer",Protocol and provenance architect; corpus pluralist; shrinking first-pass screener,,yes,no,no,Auto-extracted text snippet from collected source.
+E008_001,8,008_study_type_classification_review_triage,C008_REGISTRY,registry_workbook_entry,Repository row,role_claim,Benchmark specialized classifiers and LLMs for study-type classification in reviews where social-policy evidence mixes methods and weak metadata.,Corpus pluralist; protocol architect,,no,no,no,Workbook seed description preserved for provenance.
+E008_002,8,008_study_type_classification_review_triage,C008_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Benchmark corpora may be cleaner than actual policy-review inputs,,Corpus pluralist; protocol architect,no,no,no,Repository curation note captured as rival explanation / caution.
+E008_003,8,008_study_type_classification_review_triage,C008_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Predictive triage works equally well on heterogeneous and poorly structured sources,,Corpus pluralist; protocol architect,no,no,no,Falsification condition recorded from repository seed.
+E008_004,8,008_study_type_classification_review_triage,C008_P1,journal article,landing page / extracted text,method,"StudyTypeTeller—Large language models to automatically classify research study types for systematic reviews | Research Synthesis Methods | Cambridge Core
+
+ Skip to main content
+
+ Accessibility help
+
+Login Alert
+
+Cancel
+
+Log in
+
+×
+
+×
+
+ Discover Content 
+ Products and Services 
+Register
+Log In
+ (0) Cart 
+
+ Logo for Cambridge Core from Cambridge University Press. Click to return to homepage. 
+Search
+ Logo for Cambridge Core from Cambridge University Press. Click to return to homepage. 
+Browse
+Services
+Open research
+Institution Login
+Search
+
+ 
+
+ Hostname: page-component-77f85d65b8-lfk5g
+ Total loading time: 0
+ Render date: 2026-04-07T11:00:08.789Z
+ Has data issue: false
+ hasContentIssue false
+ 
+ 
+ 
+Home
+ 
+>
+Journals
+ 
+>
+Research Synthesis Methods
+ 
+>
+Volume 16 Issue 6
+ 
+>
+StudyTypeTeller—Large language models to automatically...
+ 
+English
+
+ Français
+ 
+ 
+ 
+ 
+ 
+Research Synthesis Methods
+ 
+ 
+ 
+ 
+ 
+Article contents
+ 
+Abstract
+ 
+ 
+Highlights
+ 
+Abbreviations
+ 
+Introduction
+ 
+Materials and methods
+ 
+Results
+ 
+Discussion
+ 
+Author contributions
+ 
+Competing interest statement
+ 
+Data availability statement
+ 
+Funding statement
+ 
+Ethics statement
+ 
+Footnotes
+ 
+References
+ 
+ 
+StudyTypeTeller—Large",Corpus pluralist; protocol architect,,no,no,no,Auto-extracted text snippet from collected source.
+E009_001,9,009_citation_grounded_multi_paper_synthesis,C009_REGISTRY,registry_workbook_entry,Repository row,role_claim,Use retrieval-augmented synthesis to generate evidence maps or literature-survey memos from a fixed social-policy corpus with citation checking.,Protocol and provenance architect; corpus pluralist; accountability and labor allocator,,no,no,no,Workbook seed description preserved for provenance.
+E009_002,9,009_citation_grounded_multi_paper_synthesis,C009_REGISTRY,registry_workbook_entry,Repository row,counterevidence,"OpenScholar is not social-science-specific, so transfer to policy literatures must be verified",,Protocol and provenance architect; corpus pluralist; accountability and labor allocator,no,no,no,Repository curation note captured as rival explanation / caution.
+E009_003,9,009_citation_grounded_multi_paper_synthesis,C009_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Grounded and non-grounded systems perform equally well on claim support and coverage,,Protocol and provenance architect; corpus pluralist; accountability and labor allocator,no,no,no,Falsification condition recorded from repository seed.
+E009_004,9,009_citation_grounded_multi_paper_synthesis,C009_P1,journal article,landing page / extracted text,method,"Synthesizing scientific literature with retrieval-augmented language models | Nature
+
+Skip to main content
+
+Thank you for visiting nature.com. You are using a browser version with limited support for CSS. To obtain
+ the best experience, we recommend you use a more up to date browser (or turn off compatibility mode in
+ Internet Explorer). In the meantime, to ensure continued support, we are displaying the site without styles
+ and JavaScript.
+
+Advertisement
+
+View all journals
+
+Search
+
+Log in
+
+Content
+
+Explore content
+
+About 
+the journal
+
+Publish 
+with us
+
+Sign up for alerts
+
+RSS feed
+
+nature
+
+articles
+
+article
+
+ Synthesizing scientific literature with retrieval-augmented language models
+ 
+
+Download PDF
+
+Download PDF
+
+Article
+
+Open access
+
+Published: 
+04 February 2026
+
+Synthesizing scientific literature with retrieval-augmented language models
+
+Akari Asai
+ 
+ 
+ORCID: 
+orcid.org/0000-0002-1055-6657
+1
+,
+2
+, 
+Jacqueline He
+1
+ 
+na1
+, 
+Rulin Shao
+1
+ 
+na1
+, 
+Weijia Shi
+1
+, 
+Amanpreet Singh
+2
+, 
+Joseph Chee Chang
+2
+, 
+Kyle Lo
+2
+, 
+Luca Soldaini
+2
+, 
+Sergey Feldman
+2
+, 
+Mike D’Arcy
+ 
+ 
+ORCID: 
+orcid.org/0000-0003-0355-7157
+2
+, 
+David Wadden
+2
+, 
+Matt Latzke
+ 
+ 
+ORCID: 
+orcid.org/0000-0002-9984",Protocol and provenance architect; corpus pluralist; accountability and labor allocator,,no,no,no,Auto-extracted text snippet from collected source.
+E010_001,10,010_citation_hallucination_checks,C010_REGISTRY,registry_workbook_entry,Repository row,role_claim,Track when humans verify or fail to verify citations inserted by AI during literature-review drafting and evidence synthesis.,Accountability and labor allocator; protocol and provenance architect,,no,no,yes,Workbook seed description preserved for provenance.
+E010_002,10,010_citation_hallucination_checks,C010_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Poor citation habits could predate AI and inflate apparent AI effects,,Accountability and labor allocator; protocol and provenance architect,no,no,no,Repository curation note captured as rival explanation / caution.
+E010_003,10,010_citation_hallucination_checks,C010_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Citation support tools eliminate hallucination risk without extra human verification work,,Accountability and labor allocator; protocol and provenance architect,no,no,no,Falsification condition recorded from repository seed.
+E010_004,10,010_citation_hallucination_checks,C010_P1,preprint,landing page / extracted text,method,"The Case of the Mysterious Citations
+
+USE AND MISUSE OF LLMS IN ACADEMIC WRITING
+
+METHODOLOGY
+
+MYSTERIOUS CITATIONS
+
+Author and DOI Errors
+
+AI-Generated Citations
+
+AI-Generated Papers
+
+DISCUSSION
+
+CONCLUSION
+
+LIMITATIONS
+
+ACKNOWLEDGMENTS
+
+\jvol
+
+XX
+
+\jnum
+XX
+
+\paper
+1
+
+\jmonth
+Feb
+ 
+\jtitle
+preprint. SAND2026-16932O
+
+The Case of the Mysterious Citations
+
+Amanda Bienz
+
+University of New Mexico, Albuquerque, NM, USA
+
+  
+
+Carl Pearson
+
+Sandia National Laboratories, Albuquerque, NM, USA
+
+  
+
+Simon Garcia de Gonzalo
+
+Sandia National Laboratories, Albuquerque, NM, USA
+
+(2026)
+
+Abstract
+
+Mysterious citations are routinely appearing in peer-reviewed publications throughout the scientific community. In this paper, we developed an automated pipeline and examine the proceedings of four major high-performance computing conferences, comparing the accuracy of citations between the 2021 and 2025 proceedings. While none of the 2021 papers contained mysterious citations, every 2025 proceeding did, impacting 2-6% of published papers. In addition, we observe a sharp rise in paper title and authorship errors, motivating the need for stronger citation-verification practice. No author within our dataset",Accountability and labor allocator; protocol and provenance architect,,no,no,yes,Auto-extracted text snippet from collected source.
+E011_001,11,011_grant_proposal_ideation,C011_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Compare AI-assisted and non-assisted proposal ideation under real funding calls to test whether AI changes what gets proposed, not just how it is written.",Relevance adjudicator; accountability and labor allocator,,no,no,no,Workbook seed description preserved for provenance.
+E011_002,11,011_grant_proposal_ideation,C011_REGISTRY,registry_workbook_entry,Repository row,counterevidence,"Austerity, field maturity, and call design can compress agendas even without AI",,Relevance adjudicator; accountability and labor allocator,no,no,no,Repository curation note captured as rival explanation / caution.
+E011_003,11,011_grant_proposal_ideation,C011_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,AI use leaves distinctiveness and stakeholder relevance unchanged or improves both,,Relevance adjudicator; accountability and labor allocator,no,no,no,Falsification condition recorded from repository seed.
+E011_004,11,011_grant_proposal_ideation,C011_P1,preprint,landing page / extracted text,method,"[2601.15485] The Rise of Large Language Models and the Direction and Impact of US Federal Research Funding
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2601.15485
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Digital Libraries
+
+arXiv:2601.15485
+ (cs)
+ 
+
+ [Submitted on 21 Jan 2026]
+
+Title:
+The Rise of Large Language Models and the Direction and Impact of US Federal Research Funding
+
+Authors:
+Yifan Qian
+, 
+Zhe Wen
+, 
+Alexander C. Furnas
+, 
+Yue Bai
+, 
+Erzhuo Shao
+, 
+Dashun Wang
+ 
+View a PDF of the paper titled The Rise of Large Language Models and the Direction and Impact of US Federal Research Funding, by Yifan Qian and 5 other authors
+
+View PDF
+
+HTML (experimental)
+
+Abstract:
+Federal research funding shapes the direction, diversity, and im",Relevance adjudicator; accountability and labor allocator,,no,no,no,Auto-extracted text snippet from collected source.
+E012_001,12,012_funding_pipeline_agenda_compression,C012_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Link inferred AI involvement in submitted proposals to semantic distinctiveness, reviewer reactions, and downstream publication novelty.",Relevance adjudicator; accountability and labor allocator,,no,no,no,Workbook seed description preserved for provenance.
+E012_002,12,012_funding_pipeline_agenda_compression,C012_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Causal inference is hard because ambitious labs may both use AI and write better proposals,,Relevance adjudicator; accountability and labor allocator,no,no,no,Repository curation note captured as rival explanation / caution.
+E012_003,12,012_funding_pipeline_agenda_compression,C012_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Higher AI involvement predicts equal or greater long-run novelty,,Relevance adjudicator; accountability and labor allocator,no,no,no,Falsification condition recorded from repository seed.
+E012_004,12,012_funding_pipeline_agenda_compression,C012_P1,preprint,landing page / extracted text,method,"[2601.15485] The Rise of Large Language Models and the Direction and Impact of US Federal Research Funding
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2601.15485
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Digital Libraries
+
+arXiv:2601.15485
+ (cs)
+ 
+
+ [Submitted on 21 Jan 2026]
+
+Title:
+The Rise of Large Language Models and the Direction and Impact of US Federal Research Funding
+
+Authors:
+Yifan Qian
+, 
+Zhe Wen
+, 
+Alexander C. Furnas
+, 
+Yue Bai
+, 
+Erzhuo Shao
+, 
+Dashun Wang
+ 
+View a PDF of the paper titled The Rise of Large Language Models and the Direction and Impact of US Federal Research Funding, by Yifan Qian and 5 other authors
+
+View PDF
+
+HTML (experimental)
+
+Abstract:
+Federal research funding shapes the direction, diversity, and im",Relevance adjudicator; accountability and labor allocator,,no,no,no,Auto-extracted text snippet from collected source.
+E013_001,13,013_scideator_facet_recombination,C013_REGISTRY,registry_workbook_entry,Repository row,role_claim,Adapt facet-recombination interfaces to social-science dissertation or proposal ideation and compare human-only with human-LLM compound ideation.,Relevance adjudicator; mechanism disciplinarian,,no,no,no,Workbook seed description preserved for provenance.
+E013_002,13,013_scideator_facet_recombination,C013_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Existing Scideator evidence is not social-science-specific and may overstate transfer,,Relevance adjudicator; mechanism disciplinarian,no,no,no,Repository curation note captured as rival explanation / caution.
+E013_003,13,013_scideator_facet_recombination,C013_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Human-LLM ideation does not outperform simple prompting or human-only ideation on meaningful criteria,,Relevance adjudicator; mechanism disciplinarian,no,no,no,Falsification condition recorded from repository seed.
+E013_004,13,013_scideator_facet_recombination,C013_P1,preprint,landing page / extracted text,method,"[2409.14634] Human-LLM Compound System for Scientific Ideation through Facet Recombination and Novelty Evaluation
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2409.14634
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Human-Computer Interaction
+
+arXiv:2409.14634
+ (cs)
+ 
+
+ [Submitted on 23 Sep 2024 (
+v1
+), last revised 2 Mar 2026 (this version, v6)]
+
+Title:
+Human-LLM Compound System for Scientific Ideation through Facet Recombination and Novelty Evaluation
+
+Authors:
+Marissa Radensky
+, 
+Simra Shahid
+, 
+Raymond Fok
+, 
+Pao Siangliulue
+, 
+Tom Hope
+, 
+Daniel S. Weld
+ 
+View a PDF of the paper titled Human-LLM Compound System for Scientific Ideation through Facet Recombination and Novelty Evaluation, by Marissa Radensky and Simra Shahid and 3 other",Relevance adjudicator; mechanism disciplinarian,,no,no,no,Auto-extracted text snippet from collected source.
+E014_001,14,014_researchbench_discoverybench_tasks,C014_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Use benchmark tasks drawn from sociology and economics to test whether AI supports inspiration retrieval, hypothesis composition, or ranking differently.",Mechanism disciplinarian; relevance adjudicator,,no,yes,no,Workbook seed description preserved for provenance.
+E014_002,14,014_researchbench_discoverybench_tasks,C014_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Benchmarks simplify open-ended theory work and may understate institutional context,,Mechanism disciplinarian; relevance adjudicator,no,no,no,Repository curation note captured as rival explanation / caution.
+E014_003,14,014_researchbench_discoverybench_tasks,C014_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,"LLMs perform equally well across retrieval, composition, and ranking on social-science tasks",,Mechanism disciplinarian; relevance adjudicator,no,no,no,Falsification condition recorded from repository seed.
+E014_004,14,014_researchbench_discoverybench_tasks,C014_P1,preprint,landing page / extracted text,method,"[2503.21248] ResearchBench: Benchmarking LLMs in Scientific Discovery via Inspiration-Based Task Decomposition
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2503.21248
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Computation and Language
+
+arXiv:2503.21248
+ (cs)
+ 
+
+ [Submitted on 27 Mar 2025 (
+v1
+), last revised 1 Jul 2025 (this version, v2)]
+
+Title:
+ResearchBench: Benchmarking LLMs in Scientific Discovery via Inspiration-Based Task Decomposition
+
+Authors:
+Yujie Liu
+, 
+Zonglin Yang
+, 
+Tong Xie
+, 
+Jinjie Ni
+, 
+Ben Gao
+, 
+Yuqiang Li
+, 
+Shixiang Tang
+, 
+Wanli Ouyang
+, 
+Erik Cambria
+, 
+Dongzhan Zhou
+ 
+View a PDF of the paper titled ResearchBench: Benchmarking LLMs in Scientific Discovery via Inspiration-Based Task Decomposition, by Yujie Liu a",Mechanism disciplinarian; relevance adjudicator,,no,yes,no,Auto-extracted text snippet from collected source.
+E015_001,15,015_multi_agent_idea_generation,C015_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Treat agent teams that brainstorm, critique, and refine ideas as a boundary case for whether collaborative AI can displace human agenda setting.",Relevance adjudicator; mechanism disciplinarian,,no,no,no,Workbook seed description preserved for provenance.
+E015_002,15,015_multi_agent_idea_generation,C015_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Most evidence comes from non-social-science domains and model-internal evaluations,,Relevance adjudicator; mechanism disciplinarian,no,no,no,Repository curation note captured as rival explanation / caution.
+E015_003,15,015_multi_agent_idea_generation,C015_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Multi-agent idea generation produces socially relevant and mechanism-rich agendas without human filtering,,Relevance adjudicator; mechanism disciplinarian,no,no,no,Falsification condition recorded from repository seed.
+E015_004,15,015_multi_agent_idea_generation,C015_P1,preprint,landing page / extracted text,method,"[2410.09403] Many Heads Are Better Than One: Improved Scientific Idea Generation by A LLM-Based Multi-Agent System
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2410.09403
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Artificial Intelligence
+
+arXiv:2410.09403
+ (cs)
+ 
+
+ [Submitted on 12 Oct 2024 (
+v1
+), last revised 27 May 2025 (this version, v4)]
+
+Title:
+Many Heads Are Better Than One: Improved Scientific Idea Generation by A LLM-Based Multi-Agent System
+
+Authors:
+Haoyang Su
+, 
+Renqi Chen
+, 
+Shixiang Tang
+, 
+Zhenfei Yin
+, 
+Xinzhe Zheng
+, 
+Jinzhe Li
+, 
+Biqing Qi
+, 
+Qi Wu
+, 
+Hui Li
+, 
+Wanli Ouyang
+, 
+Philip Torr
+, 
+Bowen Zhou
+, 
+Nanqing Dong
+ 
+View a PDF of the paper titled Many Heads Are Better Than One: Improved Scientific Idea Generation",Relevance adjudicator; mechanism disciplinarian,,no,no,no,Auto-extracted text snippet from collected source.
+E016_001,16,016_ai_conversational_interviewing,C016_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Compare AI-only, human-only, and human+AI interviewing on sensitive topics to test whether rapport, repair, and ethical pause remain constitutive.",Situated interlocutor; accountability and labor allocator,,no,no,no,Workbook seed description preserved for provenance.
+E016_002,16,016_ai_conversational_interviewing,C016_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Mode effects depend heavily on topic sensitivity and respondent population,,Situated interlocutor; accountability and labor allocator,no,no,no,Repository curation note captured as rival explanation / caution.
+E016_003,16,016_ai_conversational_interviewing,C016_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,"AI-only interviewing matches humans on trust, repair, and interpretive usefulness",,Situated interlocutor; accountability and labor allocator,no,no,no,Falsification condition recorded from repository seed.
+E016_004,16,016_ai_conversational_interviewing,C016_P1,preprint,landing page / extracted text,method,"[2410.01824] AI Conversational Interviewing: Transforming Surveys with LLMs as Adaptive Interviewers
+
+ 
+ 
+
+Skip to main content
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2410.01824
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Human-Computer Interaction
+
+arXiv:2410.01824
+ (cs)
+ 
+
+ [Submitted on 16 Sep 2024 (
+v1
+), last revised 12 Mar 2025 (this version, v2)]
+
+Title:
+AI Conversational Interviewing: Transforming Surveys with LLMs as Adaptive Interviewers
+
+Authors:
+Alexander Wuttke
+, 
+Matthias Aßenmacher
+, 
+Christopher Klamm
+, 
+Max M. Lang
+, 
+Quirin Würschinger
+, 
+Frauke Kreuter
+ 
+View a PDF of the paper titled AI Conversational Interviewing: Transforming Surveys with LLMs as Adaptive Interviewers, by Alexander Wuttke and 5 other authors
+
+View PDF
+
+HTML (experimental)
+
+Abstract:
+Traditional methods for eliciting peopl",Situated interlocutor; accountability and labor allocator,,no,no,no,Auto-extracted text snippet from collected source.
+E017_001,17,017_dynamic_surveys_followups,C017_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Use dynamic surveys to test a middle ground between structured surveys and interviews, with AI-generated follow-ups and emergent cluster reports.",Situated interlocutor; context witness; protocol architect,,no,no,no,Workbook seed description preserved for provenance.
+E017_002,17,017_dynamic_surveys_followups,C017_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Educational settings may not generalize to high-stakes public-policy or vulnerable populations,,Situated interlocutor; context witness; protocol architect,no,no,no,Repository curation note captured as rival explanation / caution.
+E017_003,17,017_dynamic_surveys_followups,C017_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Dynamic surveys produce equivalent depth and usefulness without any human interpretive scaffolding,,Situated interlocutor; context witness; protocol architect,no,no,no,Falsification condition recorded from repository seed.
+E017_004,17,017_dynamic_surveys_followups,C017_P1,conference paper,landing page / extracted text,method,"Dynamic Surveys: Using LLMs to Blend Qualitative Depth,
+Quantitative Structure, and Collaborative Interaction
+KEHUA LEI, UC Santa Cruz, USA
+AIDAN LADENBURG, UC Santa Cruz, USA
+ZAHRA PETIWALA, UC Santa Cruz, USA
+ZILI WANG,UC Santa Cruz, USA
+DISHITA JHAWAR,UC Santa Cruz, USA
+IPSITA BISHT, UC Santa Cruz, USA
+ANSH KUMAR, UC Santa Cruz, USA
+DAVID T. LEE,UC Santa Cruz, USA
+Surveys are a powerful tool for collecting data and eliciting insights on social phenomena, and are critical
+in product design, marketing, scientific research, and other domains. However, traditional open-ended and
+closed-ended question formats limit researchers’ ability to capture data that combines both the richness of
+qualitative insights and the analytical rigor of quantitative data. Closed-ended questions facilitate structured
+data collection that is amenable to statistical analysis but limit respondents’ answers. In contrast, open-ended
+questions allow for nuanced responses incorporating new perspectives but require significant effort to interpret
+due to their unstructured nature. Moreover, traditional survey tools lack mechanisms to prompt respondents
+for deeper reflections or to facilitate engagement with other",Situated interlocutor; context witness; protocol architect,,no,no,no,Auto-extracted text snippet from collected source.
+E018_001,18,018_qda_delegation_preferences,C018_REGISTRY,registry_workbook_entry,Repository row,role_claim,Study how qualitative researchers choose among delegation levels in coding and thematic analysis.,Context witness; protocol architect; accountability and labor allocator,,no,yes,no,Workbook seed description preserved for provenance.
+E018_002,18,018_qda_delegation_preferences,C018_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Self-reported preferences may not match real delegated practice,,Context witness; protocol architect; accountability and labor allocator,no,no,no,Repository curation note captured as rival explanation / caution.
+E018_003,18,018_qda_delegation_preferences,C018_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Researchers show no meaningful distinction between delegation levels or between ownership and context concerns,,Context witness; protocol architect; accountability and labor allocator,no,no,no,Falsification condition recorded from repository seed.
+E018_004,18,018_qda_delegation_preferences,C018_P1,preprint,landing page / extracted text,method,"[2509.18297] Not a Collaborator or a Supervisor, but an Assistant: Striking the Balance Between Efficiency and Ownership in AI-incorporated Qualitative Data Analysis
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2509.18297
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Human-Computer Interaction
+
+arXiv:2509.18297
+ (cs)
+ 
+
+ [Submitted on 22 Sep 2025 (
+v1
+), last revised 8 Apr 2026 (this version, v2)]
+
+Title:
+Not a Collaborator or a Supervisor, but an Assistant: Striking the Balance Between Efficiency and Ownership in AI-incorporated Qualitative Data Analysis
+
+Authors:
+Anoushka Puranik
+, 
+Ester Chen
+, 
+Roshan L Peiris
+, 
+Hidy Kong
+ 
+View a PDF of the paper titled Not a Collaborator or a Supervisor, but an Assistant: Striking the Balance Betwe",Context witness; protocol architect; accountability and labor allocator,,no,yes,no,Auto-extracted text snippet from collected source.
+E019_001,19,019_ai_assisted_fieldnote_memoing,C019_REGISTRY,registry_workbook_entry,Repository row,role_claim,Compare memo trails and final claims produced from the same fieldnote corpus with and without AI assistance.,Context witness; mechanism disciplinarian,,no,yes,no,Workbook seed description preserved for provenance.
+E019_002,19,019_ai_assisted_fieldnote_memoing,C019_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Some fieldnotes are highly systematic and easier for AI than live field settings,,Context witness; mechanism disciplinarian,no,no,no,Repository curation note captured as rival explanation / caution.
+E019_003,19,019_ai_assisted_fieldnote_memoing,C019_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,AI-assisted and human-only memo trails converge without loss of contextual subtlety,,Context witness; mechanism disciplinarian,no,no,no,Falsification condition recorded from repository seed.
+E019_004,19,019_ai_assisted_fieldnote_memoing,C019_P1,forum article,landing page / extracted text,method,"Reading children’s moral dramas in anthropological fieldnotes: A human–AI hybrid approach | Cambridge Forum on AI: Culture and Society | Cambridge Core
+
+ Skip to main content
+
+ Accessibility help
+
+Login Alert
+
+Cancel
+
+Log in
+
+×
+
+×
+
+ Discover Content 
+ Products and Services 
+Register
+Log In
+ (0) Cart 
+
+ Logo for Cambridge Core from Cambridge University Press. Click to return to homepage. 
+Search
+ Logo for Cambridge Core from Cambridge University Press. Click to return to homepage. 
+Browse
+Services
+Open research
+Institution Login
+Search
+
+ 
+
+ Hostname: page-component-77f85d65b8-grvzd
+ Total loading time: 0
+ Render date: 2026-04-06T10:40:38.944Z
+ Has data issue: false
+ hasContentIssue false
+ 
+ 
+ 
+Home
+ 
+>
+Journals
+ 
+>
+Cambridge Forum on AI: Culture and Society
+ 
+>
+Volume 1
+ 
+>
+Reading children’s moral dramas in anthropological...
+ 
+English
+
+ Français
+ 
+ 
+ 
+ 
+ 
+Cambridge Forum on AI: Culture and Society
+ 
+ 
+ 
+ 
+ 
+Article contents
+ 
+Abstract
+ 
+ 
+“Kill that Strange Bird”: culture, cognition and meaning
+ 
+Sense-making from a human–AI hybrid approach
+ 
+To fight or not to fight: navigating a maze of meaning
+ 
+Pretend-play as meta-communication: when AI meets human children
+ 
+Concluding thoug",Context witness; mechanism disciplinarian,,no,yes,no,Auto-extracted text snippet from collected source.
+E020_001,20,020_reflexive_content_analysis_redesign,C020_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Use reflexive content analysis to test whether AI support works only when human researchers redesign prompts, codebooks, and interpretive checkpoints.",Construct boundary setter; context witness; protocol architect,,no,no,no,Workbook seed description preserved for provenance.
+E020_002,20,020_reflexive_content_analysis_redesign,C020_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Method-specific guidance may overfit a narrow coding style,,Construct boundary setter; context witness; protocol architect,no,no,no,Repository curation note captured as rival explanation / caution.
+E020_003,20,020_reflexive_content_analysis_redesign,C020_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Simple one-shot prompting performs as well as redesigned reflexive workflows,,Construct boundary setter; context witness; protocol architect,no,no,no,Falsification condition recorded from repository seed.
+E020_004,20,020_reflexive_content_analysis_redesign,C020_P1,journal article,landing page / extracted text,method,"Scaling hermeneutics: a guide to qualitative coding with LLMs for reflexive content analysis | EPJ Data Science | Springer Nature Link
+
+Skip to main content
+
+SpringerOpen journals have moved to Springer Nature Link. 
+Learn more about website changes.
+
+Log in
+
+Menu
+
+ Find a journal
+ 
+
+ Publish with us
+ 
+
+ Track your research
+ 
+
+Search
+
+Saved research
+
+Cart
+
+Home
+
+EPJ Data Science
+
+Article
+
+Scaling hermeneutics: a guide to qualitative coding with LLMs for reflexive content analysis
+
+Research
+
+Open access
+
+ Published: 
+02 April 2025
+
+Volume 14
+, article number 
+28
+, (
+2025
+)
+ 
+ 
+
+Cite this article
+
+ You have full access to this 
+open access
+ article
+
+Download PDF
+
+Save article
+
+View saved research
+
+EPJ Data Science
+
+ Aims and scope
+ 
+
+ Submit manuscript
+ 
+
+ Scaling hermeneutics: a guide to qualitative coding with LLMs for reflexive content analysis
+ 
+
+Download PDF
+
+Zackary Okun Dunivin
+ 
+ 
+ORCID: 
+orcid.org/0000-0002-1860-7199
+1
+ 
+
+10k 
+Accesses
+
+34 
+Citations
+
+2 
+
+ Altmetric
+ 
+
+Explore all metrics 
+
+Abstract
+Qualitative coding, or content analysis, is more than just labeling text: it is a reflexive interpretive practice that shapes research questions, refines theoretical insights, an",Construct boundary setter; context witness; protocol architect,,no,no,no,Auto-extracted text snippet from collected source.
+E021_001,21,021_synthetic_respondents_benchmarked,C021_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Benchmark prompt-only personas, profile-rich personas, and calibrated hybrids against real survey descriptives and higher-order relationships.",Counterfactual and transportability judge; calibration architect,,no,yes,no,Workbook seed description preserved for provenance.
+E021_002,21,021_synthetic_respondents_benchmarked,C021_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Human benchmark surveys are themselves noisy and historically contingent,,Counterfactual and transportability judge; calibration architect,no,no,no,Repository curation note captured as rival explanation / caution.
+E021_003,21,021_synthetic_respondents_benchmarked,C021_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Synthetic panels recover higher-order relationships and heterogeneity as well as human data,,Counterfactual and transportability judge; calibration architect,no,no,no,Falsification condition recorded from repository seed.
+E021_004,21,021_synthetic_respondents_benchmarked,C021_P1,journal article,landing page / extracted text,method,"Synthetic Replacements for Human Survey Data? The Perils of Large Language Models | Political Analysis | Cambridge Core
+
+ Skip to main content
+
+ Accessibility help
+
+Login Alert
+
+Cancel
+
+Log in
+
+×
+
+×
+
+ Discover Content 
+ Products and Services 
+Register
+Log In
+ (0) Cart 
+
+ Logo for Cambridge Core from Cambridge University Press. Click to return to homepage. 
+Search
+ Logo for Cambridge Core from Cambridge University Press. Click to return to homepage. 
+Browse
+Services
+Open research
+Institution Login
+Search
+
+ 
+
+ Hostname: page-component-77f85d65b8-8v9h9
+ Total loading time: 0
+ Render date: 2026-04-07T04:35:23.077Z
+ Has data issue: false
+ hasContentIssue false
+ 
+ 
+ 
+Home
+ 
+>
+Journals
+ 
+>
+Political Analysis
+ 
+>
+Volume 32 Issue 4
+ 
+>
+Synthetic Replacements for Human Survey Data? The Perils...
+ 
+English
+
+ Français
+ 
+ 
+ 
+ 
+ 
+Political Analysis
+ 
+ 
+ 
+ 
+ 
+Article contents
+ 
+Abstract
+ 
+ 
+Research Design and Data
+ 
+Results
+ 
+Sensitivity of Synthetic Responses
+ 
+Discussion and Implications
+ 
+Author Contributions
+ 
+Funding Statement
+ 
+Competing Interests
+ 
+Data Availability Statement
+ 
+Footnotes
+ 
+References
+ 
+ 
+Synthetic Replacements for Human Survey Data? The Perils of Large Language Models",Counterfactual and transportability judge; calibration architect,,no,yes,no,Auto-extracted text snippet from collected source.
+E022_001,22,022_socsci210_behavior_simulators,C022_REGISTRY,registry_workbook_entry,Repository row,role_claim,Test whether fine-tuning on past open experiments changes the human role from first-pass prediction to calibration and scope setting.,Calibration architect; counterfactual and transportability judge,,no,no,no,Workbook seed description preserved for provenance.
+E022_002,22,022_socsci210_behavior_simulators,C022_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Benchmark overfitting can overstate real screening value,,Calibration architect; counterfactual and transportability judge,no,no,no,Repository curation note captured as rival explanation / caution.
+E022_003,22,022_socsci210_behavior_simulators,C022_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Fine-tuned models generalize so well that human calibration rarely changes use decisions,,Calibration architect; counterfactual and transportability judge,no,no,no,Falsification condition recorded from repository seed.
+E022_004,22,022_socsci210_behavior_simulators,C022_P1,preprint,landing page / extracted text,method,"[2509.05830] Finetuning LLMs for Human Behavior Prediction in Social Science Experiments
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2509.05830
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Machine Learning
+
+arXiv:2509.05830
+ (cs)
+ 
+
+ [Submitted on 6 Sep 2025 (
+v1
+), last revised 5 Nov 2025 (this version, v2)]
+
+Title:
+Finetuning LLMs for Human Behavior Prediction in Social Science Experiments
+
+Authors:
+Akaash Kolluri
+, 
+Shengguang Wu
+, 
+Joon Sung Park
+, 
+Michael S. Bernstein
+ 
+View a PDF of the paper titled Finetuning LLMs for Human Behavior Prediction in Social Science Experiments, by Akaash Kolluri and 3 other authors
+
+View PDF
+
+HTML (experimental)
+
+Abstract:
+Large language models (LLMs) offer a powerful opportunity to simulate the res",Calibration architect; counterfactual and transportability judge,,no,no,no,Auto-extracted text snippet from collected source.
+E023_001,23,023_forecasting_before_field_experiments,C023_REGISTRY,registry_workbook_entry,Repository row,role_claim,Inject AI forecasts into preregistration or design workflows and observe which design decisions actually change.,Counterfactual and transportability judge,,no,no,no,Workbook seed description preserved for provenance.
+E023_002,23,023_forecasting_before_field_experiments,C023_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Extra deliberation time may drive gains rather than the forecast itself,,Counterfactual and transportability judge,no,no,no,Repository curation note captured as rival explanation / caution.
+E023_003,23,023_forecasting_before_field_experiments,C023_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Forecast-informed redesign improves calibration without narrowing novelty or explanatory ambition,,Counterfactual and transportability judge,no,no,no,Falsification condition recorded from repository seed.
+E023_004,23,023_forecasting_before_field_experiments,C023_P1,preprint,landing page / extracted text,method,"[2504.01167] Predicting Field Experiments with Large Language Models
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2504.01167
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Computers and Society
+
+arXiv:2504.01167
+ (cs)
+ 
+
+ [Submitted on 1 Apr 2025 (
+v1
+), last revised 21 May 2025 (this version, v3)]
+
+Title:
+Predicting Field Experiments with Large Language Models
+
+Authors:
+Yaoyu Chen
+, 
+Yuheng Hu
+, 
+Yingda Lu
+ 
+View a PDF of the paper titled Predicting Field Experiments with Large Language Models, by Yaoyu Chen and 2 other authors
+
+View PDF
+
+HTML (experimental)
+
+Abstract:
+Large language models (LLMs) have demonstrated unprecedented emergent capabilities, including content generation, translation, and simulation of human behavior. Field exper",Counterfactual and transportability judge,,no,no,no,Auto-extracted text snippet from collected source.
+E024_001,24,024_ai_multiverse_nonstandard_errors,C024_REGISTRY,registry_workbook_entry,Repository row,role_claim,Run many autonomous agents on the same data and hypothesis to estimate nonstandard errors from model and sampling variation.,Counterfactual and transportability judge; protocol and provenance architect,,no,yes,no,Workbook seed description preserved for provenance.
+E024_002,24,024_ai_multiverse_nonstandard_errors,C024_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Tasks may overstate ambiguity if the research question is intentionally underspecified,,Counterfactual and transportability judge; protocol and provenance architect,no,no,no,Repository curation note captured as rival explanation / caution.
+E024_003,24,024_ai_multiverse_nonstandard_errors,C024_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,AI agents converge naturally to the same defensible result without multiverse management,,Counterfactual and transportability judge; protocol and provenance architect,no,no,no,Falsification condition recorded from repository seed.
+E024_004,24,024_ai_multiverse_nonstandard_errors,C024_P1,preprint,landing page / extracted text,method,"[2603.16744] Nonstandard Errors in AI Agents
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2603.16744
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Artificial Intelligence
+
+arXiv:2603.16744
+ (cs)
+ 
+
+ [Submitted on 17 Mar 2026 (
+v1
+), last revised 19 Mar 2026 (this version, v2)]
+
+Title:
+Nonstandard Errors in AI Agents
+
+Authors:
+Ruijiang Gao
+, 
+Steven Chong Xiao
+ 
+View a PDF of the paper titled Nonstandard Errors in AI Agents, by Ruijiang Gao and 1 other authors
+
+View PDF
+
+HTML (experimental)
+
+Abstract:
+We study whether state-of-the-art AI coding agents, given the same data and research question, produce the same empirical results. Deploying 150 autonomous Claude Code agents to independently test six hypotheses about market quality trends in",Counterfactual and transportability judge; protocol and provenance architect,,no,yes,no,Auto-extracted text snippet from collected source.
+E025_001,25,025_project_ape_policy_evaluation_tournament,C025_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Use APE's public papers, matches, and audit materials to study what human roles remain when an agentic system writes empirical economics papers end-to-end.",Relevance adjudicator; protocol and provenance architect; counterfactual and transportability judge; accountability and labor allocator,,no,no,no,Workbook seed description preserved for provenance.
+E025_002,25,025_project_ape_policy_evaluation_tournament,C025_REGISTRY,registry_workbook_entry,Repository row,counterevidence,APE's tournament is an internal quality proxy and may not map to real journal or policy standards,,Relevance adjudicator; protocol and provenance architect; counterfactual and transportability judge; accountability and labor allocator,no,no,no,Repository curation note captured as rival explanation / caution.
+E025_003,25,025_project_ape_policy_evaluation_tournament,C025_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,APE outputs prove reliable enough that human boundary-setting and accountability no longer materially change use decisions,,Relevance adjudicator; protocol and provenance architect; counterfactual and transportability judge; accountability and labor allocator,no,no,no,Falsification condition recorded from repository seed.
+E025_004,25,025_project_ape_policy_evaluation_tournament,C025_P1,project homepage,landing page / extracted text,method,"Project APE: Can policy evaluation be automated? Or is hallucinated slop unavoidable? Let's find out.
+Mar 5 update:
+ 
+Feedback
+ 
+is now open. Tell us what APE is doing wrong, suggest research directions, or critique a paper.
+✕
+Social Catalyst Lab
+·
+University of Zurich
+PROJECT APE
+Autonomous Policy Evaluation
+About
+Methodology
+Countries
+EU
+GitHub
+Can we 
+automate
+policy evaluation?
+AI may soon be capable of producing rigorous economic research. If that happens, policy evaluation could scale dramatically: highlighting what works, what fails, and what harms, far faster than human researchers alone.
+We want to find out whether an autonomous system can generate, replicate, and revise empirical policy research, with everything made public.
+This is an experiment in building reliable AI research systems. For a global overview,
+ 
+click here
+.
+2,464
+Ideas
++
+342
+ this week
+943
+Papers
++
+181
+ this week
+17
+k+
+Matches
+4
+%
+Win Rate
+Last updated: 
+April 7, 2026
+Top APE papers
+Loading top APE papers...
+Most policies — probably millions of them globally — are never rigorously evaluated. Data is plenty but there aren't enough researchers. Could AI help? We genuinely don't know. So we're running an ex",Relevance adjudicator; protocol and provenance architect; counterfactual and transportability judge; accountability and labor allocator,,no,no,no,Auto-extracted text snippet from collected source.
+E026_001,26,026_project_ape_autonomy_gradient,C026_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Exploit APE's own autonomy framing to compare minimal prompts, guided prompts, optional course correction, and human-triggered revision as distinct human intervention points.",Relevance adjudicator; accountability and labor allocator; protocol and provenance architect,,no,no,no,Workbook seed description preserved for provenance.
+E026_002,26,026_project_ape_autonomy_gradient,C026_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Internal project design choices may not generalize to other autonomous-research systems,,Relevance adjudicator; accountability and labor allocator; protocol and provenance architect,no,no,no,Repository curation note captured as rival explanation / caution.
+E026_003,26,026_project_ape_autonomy_gradient,C026_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Minimal-prompt and heavily guided outputs converge in quality and content,,Relevance adjudicator; accountability and labor allocator; protocol and provenance architect,no,no,no,Falsification condition recorded from repository seed.
+E026_004,26,026_project_ape_autonomy_gradient,C026_P1,project methodology page,landing page / extracted text,method,"Methodology - Autonomous Policy Evaluation Project
+← Back to Leaderboard
+Methodology
+Work in Progress
+How APE Produces and Evaluates Research
+Note:
+ This page is a work in progress. Methods are being actively developed and refined as the project evolves.
+Core Principles
+Real Data Only
+All analysis uses real data from public APIs. If data is unavailable, the system pivots to a different research question — it never simulates or fabricates data. Papers using simulated data are automatically rejected.
+R for Econometrics
+All econometric analysis is done in R, using established packages for causal inference.
+Full Transparency
+Every paper includes complete replication materials: code, data, and figures. Git commits create an audit trail, and key files are locked after creation.
+Models
+APE uses multiple AI models in different roles. Configurations evolve as we experiment with different mixtures and workflows — individual papers may have been produced with different model versions.
+Paper Generation
+The core engine is
+ 
+Claude Code
+ 
+(currently 
+Claude Opus 4.6
+, as of February 2026). Claude Code drives the entire pipeline: generating research ideas, writing R scripts, fetching data, runnin",Relevance adjudicator; accountability and labor allocator; protocol and provenance architect,,no,no,no,Auto-extracted text snippet from collected source.
+E027_001,27,027_repro_bench_reproducibility_assessment,C027_REGISTRY,registry_workbook_entry,Repository row,role_claim,Benchmark whether agents can assess computational reproducibility by aligning paper claims with code/data packages and reproduction reports.,Protocol and provenance architect; accountability and labor allocator,,no,no,no,Workbook seed description preserved for provenance.
+E027_002,27,027_repro_bench_reproducibility_assessment,C027_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Benchmark tasks still provide agents with unusually convenient access to code and data,,Protocol and provenance architect; accountability and labor allocator,no,no,no,Repository curation note captured as rival explanation / caution.
+E027_003,27,027_repro_bench_reproducibility_assessment,C027_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Agents match human reproducibility judgments on real social-science packages,,Protocol and provenance architect; accountability and labor allocator,no,no,no,Falsification condition recorded from repository seed.
+E027_004,27,027_repro_bench_reproducibility_assessment,C027_P1,conference paper,landing page / extracted text,method,"REPRO-Bench: Can Agentic AI Systems Assess the Reproducibility of Social Science Research? - ACL Anthology
+
+ACL Anthology
+
+News
+(current)
+FAQ
+(current)
+Corrections
+(current)
+Submissions
+(current)
+GitHub
+
+REPRO
+-Bench: Can Agentic 
+AI
+ Systems Assess the Reproducibility of Social Science Research?
+Chuxuan Hu
+,
+
+Liyun Zhang
+,
+
+Yeji Lim
+,
+
+Aum Wadhwani
+,
+
+Austin Peters
+,
+
+Daniel Kang
+Correct Metadata for 
+Use this form to create a GitHub issue with structured data describing the correction. You will need a GitHub account.
+Once you create that issue, the correction will be reviewed by a staff member.
+⚠️ Mobile Users: Submitting this form to create a new issue will only work with github.com, not the GitHub Mobile app.
+Important
+: The Anthology treat PDFs as authoritative. Please use this form only to correct data
+that is out of line with the PDF. See 
+our corrections
+guidelines
+ if you need to change the PDF.
+Title
+
+Adjust the title. Retain tags such as
+<fixed-case>.
+
+Authors
+
+Adjust author names and order to match the
+PDF.
+Add Author
+Abstract
+
+Correct abstract if needed. Retain XML formatting tags such as <tex-math>. You may use <b>...</b> for 
+bold
+, <i>...</i> for 
+italic
+, and <url>",Protocol and provenance architect; accountability and labor allocator,,no,no,no,Auto-extracted text snippet from collected source.
+E028_001,28,028_agent_based_code_package_repair,C028_REGISTRY,registry_workbook_entry,Repository row,role_claim,Inject realistic failures into reproducible social-science code packages and compare prompt-based repair with autonomous agent repair.,Protocol and provenance architect; shrinking routine repair labor,,yes,no,no,Workbook seed description preserved for provenance.
+E028_002,28,028_agent_based_code_package_repair,C028_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Controlled failure injection is cleaner than real-world package decay,,Protocol and provenance architect; shrinking routine repair labor,no,no,no,Repository curation note captured as rival explanation / caution.
+E028_003,28,028_agent_based_code_package_repair,C028_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Agent-based repair fails broadly or still requires dense manual debugging,,Protocol and provenance architect; shrinking routine repair labor,no,no,no,Falsification condition recorded from repository seed.
+E028_004,28,028_agent_based_code_package_repair,C028_P1,preprint,landing page / extracted text,method,"[2602.08561] Automating Computational Reproducibility in Social Science: Comparing Prompt-Based and Agent-Based Approaches
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2602.08561
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Software Engineering
+
+arXiv:2602.08561
+ (cs)
+ 
+
+ [Submitted on 9 Feb 2026 (
+v1
+), last revised 16 Mar 2026 (this version, v2)]
+
+Title:
+Automating Computational Reproducibility in Social Science: Comparing Prompt-Based and Agent-Based Approaches
+
+Authors:
+Syed Mehtab Hussain Shah
+, 
+Frank Hopfgartner
+, 
+Arnim Bleier
+ 
+View a PDF of the paper titled Automating Computational Reproducibility in Social Science: Comparing Prompt-Based and Agent-Based Approaches, by Syed Mehtab Hussain Shah and 2 other authors
+
+View PDF
+
+HTM",Protocol and provenance architect; shrinking routine repair labor,,yes,no,no,Auto-extracted text snippet from collected source.
+E029_001,29,029_lab_manuscript_cowriting,C029_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Track how AI-assisted drafting redistributes visible and invisible labor across PIs, doctoral students, and lab managers.",Accountability and labor allocator; shrinking structural prose polisher,,no,no,no,Workbook seed description preserved for provenance.
+E029_002,29,029_lab_manuscript_cowriting,C029_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Pre-existing hierarchy may explain much of the credit allocation,,Accountability and labor allocator; shrinking structural prose polisher,no,no,no,Repository curation note captured as rival explanation / caution.
+E029_003,29,029_lab_manuscript_cowriting,C029_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,AI drafting neither redistributes credit nor changes evaluation after quality is controlled,,Accountability and labor allocator; shrinking structural prose polisher,no,no,no,Falsification condition recorded from repository seed.
+E029_004,29,029_lab_manuscript_cowriting,C029_P1,preprint,landing page / extracted text,method,"[2601.13187] Scientific production in the era of Large Language Models
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2601.13187
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Digital Libraries
+
+arXiv:2601.13187
+ (cs)
+ 
+
+ [Submitted on 19 Jan 2026]
+
+Title:
+Scientific production in the era of Large Language Models
+
+Authors:
+Keigo Kusumegi
+, 
+Xinyu Yang
+, 
+Paul Ginsparg
+, 
+Mathijs de Vaan
+, 
+Toby Stuart
+, 
+Yian Yin
+ 
+View a PDF of the paper titled Scientific production in the era of Large Language Models, by Keigo Kusumegi and 5 other authors
+
+View PDF
+
+Abstract:
+Large Language Models (LLMs) are rapidly reshaping scientific research. We analyze these changes in multiple, large-scale datasets with 2.1M preprints, 28K peer review reports, and 24",Accountability and labor allocator; shrinking structural prose polisher,,no,no,no,Auto-extracted text snippet from collected source.
+E030_001,30,030_structured_ai_disclosure_daisy,C030_REGISTRY,registry_workbook_entry,Repository row,role_claim,Use DAISY to test whether structured disclosure changes what authors report about AI use and how they experience responsibility for it.,Accountability and labor allocator; protocol and provenance architect,,no,no,yes,Workbook seed description preserved for provenance.
+E030_002,30,030_structured_ai_disclosure_daisy,C030_REGISTRY,registry_workbook_entry,Repository row,counterevidence,"The case studies disclosure, not truthfulness of underlying self-report",,Accountability and labor allocator; protocol and provenance architect,no,no,no,Repository curation note captured as rival explanation / caution.
+E030_003,30,030_structured_ai_disclosure_daisy,C030_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Structured disclosure does not change what authors report or how complete reports become,,Accountability and labor allocator; protocol and provenance architect,no,no,no,Falsification condition recorded from repository seed.
+E030_004,30,030_structured_ai_disclosure_daisy,C030_P1,preprint,landing page / extracted text,method,"[2604.02760] AI Disclosure with DAISY
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2604.02760
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Human-Computer Interaction
+
+arXiv:2604.02760
+ (cs)
+ 
+
+ [Submitted on 3 Apr 2026]
+
+Title:
+AI Disclosure with DAISY
+
+Authors:
+Yoana Ahmetoglu
+, 
+Marios Constantinides
+, 
+Anna Cox
+ 
+View a PDF of the paper titled AI Disclosure with DAISY, by Yoana Ahmetoglu and 1 other authors
+
+View PDF
+
+HTML (experimental)
+
+Abstract:
+The use of AI tools in research is becoming routine, alongside growing consensus that such use should be transparently disclosed. However, AI disclosure statements remain rare and inconsistent, with policies offering limited guidance and authors facing social, cognitive, and emotional barri",Accountability and labor allocator; protocol and provenance architect,,no,no,yes,Auto-extracted text snippet from collected source.
+E031_001,31,031_project_rachel_authorship_boundary,C031_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Study how publishers, reviewers, and citation networks respond when AI is packaged as a named scholarly author.",Accountability and labor allocator; relevance adjudicator,,no,no,no,Workbook seed description preserved for provenance.
+E031_002,31,031_project_rachel_authorship_boundary,C031_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Project Rachel is provocative and small-scale; it may overstate institutional reaction,,Accountability and labor allocator; relevance adjudicator,no,no,no,Repository curation note captured as rival explanation / caution.
+E031_003,31,031_project_rachel_authorship_boundary,C031_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,The scholarly ecosystem treats AI authorship no differently from AI-assisted human authorship,,Accountability and labor allocator; relevance adjudicator,no,no,no,Falsification condition recorded from repository seed.
+E031_004,31,031_project_rachel_authorship_boundary,C031_P1,preprint,landing page / extracted text,method,"[2511.14819] Project Rachel: Can an AI Become a Scholarly Author?
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2511.14819
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Artificial Intelligence
+
+arXiv:2511.14819
+ (cs)
+ 
+
+ [Submitted on 18 Nov 2025 (
+v1
+), last revised 28 Dec 2025 (this version, v2)]
+
+Title:
+Project Rachel: Can an AI Become a Scholarly Author?
+
+Authors:
+Martin Monperrus
+, 
+Benoit Baudry
+, 
+Clément Vidal
+ 
+View a PDF of the paper titled Project Rachel: Can an AI Become a Scholarly Author?, by Martin Monperrus and Benoit Baudry and Cl\'ement Vidal
+
+View PDF
+
+HTML (experimental)
+
+Abstract:
+This paper documents Project Rachel, an action research study that created and tracked a complete AI academic identity named Rachel So. Thro",Accountability and labor allocator; relevance adjudicator,,no,no,no,Auto-extracted text snippet from collected source.
+E032_001,32,032_ai_scientist_boundary_cases,C032_REGISTRY,registry_workbook_entry,Repository row,role_claim,Use fully automated scientific-discovery systems as boundary cases to see which role claims are social-science-specific and which generalize across autonomous research.,Protocol and provenance architect; accountability and labor allocator; relevance adjudicator,,no,no,no,Workbook seed description preserved for provenance.
+E032_002,32,032_ai_scientist_boundary_cases,C032_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Most evidence comes from AI/ML research rather than social science,,Protocol and provenance architect; accountability and labor allocator; relevance adjudicator,no,no,no,Repository curation note captured as rival explanation / caution.
+E032_003,32,032_ai_scientist_boundary_cases,C032_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Autonomous systems generalize cleanly to social-science workflows without role-specific adjustments,,Protocol and provenance architect; accountability and labor allocator; relevance adjudicator,no,no,no,Falsification condition recorded from repository seed.
+E032_004,32,032_ai_scientist_boundary_cases,C032_P1,preprint,landing page / extracted text,method,"[2408.06292] The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2408.06292
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Artificial Intelligence
+
+arXiv:2408.06292
+ (cs)
+ 
+
+ [Submitted on 12 Aug 2024 (
+v1
+), last revised 1 Sep 2024 (this version, v3)]
+
+Title:
+The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery
+
+Authors:
+Chris Lu
+, 
+Cong Lu
+, 
+Robert Tjarko Lange
+, 
+Jakob Foerster
+, 
+Jeff Clune
+, 
+David Ha
+ 
+View a PDF of the paper titled The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery, by Chris Lu and 5 other authors
+
+View PDF
+
+Abstract:
+One of the grand challenges of artificial general intelligence is developing agents capab",Protocol and provenance architect; accountability and labor allocator; relevance adjudicator,,no,no,no,Auto-extracted text snippet from collected source.
+E033_001,33,033_deep_research_policy_reconnaissance,C033_REGISTRY,registry_workbook_entry,Repository row,role_claim,Adapt long-horizon web-research agents to frozen or live policy-literature tasks and examine when human source-boundary decisions still dominate.,Corpus pluralist; protocol and provenance architect,,no,no,no,Workbook seed description preserved for provenance.
+E033_002,33,033_deep_research_policy_reconnaissance,C033_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Current deep-research benchmarks are not social-science-specific and often use frozen web corpora,,Corpus pluralist; protocol and provenance architect,no,no,no,Repository curation note captured as rival explanation / caution.
+E033_003,33,033_deep_research_policy_reconnaissance,C033_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Agentic research produces equally diverse and well-grounded corpora without human boundary setting,,Corpus pluralist; protocol and provenance architect,no,no,no,Falsification condition recorded from repository seed.
+E033_004,33,033_deep_research_policy_reconnaissance,C033_P1,preprint,landing page / extracted text,method,"[2506.06287] Deep Research Bench: Evaluating AI Web Research Agents
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2506.06287
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Artificial Intelligence
+
+arXiv:2506.06287
+ (cs)
+ 
+
+ [Submitted on 6 May 2025]
+
+Title:
+Deep Research Bench: Evaluating AI Web Research Agents
+
+Authors:
+FutureSearch
+: 
+Nikos I. Bosse
+, 
+Jon Evans
+, 
+Robert G. Gambee
+, 
+Daniel Hnyk
+, 
+Peter Mühlbacher
+, 
+Lawrence Phillips
+, 
+Dan Schwarz
+, 
+Jack Wildman
+ 
+View a PDF of the paper titled Deep Research Bench: Evaluating AI Web Research Agents, by FutureSearch: Nikos I. Bosse and 7 other authors
+
+View PDF
+
+Abstract:
+Amongst the most common use cases of modern AI is LLM chat with web search enabled. However, no direct evaluations",Corpus pluralist; protocol and provenance architect,,no,no,no,Auto-extracted text snippet from collected source.
+E034_001,34,034_agentsociety_transportability_boundary,C034_REGISTRY,registry_workbook_entry,Repository row,role_claim,Use large-scale LLM social simulation to test whether calibration and transportability become separate human roles when simulated societies are used for policy insight.,Calibration architect; counterfactual and transportability judge,,no,yes,no,Workbook seed description preserved for provenance.
+E034_002,34,034_agentsociety_transportability_boundary,C034_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Agent-based simulations may look realistic while still missing institutional mechanisms,,Calibration architect; counterfactual and transportability judge,no,no,no,Repository curation note captured as rival explanation / caution.
+E034_003,34,034_agentsociety_transportability_boundary,C034_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Simulation outputs transport reliably enough that calibration and transportability collapse into one role,,Calibration architect; counterfactual and transportability judge,no,no,no,Falsification condition recorded from repository seed.
+E034_004,34,034_agentsociety_transportability_boundary,C034_P1,preprint,landing page / extracted text,method,"[2502.08691] AgentSociety: Large-Scale Simulation of LLM-Driven Generative Agents Advances Understanding of Human Behaviors and Society
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2502.08691
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Social and Information Networks
+
+arXiv:2502.08691
+ (cs)
+ 
+
+ [Submitted on 12 Feb 2025]
+
+Title:
+AgentSociety: Large-Scale Simulation of LLM-Driven Generative Agents Advances Understanding of Human Behaviors and Society
+
+Authors:
+Jinghua Piao
+, 
+Yuwei Yan
+, 
+Jun Zhang
+, 
+Nian Li
+, 
+Junbo Yan
+, 
+Xiaochong Lan
+, 
+Zhihong Lu
+, 
+Zhiheng Zheng
+, 
+Jing Yi Wang
+, 
+Di Zhou
+, 
+Chen Gao
+, 
+Fengli Xu
+, 
+Fang Zhang
+, 
+Ke Rong
+, 
+Jun Su
+, 
+Yong Li
+ 
+View a PDF of the paper titled AgentSociety: Large-Scale Simulation of",Calibration architect; counterfactual and transportability judge,,no,yes,no,Auto-extracted text snippet from collected source.
+E035_001,35,035_doctoral_student_ai_use,C035_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Use doctoral-student AI adoption patterns to identify where training shifts from prompt fluency to provenance, validation, and calibration are most needed.",Protocol and provenance architect; accountability and labor allocator,,no,no,no,Workbook seed description preserved for provenance.
+E035_002,35,035_doctoral_student_ai_use,C035_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Self-reports may not match actual workflow traces,,Protocol and provenance architect; accountability and labor allocator,no,no,no,Repository curation note captured as rival explanation / caution.
+E035_003,35,035_doctoral_student_ai_use,C035_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Prompt-centric training performs as well as provenance- and validation-centric training expectations,,Protocol and provenance architect; accountability and labor allocator,no,no,no,Falsification condition recorded from repository seed.
+E035_004,35,035_doctoral_student_ai_use,C035_P1,journal article,landing page / extracted text,method,Just a moment...,Protocol and provenance architect; accountability and labor allocator,,no,no,no,Auto-extracted text snippet from collected source.
+E036_001,36,036_predictive_design_course,C036_REGISTRY,registry_workbook_entry,Repository row,role_claim,Randomize doctoral or advanced methods students to standard design training versus predictive-AI-plus-provenance training to see which role distinctions are teachable.,Counterfactual and transportability judge; calibration architect; protocol and provenance architect,,no,yes,no,Workbook seed description preserved for provenance.
+E036_002,36,036_predictive_design_course,C036_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Artificial classroom settings may not map to real lab or dissertation pressures,,Counterfactual and transportability judge; calibration architect; protocol and provenance architect,no,no,no,Repository curation note captured as rival explanation / caution.
+E036_003,36,036_predictive_design_course,C036_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Students trained mainly in prompting perform just as well on identification and provenance tasks,,Counterfactual and transportability judge; calibration architect; protocol and provenance architect,no,no,no,Falsification condition recorded from repository seed.
+E036_004,36,036_predictive_design_course,C036_P1,preprint,landing page / extracted text,method,"[2504.01167] Predicting Field Experiments with Large Language Models
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2504.01167
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Computers and Society
+
+arXiv:2504.01167
+ (cs)
+ 
+
+ [Submitted on 1 Apr 2025 (
+v1
+), last revised 21 May 2025 (this version, v3)]
+
+Title:
+Predicting Field Experiments with Large Language Models
+
+Authors:
+Yaoyu Chen
+, 
+Yuheng Hu
+, 
+Yingda Lu
+ 
+View a PDF of the paper titled Predicting Field Experiments with Large Language Models, by Yaoyu Chen and 2 other authors
+
+View PDF
+
+HTML (experimental)
+
+Abstract:
+Large language models (LLMs) have demonstrated unprecedented emergent capabilities, including content generation, translation, and simulation of human behavior. Field exper",Counterfactual and transportability judge; calibration architect; protocol and provenance architect,,no,yes,no,Auto-extracted text snippet from collected source.

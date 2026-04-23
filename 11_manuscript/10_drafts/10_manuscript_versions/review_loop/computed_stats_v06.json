@@ -1,0 +1,24 @@
+{
+  "case_level_perm_p_family": 0.5667,
+  "case_level_perm_p_capability": 0.3133,
+  "V_family_point": 0.26,
+  "V_family_CI95": [
+    0.261,
+    0.43
+  ],
+  "V_capability_point": 0.24,
+  "V_capability_CI95": [
+    0.193,
+    0.451
+  ],
+  "V_gap_CI95": [
+    -0.096,
+    0.156
+  ],
+  "P_gap_positive": 0.694,
+  "bootstrap_B": 2000,
+  "bootstrap_successful_reps": 2000,
+  "wilcoxon_W": 7.0,
+  "wilcoxon_p_two_sided": 0.0006,
+  "wilcoxon_n_roles_defined": 16
+}

@@ -1,0 +1,107 @@
+table_name,column_name,definition
+sources_master.csv,source_id,Generated field in the analysis-ready database.
+sources_master.csv,case_id,Generated field in the analysis-ready database.
+sources_master.csv,source_role,Generated field in the analysis-ready database.
+sources_master.csv,source_title,Generated field in the analysis-ready database.
+sources_master.csv,authors / organization,Generated field in the analysis-ready database.
+sources_master.csv,year,Generated field in the analysis-ready database.
+sources_master.csv,source_type,Generated field in the analysis-ready database.
+sources_master.csv,evidence_tier,Generated field in the analysis-ready database.
+sources_master.csv,DOI,Generated field in the analysis-ready database.
+sources_master.csv,URL,Generated field in the analysis-ready database.
+sources_master.csv,local_raw_path,Generated field in the analysis-ready database.
+sources_master.csv,local_text_path,Generated field in the analysis-ready database.
+sources_master.csv,retrieval_date,Generated field in the analysis-ready database.
+sources_master.csv,access_status,Generated field in the analysis-ready database.
+sources_master.csv,why_included,Generated field in the analysis-ready database.
+sources_master.csv,notes,Generated field in the analysis-ready database.
+evidence_extracts_master.csv,extract_id,Generated field in the analysis-ready database.
+evidence_extracts_master.csv,case_id,Generated field in the analysis-ready database.
+evidence_extracts_master.csv,case_slug,Generated field in the analysis-ready database.
+evidence_extracts_master.csv,source_id,Generated field in the analysis-ready database.
+evidence_extracts_master.csv,source_type,Generated field in the analysis-ready database.
+evidence_extracts_master.csv,page_or_section,Generated field in the analysis-ready database.
+evidence_extracts_master.csv,extract_type,Generated field in the analysis-ready database.
+evidence_extracts_master.csv,text_excerpt_or_paraphrase,Generated field in the analysis-ready database.
+evidence_extracts_master.csv,supports_role,Generated field in the analysis-ready database.
+evidence_extracts_master.csv,contradicts_role,Generated field in the analysis-ready database.
+evidence_extracts_master.csv,supports_shrinkage,Generated field in the analysis-ready database.
+evidence_extracts_master.csv,supports_split,Generated field in the analysis-ready database.
+evidence_extracts_master.csv,supports_merge_or_rejection,Generated field in the analysis-ready database.
+evidence_extracts_master.csv,notes,Generated field in the analysis-ready database.
+artifacts_master.csv,artifact_id,Generated field in the analysis-ready database.
+artifacts_master.csv,case_id,Generated field in the analysis-ready database.
+artifacts_master.csv,artifact_type,Generated field in the analysis-ready database.
+artifacts_master.csv,artifact_description,Generated field in the analysis-ready database.
+artifacts_master.csv,local_path,Generated field in the analysis-ready database.
+artifacts_master.csv,source_id,Generated field in the analysis-ready database.
+artifacts_master.csv,usable_for_analysis,Generated field in the analysis-ready database.
+artifacts_master.csv,notes,Generated field in the analysis-ready database.
+case_features.csv,Case ID,Generated field in the analysis-ready database.
+case_features.csv,Case title,Generated field in the analysis-ready database.
+case_features.csv,Case family,Generated field in the analysis-ready database.
+case_features.csv,Fit to social science,Generated field in the analysis-ready database.
+case_features.csv,Short description,Generated field in the analysis-ready database.
+case_features.csv,Empirical unit of analysis,Generated field in the analysis-ready database.
+case_features.csv,Primary AI capability,Generated field in the analysis-ready database.
+case_features.csv,Secondary AI capability,Generated field in the analysis-ready database.
+case_features.csv,Primary research stage,Generated field in the analysis-ready database.
+case_features.csv,Method traditions,Generated field in the analysis-ready database.
+case_features.csv,Institutional setting,Generated field in the analysis-ready database.
+case_features.csv,Observable human actors,Generated field in the analysis-ready database.
+case_features.csv,Candidate roles tested,Generated field in the analysis-ready database.
+case_features.csv,Primary typology leverage,Generated field in the analysis-ready database.
+case_features.csv,Key typology question,Generated field in the analysis-ready database.
+case_features.csv,Observable artifacts / traces,Generated field in the analysis-ready database.
+case_features.csv,Key outcomes observed,Generated field in the analysis-ready database.
+case_features.csv,What would weaken / falsify the role claim,Generated field in the analysis-ready database.
+case_features.csv,Main confounds / risks of misreading,Generated field in the analysis-ready database.
+case_features.csv,Feasibility,Generated field in the analysis-ready database.
+case_features.csv,Evidence status,Generated field in the analysis-ready database.
+case_features.csv,Program priority,Generated field in the analysis-ready database.
+case_features.csv,Portfolio group,Generated field in the analysis-ready database.
+case_features.csv,Why this case has high leverage,Generated field in the analysis-ready database.
+case_features.csv,Primary source URL,Generated field in the analysis-ready database.
+case_features.csv,Secondary source URL,Generated field in the analysis-ready database.
+case_features.csv,Notes,Generated field in the analysis-ready database.
+case_features.csv,case_slug,Generated field in the analysis-ready database.
+case_features.csv,task_ground_truth_level,Generated field in the analysis-ready database.
+case_features.csv,post_hoc_auditability,Generated field in the analysis-ready database.
+case_features.csv,source_heterogeneity,Generated field in the analysis-ready database.
+case_features.csv,institutional_specificity,Generated field in the analysis-ready database.
+case_features.csv,task_standardization,Generated field in the analysis-ready database.
+case_features.csv,role_visibility,Generated field in the analysis-ready database.
+case_features.csv,evidence_strength_overall,Generated field in the analysis-ready database.
+case_features.csv,case_family_comparability,Generated field in the analysis-ready database.
+case_features.csv,autonomy_pressure,Generated field in the analysis-ready database.
+case_features.csv,current_data_feasibility,Generated field in the analysis-ready database.
+case_features.csv,notes_justifying_these_fields,Generated field in the analysis-ready database.
+role_coding_master.csv,case_id,Generated field in the analysis-ready database.
+role_coding_master.csv,role_label,Generated field in the analysis-ready database.
+role_coding_master.csv,role_group,Generated field in the analysis-ready database.
+role_coding_master.csv,role_observable_in_case,Generated field in the analysis-ready database.
+role_coding_master.csv,status_in_case,Generated field in the analysis-ready database.
+role_coding_master.csv,confidence,Generated field in the analysis-ready database.
+role_coding_master.csv,evidence_basis_summary,Generated field in the analysis-ready database.
+role_coding_master.csv,main_supporting_source_ids,Generated field in the analysis-ready database.
+role_coding_master.csv,main_contrary_source_ids,Generated field in the analysis-ready database.
+role_coding_master.csv,notes,Generated field in the analysis-ready database.
+hypotheses_prep.csv,case_id,Generated field in the analysis-ready database.
+hypotheses_prep.csv,primary_ai_capability,Generated field in the analysis-ready database.
+hypotheses_prep.csv,primary_research_stage,Generated field in the analysis-ready database.
+hypotheses_prep.csv,institutional_setting,Generated field in the analysis-ready database.
+hypotheses_prep.csv,task_ground_truth_level,Generated field in the analysis-ready database.
+hypotheses_prep.csv,post_hoc_auditability,Generated field in the analysis-ready database.
+hypotheses_prep.csv,role_status_boundary_setting,Generated field in the analysis-ready database.
+hypotheses_prep.csv,role_status_procedure_setting,Generated field in the analysis-ready database.
+hypotheses_prep.csv,role_status_accountability,Generated field in the analysis-ready database.
+hypotheses_prep.csv,role_status_routine_throughput,Generated field in the analysis-ready database.
+hypotheses_prep.csv,dominant_role_pattern,Generated field in the analysis-ready database.
+hypotheses_prep.csv,shrinkage_present,Generated field in the analysis-ready database.
+hypotheses_prep.csv,split_pressure_present,Generated field in the analysis-ready database.
+hypotheses_prep.csv,notes,Generated field in the analysis-ready database.
+exclusions_and_limits.csv,case_id,Generated field in the analysis-ready database.
+exclusions_and_limits.csv,missing_item,Generated field in the analysis-ready database.
+exclusions_and_limits.csv,reason,Generated field in the analysis-ready database.
+exclusions_and_limits.csv,severity,Generated field in the analysis-ready database.
+exclusions_and_limits.csv,whether_case_still_analysis_ready,Generated field in the analysis-ready database.

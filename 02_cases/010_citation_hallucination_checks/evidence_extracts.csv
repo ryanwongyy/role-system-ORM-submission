@@ -1,0 +1,65 @@
+extract_id,case_id,case_slug,source_id,source_type,page_or_section,extract_type,text_excerpt_or_paraphrase,supports_role,contradicts_role,supports_shrinkage,supports_split,supports_merge_or_rejection,notes
+E010_001,10,010_citation_hallucination_checks,C010_REGISTRY,registry_workbook_entry,Repository row,role_claim,Track when humans verify or fail to verify citations inserted by AI during literature-review drafting and evidence synthesis.,Accountability and labor allocator; protocol and provenance architect,,no,no,yes,Workbook seed description preserved for provenance.
+E010_002,10,010_citation_hallucination_checks,C010_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Poor citation habits could predate AI and inflate apparent AI effects,,Accountability and labor allocator; protocol and provenance architect,no,no,no,Repository curation note captured as rival explanation / caution.
+E010_003,10,010_citation_hallucination_checks,C010_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Citation support tools eliminate hallucination risk without extra human verification work,,Accountability and labor allocator; protocol and provenance architect,no,no,no,Falsification condition recorded from repository seed.
+E010_004,10,010_citation_hallucination_checks,C010_P1,preprint,landing page / extracted text,method,"The Case of the Mysterious Citations
+
+USE AND MISUSE OF LLMS IN ACADEMIC WRITING
+
+METHODOLOGY
+
+MYSTERIOUS CITATIONS
+
+Author and DOI Errors
+
+AI-Generated Citations
+
+AI-Generated Papers
+
+DISCUSSION
+
+CONCLUSION
+
+LIMITATIONS
+
+ACKNOWLEDGMENTS
+
+\jvol
+
+XX
+
+\jnum
+XX
+
+\paper
+1
+
+\jmonth
+Feb
+ 
+\jtitle
+preprint. SAND2026-16932O
+
+The Case of the Mysterious Citations
+
+Amanda Bienz
+
+University of New Mexico, Albuquerque, NM, USA
+
+  
+
+Carl Pearson
+
+Sandia National Laboratories, Albuquerque, NM, USA
+
+  
+
+Simon Garcia de Gonzalo
+
+Sandia National Laboratories, Albuquerque, NM, USA
+
+(2026)
+
+Abstract
+
+Mysterious citations are routinely appearing in peer-reviewed publications throughout the scientific community. In this paper, we developed an automated pipeline and examine the proceedings of four major high-performance computing conferences, comparing the accuracy of citations between the 2021 and 2025 proceedings. While none of the 2021 papers contained mysterious citations, every 2025 proceeding did, impacting 2-6% of published papers. In addition, we observe a sharp rise in paper title and authorship errors, motivating the need for stronger citation-verification practice. No author within our dataset",Accountability and labor allocator; protocol and provenance architect,,no,no,yes,Auto-extracted text snippet from collected source.

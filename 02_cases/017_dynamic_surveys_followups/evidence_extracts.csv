@@ -1,0 +1,22 @@
+extract_id,case_id,case_slug,source_id,source_type,page_or_section,extract_type,text_excerpt_or_paraphrase,supports_role,contradicts_role,supports_shrinkage,supports_split,supports_merge_or_rejection,notes
+E017_001,17,017_dynamic_surveys_followups,C017_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Use dynamic surveys to test a middle ground between structured surveys and interviews, with AI-generated follow-ups and emergent cluster reports.",Situated interlocutor; context witness; protocol architect,,no,no,no,Workbook seed description preserved for provenance.
+E017_002,17,017_dynamic_surveys_followups,C017_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Educational settings may not generalize to high-stakes public-policy or vulnerable populations,,Situated interlocutor; context witness; protocol architect,no,no,no,Repository curation note captured as rival explanation / caution.
+E017_003,17,017_dynamic_surveys_followups,C017_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Dynamic surveys produce equivalent depth and usefulness without any human interpretive scaffolding,,Situated interlocutor; context witness; protocol architect,no,no,no,Falsification condition recorded from repository seed.
+E017_004,17,017_dynamic_surveys_followups,C017_P1,conference paper,landing page / extracted text,method,"Dynamic Surveys: Using LLMs to Blend Qualitative Depth,
+Quantitative Structure, and Collaborative Interaction
+KEHUA LEI, UC Santa Cruz, USA
+AIDAN LADENBURG, UC Santa Cruz, USA
+ZAHRA PETIWALA, UC Santa Cruz, USA
+ZILI WANG,UC Santa Cruz, USA
+DISHITA JHAWAR,UC Santa Cruz, USA
+IPSITA BISHT, UC Santa Cruz, USA
+ANSH KUMAR, UC Santa Cruz, USA
+DAVID T. LEE,UC Santa Cruz, USA
+Surveys are a powerful tool for collecting data and eliciting insights on social phenomena, and are critical
+in product design, marketing, scientific research, and other domains. However, traditional open-ended and
+closed-ended question formats limit researchers’ ability to capture data that combines both the richness of
+qualitative insights and the analytical rigor of quantitative data. Closed-ended questions facilitate structured
+data collection that is amenable to statistical analysis but limit respondents’ answers. In contrast, open-ended
+questions allow for nuanced responses incorporating new perspectives but require significant effort to interpret
+due to their unstructured nature. Moreover, traditional survey tools lack mechanisms to prompt respondents
+for deeper reflections or to facilitate engagement with other",Situated interlocutor; context witness; protocol architect,,no,no,no,Auto-extracted text snippet from collected source.

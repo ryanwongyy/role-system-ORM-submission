@@ -1,0 +1,108 @@
+extract_id,case_id,case_slug,source_id,source_type,page_or_section,extract_type,text_excerpt_or_paraphrase,supports_role,contradicts_role,supports_shrinkage,supports_split,supports_merge_or_rejection,notes
+E022_001,22,022_socsci210_behavior_simulators,C022_REGISTRY,registry_workbook_entry,Repository row,role_claim,Test whether fine-tuning on past open experiments changes the human role from first-pass prediction to calibration and scope setting.,Calibration architect; counterfactual and transportability judge,,no,no,no,Workbook seed description preserved for provenance.
+E022_002,22,022_socsci210_behavior_simulators,C022_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Benchmark overfitting can overstate real screening value,,Calibration architect; counterfactual and transportability judge,no,no,no,Repository curation note captured as rival explanation / caution.
+E022_003,22,022_socsci210_behavior_simulators,C022_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Fine-tuned models generalize so well that human calibration rarely changes use decisions,,Calibration architect; counterfactual and transportability judge,no,no,no,Falsification condition recorded from repository seed.
+E022_004,22,022_socsci210_behavior_simulators,C022_P1,preprint,landing page / extracted text,method,"[2509.05830] Finetuning LLMs for Human Behavior Prediction in Social Science Experiments
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2509.05830
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Machine Learning
+
+arXiv:2509.05830
+ (cs)
+ 
+
+ [Submitted on 6 Sep 2025 (
+v1
+), last revised 5 Nov 2025 (this version, v2)]
+
+Title:
+Finetuning LLMs for Human Behavior Prediction in Social Science Experiments
+
+Authors:
+Akaash Kolluri
+, 
+Shengguang Wu
+, 
+Joon Sung Park
+, 
+Michael S. Bernstein
+ 
+View a PDF of the paper titled Finetuning LLMs for Human Behavior Prediction in Social Science Experiments, by Akaash Kolluri and 3 other authors
+
+View PDF
+
+HTML (experimental)
+
+Abstract:
+Large language models (LLMs) offer a powerful opportunity to simulate the res",Calibration architect; counterfactual and transportability judge,,no,no,no,Auto-extracted text snippet from collected source.

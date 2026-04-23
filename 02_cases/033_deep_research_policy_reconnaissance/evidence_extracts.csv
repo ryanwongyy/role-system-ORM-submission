@@ -1,0 +1,114 @@
+extract_id,case_id,case_slug,source_id,source_type,page_or_section,extract_type,text_excerpt_or_paraphrase,supports_role,contradicts_role,supports_shrinkage,supports_split,supports_merge_or_rejection,notes
+E033_001,33,033_deep_research_policy_reconnaissance,C033_REGISTRY,registry_workbook_entry,Repository row,role_claim,Adapt long-horizon web-research agents to frozen or live policy-literature tasks and examine when human source-boundary decisions still dominate.,Corpus pluralist; protocol and provenance architect,,no,no,no,Workbook seed description preserved for provenance.
+E033_002,33,033_deep_research_policy_reconnaissance,C033_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Current deep-research benchmarks are not social-science-specific and often use frozen web corpora,,Corpus pluralist; protocol and provenance architect,no,no,no,Repository curation note captured as rival explanation / caution.
+E033_003,33,033_deep_research_policy_reconnaissance,C033_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Agentic research produces equally diverse and well-grounded corpora without human boundary setting,,Corpus pluralist; protocol and provenance architect,no,no,no,Falsification condition recorded from repository seed.
+E033_004,33,033_deep_research_policy_reconnaissance,C033_P1,preprint,landing page / extracted text,method,"[2506.06287] Deep Research Bench: Evaluating AI Web Research Agents
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2506.06287
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Artificial Intelligence
+
+arXiv:2506.06287
+ (cs)
+ 
+
+ [Submitted on 6 May 2025]
+
+Title:
+Deep Research Bench: Evaluating AI Web Research Agents
+
+Authors:
+FutureSearch
+: 
+Nikos I. Bosse
+, 
+Jon Evans
+, 
+Robert G. Gambee
+, 
+Daniel Hnyk
+, 
+Peter Mühlbacher
+, 
+Lawrence Phillips
+, 
+Dan Schwarz
+, 
+Jack Wildman
+ 
+View a PDF of the paper titled Deep Research Bench: Evaluating AI Web Research Agents, by FutureSearch: Nikos I. Bosse and 7 other authors
+
+View PDF
+
+Abstract:
+Amongst the most common use cases of modern AI is LLM chat with web search enabled. However, no direct evaluations",Corpus pluralist; protocol and provenance architect,,no,no,no,Auto-extracted text snippet from collected source.

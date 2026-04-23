@@ -1,0 +1,108 @@
+extract_id,case_id,case_slug,source_id,source_type,page_or_section,extract_type,text_excerpt_or_paraphrase,supports_role,contradicts_role,supports_shrinkage,supports_split,supports_merge_or_rejection,notes
+E029_001,29,029_lab_manuscript_cowriting,C029_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Track how AI-assisted drafting redistributes visible and invisible labor across PIs, doctoral students, and lab managers.",Accountability and labor allocator; shrinking structural prose polisher,,no,no,no,Workbook seed description preserved for provenance.
+E029_002,29,029_lab_manuscript_cowriting,C029_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Pre-existing hierarchy may explain much of the credit allocation,,Accountability and labor allocator; shrinking structural prose polisher,no,no,no,Repository curation note captured as rival explanation / caution.
+E029_003,29,029_lab_manuscript_cowriting,C029_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,AI drafting neither redistributes credit nor changes evaluation after quality is controlled,,Accountability and labor allocator; shrinking structural prose polisher,no,no,no,Falsification condition recorded from repository seed.
+E029_004,29,029_lab_manuscript_cowriting,C029_P1,preprint,landing page / extracted text,method,"[2601.13187] Scientific production in the era of Large Language Models
+
+ 
+ 
+
+Skip to main content
+
+Learn about arXiv becoming an independent nonprofit.
+
+We gratefully acknowledge support from the Simons Foundation, 
+member institutions
+, and all contributors.
+
+Donate
+
+ 
+>
+ 
+cs
+ 
+>
+ arXiv:2601.13187
+ 
+
+Help
+ | 
+Advanced Search
+
+All fields
+
+Title
+
+Author
+
+Abstract
+
+Comments
+
+Journal reference
+
+ACM classification
+
+MSC classification
+
+Report number
+
+arXiv identifier
+
+DOI
+
+ORCID
+
+arXiv author ID
+
+Help pages
+
+Full text
+
+Search
+
+open search
+
+GO
+
+open navigation menu
+
+quick links
+
+Login
+
+Help Pages
+
+About
+
+Computer Science > Digital Libraries
+
+arXiv:2601.13187
+ (cs)
+ 
+
+ [Submitted on 19 Jan 2026]
+
+Title:
+Scientific production in the era of Large Language Models
+
+Authors:
+Keigo Kusumegi
+, 
+Xinyu Yang
+, 
+Paul Ginsparg
+, 
+Mathijs de Vaan
+, 
+Toby Stuart
+, 
+Yian Yin
+ 
+View a PDF of the paper titled Scientific production in the era of Large Language Models, by Keigo Kusumegi and 5 other authors
+
+View PDF
+
+Abstract:
+Large Language Models (LLMs) are rapidly reshaping scientific research. We analyze these changes in multiple, large-scale datasets with 2.1M preprints, 28K peer review reports, and 24",Accountability and labor allocator; shrinking structural prose polisher,,no,no,no,Auto-extracted text snippet from collected source.

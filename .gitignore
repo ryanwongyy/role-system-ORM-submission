@@ -1,0 +1,44 @@
+# ======================================================================
+# .gitignore for v1.0.0-ORM-submission
+# Public release policy: metadata + coding CSVs + scripts only.
+# Primary-source PDFs and full-text extracts are NOT redistributed;
+# they are referenced by DOI / URL in the case registry.
+# ======================================================================
+
+# System and Python
+.DS_Store
+*.pyc
+__pycache__/
+.venv/
+*.tmp
+.codex/
+
+# Scratch output and logs
+10_outputs/
+08_logs/
+
+# April 8 rerun scratch (pre-manuscript version; not in the submission release)
+11_manuscript_rerun_2026_04_08/
+
+# Primary sources — copyright + green-OA distribution rules differ by source,
+# so we release DOIs/URLs (in 01_registry/) but not the PDFs or extracts.
+03_raw_sources/
+04_extracted_text/
+00_input/
+
+# Case notes (private researcher annotations; not part of the reproducible coding)
+05_case_notes/
+
+# Editorial-loop and review-loop intermediate versions — keep only the
+# convergence reports, not every vNN snapshot.
+11_manuscript/10_drafts/10_manuscript_versions/editorial_loop/v*.md
+11_manuscript/10_drafts/10_manuscript_versions/editorial_loop/v*.docx
+11_manuscript/10_drafts/10_manuscript_versions/review_loop/v*.md
+11_manuscript/10_drafts/10_manuscript_versions/review_loop/v*.docx
+
+# Codex / internal tool state
+.codex/
+
+# Published third-party ORM/SMJ/JoM template PDFs used for editorial design
+# reference; copyright-restricted, not redistributable
+11_manuscript/30_reviews/template_pdfs/

@@ -1,0 +1,5 @@
+# Pinned dependencies for scripts/section6_analysis.py
+# Reproduces every §6 numeric value in the manuscript at release tag v1.0.0-ORM-submission.
+pandas>=2.0,<3.0
+numpy>=1.23,<3.0
+scipy>=1.10,<2.0

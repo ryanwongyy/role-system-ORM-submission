@@ -1,0 +1,100 @@
+extract_id,case_id,case_slug,source_id,source_type,page_or_section,extract_type,text_excerpt_or_paraphrase,supports_role,contradicts_role,supports_shrinkage,supports_split,supports_merge_or_rejection,notes
+E021_001,21,021_synthetic_respondents_benchmarked,C021_REGISTRY,registry_workbook_entry,Repository row,role_claim,"Benchmark prompt-only personas, profile-rich personas, and calibrated hybrids against real survey descriptives and higher-order relationships.",Counterfactual and transportability judge; calibration architect,,no,yes,no,Workbook seed description preserved for provenance.
+E021_002,21,021_synthetic_respondents_benchmarked,C021_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Human benchmark surveys are themselves noisy and historically contingent,,Counterfactual and transportability judge; calibration architect,no,no,no,Repository curation note captured as rival explanation / caution.
+E021_003,21,021_synthetic_respondents_benchmarked,C021_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,Synthetic panels recover higher-order relationships and heterogeneity as well as human data,,Counterfactual and transportability judge; calibration architect,no,no,no,Falsification condition recorded from repository seed.
+E021_004,21,021_synthetic_respondents_benchmarked,C021_P1,journal article,landing page / extracted text,method,"Synthetic Replacements for Human Survey Data? The Perils of Large Language Models | Political Analysis | Cambridge Core
+
+ Skip to main content
+
+ Accessibility help
+
+Login Alert
+
+Cancel
+
+Log in
+
+×
+
+×
+
+ Discover Content 
+ Products and Services 
+Register
+Log In
+ (0) Cart 
+
+ Logo for Cambridge Core from Cambridge University Press. Click to return to homepage. 
+Search
+ Logo for Cambridge Core from Cambridge University Press. Click to return to homepage. 
+Browse
+Services
+Open research
+Institution Login
+Search
+
+ 
+
+ Hostname: page-component-77f85d65b8-8v9h9
+ Total loading time: 0
+ Render date: 2026-04-07T04:35:23.077Z
+ Has data issue: false
+ hasContentIssue false
+ 
+ 
+ 
+Home
+ 
+>
+Journals
+ 
+>
+Political Analysis
+ 
+>
+Volume 32 Issue 4
+ 
+>
+Synthetic Replacements for Human Survey Data? The Perils...
+ 
+English
+
+ Français
+ 
+ 
+ 
+ 
+ 
+Political Analysis
+ 
+ 
+ 
+ 
+ 
+Article contents
+ 
+Abstract
+ 
+ 
+Research Design and Data
+ 
+Results
+ 
+Sensitivity of Synthetic Responses
+ 
+Discussion and Implications
+ 
+Author Contributions
+ 
+Funding Statement
+ 
+Competing Interests
+ 
+Data Availability Statement
+ 
+Footnotes
+ 
+References
+ 
+ 
+Synthetic Replacements for Human Survey Data? The Perils of Large Language Models",Counterfactual and transportability judge; calibration architect,,no,yes,no,Auto-extracted text snippet from collected source.

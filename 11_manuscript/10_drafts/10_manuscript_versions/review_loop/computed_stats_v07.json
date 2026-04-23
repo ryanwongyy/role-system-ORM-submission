@@ -1,0 +1,30 @@
+{
+  "durable_three_configuration": {
+    "all_durable": 12,
+    "two_or_more_durable": 24,
+    "top_configs": {
+      "durable|durable|durable": 12,
+      "durable|na|durable": 7,
+      "na|durable|durable": 4,
+      "na|na|durable": 3,
+      "pressure|na|pressure": 2
+    }
+  },
+  "consistency_coverage_gt_shrink": {
+    "gt_and_shrink": 12,
+    "gt_only": 2,
+    "shrink_only": 12,
+    "neither": 10,
+    "sufficiency_gt_for_shrink": 0.857,
+    "necessity_gt_for_shrink": 0.5
+  },
+  "holdout_no_pilot": {
+    "n_cases": 32,
+    "n_obs_rows": 234,
+    "sign_test_pos": 13,
+    "sign_test_neg": 2,
+    "sign_test_p": 0.0074,
+    "V_family": 0.253,
+    "V_capability": 0.208
+  }
+}

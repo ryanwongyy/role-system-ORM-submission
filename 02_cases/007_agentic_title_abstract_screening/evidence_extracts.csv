@@ -1,0 +1,103 @@
+extract_id,case_id,case_slug,source_id,source_type,page_or_section,extract_type,text_excerpt_or_paraphrase,supports_role,contradicts_role,supports_shrinkage,supports_split,supports_merge_or_rejection,notes
+E007_001,7,007_agentic_title_abstract_screening,C007_REGISTRY,registry_workbook_entry,Repository row,role_claim,Test AI-first screening on mixed corpora to see whether first-pass screening shrinks while protocol design and corpus rescue remain human.,Protocol and provenance architect; corpus pluralist; shrinking first-pass screener,,yes,no,no,Workbook seed description preserved for provenance.
+E007_002,7,007_agentic_title_abstract_screening,C007_REGISTRY,registry_workbook_entry,Repository row,counterevidence,Access to subscriptions and topic difficulty can mimic AI effects,,Protocol and provenance architect; corpus pluralist; shrinking first-pass screener,no,no,no,Repository curation note captured as rival explanation / caution.
+E007_003,7,007_agentic_title_abstract_screening,C007_REGISTRY,registry_workbook_entry,Repository row,boundary_condition,AI-first workflows preserve gray and multilingual evidence without human rescue,,Protocol and provenance architect; corpus pluralist; shrinking first-pass screener,no,no,no,Falsification condition recorded from repository seed.
+E007_004,7,007_agentic_title_abstract_screening,C007_P1,journal article,landing page / extracted text,method,"Compact large language models for title and abstract screening in systematic reviews: An assessment of feasibility, accuracy, and workload reduction | Research Synthesis Methods | Cambridge Core
+
+ Skip to main content
+
+ Accessibility help
+
+Login Alert
+
+Cancel
+
+Log in
+
+×
+
+×
+
+ Discover Content 
+ Products and Services 
+Register
+Log In
+ (0) Cart 
+
+ Logo for Cambridge Core from Cambridge University Press. Click to return to homepage. 
+Search
+ Logo for Cambridge Core from Cambridge University Press. Click to return to homepage. 
+Browse
+Services
+Open research
+Institution Login
+Search
+
+ 
+
+ Hostname: page-component-77f85d65b8-pkds5
+ Total loading time: 0
+ Render date: 2026-04-06T00:42:22.911Z
+ Has data issue: false
+ hasContentIssue false
+ 
+ 
+ 
+Home
+ 
+>
+Journals
+ 
+>
+Research Synthesis Methods
+ 
+>
+Volume 17 Issue 2
+ 
+>
+Compact large language models for title and abstract...
+ 
+English
+
+ Français
+ 
+ 
+ 
+ 
+ 
+Research Synthesis Methods
+ 
+ 
+ 
+ 
+ 
+Article contents
+ 
+Abstract
+ 
+ 
+Highlights
+ 
+Introduction
+ 
+Methods
+ 
+Results
+ 
+Discussion
+ 
+Conclusions
+ 
+Author contributions
+ 
+Competing interest statement
+ 
+Data availability statement
+ 
+Funding statement
+ 
+Ethics approval statement
+ 
+Footnotes
+ 
+Refer",Protocol and provenance architect; corpus pluralist; shrinking first-pass screener,,yes,no,no,Auto-extracted text snippet from collected source.
