@@ -1,10 +1,9 @@
-# OSF Preregistration — Inter-coder Reliability Pass for "From Repository to Role System"
+# Pre-analysis plan (OSF-ready) — Inter-coder Reliability Pass for "From Repository to Role System"
 
 **Study:** *From Repository to Role System: A Comparative Typology Audit of 36 Cases*
 **Target venue:** *Organizational Research Methods* (ORM)
-**Preregistration purpose:** Pre-commit the second-coder protocol for computing Cohen's κ on a stratified 10% subsample of the role-status coding, and pre-commit the remedy for per-status κ values below the acceptance threshold.
-
-**Timestamping note:** This document should be posted to OSF *before* the second coder is shown the rubric or the case files. If it is posted after the second coder has begun work, it must be relabeled as a **pre-analysis plan** rather than a preregistration (per the ORM/Nosek credibility convention cited in the Transparency and Disclosures section of the manuscript).
+**Document status at v1.0.0-ORM-submission:** **pre-analysis plan**. An independent OSF registration was not posted before the second-coder pass; this document is OSF-ready but not OSF-timestamped, and the manuscript labels it accordingly. OSF registration is a recommended post-submission step; the document may then be uploaded as-is.
+**Plan purpose:** Pre-commit the second-coder protocol for computing Cohen's κ on a stratified 10% subsample of the role-status coding, and pre-commit the remedy for per-status κ values below the acceptance threshold.
 
 ---
 

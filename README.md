@@ -20,7 +20,7 @@
 | `11_manuscript/10_drafts/appendix_B_kappa.md` | Inter-coder agreement full report | CC-BY-4.0 |
 | `11_manuscript/10_drafts/appendix_C_application_protocol.md` | Stranger-coder protocol + worked out-of-sample example | CC-BY-4.0 |
 | `11_manuscript/10_drafts/appendix_D_sensitivity_full_role_table.md` | Full 17-role sensitivity stub | CC-BY-4.0 |
-| `11_manuscript/30_reviews/OSF_preregistration.md` | OSF preregistration document (also posted on OSF) | CC-BY-4.0 |
+| `11_manuscript/30_reviews/OSF_preregistration.md` | Pre-analysis plan document (OSF posting deferred; see §Pre-analysis plan below) | CC-BY-4.0 |
 
 ## What is NOT in this repository (and why)
 
@@ -44,11 +44,11 @@ Seeds are fixed in the script docstring. Running against `role_coding_master.csv
 
 ## Inter-coder reliability — summary
 
-Pooled Cohen's κ = 0.289 on the preregistered 68-cell subsample (95% bootstrap CI [0.147, 0.439]), from a sandboxed LLM-agent second coder. This **fails** the preregistered κ ≥ 0.60 threshold. The preregistered remedy has been invoked: Table 1's tie-breaker is revised, the observable-vs-`not_applicable` threshold is tightened, and the claim ceiling is adjusted from *framework* to *preliminary framework*. A human second-coder pass is recommended as a follow-up. See `11_manuscript/10_drafts/appendix_B_kappa.md` for the full disagreement log and remedy details.
+Pooled Cohen's κ = 0.289 on the pre-specified 68-cell subsample (95% bootstrap CI [0.147, 0.439]), from a sandboxed LLM-agent second coder. This **fails** the pre-committed κ ≥ 0.60 threshold. The pre-committed remedy has been invoked: Table 1's tie-breaker is revised, the observable-vs-`not_applicable` threshold is tightened, and the claim ceiling is adjusted from *framework* to *preliminary framework*. A human second-coder pass is recommended as a follow-up. See `11_manuscript/10_drafts/appendix_B_kappa.md` for the full disagreement log and remedy details.
 
-## OSF preregistration
+## Pre-analysis plan (OSF deferred)
 
-The second-coder protocol is preregistered on OSF. See `11_manuscript/30_reviews/OSF_preregistration.md` for the registered document; the live OSF URL and ISO timestamp are inserted in the manuscript's Transparency and Disclosures section at final submission.
+The second-coder protocol is specified as a **pre-analysis plan** in `11_manuscript/30_reviews/OSF_preregistration.md` (filename retained for its OSF-ready content; the file is not an OSF registration). An independent OSF preregistration was not posted before the second-coder pass; we disclose this transparently in the manuscript's Transparency and Disclosures section. The temporal-precedence evidence is the git commit history at release tag `v1.0.0-ORM-submission`. OSF registration is a recommended post-submission step.
 
 ## Citation
 

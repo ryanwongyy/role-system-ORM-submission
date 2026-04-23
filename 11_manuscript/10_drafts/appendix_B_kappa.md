@@ -1,6 +1,6 @@
 # Appendix B — Inter-coder agreement on a double-coded subsample
 
-**Preregistered plan.** The second-coder protocol was specified on OSF (URL + timestamp to be inserted at final submission; see `30_reviews/OSF_preregistration.md` for the preregistration document). All acceptance thresholds and tie-breaker remedies were committed before the second coder received the rubric.
+**Pre-analysis plan.** The second-coder protocol is specified in `30_reviews/OSF_preregistration.md`, released with the database at tag `v1.0.0-ORM-submission` (commit `7f0a816`). The plan documents the four-case stratified subsample, the coder-blindness protocol, the κ ≥ 0.60 acceptance threshold, and the tie-breaker-revision remedy. The temporal-precedence standard is the git commit history rather than an OSF timestamp: an independent OSF registration was not posted before the second-coder pass, and we flag OSF registration as a recommended follow-up rather than claim it retrospectively. All acceptance thresholds and tie-breaker remedies were drafted before the second-coder pass was run within the same development session.
 
 ## Subsample (pre-specified)
 
@@ -46,7 +46,7 @@ The per-status pattern is diagnostic: *robust* and *shrinking* show moderate-to-
 
 ## Pre-committed remedies — invoked
 
-Per the preregistration, failure on κ triggers three remedies. All three are applied in the revision:
+Per the pre-analysis plan, failure on κ triggers three remedies. All three are applied in the revision:
 
 1. **Rubric tie-breaker revision (Table 1).** The conditional-vs-transformed tie-breaker has been extended to name the two most common failure modes observed: (a) inferring `transformed` from the mere presence of AI in the workflow, rather than from an explicit before/after change; and (b) coding `conditional` when no moderator analysis is in the case. The revised tie-breaker requires the coder to identify at least one *explicit* moderator variable (for `conditional`) or at least one *explicit* role-content change (for `transformed`). Indeterminate cells default to `unclear`.
 
@@ -95,7 +95,7 @@ Format: [case_id | role | first coder | second coder | diagnosis].
 
 ## Summary
 
-The LLM-agent second-coder pass returned κ = 0.289, below the pre-committed 0.60 threshold. The preregistration's three-part remedy is invoked in the revision. The paper's claim ceiling is adjusted from *framework* to *preliminary framework*. The rubric's tie-breaker and observable-vs-NA threshold are revised. A human second-coder pass is recommended as a follow-up and is named in §6 as an unmet commitment; until then, the rubric's reliability is characterized by the LLM-agent lower bound reported here.
+The LLM-agent second-coder pass returned κ = 0.289, below the pre-committed 0.60 threshold. The pre-analysis plan's three-part remedy is invoked in the revision. The paper's claim ceiling is adjusted from *framework* to *preliminary framework*. The rubric's tie-breaker and observable-vs-NA threshold are revised. A human second-coder pass is recommended as a follow-up and is named in §6 as an unmet commitment; until then, the rubric's reliability is characterized by the LLM-agent lower bound reported here.
 
 **Pass/fail verdict:** FAIL on pre-committed threshold; remedies fully invoked.
 
