@@ -38,6 +38,7 @@ DEFAULT_FONT_SIZE = Pt(12)
 TABLE_HEADER_RE = re.compile(r"^\s*\|.*\|\s*$")
 TABLE_SEP_RE = re.compile(r"^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)+\|?\s*$")
 NUMBERED_RE = re.compile(r"^\d+\.\s+")
+IMAGE_LINE_RE = re.compile(r"^\s*!\[([^\]]*)\]\(([^)]+)\)\s*$")
 
 
 def _add_runs_with_inline_formatting(paragraph, text: str) -> None:
@@ -177,6 +178,25 @@ def md_to_docx(
         if stripped.startswith("- "):
             flush_paragraph()
             document.add_paragraph(stripped[2:].strip(), style="List Bullet")
+            i += 1
+            continue
+
+        img_match = IMAGE_LINE_RE.match(line)
+        if img_match:
+            flush_paragraph()
+            alt_text, img_path = img_match.group(1), img_match.group(2)
+            try:
+                # Resolve relative paths against the manuscript location
+                from pathlib import Path as _P
+                ip = _P(img_path)
+                if not ip.is_absolute():
+                    ip = (output_path.parent / img_path).resolve()
+                if ip.exists():
+                    document.add_picture(str(ip), width=Inches(6.0))
+                else:
+                    document.add_paragraph(f"[Image not found: {img_path}]")
+            except Exception as e:
+                document.add_paragraph(f"[Image render error: {img_path} — {e}]")
             i += 1
             continue
 

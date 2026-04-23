@@ -1,0 +1,1972 @@
+Text Preprocessing for Text
+Mining in Organizational
+Research: Review
+and Recommendations
+Louis Hickman1 , Stuti Thapa1, Louis Tay1,
+Mengyang Cao2, and Padmini Srinivasan3
+Abstract
+Recent advances in text mining have provided new methods for capitalizing on the voluminous
+natural language text data created by organizations, their employees, and their customers. Although
+often overlooked, decisions made during text preprocessing affect whether the content and/or style
+of language are captured, the statistical power of subsequent analyses, and the validity of insights
+derived from text mining. Past methodological articles have described the general process of
+obtaining and analyzing text data, but recommendations for preprocessing text data were incon-
+sistent. Furthermore, primary studies use and report different preprocessing techniques. To address
+this, we conduct two complementary reviews of computational linguistics and organizational text
+mining research to provide empirically grounded text preprocessing decision-making recommen-
+dations that account for the type of text mining conducted (i.e., open or closed vocabulary), the
+research question under investigation, and the data set’s characteristics (i.e., corpus size and average
+document length). Notably, deviations from these recommendations will be appropriate and, at
+times, necessary due to the unique characteristics of one’s text data. We also provide recom-
+mendations for reporting text mining to promote transparency and reproducibility.
+Keywords
+open vocabulary, closed vocabulary, stemming, text mining, best practices
+Text mining is increasingly being used in organizational research and practice because up to 80% of
+organizational data are stored as unstructured, natural language text (Grimes, 2008). Researchers
+have used closed vocabulary text mining over the past three decades to summarize text data by
+1Purdue University College of Health and Human Sciences, West Lafayette, IN, USA
+2
+3University of Iowa, Computer Science, Iowa City, IA, USA
+Corresponding Author:
+Louis Hickman, Purdue University College of Health and Human Sciences, 700 W State St, West Lafayette, IN 47907, USA.
+Email: lchickma@purdue.edu
+Organizational Research Methods
+ª The Author(s) 2020
+Article reuse guidelines:
+sagepub.com/journals-permissions
+DOI: 10.1177/1094428120971683
+journals.sagepub.com/home/orm
+2022, Vol. 25(1) 114–146
+Article
+Independent
+
+
+counting conceptually related words and phrases to score constructs (e.g., entrepreneurial orienta-
+tion; Short et al., 2010). Recently, new methods and open source software have emerged that can use
+any words and/or phrases in text as the unit of analysis, known as open vocabulary text mining
+(Schwartz, Eichstaedt, Kern, et al., 2013) and, more broadly, natural language processing (NLP;
+Oswald et al., 2020). Open vocabulary text mining has garnered interest in organizational research
+and practice (e.g., Li, 2019) because it can be used to improve employee selection and assessment
+(Campion et al., 2016; Sajjadiani et al., 2019; Speer, 2018) and advance organizational theory by
+helping researchers uncover emergent processes, develop new classification systems, and analyze
+social and cultural dynamics (Hannigan et al., 2019). Both closed and open vocabulary text mining
+represent methods of analyzing natural language text data that save considerable time and expense
+compared to traditional, manual coding of text.
+The emergence of open vocabulary text mining has increased the need for and prevalence of
+preprocessing natural language texts before analysis. Preprocessing involves transforming text prior
+to analysis by identifying which units (e.g., words and phrases) to use (i.e., tokenize), removing
+content that is irrelevant for some tasks (i.e., remove nonalphabetic characters and stop words),
+agglomerating semantically related terms to decrease data sparsity and increase predictive power
+(i.e., lowercase conversion, correct misspellings, expand contractions/abbreviations, and stem/lem-
+matize), and increasing the amount of semantic information that is captured (i.e., handling negation).
+However, this means that preprocessing can also remove useful information (e.g., removing stop
+words when they are relevant to one’s research question), introduce errors into analysis (e.g., when
+stemming conflates semantically distinct words), and drastically alter subsequent results
+(Boyd, 2016).
+Despite its importance, text preprocessing is often glossed over and poorly reported in text
+mining research (Fokkens et al., 2013). For example, the vast majority of closed vocabulary text
+mining studies do not report conducting any preprocessing (see Table 4), although some closed
+vocabulary software packages (e.g., Linguistic Inquiry and Word Count) recommend that
+researchers preprocess texts to enhance measurement precision (Pennebaker, Booth, et al.,
+2015). This is particularly concerning because preprocessing may affect the reliability and validity
+of results in the same way that researcher degrees of freedom (Simmons et al., 2011) can alter
+research findings during metaanalytic coding (Wanous et al., 1989), qualitative research (Jonsen
+et al., 2018), and screening quantitative responses (Meade & Craig, 2012). To further complicate
+things, past research has provided conflicting preprocessing recommendations—for instance,
+organizational researchers have provided four distinct recommendations for stemming during
+open vocabulary text mining: Always stem except on short documents (Kobayashi et al.,
+2018a), only stem in small corpora (Kern et al., 2016), only stem if it does not reduce classifica-
+tion/prediction accuracy (Kobayashi et al., 2018b), and cautiously consider stemming only after
+conducting topic modeling (Banks et al., 2018).
+This article seeks to improve current text preprocessing practices, resolve these conflicting
+preprocessing recommendations, and provide reporting guidelines for text mining research. First,
+we advance our understanding of the conceptual and empirical considerations that should drive
+preprocessing decisions. We do so by considering whether one’s research question is best addressed
+by closed or open vocabulary text mining, if it necessitates capturing what people communicate and/
+or how they communicate (i.e., the content and style of speech; Pennebaker et al., 2003), and the
+characteristics of one’s corpus (i.e., corpus size and average document length). Then, when describ-
+ing the preprocessing techniques, we discuss how each technique affects statistical power, measure-
+ment validity, and one’s ability to extract various textual features.
+Second, we review text preprocessing comparison research in computational linguistics (a sub-
+field of linguistics and computer science that is responsible for the development of open vocabulary
+text mining) to derive preprocessing best practices. We then use those findings to critically review
+115
+Hickman et al.
+
+
+the preprocessing practices in organizational research. Conducting these two reviews together
+advances our understanding of whether organizational scholars follow preprocessing best practices.
+Third, we use the information gleaned from these reviews to provide recommendations for
+conducting text mining preprocessing, as summarized in Figure 1, and reporting text mining
+Figure 1. Preprocessing recommendations for open and closed vocabulary text mining.
+Note: This diagram presents preprocessing considerations in order of conceptual importance, not necessarily the
+order in which preprocessing will be conducted. RQ ¼ research question; OV ¼ open vocabulary; *indicates that
+many closed vocabulary software programs perform this preprocessing technique without user input.
+116
+Organizational Research Methods 25(1)
+
+
+research, as summarized in Table 5. Such recommendations have been provided for established
+research methods (e.g., surveys, meta-analysis; APA Publications and Communications Board,
+2008) but not yet for text mining. Our preprocessing recommendations aim to be comprehensive,
+but we recognize there are situations where specific research questions or unique data sets may
+necessitate deviating from these recommendations. As the Linguistic Inquiry and Word Count
+(LIWC) operator manual notes, during preprocessing, one should “keep in mind what your goals
+are in analyzing the data” (Pennebaker, Booth, et al., 2015, p. 15). Notably, our recommendations
+are informed by consideration of later stages of the text mining process, including which features
+will be extracted (i.e., open or closed vocabulary features) and the nature of one’s research question,
+because the optimal preprocessing techniques may differ for different textual features (e.g., n-grams,
+topic models, closed vocabulary dictionaries) and goals (e.g., investigating trait-like or state-like
+variables). Overall, our paper aims to improve the validity of text mining results, researchers’
+understanding of the effects of preprocessing, and the transparency and replicability of text mining
+research.
+Conceptual and Empirical Considerations for Text Preprocessing
+Before describing the various preprocessing techniques, it is essential to understand why and when
+preprocessing may affect text mining results. Specifically, preprocessing should first be considered
+in the context of one’s research question: Is the research question best addressed by using closed and/
+or open vocabulary text mining, and is the research question relevant to the content and/or style of
+speech? Second, preprocessing should be considered in the context of one’s corpus: Is the corpus
+large or small (i.e., how many documents are in the corpus), and how long, on average, are the
+documents in the corpus? Text mining terms relevant to this discussion are defined in Table 1.
+Research Question
+Closed and/or Open Vocabulary Text Mining. When one has a corpus of natural language text (i.e., a
+collection of documents), it is possible to extract features using either closed vocabulary text mining,
+open vocabulary text mining, or both (hybrid methods also exist; see DICTION’s Insistence func-
+tion1). Preprocessing decisions can alter the validity of text mining by affecting whether words and/
+or phrases are accurately captured. Importantly, closed and open vocabulary text mining have
+different preprocessing needs, but to understand why, it is necessary to explain how closed and
+open vocabulary text mining work.
+Closed vocabulary text mining counts words and phrases in a priori dictionaries, making it a more
+deductive approach to extracting textual information. These dictionaries are generally developed to
+capture specific constructs, which may be linguistic or psychological in nature. As an extension of
+manual coding, researchers can use existing dictionaries or create new ones to automatically count
+the number of times words and/or phrases appear (e.g., counting the number of positive words in the
+text to measure positivity), treating the number of occurrences of words in a dictionary as the
+construct score. For example, LIWC has linguistic dictionaries that count the use of pronouns, verbs,
+and punctuation as well as psychological dictionaries including drives (i.e., affiliation, achievement,
+power, reward, and risk), positive emotions, and negative emotions (Pennebaker, Boyd et al., 2015).
+Researchers have also developed dictionaries for organizational constructs, including entrepreneur-
+ial orientation (Short et al., 2010) and the great eight performance dimensions (Speer et al., 2018).
+The dictionary scores can then be used in traditional analyses (e.g., regression-based hypothesis
+testing) or in machine learning, whether supervised or unsupervised.
+In closed vocabulary text mining, the choice of which dictionaries to use is the sole determinant
+of what textual features are computed. With this in mind, preprocessing can adversely affect
+117
+Hickman et al.
+
+
+measurement precision in closed vocabulary text mining by inadvertently altering words in the
+corpus or creating a mismatch between how a word appears in the corpus and how it appears in
+the dictionary. However, preprocessing can also be used to enhance measurement precision by
+transforming all the variations, colloquialisms, or misspellings of a word within a corpus to its
+Table 1. Definitions of Terms Relevant to Text Mining and Preprocessing.
+Term
+Definition
+Example Application Issue
+Closed vocabulary
+Text mining techniques that count entries
+in a priori dictionaries (i.e., lists of
+conceptually related words and phrases)
+to analyze language.
+Linguistic Inquiry and Word Count (LIWC;
+Pennebaker, Boyd, et al., 2015) has
+dictionaries to represent such diverse
+constructs as positive/negative emotions,
+causation, and inclusivity/exclusivity.
+Content words
+Words and phrases that convey what is
+being communicated, including nouns
+(e.g., coworker), regular verbs (e.g., learn),
+adjectives and adverbs (e.g., happy).
+The content of speech is important for
+virtually all applications of text mining.
+What is said is a key focus of text mining
+research.
+Corpus
+A collection of text documents
+representing a specific variety of language
+(Pollach, 2012).
+Examples of corpora used for text mining
+include applicant achievement records
+(Campion et al., 2016), performance
+reviews (Speer, 2018), and research
+articles (Antons et al., 2019).
+Function words
+Words and phrases that convey the style of
+language and how communication is
+delivered, including articles (e.g., the),
+auxiliary verbs (e.g., am), conjunctions
+(e.g., and), prepositions (e.g., to), and
+pronouns (e.g., I).
+Function words, the style of speech, are
+important for understanding individual
+differences because people tend to have
+stable between-person differences in how
+they communicate (Pennebaker et al.,
+2003).
+n-gram
+n-grams are phrases of length n. Generally,
+text mining uses n-grams where n ¼ 1
+(unigrams), 2 (bigrams), or 3 (trigrams),
+but longer phrases are unlikely to be
+informative because they occur too
+infrequently (Kern et al., 2016).
+Speer (2018) used unigrams, bigrams, and
+trigrams to investigate performance
+reviews. Many bigrams and trigrams
+predicted subsequent job performance
+and capture more semantic information
+than unigrams.
+Open vocabulary
+Text mining techniques for utilizing
+emergent textual features (e.g., n-grams
+and topic models) as the basis
+for analysis.
+Kern et al. (2014) introduced this approach
+to the psychology and management fields
+by analyzing Facebook posts to predict
+personality traits.
+Tokenizer
+Removes extra white space and breaks text
+apart to identify meaningful units, called
+tokens—usually words but can also be
+phrases (n-grams) and emoticons
+(Gonz´alez-Bail´on & Paltoglou, 2015;
+Manning et al., 2008).
+Social media data face particular challenges
+deciding how to identify words and so
+must include rules for splitting emoticons
+as well as text (Kern et al., 2016).
+Topic modeling
+Analogous to factor analysis, these are
+probabilistic models that assess term
+cooccurrence frequencies, assigning n-
+grams loadings to topics and assigning
+documents loadings for the extent they
+contain each topic (Schmiedel et al., 2019).
+Latent Dirichlet allocation (Blei et al., 2003)
+has been used to analyze how
+professional discussions change over
+time (Croidieu & Kim, 2018), to
+understand the characteristics of
+impactful research (Antons et al., 2019),
+and to understand multinational
+corporation recruiting signals across
+cultures (Banks et al., 2019).
+118
+Organizational Research Methods 25(1)
+
+
+dictionary entry. For instance, in the popular LIWC, all text is automatically converted to lowercase
+(otherwise, capitalized words will not match their lowercase dictionary entries), and the technical
+manual encourages users to correct spelling errors and expand abbreviations (Pennebaker, Booth,
+et al., 2015).
+The effects of preprocessing on one’s results are pronounced in open vocabulary text mining.
+Open vocabulary text mining has no dictionaries to specify which words are of interest and, there-
+fore, no preformed notions about which words and/or phrases are valuable, making it a more
+inductive approach to extracting textual information. The variables extracted from open vocabulary
+text mining are frequently used in machine learning, whether supervised or unsupervised (Kobaya-
+shi et al., 2018b). In open vocabulary text mining, any n-gram (i.e., phrases of length n) can be
+counted and used as a variable, making it a useful approach in contexts with nonstandard spellings,
+abbreviations, and emoticons, which may not be present in closed vocabulary dictionaries (Park
+et al., 2015). Open vocabulary text mining is often conducted in R or Python, leaving the user to
+specify all preprocessing decisions. Preprocessing decisions determine what is captured in open
+vocabulary text mining because preprocessing techniques alter and/or remove words from text.
+Content and/or Style of Speech. Text mining can be used to address a wide variety of research
+questions. For example, topic modeling (an open vocabulary technique that involves identifying
+the latent topics in texts) has been used to address myriad organizational research questions (Han-
+nigan et al., 2019). One increasingly common way that text mining is used in social psychology is to
+infer traits and trait-like individual differences from text, such as social media posts (e.g., Park et al.,
+2015), which has been used to distinguish the average personality traits of workers in a given
+occupation (Kern et al., 2019) and to help with identifying and recruiting prospective applicants
+with job-relevant traits (Faliagka et al., 2012). Researchers have also applied text mining for a
+variety of other tasks, including understanding the similarity of texts (Banks et al., 2018), under-
+standing context-specific “state” variables like attitudes (e.g., sentiment analysis), and predicting
+behavioral outcomes from text data (Piezunka & Dahlander, 2015). In other words, some research
+questions are focused on extracting trait-like individual differences from text, whereas others are
+interested in extracting state-like variables.
+To understand how preprocessing may affect one’s ability to address these two types of research
+questions, we draw on Pennebaker’s distinction between the content of speech (i.e., what is being
+said; content words) and the style of speech (i.e., how it is being said; function words; Pennebaker
+et al., 2003). Some preprocessing techniques alter the validity of content captured from text, and
+several remove elements of the style of speech. Content words include nouns (e.g., coworker,
+friend), regular verbs (e.g., grow, learn), and many adjectives and adverbs (e.g., happy, very) and
+convey what is said. Therefore, content words tend to differ from situation to situation given that
+language reflects situation-dependent topics. In contrast, the style of speech is comprised of function
+words (i.e., particles), including articles (e.g., a, the), auxiliary verbs (e.g., am, will), conjunctions
+(e.g., and, but), prepositions (e.g., to, with), and pronouns (e.g., I, he, she). Function words represent
+how language is delivered and tend to be used more consistently across situations within individuals
+(Pennebaker et al., 2003).
+As a result of the differences in how content and function words differ within and between people,
+content words tend to be more important for understanding state-like variables. For instance, Speer
+(2018) used the content of performance appraisals in Year 1 to predict Year 2 performance ratings
+while controlling for Year 1 performance ratings. Similarly, Campion et al. (2016) used content
+words to extract the topics in texts and used those topics to automatically score achievement records
+by modeling the scores given by human raters.
+On the other hand, function words tend to be more important for understanding trait-like vari-
+ables. Function words make up only 0.05% of the English vocabulary, yet they comprise over half of
+119
+Hickman et al.
+
+
+all words spoken and written in everyday communication (Tausczik & Pennebaker, 2010). Differ-
+ences in the use of function words can indicate individual differences including age, sex, honesty,
+status, personality traits, and more (Pennebaker et al., 2003; Tausczik & Pennebaker, 2010). This is
+known as the human stylome, which distinguishes individuals based on their writing the same way
+that their genome distinguishes them based on their DNA (van Halteren et al., 2005). For example,
+Park et al.’s (2015) study of U.S. Facebook users found that many n-grams (i.e., phrases of length n,
+where n ¼ 1 is isolated words, n ¼ 2 is two-word phrases, etc.) most predictive of extraversion
+contained pronouns (e.g., I can’t, it is), prepositions (e.g., from, of, into), and articles (e.g., the, as).
+Furthermore, a study of online communities found that groups can be distinguished based on their
+linguistic style, which included multiple types of function words, including prepositions (e.g., to,
+with, on), adverbs (e.g., very, really), auxiliary verbs (e.g., am, will, have), and negations (e.g., no,
+never; Khalid & Srinivasan, 2020), which could be applied in organizational settings to help
+understand team and/or group differences.
+As we describe in the following, preprocessing may affect whether function words, which
+represent linguistic style, are still present in speech. Furthermore, preprocessing affects whether
+other elements of style that may be related to trait-like differences, such as the use of abbreviations
+or spelling errors, are present in text. Therefore, one’s research question is an important consider-
+ation when making preprocessing decisions. For example, if one’s research question relates to trait-
+like individual differences, idiosyncrasies such as typos and misspellings may be informative, but
+when one’s research question does not relate to trait-like individual differences, standardizing such
+idiosyncrasies can improve measurement precision.
+Corpus Size
+The size of one’s corpus also matters for preprocessing (Kern et al., 2016; Kobayashi et al., 2018a).
+Large corpora (i.e., those with more documents) have more power to utilize fine distinctions in text
+(e.g., between singular and plural versions of nouns or past and present tense verbs). On the other
+hand, small corpora have less power to do so. Therefore, statistical power can be increased in small
+corpora by, for example, combining semantically related words. Yet such increases in power come at
+the expense of losing nuance in language, potentially introducing errors and, thereby, reducing
+validity. Corpora may be considered large when a thousand or more observations are available
+(e.g., Kern et al., 2016).
+Average Document Length
+In a related vein, the length of documents in one’s corpus should also be considered during pre-
+processing (Kobayashi et al., 2018a). Shorter documents (e.g., tweets, open-ended survey responses)
+contain minimal content. Therefore, even if the research question does not relate to individual
+differences, more predictive power is available if the style of speech is retained. On the other hand,
+because longer documents (e.g., comprehensive performance reviews) have more content, the style
+of speech is less needed when irrelevant to one’s research question. Generally, documents can be
+considered short if they contain fewer than 500 words (Kern et al., 2016), although researchers in
+other fields (e.g., computational linguistics) suggest that documents are short when, on average, they
+contain fewer than two dozen words (e.g., tweets; Faguo et al., 2010).
+Preprocessing and Text Mining Overview
+We now turn to explain preprocessing techniques and their effects on text mining, relating them to
+the aforementioned conceptual and empirical considerations. Table 2 defines and describes each
+120
+Organizational Research Methods 25(1)
+
+
+Table 2. Preprocessing and Related Terms, Defined.
+Term
+Definition
+Example Application
+Issue
+Effects
+Recommendation
+Lowercase
+conversation
+Reduce vocabulary size
+by making all text
+lowercase.
+Computers store
+capital and lowercase
+letters differently
+(e.g., the now defunct
+ASCII convention
+stored “A” as “65”
+and “a” as “97”).
+Because capital and
+lowercase words are
+stored with distinct
+computer language,
+making all letters
+lowercase ensures
+work is considered
+equivalent to Work
+(George et al., 2016).
+Increases
+statistical
+power.
+Always use unless
+corpus has
+important terms
+that differ
+semantically
+when capitalized
+versus not.
+Handle negation
+A set of methods used
+to identify,
+semantically
+represent, and
+account for negation
+in text.
+Because bag-of-words
+approach (i.e.,
+unigrams) considers
+words in isolation,
+appending each “not”
+to the following
+word with “_”
+distinguishes
+satisfactory from not
+satisfactory (e.g.,
+Speer, 2018).
+Increases
+validity.
+Slightly
+reduces
+statistical
+power.
+Always use.
+Spelling correction
+Reduces vocabulary
+size by correcting
+typos and
+misspellings in text.
+Correcting misspellings
+can help standardize
+texts and reduce
+noise, but such
+idiosyncrasies can be
+used to predict
+individual differences
+(Kern et al., 2016).
+Increases
+statistical
+power.
+Reduces
+ability to
+capture the
+style of
+speech.
+Open vocabulary:
+use if research
+question does
+not involve
+individual
+differences.
+Closed
+vocabulary: use.
+Expand contractions
+and abbreviations
+Reduces vocabulary
+size by expanding
+contractions,
+abbreviations, and
+acronyms to their full
+phrases for
+consistency
+(Kobayashi et al.,
+2018b).
+In many of today’s
+business texts, it is
+possible that a
+reference to IT is
+referring to
+information
+technology, and only
+by replacing the
+acronym will it not
+be conflated with it
+(Banks et al., 2018).
+Increases
+statistical
+power.
+Reduces
+ability to
+capture style
+of speech.
+Reduces
+validity if
+errors are
+introduced.
+Open vocabulary:
+use if research
+question does
+not involve
+individual
+differences.
+Closed
+vocabulary: use if
+dictionaries only
+contain the
+expanded
+term(s).
+Nonalphabetic
+character
+removal
+Removes all numbers,
+punctuation, and/or
+special characters
+from the text. It is
+also common to only
+remove numbers or
+punctuation rather
+than all
+nonalphabetic
+characters.
+The use of exclamation
+points may indicate
+personality traits
+(Golbeck et al.,
+2011), so
+punctuation could be
+retained while
+numbers and special
+characters are
+removed.
+Increases
+statistical
+power.
+Reduces
+ability to
+capture style
+of speech and
+validity.
+Open vocabulary:
+use if research
+question does
+not involve
+individual
+differences.
+Closed
+vocabulary: do
+not use.
+(continued)
+121
+Hickman et al.
+
+
+Table 2. (continued)
+Term
+Definition
+Example Application
+Issue
+Effects
+Recommendation
+Emoticon
+recognition
+Identifies and counts
+emoticons as words
+that can be counted
+for subsequent
+analysis.
+In social media,
+recognizing
+emoticons can
+increase semantic
+representation
+because they tend to
+carry affective
+information.
+Increases
+validity.
+Use if emoticons
+are present in
+corpus.
+Stop word removal Removes extremely
+common words that
+are considered to be
+unlikely to provide
+value for document
+retrieval or analysis
+(Banks et al., 2018).
+In general, words are
+removed that do not
+provide much
+information (e.g., a,
+an, it). Others have
+suggested these
+words are key for
+assessing people’s
+unique
+communicative style
+(Pennebaker et al.,
+2003).
+Increases
+statistical
+power.
+Decreases
+ability to
+capture style
+of speech and
+validity.
+Open vocabulary:
+use if research
+question does
+not involve
+individual
+differences and
+documents are
+long.
+Closed
+vocabulary: do
+not use.
+Lemmatizer
+Reduces vocabulary
+size by using
+morphological
+information to
+remove inflectional
+endings from words
+to get to the base
+form of the word, or
+the lemma (Manning,
+et al., 2008).
+Lemmatizers
+consider a word’s
+part of speech to
+distinguish between
+homophones.
+The Natural Language
+Toolkit Wordnet
+lemmatizer (Bird et
+al., 2009) would
+transform organized
+and organize to
+organize, whereas
+organization and
+organizations would
+become organization.
+Notice the results
+differ from the
+Porter Stemmer and
+that distinct words
+are not conflated.
+Increases
+statistical
+power.
+Open vocabulary:
+use on small
+corpora unless
+using topic
+modeling.
+Closed
+vocabulary:
+cautiously
+consider using on
+both the
+dictionary and
+corpus in closed
+vocabulary text
+mining.
+Stemmer
+Reduces vocabulary
+size by using heuristic
+algorithms to
+“remove
+morphological affixes
+from words, leaving
+only the word stem”
+(Bird et al., 2009),
+which is not
+necessarily the base
+form of the word.
+The widely used Porter
+stemmer (Porter,
+1980) would stem
+organ, organs, organic,
+organism, organize,
+and organization to
+organ, whereas
+organizational would
+be stemmed to
+organiz. In closed
+vocabulary methods,
+using wild characters
+to count words with
+a common stem
+serves the same
+function.
+Increases
+statistical
+power.
+Reduces
+validity if
+errors are
+introduced.
+If possible, use
+lemmatizer.
+Otherwise, see:
+Lemmatizer row.
+122
+Organizational Research Methods 25(1)
+
+
+preprocessing technique, details their effects on text mining analyses, and summarizes our recom-
+mendations for whether and when to apply them in closed and open vocabulary text mining (we
+preview the recommendations here and describe them in more detail in the Discussion). Preproces-
+sing involves techniques, for example, that account for more semantic information to increase the
+validity of results (e.g., handling negation) or reduce dimensionality by treating distinct forms of the
+same word as a single unit to increase power (e.g., stemming/lemmatizing). After reviewing pre-
+processing techniques, we explain how text is quantified and analyzed to consider preprocessing
+decisions in the context of the features one plans to extract and to couch preprocessing in the broader
+text mining process.
+Lowercase conversion involves converting all letters in a corpus to lowercase. Researchers have
+suggested to always use lowercase conversion during open vocabulary text mining (Banks et al.,
+2018; Kobayashi et al., 2018b). Computers represent capital and lowercase letters differently, so the
+same word capitalized versus lowercase may be counted separately if not unified. Capitalization is
+mainly used to identify proper nouns and acronyms—otherwise, it tends not to carry semantic
+information. Lowercase conversion tends to be beneficial because it decreases data dimensionality,
+thereby increasing statistical power, and usually does not reduce validity. Indeed, closed vocabulary
+tools generally perform lowercase conversion without user intervention (e.g., LIWC; Pennebaker,
+Booth, et al., 2015), meaning that lowercase conversion is generally conducted during closed
+vocabulary text mining but is unlikely to be reported by researchers.
+A variety of methods exist for handling negation. Negations have an important role in language
+because they usually alter the meaning of subsequent words. For instance, good should never be
+counted the same as not good, yet if not properly handled in text mining, each occurrence of not good
+will be counted as an instance of both not and good, thereby conflating not good and good. One
+rudimentary method of handling negation involves appending not_ to each word it precedes, thereby
+creating a new, distinct unigram (e.g., Speer, 2018). This can increase data dimensionality propor-
+tionally with the number of words preceded by negations and, therefore, likely decreases statistical
+power. Importantly, however, handling negation captures more semantic information, reduces error,
+and increases validity. This applies to both open and closed vocabulary text mining—if negation is
+not addressed, both open and closed vocabulary text mining may conflate negated and nonnegated
+forms of words. For example, unaddressed negation is one of the most prevalent sources of error in
+closed vocabulary text mining (Schwartz, Eichstaedt, Blanco, et al., 2013). Appending not_ creates a
+new, distinct unigram in open vocabulary text mining and prevents the negated form from being
+counted in closed vocabulary text mining (i.e., because this modified form will not be present in the
+closed vocabulary dictionaries).
+Correcting spelling errors and expanding contractions and abbreviations involves identifying
+instances of each, then correcting/expanding them to standardize the text. Typos, contractions, and
+abbreviations that appear only a few times in a corpus will likely provide little value for subsequent
+analysis in open vocabulary text mining, so correcting them has the potential to reduce dimension-
+ality and increase power. On the other hand, spelling errors may be informative—for example, an
+automated system for screening resumes may not want to correct spelling errors because the rate of
+such errors may relate to workplace outcomes, and other types of idiosyncrasies represent one’s style
+of speech and may also relate to trait-like individual differences (Kern et al., 2016). Indeed, previous
+recommendations have cautioned against making such corrections if the research question is focused
+on individual differences (Kern et al., 2016), yet it can be useful in nonformal texts where errors are
+more likely (Kobayashi et al., 2018a, 2018b). Importantly, it may be easier to identify and expand
+acronyms (a form of abbreviation) if done prior to lowercase conversion because capitalization is
+one way of identifying acronyms. Using these techniques may be especially useful in closed voca-
+bulary text mining because all nonstandard spellings, abbreviations, and contractions will not be
+123
+Hickman et al.
+
+
+counted unless they are included in the focal dictionaries (another option is to add them to the focal
+dictionaries; Pennebaker, Booth, et al., 2015).
+Removing nonalphabetic characters involves removing punctuation, symbols, and/or numbers
+from text. If nonalphabetic characters are retained in open vocabulary text mining, each instance of
+an n-gram adjacent to punctuation (e.g., at the end of a sentence) may be treated distinctly from other
+instances if not properly handled during tokenization (i.e., identifying the units of analysis for open
+vocabulary text mining). Therefore, this technique is commonly conducted to focus on the words
+and phrases in text, with some researchers suggesting to always remove punctuation (Banks et al.,
+2018) and others suggesting not to remove nonalphabetic characters when in doubt (Kobayashi et al.,
+2018b). Researchers may not want to remove nonalphabetic characters when their research question
+relates to trait-like individual differences because punctuation is one element of style, as are lan-
+guage variables that require punctuation, such as the number of words in a sentence (Pennebaker,
+Boyd, et al., 2015). For example, the use of exclamation points is related to personality traits
+(Golbeck et al., 2011), and punctuation is needed to quantify indices of linguistic complexity that
+use the number of words per sentence, such as Flesch-Kincaid Grade Level. Further complicating
+matters, periods may also occur in times (e.g., 6:30 p.m.), email addresses (e.g., username@websi-
+te.com), and elsewhere—they will need to be removed from these words and phrases but not the ends
+of sentences to measure words per sentence. Furthermore, researchers are increasingly using social
+media text data that contain emoticons (e.g.,: D). Emoticons carry positive and negative sentiment,
+and their use also likely reflects individual differences (Kern et al., 2016) as well as cross-cultural
+differences in emotional expression (e.g., Li et al., 2019). Where emoticons are present, emoticon
+recognition should be used (although we do not include emoticon recognition in Figure 1, when
+emoticons are present, they should be counted regardless of whether one is using open or closed
+vocabulary text mining). Furthermore, the end of sentences will sometimes need to be handled in a
+special way—for instance, it may not be meaningful to count n-grams that span sentence boundaries,
+and to avoid counting such phrases, punctuation must be retained until later in the process. In closed
+vocabulary text mining, punctuation should generally be retained because the choice of dictionaries
+determines whether they will be counted.
+Stop words are words so common in a corpus that they may become uninformative, and stop
+words are often removed during open vocabulary text mining preprocessing. For instance, in infor-
+mation retrieval (i.e., online and offline search), stop words are rarely useful, and removing them
+decreases computation time. Researchers have suggested to always remove stop words (Banks et al.,
+2018), to do so except in short documents (Kobayashi et al., 2018a, 2018b), and to do so in small
+corpora unless predicting individual differences (Kern et al., 2016). Such exceptions are necessary
+because many stop words are also function words that make up one’s style of speech. In closed
+vocabulary text mining, stop words should always be retained because the choice of dictionaries
+determines whether they will be counted. In open vocabulary text mining, stop words should be
+retained when one’s research question relates to individual differences. Domain-specific lists of
+frequently occurring words in a corpus can be generated for removal, or generic stop word lists that
+include common terms such as the, a, and and can be used.
+Stemming and lemmatization involve removing word suffixes to transform them to their root
+form (a stem and lemma, respectively). This was originally done in open vocabulary text mining for
+the same reason as removing stop words—to reduce computation time and improve recall in
+information retrieval. However, they can also increase power by reducing dimensionality. Prior
+recommendations have focused only on stemming, suggesting that it is useful on small corpora
+(Kern et al., 2016) or short documents (Kobayashi et al., 2018a) but also cautioning that it can be
+considered only after conducting topic modeling (Banks et al., 2018) and that stemming should only
+be conducted if it does not reduce predictive accuracy in the resulting analyses (Kobaysahi et al.,
+2018b). Caution is warranted because collapsing word variants into a single root can remove
+124
+Organizational Research Methods 25(1)
+
+
+differences in the style of speech and/or misclassify words if not careful. Furthermore, stemming and
+lemmatization are very different processes and create different outcomes. Stemmers use rule-based
+heuristics to remove word suffixes, leaving only the “stem,” without considering homographs (i.e.,
+words spelled the same but with different meanings). On the other hand, lemmatizers consider the
+part of speech of words (e.g., verb, noun) and use a lexicon of words and their variants to transform
+them into their lemma. Stemming tends to reduce dimensionality more than lemmatizing, but
+stemming can also collapse distinct words (or different forms of a word that have distinct meanings)
+to the same stem (e.g., the Porter stemmer would collapse organ, organs, organic, organism,
+organize, and organization to organ). Furthermore, the stems left after stemming are often not
+actual words, making them difficult to interpret. Alternatively, lemmatizers use a lexicon to change
+words to their lemma, meaning that words with a common stem tend to be reduced to their respec-
+tive, distinct forms (e.g., organ and organs would collapse to organ, whereas organic, organism,
+organize, and organization would be unchanged because they have distinct meanings and/or dif-
+ferent parts of speech). Therefore, stemming can increase power more than lemmatizing does, but it
+may also reduce validity. In closed vocabulary text mining, lemmatizing may be useful when applied
+to the corpus to increase the coverage of dictionaries, but stemming would need to be applied to both
+the corpus and the dictionaries because it does not always return actual words. Using stemming/
+lemmatizing can help increase the coverage of closed vocabulary dictionaries, yet if this introduces
+errors or conflates distinct words, doing so will reduce the precision and validity of closed voca-
+bulary text mining.
+Text Mining
+Preprocessing is the first stage of text mining. Once preprocessing decisions are made and imple-
+mented, features (i.e., variables) are extracted from the text using closed vocabulary text mining,
+open vocabulary text mining, or both. Then, those features are used as the units of analysis.
+Feature Extraction. As described previously, two primary approaches exist for extracting features
+from natural language text: closed and open vocabulary text mining. In closed vocabulary text
+mining, dictionaries are used to count words relevant to linguistic and/or psychological constructs.
+After deciding which dictionaries to include, closed vocabulary text mining software counts the
+number of times each entry in a dictionary occurs. Either the raw counts or the proportion of text
+matching each dictionary can be used for subsequent analyses. At the end of this process, each text in
+the corpus is represented by a vector of weights, where entries represent scores for the focal
+dictionaries. Closed vocabulary text mining has been used extensively in organizational research
+(see our second review).
+In open vocabulary text mining, after the corpus has been preprocessed, n-grams are extracted from
+text using a tokenizer. Tokenization is the process of identifying the units of analysis (i.e., n-grams),
+counting them in each document, and creating the document-term matrix (where each row is a
+document, each column is an n-gram, and each entry is the number of times the n-gram occurs in a
+given document). Tokenizers process a corpus by extracting all phrases of n consecutive words and
+counting their frequency in each document. Special tokenizers have been developed specifically to
+capture emoticons because more general tokenizers do not have rules in place for handling consecutive
+punctuation/symbols (Kern et al., 2016). Some researchers only extract unigrams from the text, yet
+unigrams are devoid of context and, therefore, could lead to spurious associations that do not hold up
+under scrutiny. Therefore, researchers should use tokenizers to count unigrams, bigrams, and often
+trigrams (i.e., n ¼ 1, 2, and 3), but the added value of including longer phrases is diminished due to
+their sparseness. Extracting phrases helps improve validity by capturing some semantic information in
+the text. For example, when analyzing free-form employee survey responses, the unigram challenging
+125
+Hickman et al.
+
+
+is relatively uninformative, yet comparing the frequency of challenging relationship and challenging
+project could help one identify whether employees are struggling with interpersonal or task-related
+issues and whether these challenges differ by functional area.
+The resulting document-term matrix can be used as is, or further transformations can be made on
+this matrix, such as using the term frequency-inverse document frequency (tf-idf) transformation,
+which gives greater weight to less frequent n-grams (Spa¨rck Jones, 1972), or generating topic
+models, for example, with the popular Latent Dirichlet Allocation (Blei et al., 2003). Topic models
+use techniques similar to factor analysis to identify the latent topics in a corpus and assign each
+document a “loading” that indicates the extent each extracted topic is present in that document.
+Importantly, one may not want to (a) remove stop words when extracting n-grams with n > 1 or (b)
+stem or lemmatize when generating topic models (Banks et al., 2018). Removing stop words in bi-
+and trigrams can create nonsensical phrases and reduce validity, and topic modeling can account for
+different forms of the same word, so there is less of a need to collapse different forms of a word
+together via stemming/lemmatizing. Although extracting n-grams is a necessary precursor to topic
+modeling, as Figure 1 shows, the optimal preprocessing techniques differ depending on which
+features (i.e., n-grams vs. topic models) one ultimately plans to use in subsequent analyses.
+Analysis. After extracting features from text, the features are generally used downstream in one of
+three broad classes of analysis: visualization, clustering, and prediction. Visualization is a form of
+data analysis that can provide a succinct summary of high-dimensional data (Tay et al., 2018).
+Traditionally, researchers used visualization to highlight findings that support hypotheses, yet
+increasingly, modern visualization tools allow for interactive data visualization that can help
+researchers uncover new insights in the data. In text mining, word clouds are frequently used to
+summarize the frequency and/or predictive value of n-grams and closed vocabulary dictionaries
+(e.g., Schwartz, Eichstaedt, Kern, et al., 2013).
+Clustering (i.e., unsupervised machine learning) is a class of inductive methods that group
+documents by their textual features, with no outcome variable driving the agglomeration. Examples
+include hierarchical clustering methods (e.g., McLaughlin et al., 1991; Woo et al., 2018) and
+partitioning clustering, such as k-means clustering (MacQueen, 1967). For example, Kobayashi
+et al. (2018b) showed how hierarchical clustering could be used on textual features to inspect the
+similarities among job descriptions in online job boards, generating information that could be
+valuable for job analysis.
+Prediction (i.e., classification, or supervised machine learning; MacQueen, 1967) is a deductive
+method used to predict outcomes of interest from a given text. Indeed, prediction is perhaps the
+prototypical application of open vocabulary text mining, wherein predictive model parameters are
+estimated on a training data set and validated on a testing data set. For instance, Campion et al.
+(2016) applied text mining to automatically score achievement record essays by modeling the scores
+given by human raters, potentially saving the organization time and money by reducing the human
+labor required to screen job applicants. Traditional, regression-based hypothesis tests (commonly
+used during closed vocabulary text mining) are also a form of prediction, but the models are
+generally not cross-validated.
+Review of Computational Linguistics Studies Comparing Preprocessing
+Techniques
+Methods
+Research in computational linguistics (CL) has directly compared how different preprocessing
+techniques affect text mining performance. To do so, such studies examine how the accuracy of
+126
+Organizational Research Methods 25(1)
+
+
+machine learning predictions for some task (e.g., text classification, sentiment analysis) is affected
+by manipulating preprocessing techniques. We began with a broad search seeking to identify
+research focused on comparing the effects of different preprocessing decisions. Later, we expanded
+our search to top CL conferences to identify research that compared the effects of preprocessing
+decisions even if that was not the primary research focus. We sought research in the past 5 years
+using “preprocess*” and “stemm* AND lemmat*” as search terms on IEEE Xplore and ACM
+Digital Library. These search terms were chosen because stemming and lemmatization are often
+discussed in studies focused on preprocessing even if they do not compare stemming to lemmatiza-
+tion. This initial search returned 144 articles. Then, we uncovered 13 additional potentially relevant
+articles by inspecting the last 5 years of proceedings of top NLP conferences: the Association for
+Computational Linguistics, the Association for Information Science and Technology, Conference on
+Empirical Methods in Natural Language Processing, and the North American Chapter of the Asso-
+ciation for Computational Linguistics. We further collected 11 additional articles through ancestral
+search. The first author made relevance decisions by examining abstracts and, if determination could
+not be made from the abstract, full texts. The second author coded a random sample of 20% (N ¼ 33)
+of the potentially relevant articles to determine coding reliability for article inclusion. Agreement
+between coders was 97.1%, and the one disagreement was resolved via discussion. We found 50
+studies that compared the effects of preprocessing decisions on open vocabulary text mining results
+(and found no articles comparing the effects of preprocessing on closed vocabulary text mining), and
+the first two authors coded them on four criteria: research context (e.g., information retrieval), text
+language(s), preprocessing techniques compared, and which preprocessing techniques gave the best
+system performance (e.g., highest classification accuracy). We dropped one of the studies because it
+reported contradictory results about the same analyses. When coding the beneficial preprocessing
+techniques, disagreements were resolved via discussion.
+Results
+Full details about each study included in our review are provided in Appendix A in the Supplemental
+Material available online. The aggregated results of their preprocessing investigations are summarized
+in Table 3 and this section. Table 3 lists each preprocessing technique for which we found comparative
+studies, the number of studies investigating each technique, and the languages of the texts used in the
+studies and breaks down the results by studies in the English language and studies in all languages.
+Some preprocessing techniques appeared very beneficial for machine learning system accuracy,
+whereas the effects of others were equivocal. Two of three studies of lowercase conversion found it
+improved system accuracy, both of which were studies of English text. For example, Uysal and
+Gunal (2014) found that lowercase conversion increased the accuracy of machine learning classifiers
+for classifying emails as spam and identifying the category of news stories in both English and
+Turkish. Although some of the CL results may not appear directly relevant to organizational
+researchers, the effects of lowercase conversion on machine learning classifiers and predictive
+models for other tasks (e.g., Kobayashi et al., 2018b) are likely to be consistent. All five studies
+of handling negation found it was beneficial. For example, Smith et al. (2015) found that handling
+negation increased the accuracy of a computerized question answering system. Five of eight studies
+of nonalphabetic character removal found it was beneficial, although just three of six studies of
+English text found the same. Three of five studies of emoticon recognition found it was beneficial,
+including two of the three studies of English text. All three studies of spelling corrections found it
+improved system accuracy. For example, Mhatre et al. (2017) found that spelling corrections
+improved the accuracy of machine learning models classifying product reviews as positive or
+negative. Five of six studies of expanding contractions and abbreviations found it improved system
+accuracy, including three of the four studies of English text. For example, Jiangqiang and Xiaolin
+127
+Hickman et al.
+
+
+(2017) found that expanding acronyms improved the accuracy of Twitter sentiment analysis (i.e.,
+positive or negative) machine learning models. Eight of 23 studies of stop word removal found it was
+beneficial, including five of the 11 studies of English text.
+Moving to stemming and lemmatizing, 14 of 24 studies of stemming found it was beneficial,
+including six of the 12 studies of English text. Eight of 10 studies of lemmatizing found it was
+beneficial, including six of the eight studies of English text. When stemming and lemmatizing were
+directly compared, five of eight studies found lemmatizing was beneficial, two of the studies found
+stemming was beneficial, and the remaining one found equivocal results. In studies of English text,
+lemmatizing was beneficial in three of five studies, one study found stemming was beneficial, and
+the remaining one found equivocal results. For example, Mulki et al. (2018) found that lemmatizing
+improved the accuracy of emotion classifiers that labeled tweets with the discrete emotion most
+present in them.
+Discussion of Computational Linguistics Review
+Our review of CL research found that several preprocessing techniques are generally beneficial in
+terms of improving the validity of the subsequent analyses. Specifically, lowercase conversion,
+handling negation, spelling corrections, and expanding contractions and abbreviations tend to
+improve system accuracy. Notably, however, the studies of spelling corrections and expanding
+contractions and abbreviations did not focus on predicting individual differences. On the other hand,
+some techniques, including nonalphabetic character removal, emoticon recognition, stop word
+removal, and stemming, are less beneficial. When compared to stemming, lemmatizing provides
+better results.
+Traditionally, some exploration of different preprocessing techniques is expected due to the
+inductive nature of open vocabulary text mining (Banks et al., 2019), and different combinations
+of preprocessing techniques can improve the accuracy of later machine learning predictions by
+several percentage points. When text mining is used, for example, to predict job performance, such
+seemingly minor increases in accuracy can provide considerable long-term utility gains. For
+Table 3. Summary of Computational Linguistics Preprocessing Comparison Review.
+Preprocessing Technique
+k
+Non-English Language(s)
+English Results
+All Results
+Lowercase conversion
+3
+Indonesian, Portuguese, Turkish
+2/2
+2/3
+Handle negation
+5
+Turkish
+4/4
+5/5
+Nonalphabetic character
+removal
+8
+Portuguese, Turkish
+3/6
+5/8
+Emoticon recognition
+5
+Arabic, Slovak, Spanish
+2/3
+3/5
+Spelling corrections
+3
+Portuguese
+2/2
+3/3
+Expand contractions and
+abbreviations
+6
+Arabic, Indonesian
+3/4
+5/6
+Stop word removal
+23
+Arabic, French, Indonesian, Kurdish,
+Russian, Spanish, Turkish
+5/11
+8/23
+Stemming
+24
+Arabic, Indonesian, Kurdish, Malay,
+Portuguese, Turkish
+6/12
+14/24
+Lemmatizing
+10
+French, German, Russian, Slovak
+6/8
+8/10
+Stemming vs. lemmatizing
+8
+Arabic, Hungarian, Italian, Portuguese,
+Romanian, Serbian, Spanish, Turkish
+3/5 lemmatizing
+5/8 lemmatizing
+Note: k ¼ number of studies uncovered in literature search that tested the effects of each preprocessing technique. English
+Results reports the proportion of English-language studies that found the preprocessing technique to be beneficial, and All
+Results reports the proportion of studies in all languages that found the preprocessing technique to be beneficial.
+128
+Organizational Research Methods 25(1)
+
+
+example, Schmidt and Hunter (1998) called incremental validity of .01 beyond general mental
+ability a “moderate” improvement (p. 269). Therefore, better text preprocessing can potentially
+enhance the utility of organizational text mining applications. Note, however, that it is possible
+organizational researchers have explored different preprocessing techniques without reporting it—
+for example, Speer (2018) trained a machine learning model to predict job performance ratings from
+narrative performance reviews and may have experimented with multiple preprocessing techniques
+to identify the combination that provided the highest predictive accuracy. Alternately, if Speer did
+not, then it may be possible to improve the predictive accuracy of similar systems in the future by
+experimenting with preprocessing techniques. We now turn to compare these findings to existing
+text preprocessing practices in organizational research.
+Review of Preprocessing in Organizational Research
+Method for Review of Organizational Text Mining Research
+Given our interest in understanding the preprocessing practices of existing organizational research
+that uses text mining, we sought to uncover published, substantive organizational research that
+utilized open or closed vocabulary methods. We searched 10 prominent substantive journals in our
+field, as is common in organizational research reviews (e.g., Aguinis et al., 2009): Academy of
+Management Journal, Administrative Science Quarterly, Journal of Business & Psychology, Jour-
+nal of Applied Psychology, Journal of Organizational Behavior, Journal of Management, Journal of
+Vocational Behavior, The Leadership Quarterly, Organizational Behavior and Human Decision
+Processes, and Personnel Psychology for “text mining” OR “natural language processing” OR
+LIWC OR DICTION OR “CAT Scanner” OR “General Inquirer” OR “Premium modeler” OR
+“RIOT Scan” OR WordStat. These search terms returned 264 articles. The first author determined
+whether text mining was used in each article by reading abstracts and, if determination could not be
+made from the abstract, full texts. The second author coded a random sample of 20% (N ¼ 53) of the
+potentially relevant articles to determine coding reliability for article inclusion. Agreement between
+coders was 98.1%, and the one disagreement was resolved via discussion. Eighty-six articles,
+ranging from 1994 to 2019, used text mining and were included in our review. Articles were coded
+by the first and second authors by summarizing their text mining methods, data sources, preproces-
+sing techniques, the rationale for the preprocessing decisions, analyses conducted, features
+extracted, and why text variables were extracted.
+Results
+Appendix B in the Supplemental Material available online provides full details about each study
+included in our review, and Table 4 summarizes the descriptive statistics and aggregate reported
+preprocessing practices. Table 4 excludes all preprocessing techniques that were never used by any
+organizational researchers (i.e., emoticon recognition, lemmatizing). Table 4 lists the number of
+open and closed vocabulary text mining studies our search uncovered, how many of each reported
+using at least one preprocessing technique, the number of studies that provided the rationale for their
+preprocessing decisions, and the number of studies that used each preprocessing technique.
+Nine (10%) of the 86 articles used open vocabulary text mining, first appearing in 2015. Four of
+these nine also used closed vocabulary text mining, so 81 (95%) of the articles used closed voca-
+bulary text mining. Only three of the 81 (4%) articles using closed vocabulary text mining reported
+preprocessing text. One accounted for negation by removing words preceded by no (Bligh & Hess,
+2007), one removed nonalphabetical characters and used lowercase conversion (Piezunka et al.,
+2019), and one corrected spelling errors and expanded contractions (Lengelle et al., 2013). Only one
+of these studies provided a rationale for their preprocessing—Bligh and Hess (2007) stated they
+129
+Hickman et al.
+
+
+removed words preceded by no to account for the change in meaning, but they did not explain why
+this particular method (i.e., deletion) was chosen. On the other hand, seven of the nine (78%) open
+vocabulary studies reported using multiple preprocessing techniques.
+For open vocabulary text mining research, Appendix C in the Supplemental Material available
+online summarizes the preprocessing techniques used, the rationale provided for the preprocessing
+decisions, and the software used. Table 4 summarizes this information by listing how many studies
+reported conducting each preprocessing technique. None of the open vocabulary text mining studies
+corrected spelling errors, expanded contractions and/or abbreviations, or used lemmatizing. At least
+two thirds of the studies used lowercase conversion, stop word removal, and stemming. Less than
+half of the nine studies reported engaging in any other preprocessing technique.
+Not all studies reported engaging in tokenization. Tokenization identifies the units of analysis
+(i.e., phrases of length n, or n-grams) for open vocabulary text mining and, therefore, is a necessary
+part of preprocessing (Schmiedel et al., 2019). Therefore, it is possible that these studies simply did
+not report it. Additionally, proprietary software (e.g., IBM SPSS Premium Modeler; Campion et al.,
+2016) likely tokenizes without user knowledge.
+Only Speer (2018) and Speer et al. (2018) reported accounting for negation. To do so, Speer
+(2018; Speer et al., 2018) appended negation terms (e.g., not) to the subsequent word as “not_word.”
+This approach improves validity by treating negated and nonnegated words distinctly.
+Regarding reporting, seven of the nine studies provided some information about the software
+used. Two studies (22%), however, did not mention how they conducted open vocabulary text
+mining (Giorgi & Weber, 2015; Piezunka et al., 2019). Without knowing what software was used,
+researchers are unable to replicate the methodology of a research study. Eighty of the 81 (99%)
+closed vocabulary text mining studies reported which software was used.
+We also inspected the rationale researchers provided for their text preprocessing decisions. Three
+studies did not provide any rationale (Campion et al., 2016; Giorgi & Weber, 2015; Speer et al.,
+2018). Three studies cited prior research as justification for some (but not all) preprocessing deci-
+sions (Antons et al., 2019; Banks et al., 2019; Speer, 2018). Three studies stated they stemmed
+their corpus because stemming is “commonly” conducted (Croidieu & Kim, 2018; Piezunka &
+Dahlander, 2015; Piezunka et al., 2019). Two studies claimed to conduct the “standard” text
+preprocessing techniques, yet these studies used different preprocessing techniques (Banks
+et al., 2019; Croidieu & Kim, 2018).
+General Discussion
+By conducting two complementary reviews, this article uncovered the best practices in text pre-
+processing as determined by computational linguistics as well as the current preprocessing reporting
+practices in organizational text mining research. We now integrate the findings of these two reviews
+Table 4. Summary of Organizational Research Preprocessing Review.
+k
+n Reporting
+Preprocessing
+Rationale
+Provided
+LC
+HN
+NAR
+PR
+SC
+ECA
+SW
+St
+Closed vocabulary
+81
+3 (4%)
+1
+1
+1
+1
+0
+1
+1
+0
+0
+Open vocabulary
+9
+7 (78%)
+6
+6
+2
+3
+1
+0
+0
+7
+6
+Note: LC ¼ lowercase conversion; HN ¼ handle negation; NAR ¼ nonalphabetic character removal; PR ¼ punctuation
+removal; SC ¼ spelling corrections; ECA ¼ expand contractions and abbreviations; SW ¼ stop word removal; St ¼
+stemming. Entries indicate number of studies uncovered in the review that reported conducting each preprocessing
+technique.
+130
+Organizational Research Methods 25(1)
+
+
+with the conceptual considerations reviewed previously to provide a conceptually informed and
+empirically grounded set of preprocessing recommendations.
+Preprocessing Recommendations
+Overall, the emerging organizational research using open vocabulary text mining has relied on
+convenient and common preprocessing techniques. In other words, the choice of preprocessing
+techniques has rarely been supported by empirical research or theory. Indeed, multiple studies
+claimed to conduct stemming because it is “common,” and two claimed to conduct the “standard”
+preprocessing techniques yet used different preprocessing techniques. Furthermore, it is very rare for
+studies to report preprocessing text for closed vocabulary text mining. We provide research-based
+preprocessing recommendations for closed and open vocabulary text mining in Figure 1 and Table 2
+and detail them here. However, as noted previously, we recognize that specific situations may
+require deviating from these recommendations and that different proprietary software (e.g., LIWC)
+may automatically conduct some of the preprocessing techniques.
+All text should be converted to lowercase. Lowercase conversion decreases data dimensionality
+while maintaining semantic information. Most organizational studies reported using lowercase
+conversion with open vocabulary text mining. Likely, studies do not report conducting lowercase
+conversion with closed vocabulary text mining because the software packages, like LIWC, conduct
+lowercase conversion without user input.
+Our first review showed handling negation should be conducted in both closed and open voca-
+bulary text mining. Handling negation better accounts for semantic information in text, increasing
+data dimensionality and validity. For instance, to accurately assess perceptions of politicians’
+Machiavellianism, distinguishing honest from not honest is necessary (e.g., Bhattacharya et al.,
+2015). However, only two organizational open vocabulary studies and one closed vocabulary text
+mining study reported handling negation.
+Then, researchers must consider whether they will be extracting features using open or closed
+vocabulary text mining. If only using closed vocabulary text mining, then spelling corrections
+should be made and contractions and abbreviations should be expanded (if the dictionary only
+contains the expanded version of the contractions and abbreviations). Doing so will ensure that the
+relevant words are accurately counted in the focal closed vocabulary dictionaries.
+If using open vocabulary text mining, researchers must consider whether their research question
+requires them to capture the content and/or style of speech. If only content is important, then spelling
+corrections should be made, contractions and abbreviations should be expanded, and nonalphabetic
+characters should be removed to reduce data dimensionality and increase statistical power. Unless
+idiosyncratic language differences, such as spelling errors, abbreviations, and use of punctuation, are
+useful for the research question at hand, researchers should make these corrections to standardize the
+language. Doing so can improve the accuracy of open vocabulary text mining. Although not
+included in Figure 1, if emoticons are present in one’s corpus, emoticon recognition should be used
+regardless of whether one is using closed or open vocabulary text mining. Capitalization and
+nonalphabetic characters are both informative for emoticon recognition in open vocabulary text
+mining, and in closed vocabulary text mining, one merely needs to include an emoticon dictionary.
+When conducting open vocabulary text mining, tokenization involves removing extra white
+space because it is superfluous. Then, researchers must next consider the average document length
+in their corpus. If documents are long, then stop words should be removed from unigrams. Removing
+stop words can be detrimental in short documents (e.g., tweets) because stop words comprise a large
+proportion of the total words, and many stop words are function words that comprise one’s com-
+munication style, which tends to be a stable individual difference (Pennebaker et al., 2003). For
+example, Meinecke and Kauffeld (2018) used LIWC categories that contain stop words to quantify
+131
+Hickman et al.
+
+
+supervisor and subordinate language style, which affected performance appraisal effectiveness.
+Therefore, consider retaining stop words when relevant to one’s research question or when extract-
+ing n-grams with n > 1 because stop words alter the meaning of subsequent words (Schofield et al.,
+2017). Park et al.’s (2015) study of Facebook users found stop words were present in several phrases
+predictive of personality traits. Stop word removal is unnecessary for closed vocabulary text mining
+because the choice of dictionaries determines whether stop words are counted.
+Finally, when using open vocabulary text mining, researchers must consider which features will
+be extracted from text: n-grams and/or topic models. If only topic models will be used in later
+analyses, then preprocessing is complete. However, if n-grams will be directly used, then researchers
+must consider their corpus size. If the corpus is small, then researchers should stem or lemmatize the
+text. Lemmatizing is superior to stemming because it is less likely to conflate distinct words, thereby
+providing greater validity. However, most organizational open vocabulary text mining studies
+stemmed their corpus. Topic models can determine the relationships between different forms of the
+same word, so there is less of a need to stem or lemmatize when using them (Schofield & Mimno,
+2016). Stemming and lemmatizing are most useful in small corpora (Kern et al., 2016) because there
+is less power in subsequent analyses to utilize fine distinctions in text. Ideally, lemmatization should
+be used on smaller corpora because it has a lower error rate compared to stemming and provides
+more interpretable results (Manning et al., 2008). Generally, stemming and lemmatizing are not used
+in closed vocabulary text mining, but if they are, they should be applied to both the corpus and the
+dictionaries.
+Reporting Text Mining for Transparency and Replication
+Our review of the CL literature shows that the choices made in the preprocessing stage meaningfully
+alter text mining results. Yet, as shown in Table 1, the text mining studies in organizational science
+often provide arbitrary and uneven reporting of preprocessing techniques. This gives readers an
+incomplete picture of the study methodology and subsequently, the results obtained. Lack of careful
+reporting standards for preprocessing can hinder the transparency and replicability of research
+methods, especially when the methodology is novel to the area. Special attention needs to be given
+to both reproducibility of the original results given the same data and code and, from that, replication
+of original conclusions with reanalyzed or new data (Epskamp, 2019). In this section, we highlight
+potential pitfalls in conducting and reporting text mining research and summarize recommendations
+to improve reproducibility and replicability. We summarize our recommendations in Table 5 and
+detail them below.
+It is essential for researchers to familiarize themselves with the key aspects necessary for the
+reproduction of their text mining research and report them. The first step, therefore, is to report
+information about the data set (i.e., the location and retrieval process). Next, researchers should
+report exactly which preprocessing techniques were used, the order in which they were conducted,
+which were excluded, and why. Because each preprocessing technique has implications for subse-
+quent analyses, researchers should understand these ramifications and use them to justify their
+choices. For instance, Banks et al. (2018) recommended conducting multiple iterations of prepro-
+cessing to identify the optimal set of techniques—if doing so, researchers should report these
+procedures (either in the article or supplemental materials) and the benefits of this approach (if
+any) for their theory development and empirical investigation. They should also detail what algo-
+rithm and tools were used to do the analyses. Then the researchers should describe the features they
+extracted and any further analyses done. One of the best ways to ensure replicability would be to post
+the source code used to generate all analytic results (Sandve et al., 2013). An increasingly popular
+open science practice is to include supplementary materials that include the data (or the data source),
+132
+Organizational Research Methods 25(1)
+
+
+source code, and a document detailing the analysis plan. This practice allows the analyses to be
+exactly replicated, supporting scientific transparency and integrity.
+Given that text mining research is software dependent, special attention needs to be given to the
+software used to conduct text mining. For each preprocessing technique and analysis, the tools and
+software packages used and their version number should be reported. For closed vocabulary text
+mining, our review suggests that some preprocessing techniques may be automatically conducted by
+the proprietary software—authors should note and report such automatic and intentional application
+of preprocessing techniques. Given the extended timeline of research publications, researchers
+should consider a version control system that allows for tracking changes in code that may affect
+reproduction attempts. For instance, GitHub provides such a version control system (github.com).
+Researchers should generally use crystallized software: software that is not in beta version, has been
+validated in a methodological study, is well documented, is actively maintained, and ideally, is open-
+source code (for further description of crystallized software, see Epskamp, 2019).
+Subjective decisions about the analytical choices and interpretations, known as researcher degrees
+of freedom (Simmons et al., 2011), are particularly common when the methodology is so new that
+detailed aspects of it have yet to be thoroughly investigated. Preprocessing choices alter the results of
+text mining analysis, and therefore, researchers should explain why they chose a given set of pre-
+processing techniques. Other subjective decisions, such as dropping extracted features, can also affect
+the findings and therefore require justification. For example, Kobayashi et al. (2018b) first conducted
+their analysis with all stop words retained, then removed all stop words that were not predictive in their
+model. If theory suggests stop words are uninformative for a given task, then retaining predictive stop
+words may introduce spurious relationships or suppress the relationships other n-grams have to out-
+comes. Although seemingly minute, unreported and unjustified subjective decisions can create unre-
+producible and biased research findings. Relatedly, researchers should also strive to report results for
+all sets of preprocessed data. Although analysis may focus on one set of theoretically grounded results,
+researchers should mention how the other preprocessing combinations altered the results. Altered
+results present an opportunity: Researchers can generate theory to explain why the results changed
+between these preprocessing techniques (or why they did not change). Such practices hold potential for
+increasing the theoretical insights that can be derived from text mining.
+As a new method in organizational science, there are a number of potential threats to the reprodu-
+cibility of text mining research, including researcher degrees of freedom and software dependencies.
+Both inductive and deductive research in this area require careful consideration and transparent
+reporting of each analytical process used so that the findings can be independently verified.
+Table 5. Best Practices for Reporting Text Mining.
+Data analysis and reporting
+1.
+Report the source of data.
+2.
+Report which specific preprocessing techniques were conducted and which tools/algorithms were used to
+accomplish each technique.
+3.
+Ensure that the software used is crystallized and the code is version controlled and report the version of
+software used in the supplemental materials.
+4.
+Avoid manual data manipulation. Rather, record the code used for data analysis so that it can be
+reproduced by other researchers
+5.
+Provide rationale for each subjective decision made in the analysis, including during preprocessing, feature
+extraction, and analysis.
+6.
+If performing inductive analyses (i.e., multiple iterations of preprocessing and/or feature extraction),
+conduct analyses on each set of extracted features and report if and how results changed as a result of
+different combinations of preprocessing or feature extraction techniques.
+133
+Hickman et al.
+
+
+Limitations and Future Work
+A largely untapped opportunity exists for organizational researchers to analyze unstructured data in
+theory-driven, computationally advanced ways. Whereas computer scientists apply open vocabulary
+text mining to organizational problems in a data-driven way, organizational researchers can pair
+these approaches with strong theoretical reasoning, as in much of the closed vocabulary text mining
+research and our preprocessing recommendations (Figure 1). Doing so will aid researchers and
+practitioners because the insights derived will be grounded in theory, based on thousands of data
+points, and cross-validated. We provided guidance to help researchers and practitioners conduct
+empirically justified and conceptually driven preprocessing for text mining.
+To our knowledge, an area of open vocabulary preprocessing with no evidence-based consensus
+is removing sparse or frequent terms. Multiple recommendations have been provided, including
+removing terms occurring in less than 1% (Schwartz, Eichstaedt, Kern, et al., 2013) or 5% or
+more than 99% (Kobayashi et al., 2018a) of documents. Other practices can be found as well, such
+as removing terms that occur in less than 0.1% of documents (Antons et al., 2019) or removing
+corpus-specific stop words (Schmiedel et al., 2019). The appropriate answer likely depends on
+document length—a lower threshold (e.g., 0.1%) could be used for shorter documents to avoid
+increasing data sparsity, whereas higher thresholds (e.g., 5%) could be used for longer documents.
+Additionally, the evidence suggests that corpus-specific stop words are unnecessary (e.g., Schofield
+et al., 2017). In both cases, the effect of such practices should be empirically assessed.
+Our recommendations are limited to existing open vocabulary text mining approaches adopted by
+organizational researchers. Emerging CL approaches that utilize neural network topic models (i.e.,
+transfer learning—e.g., BERT; Devlin et al., 2018) use both forward and backward context to
+represent word meaning. Such approaches can represent multiple meanings of the same word
+(i.e., polysemy), including negation (however, cf. Niven & Kao, 2019). Therefore, such approaches
+require less preprocessing than recommended here.
+Additionally, other textual features can be extracted that require different preprocessing techniques,
+but these features have received less attention in organizational research to date. Specifically, features
+related to NLP (Pandey & Pandey, 2019) that account for the syntactic structure of the text require the
+use of syntactic parsers early in preprocessing. Syntactic parsers identify words’ part of speech as well
+as the dependencies among words, enabling researchers to utilize nonadjacent, semantically connected
+words as features (e.g., subject-verb-object triples; Franzosi, 2004). More generally, certain parts of
+speech are considered vital for understanding language use (Pennebaker et al., 2003), and counting
+various parts of speech can provide insight into how language patterns shift depending on contextual
+and relational dynamics (e.g., Danescu-Niculescu-Mizil et al., 2012; Yang & Srinivasan, 2016). Future
+research should explore these textual features and their implications for organizational behavior.
+Existing work utilizing text mining tends to eschew theory in favor of raw statistical power to
+increase the understanding we have of our field (Antons et al., 2019) or to automate knowledge work
+(Campion et al., 2016). Conversely, Kleinbaum (2012) and Maslach et al. (2018) each provided a
+detailed theoretical rationale to form the basis for analyzing and interpreting their textual features.
+Theoretical rationale is key for future work in this area because a theoretical understanding of the
+research question should guide preprocessing, feature extraction, and analysis. Our recommenda-
+tions aim to provide a solid foundation for such research by ensuring that preprocessing decisions are
+empirically and theoretically justified, transparent, and replicable, resulting in data and findings that
+are psychologically meaningful and defensible.
+Declaration of Conflicting Interests
+The author(s) declared no potential conflicts of interest with respect to the research, authorship, and/or pub-
+lication of this article.
+134
+Organizational Research Methods 25(1)
+
+
+Funding
+The author(s) received no financial support for the research, authorship, and/or publication of this article.
+ORCID iD
+Louis Hickman
+https://orcid.org/0000-0002-2752-7705
+Supplemental Material
+Supplemental material for this article is available online.
+Notes
+1. Note that although closed and open vocabulary text mining are distinct methodologically, some software,
+such as DICTION (Hart, 2000; Short & Palmer, 2008), conduct closed vocabulary text mining, open
+vocabulary texts mining, and hybrid methods.
+References
+*References marked with an asterisk indicate studies included in the reviews.
+*Abrahamson, E. (2014). Management fashion: Lifecycles, triggers, and collective learning processes.
+Administrative Science Quarterly, 44(4), 708-740.
+*Abrahamson, E., & Hambrick, D. C. (1997). Attentional homogeneity in industries: The effect of discretion.
+Journal of Organizational Behavior, 18(S1), 513-532.
+*Abuaiadah, D. (2016). Using bisect k-means clustering technique in the analysis of Arabic documents. ACM
+Transactions on Asian and Low-Resource Language Information Processing, 15(3), 1-13.
+Aguinis, H., Pierce, C. A., Bosco, F. A., & Muslin, I. S. (2009). First decade of Organizational Research
+Methods: Trends in design, measurement, and data-analysis topics. Organizational Research Methods,
+12(1), 69-112.
+*Akinola, M., Martin, A. E., & Phillips, K. W. (2018). To delegate or not to delegate: Gender differences in
+affective associations and behavioral responses to delegation. Academy of Management Journal, 61(4),
+1467-1491. https://doi.org/10.5465/amj.2016.0662
+*Alhaj, Y. A, Wickramaarachchi, W. U., Hussain, A., Al-Qaness, M. A., & Abdelaal, H. M. (2018). Efficient
+feature representation based on the effect of words frequency for Arabic documents classification. In
+Proceedings of the 2nd International Conference on Telecommunications and Communication
+Engineering (pp. 397-401). Association for Computing Machinery.
+*Alnajran, N, Crockett, K., McLean, D., & Latham, A. (2018). A heuristic based pre-processing methodology
+for short text similarity measures in microblogs. In 2018 IEEE 20th International Conference on High
+Performance Computing and Communications; IEEE 16th International Conference on Smart City; IEEE
+4th International Conference on Data Science and Systems (HPCC/SmartCity/DSS) (pp. 1627-1633). IEEE.
+*Al-Thubaity, A, & Al-Subaie, A. (2015). Effect of word segmentation on Arabic text classification. In 2015
+International Conference on Asian Language Processing (IALP) (pp. 127-131). IEEE.
+*Amrami, A, & Goldberg, Y. (2018). Word sense induction with neural biLM and symmetric patterns. In 2018
+Conference on Empirical Methods in Natural Language Processing (pp. 4860-4867). Association for
+Computational Linguistics.
+*Antons, D., Joshi, A. M., & Salge, T. O. (2019). Content, contribution, and knowledge consumption:
+Uncovering hidden topic structure and rhetorical signals in scientific texts. Journal of Management,
+45(7), 3035-3076. https://doi.org/10.1177/0149206318774619
+APA Publications and Communications Board Working Group on Journal Article Reporting Standards (2008).
+Reporting standards for research in psychology: Why do we need them? What might they be? The American
+Psychologist, 63(9), 839-851.
+135
+Hickman et al.
+
+
+*Arif, S. M., & Mustapha, M. (2017). The effect of noise elimination and stemming in sentiment analysis for
+Malay documents. In Proceedings of the International Conference on Computing, Mathematics and
+Statistics (iCMS 2015) (pp. 93-102). Springer.
+*Ayedh, A., Tan, G., Alwesabi, K., & Rajeh, H. (2016). The effect of preprocessing on Arabic document
+categorization. Algorithms, 9(2), 1-27.
+*Babapour, S. M., & Roostaee, M. (2017). Web pages classification: An effective approach based on text
+mining techniques. In 2017 IEEE 4th International Conference on Knowledge-Based Engineering and
+Innovation (KBEI) (pp. 0320-0323). IEEE
+*Banks, G. C., Woznyj, H. M., Wesslen, R. S., Frear, K. A., Berka, G., Heggestad, E. D., & Gordon, H. L.
+(2019). Strategic recruitment across borders: An investigation of multinational enterprises. Journal of
+Management, 45(2), 476-509. https://doi.org/10.1177/0149206318764295
+Banks, G. C., Woznyj, H. M., Wesslen, R. S., & Ross, R. L. (2018). A review of best practice recommendations
+for text analysis in R (and a user-friendly app). Journal of Business and Psychology, 33(4), 445-459. https://
+doi.org/10.1007/s10869-017-9528-3
+*Bao, Y., Quan, C., Wang, L., & Ren, F. (2014). The role of pre-processing in twitter sentiment analysis. In
+International Conference on Intelligent Computing (pp. 615-624). Cham.
+*Barlow, M. A., Verhaal, J. C., & Hoskins, J. D. (2018). Guilty by association: product-level category stigma
+and audience expectations in the U.S. craft beer industry. Journal of Management, 44(7), 2934-2960. https://
+doi.org/10.1177/0149206316657593
+*Basu, S., & Savani, K. (2017). Choosing one at a time? Presenting options simultaneously helps people make
+more optimal decisions than presenting options sequentially. Organizational Behavior and Human Decision
+Processes, 139, 76-91.
+*Batanovic´, V, & Nikolic´, B. (2016). Sentiment classification of documents in Serbian: The effects of mor-
+phological normalization. In 2016 24th Telecommunications Forum (TELFOR) (pp. 1-4). IEEE.
+*Baur, J. E., Parker Ellen, B., Buckley, M. R., Ferris, G. R., Allison, T. H., McKenny, A. F., & Short, J. C.
+(2016). More than one way to articulate a vision: A configurations approach to leader charismatic rhetoric
+and influence. Leadership Quarterly, 27(1), 156-171. https://doi.org/10.1016/j.leaqua.2015.08.002
+*Bednar, M. K. (2012). Watchdog or lapdog? A behavioral view of the media as a corporate governance
+mechanism. Academy of Management Journal, 55(1), 131-150.
+Bhattacharya, S., Yang, C., Srinivasan, P., & Boynton, B. (2015). Perceptions of presidential candidates’
+personalities in twitter. Journal of the Association for Information Science and Technology, 67(2),
+249-267. https://doi.org/10.1002/asi.23377
+Bird, S., Klein, E., & Loper, E. (2009). Natural language processing with Python: Analyzing text with the
+natural language toolkit. O’Reilly Media, Inc.
+Blei, D. M., Ng, A. Y., & Jordan, M. I. (2003). Latent Dirichlet allocation. Journal of Machine Learning
+Research, 3, 993-1022. http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf
+*Bligh, M. C., & Hess, G. D. (2007). The power of leading subtly: Alan Greenspan, rhetorical leader-
+ship, and monetary policy. Leadership Quarterly, 18(2), 87-104. https://doi.org/10.1016/j.leaqua.2007.
+01.001
+*Bligh, M. C., Kohles, J. C., & Meindl, J. R. (2004). Charisma under crisis: Presidential leadership, rhetoric,
+and media responses before and after the September 11th terrorist attacks. The Leadership Quarterly, 15(2),
+211-239.
+*Bligh, M. C., & Robinson, J. L. (2010). Was Gandhi “charismatic”? Exploring the rhetorical leadership of
+Mahatma Gandhi. The Leadership Quarterly, 21(5), 844-855.
+*Bono, J. E., & Ilies, R. (2006). Charisma, positive emotions and mood contagion. The Leadership Quarterly,
+17(4), 317-334.
+Boyd, R. (2016). General use: RIOT scan. https://riot.ryanb.cc/general-use/
+*Brett, J. M., Olekalns, M., Friedman, R., Goates, N., Anderson, C., & Lisco, C. C. (2007). Sticks and stones:
+Language, face, and online dispute resolution. Academy of Management Journal, 50(1), 85-99.
+136
+Organizational Research Methods 25(1)
+
+
+*Buyl, T., Boone, C., & Wade, J. B. (2019). CEO narcissism, risk-taking, and resilience: An empirical analysis
+in US commercial banks. Journal of Management, 45(4), 1372-1400.
+*Campion, M. C., Campion, M. A., Campion, E. D., & Reider, M. H. (2016). Initial investigation into computer
+scoring of candidate essays for personnel selection. Journal of Applied Psychology, 101(7), 958-975. https://
+doi.org/10.1037/apl0000108
+*Chatman, J. A., Caldwell, D. F., O’Reilly, C. A., & Doerr, B. (2014). Parsing organizational culture: How the
+norm for adaptability influences the relationship between culture consensus and financial performance in
+high-technology firms. Journal of Organizational Behavior, 35(6), 785-808.
+*Chen, X., & Latham, G. P. (2014). The effect of priming learning vs. performance goals on a complex task.
+Organizational Behavior and Human Decision Processes, 125(2), 88-97. https://doi.org/10.1016/j.obhdp.
+2014.06.004
+*Ciobanu, A. M., & Dinu, L. P. (2015). Automatic discrimination between cognates and borrowings. In
+Proceedings of the 53rd Annual Meeting of the Association for Computational Linguistics and the 7th
+International Joint Conference on Natural Language Processing (Volume 2: Short Papers) (pp.
+431-437). Association for Computational Linguistics.
+*Cordeiro, S, Ramisch, C., Idiart, M., & Villavicencio, A. (2016). Predicting the compositionality of nominal
+compounds: Giving word embeddings a hard time. In Proceedings of the 54th Annual Meeting of the
+Association for Computational Linguistics (Volume 1: Long Papers) (pp. 1986-1997). Association for
+Computational Linguistics.
+*Crilly, D., Hansen, M., & Zollo, M. (2016). The grammar of decoupling: A cognitive-linguistic perspective on
+firms’ sustainability claims and stakeholders’ interpretation. Academy of Management Journal, 59(2),
+705-729.
+*Croidieu, G., & Kim, P. H. (2018). Labor of love: Amateurs and lay-expertise legitimation in the early U.S.
+radio field. Administrative Science Quarterly, 63(1), 1-42. https://doi.org/10.1177/0001839216686531
+Danescu-Niculescu-Mizil, C., Lee, L., Pang, B., & Kleinberg, J. (2012). Echoes of power: Language effects and
+power differences in social interaction. In International World Wide Web Conference2. http://arxiv.org/abs/
+1112.3670
+*Davis, K. M., & Gardner, W. L. (2012). Charisma under crisis revisited: Presidential leadership, perceived
+leader effectiveness, and contextual influences. The Leadership Quarterly, 23(5), 918-933.
+*Deniz, A., & Kiziloz, H. E. (2017). Effects of various preprocessing techniques to Turkish text categorization
+using n-gram features. In 2017 International Conference on Computer Science and Engineering (UBMK)
+(pp. 655-660). IEEE.
+Devlin, J., Chang, M.-W., Lee, K., & Toutanova, K. (2018). BERT: Pre-training of deep bidirectional trans-
+formers for language understanding. ArXiv. http://arxiv.org/abs/1810.04805
+*Djuve, K., & Burris, J. W. (2019). A case study on the dialect identification of twitter tweets using
+natural language processing and machine learning. The Journal of Computing Sciences in Colleges,
+34(5).
+*dos Santos, F. L., & Ladeira, M. (2014). The role of text pre-processing in opinion mining on a social media
+language dataset. In 2014 Brazilian Conference on Intelligent Systems (pp. 50-54). IEEE.
+*Doucet, L., & Jehn, K. A. (1997). Analyzing harsh words in a sensitive setting: American expatriates in
+communist China. Journal of Organizational Behavior, 18(1997), 559-582. https://doi.org/10.2307/3
+100265
+*Duong, L., Kanayama, H., Ma, T., Bird, S., & Cohn, T. (2016). Learning crosslingual word embeddings
+without bilingual corpora. arXiv. https://arxiv.org/abs/1606.09403.
+*Duwairi, R., & El-Orfali, M. (2014). A study of the effects of preprocessing strategies on sentiment analysis
+for Arabic text. Journal of Information Science, 40(4), 501-513.
+*Ebert, S, Mu¨ller, T., & Schu¨tze, H. (2016). Lamb: A good shepherd of morphologically rich languages. In
+Proceedings of the 2016 Conference on Empirical Methods in Natural Language Processing (pp. 742-752).
+Association for Computational Linguistics.
+137
+Hickman et al.
+
+
+*Ebrahimi, A. M., & Barforoush, A. A. (2019). Preprocessing role in analyzing tweets towards requirement
+engineering. In 2019 27th Iranian Conference on Electrical Engineering (ICEE) (pp. 1905-1911). IEEE.
+*Engelen, A., Neumann, C., & Schmidt, S. (2016). Should entrepreneurially oriented firms have narcissistic
+CEOs? Journal of Management, 42(3), 698-721. https://doi.org/10.1177/0149206313495413
+Epskamp, S. (2019). Reproducibility and replicability in a fast-paced methodological world. Advances in
+Methods and Practices in Psychological Science, 2(2), 145-155. https://doi.org/10.1177/
+2515245919847421
+*Esmaili, K. S., Salavati, S., & Datta, A. (2014). Towards Kurdish information retrieval. ACM Transactions on
+Asian Language Information Processing (TALIP), 13(2), Article 7. https://doi.org/10.1145/2556948
+Faguo, Z., Fan, Z., Bingru, Y., & Xingang, Y. (2010). Research on short text classification algorithm based on
+statistics and rules. 3rd International Symposium on Electronic Commerce and Security, ISECS 2010, 2, 3-7.
+https://doi.org/10.1109/ISECS.2010.9
+*Farrar, D., & Hayes, J. H. (2019). A comparison of stemming techniques in tracing. In Proceedings of the 10th
+International Workshop on Software and System Traceability (SST’19) at the International Conference on
+Software Engineering. IEEE.
+Faliagka, E., Tsakalidis, A., & Tzimas, G. (2012). An integrated e-recruitment system for automated person-
+ality mining and applicant ranking. Internet Research, 22(5), 551-568. https://doi.org/10.1108/
+10662241211271545
+Fokkens, A., van Erp, M., Postma, M., Pedersen, T., Vossen, P., & Freire, N. (2013). Offspring from reproduc-
+tion problems: What replication failure teaches us. In Proceedings of the 51st Annual Meeting of the
+Association for Computational Linguistics (pp. 1691-1701). Association for Computational Linguistics.
+Franzosi, R. (2004). From words to numbers: Narrative, data and social science. Cambridge University Press.
+*Gamache, D. L., & McNamara, G. (2019). Responding to bad press: How CEO temporal focus influences
+the sensitivity to negative media coverage of acquisitions. Academy of Management Journal, 62(3),
+918-943.
+*Gamache, D. L., McNamara, G., Mannor, M. J., & Johnson, R. E. (2015). Motivated to acquire? The impact of
+CEO regulatory focus on firm acquisitions. Academy of Management Journal, 58(4), 1261-1282.
+*Gangloff, K. A., Connelly, B. L., & Shook, C. L. (2016). Of scapegoats and signals: Investor reactions to CEO
+succession in the aftermath of wrongdoing. Journal of Management, 42(6), 1614-1634.
+*Gelfand, M. J., Severance, L., Lee, T., Bruss, C. B., Lun, J., Abdel-Latif, A.-H., Al-Moghazy, A. A, & Ahmed,
+S. M. (2015). Culture and getting to yes: The linguistic signature of creative agreements in the United States
+and Egypt. Journal of Organizational Behavior, 36(7), 967-989. https://doi.org/10.1002/job
+George, G., Osinga, E. C., Lavie, D., & Scott, B. A. (2016). Big data and data science methods for management
+research. Academy of Management Journal, 59(5), 1493-1507.
+*Gephart, R. (1997). Hazardous measures: An interpretive textual analysis of quantitative sensemaking during
+crises. Journal of Organizational Behavior, 18(1), 583-622.
+*Giorgi, S., & Weber, K. (2015). Marks of distinction: Framing and audience appreciation in the context of
+investment advice. Administrative Science Quarterly, 60(2), 333-367. https://doi.org/10.1177/000183
+9215571125
+Golbeck, J., Robles, C., Edmondson, M., & Turner, K. (2011). Predicting personality from twitter. In 2011
+IEEE International Conference on Privacy, Security, Risk and Trust and IEEE International Conference on
+Social Computing, PASSAT/SocialCom 2011 (pp. 149-156). IEEE. https://doi.org/10.1109/PASSAT/
+SocialCom.2011.33
+*Gomes, S. R, Saroar, S. G., Mosfaiul, M., Telot, A., Khan, B. N., Chakrabarty, A., & Mostakim, M. (2017). A
+comparative approach to email classification using Naive Bayes classifier and hidden Markov model. In
+2017 4th International Conference on Advances in Electrical Engineering (ICAEE) (pp. 482-487). IEEE.
+*Gomulya, D., & Boeker, W. (2014). How firms respond to financial restatement: CEO successors and external
+reactions. Academy of Management Journal, 57(6), 1759-1785.
+138
+Organizational Research Methods 25(1)
+
+
+Gonz´alez-Bail´on, S., & Paltoglou, G. (2015). Signals of public opinion in online communication: A comparison
+of methods and data sources. Annals of the American Academy of Political and Social Science, 659(1),
+95-107. https://doi.org/10.1177/0002716215569192
+*Graham, Y. (2015). Re-evaluating automatic summarization with BLEU and 192 shades of ROUGE. In
+Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing (pp.
+128-137). Association for Computational Linguistics.
+Grimes, S. (2008). Unstructured data and the 80 percent rule. https://breakthroughanalysis.com/2008/08/01/
+unstructured-data-and-the-80-percent-rule/
+*Guo, W., Yu, T., & Gimeno, J. (2017). Language and competition: Communication vagueness, interpretation
+difficulties, and market entry. Academy of Management Journal, 60(6), 2073-2098. https://doi.org/10.5465/
+amj.2014.1150
+*Hafeez, R, Khan, S., Khan, I. A., & Abbas, M. A. (2017). Does preprocessing really impact automatically
+generated taxonomy. In 2017 13th International Conference on Emerging Technologies (ICET) (pp. 1-6). IEEE.
+*Hagtvedt, L. P., Dossinger, K., Harrison, S. H., & Huang, L. (2019). Curiosity made the cat more creative:
+Specific curiosity as a driver of creativity. Organizational Behavior and Human Decision Processes, 150,
+1-13. https://doi.org/10.1016/j.obhdp.2018.10.007
+Hannigan, T., Haans, R. F. J., Vakili, K., Tchalian, H., Glaser, V. L., Wang, M., Kaplan, S., & Jennings, P. D.
+(2019). Topic modeling in management research: Rendering new theory from textual data. Academy of
+Management Annals, 13(2), 586-632.
+*Hardaya, I. S, Dhini, A., & Surjandari, I. (2017). Application of text mining for classification of community
+complaints and proposals. In 2017 3rd International Conference on Science in Information Technology
+(ICSITech) (pp. 144-149). IEEE.
+*Harmon, D. J. (2019). When the fed speaks: Arguments, emotions, and the microfoundations of institutions.
+Administrative Science Quarterly. Advance online publication. https://doi.org/10.1177/0001839218777475
+*Harrison, S. H., & Dossinger, K. (2017). Pliable guidance: A multilevel model of curiosity, feedback seeking,
+and feedback giving in creative work. Academy of Management Journal, 60(6), 2051-2072. https://doi.org/
+10.5465/amj.2015.0247
+Hart, R. P. (2000). DICTION 5.0: The text-analysis program. SAGE.
+*Haryanto, A. W., & Mawardi, E. K. (2018). Influence of word normalization and chi-squared feature selection
+on support vector machine (SVM) text classification. In 2018 International Seminar on Application for
+Technology of Information and Communication (pp. 229-233). IEEE.
+*Hasanah, U., Astuti, T., Wahyudi, R., Rifai, Z., & Pambudi, R. A. (2018). An experimental study of text
+preprocessing techniques for automatic short answer grading in indonesian. In 2018 3rd International
+Conference on Information Technology, Information System and Electrical Engineering (ICITISEE) (pp.
+230-234). IEEE.
+*Helms, W. S., Oliver, C., & Webb, K. (2012). Antecedents of settlement on a new institutional practice:
+Negotiation of the ISO 26000 standard on social responsibility. Academy of Management Journal, 55(5),
+1120-1145.
+*Hidayatullah, A. F. (2015). The influence of stemming on Indonesian tweet sentiment analysis. Proceeding of
+the Electrical Engineering Computer Science and Informatics, 2(1), 127-132.
+*Hubbard, T. D., Pollock, T., Pfarrer, M., & Rindova, V. P. (2018). Safe bets or hot hands? How status and
+celebrity influence strategic alliance formations by newly-public firms. Academy of Management Journal,
+61(5), 1976-1999.
+*_Is¸gu¨der-S¸ahin, G. G., Zafer, H. R., & Adah, E. (2014). Polarity detection of Turkish comments on technology
+companies. In 2014 International Conference on Asian Language Processing (IALP) (pp. 136-139). IEEE.
+*Jianqiang, Z., & Xiaolin, G. (2017). Comparison research on text pre-processing methods on twitter sentiment
+analysis. IEEE Access, 5, 2870-2879.
+Jonsen, K., Fendt, J., & Point, S. (2018). Convincing qualitative research: What constitutes persuasive writing?
+Organizational Research Methods, 21(1), 30-67. https://doi.org/10.1177/1094428117706533
+139
+Hickman et al.
+
+
+*Kabanoff, B., & Holt, J. (1996). Changes in the espoused values of Australian organizations 1986–1990.
+Journal of Organizational Behavior, 17(3), 201-219.
+*Kabanoff, B., Waldersee, R., & Cohen, M. (1995). Espoused values and organizational change themes.
+Academy of Management Journal, 38(4), 1075-1104. https://doi.org/10.2307/256621
+*Kanze, D., Huang, L., Conley, M. A., & Higgins, E. T. (2018). We ask men to win and women not to lose:
+Closing the gender gap in startup funding. Academy of Management Journal, 61(2), 586-614.
+*Kazemian, S., Zhao, S., & Penn, G. (2016). Evaluating sentiment analysis in the context of securities trading.
+In Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1:
+Long Papers) (pp. 2094-2103). Association for Computational Linguistics.
+Kern, M. L., Eichstaedt, J. C., Schwartz, H. A., Dziurzynski, L., Ungar, L. H., Stillwell, D. J., Kosinski, M.,
+Ramones, S. M., & Seligman, M. E. P. (2014). The online social self: An open vocabulary approach to
+personality. Assessment, 21(2), 158-169. https://doi.org/10.1177/1073191113514104
+Kern, M. L., McCarthy, P. X., Chakrabarty, D., & Rizoiu, M. A. (2019). Social media-predicted personality
+traits and values can help match people to their ideal jobs. Proceedings of the National Academy of
+Sciences of the United States of America, 116(52), 26459-26464. https://doi.org/10.1073/pnas.
+1917942116
+Kern, M. L., Park, G., Eichstaedt, J. C., Schwartz, H. A., Sap, M., Smith, L. K., & Ungar, L. H. (2016). Gaining
+insights from social media language. Psychological Methods, 21(4), 507-525. https://doi.org/10.1037/
+met0000091
+Khalid, O., & Srinivasan, P. (2020). Style matters! Investigating linguistic style in online communities. In
+Proceedings of the 14th International Conference on Web and Social media (ICWSM). The AAAI Press.
+*Khodak, M., Saunshi, N., Liang, Y., Ma, T., Stewart, B., & Arora, S. (2018). A la carte embedding: Cheap but
+effective induction of semantic feature vectors. arXiv. arXiv:1805.05388
+Kleinbaum, A. M. (2012). Organizational misfits and the origins of brokerage in intrafirm networks.
+Administrative Science Quarterly, 57(3), 407-452. https://doi.org/10.1177/0001839212461141
+Kobayashi, V. B., Mol, S. T., Berkers, H. A., Kismih´ok, G., & Den Hartog, D. N. (2018a). Text classification
+for organizational researchers: A tutorial. Organizational Research Methods, 21(3), 766-799. https://doi.
+org/10.1177/1094428117719322
+Kobayashi, V. B., Mol, S. T., Berkers, H. A., Kismih´ok, G., & Den Hartog, D. N. (2018b). Text mining in
+organizational research. Organizational Research Methods, 21(3), 733-765. https://doi.org/10.1177/
+1094428117722619
+*Ko¨nig, A., Mammen, J., Luger, J., Fehn, A., & Enders, A. (2018). Silver bullet or ricochet? CEOs’ use of
+metaphorical communication and infomediaries’ evaluations. Academy of Management Journal, 61(4),
+1196-1230. https://doi.org/10.5465/amj.2016.0626
+*Krchnavy, R., & Simko, M. (2017). Sentiment analysis of social network posts in slovak language. In 2017
+12th International Workshop on Semantic and Social Media 8Adaptation and Personalization (SMAP) (pp.
+20-25). IEEE.
+*Lengelle, R., Meijers, F., Poell, R., & Post, M. (2013). The effects of creative, expressive, and reflective
+writing on career learning: An explorative study. Journal of Vocational Behavior, 83(3), 419-427. https://
+doi.org/10.1016/j.jvb.2013.06.014
+*Lengelle, R., Meijers, F., Poell, R., & Post, M. (2014). Career writing: Creative, expressive and reflective
+approaches to narrative identity formation in students in higher education. Journal of Vocational Behavior,
+85(1), 75-84.
+*Levy, O. (2005). The influence of top management team attention patterns on global strategic posture of firms.
+Journal of Organizational Behavior, 26(7), 797-819.
+Li, M. (2019). Addressing the biases plaguing algorithms. https://hbr.org/2019/05/addressing-the-biases-pla
+guing-algorithms
+140
+Organizational Research Methods 25(1)
+
+
+Li, M., Jakhetiya, V., Guntuku, S. C., & Ungar, L. H. (2019). Exploring (dis-)similarities in emoji-emotion
+association on twitter and Weibo. The Web Conference 2019 - Companion of the World Wide Web
+Conference, WWW 2019, 461-467. https://doi.org/10.1145/3308560.3316546
+*Liang, L. H., Lian, H., Brown, D. J., Lance Ferris, D., Hanig, S., & Keeping, L. M. (2016). Why are abusive
+supervisors abusive? A dual-system self-control model. Academy of Management Journal, 59(4),
+1385-1406. https://doi.org/10.5465/amj.2014.0651
+*Love, E. G., Lim, J., & Bednar, M. K. (2017). The face of the firm: The influence of CEOs on corporate
+reputation. Academy of Management Journal, 60(4), 1462-1481.
+MacQueen, J. B. (1967). Some methods for classification and analysis of multivariate observations. In L. M. Le
+Cam & J. Neyman (Eds.), Proceedings of 5th Berkeley Symposium on Mathematical Statistics and
+Probability (pp. 281-297). University of California Press.
+*Madera, J. M., & Smith, D. B. (2009). The effects of leader negative emotions on evaluations of leadership in a
+crisis situation: The role of anger and sadness. Leadership Quarterly, 20(2), 103-114. https://doi.org/10.
+1016/j.leaqua.2009.01.007
+*Malhotra, S., Reus, T. H., Zhu, P., & Roelofsen, E. M. (2018). The acquisitive nature of extraverted CEOs.
+Administrative Science Quarterly, 63(2), 370-408.
+Manning, C. D., Raghavan, P., & Schu¨tze, H. (2008). Introduction to information retrieval. Cambridge
+University Press.
+*Martin, A. E., & Phillips, K. W. (2017). What “blindness” to gender differences helps women see and do:
+Implications for confidence, agency, and action in male-dominated environments. Organizational Behavior
+and Human Decision Processes, 142, 28-44.
+*Martin, S. R. (2016). Stories about values and valuable stories: A field experiment of the power of narratives to
+shape newcomers’ actions. Academy of Management Journal, 59(5), 1707-1724.
+Maslach, D., Branzei, O., Rerup, C., & Zbaracki, M. J. (2018). Noise as signal in learning from rare events.
+Organization Science, 29(2), 225-246. https://doi.org/10.1287/orsc.2017.1179
+*McKenny, A. F., Aguinis, H., Short, J. C., & Anglin, A. H. (2018). What doesn’t get measured does exist:
+Improving the accuracy of computer-aided text analysis. Journal of Management, 44(7), 2909-2933.
+McLaughlin, M. E., Carnevale, P., & Lim, R. G. (1991). Professional mediators’ judgments of mediation
+tactics: Multidimensional scaling and cluster analyses. Journal of Applied Psychology, 76(3), 465-472.
+Meade, A. W., & Craig, S. B. (2012). Identifying careless responses in survey data. Psychological Methods,
+17(3), 437-455.
+*Meinecke, A. L., & Kauffeld, S. (2019). Engaging the hearts and minds of followers: Leader empathy and
+language style matching during appraisal interviews. Journal of Business and Psychology, 34, 485-501.
+https://doi.org/10.1007/s10869-018-9554-9
+*Mhatre, M., Phondekar, D., Kadam, P., Chawathe, A., & Ghag, K. (2017). Dimensionality reduction for
+sentiment analysis using pre-processing techniques. In 2017 International Conference on Computing
+Methodologies and Communication (ICCMC) (pp. 16-21). IEEE.
+*Mihaylov, T., & Nakov, P. (2016). Hunting for troll comments in news community forums. In Proceedings of
+the 54th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers) (pp.
+399-405). Association for Computational Linguistics.
+*Milajevs, D., Kartsaklis, D., Sadrzadeh, M., & Purver, M. (2014). Evaluating neural word representations in
+tensor-based compositional settings. In Proceedings of the 2014 Conference on Empirical Methods in
+Natural Language Processing (pp. 708-719). Association for Computational Linguistics.
+*Moore, C., Lee, S. Y., Kim, K., & Cable, D. M. (2017). The advantage of being oneself: The role of applicant
+self-verification in organizational hiring decisions. Journal of Applied Psychology, 102(11), 1493-1513.
+https://doi.org/10.1037/apl0000223
+*Morris, R. (1994). Computerized content analysis in management research. Journal of Management, 20(4),
+903-931.
+141
+Hickman et al.
+
+
+*Mulki, H., Ali, C. B., Haddad, H., & Babaoglu, I. (2018). Tw-star at semeval-2018 task 1: Preprocessing
+impact on multi-label emotion classification. In Proceedings of The 12th International Workshop on
+Semantic Evaluation (pp. 167-171). Association for Computational Linguistics.
+*Murphy, S. E., & Ensher, E. A. (2008). A qualitative analysis of charismatic leadership in creative teams: The
+case of television directors. The Leadership Quarterly, 19(3), 335-352.
+*Nadkarni, S., & Chen, J. (2014). Bridging yesterday, today, and tomorrow: CEO temporal focus, environ-
+mental dynamism, and rate of new product introduction. Academy of Management Journal, 57(6),
+1810-1833. https://doi.org/10.5465/amj.2011.0401
+*Nadkarni, S., Pan, L., & Chen, T. (2018). Only timeline will tell: Temporal framing of competitive announce-
+ments and rivals’ responses. Academy of Management Journal, 62(1), 117-143.
+Niven, T., & Kao, H. Y. (2019). Probing neural network comprehension of natural language arguments. arXiv.
+arXiv:1907.07355
+*O’Reilly, C. A., Doerr, B., & Chatman, J. A. (2018). “See you in court”: How CEO narcissism increases firms’
+vulnerability to lawsuits. Leadership Quarterly, 29(3), 365-378. https://doi.org/10.1016/j.leaqua.2017.08.001
+*O’Reilly, C. A., Doerr, B., Caldwell, D. F., & Chatman, J. A. (2014). Narcissistic CEOs and executive
+compensation. Leadership Quarterly, 25(2), 218-231. https://doi.org/10.1016/j.leaqua.2013.08.002
+*Olsen, A. Ø., Sofka, W., & Grimpe, C. (2016). Coordinated exploration for grand challenges: The role of
+advocacy groups in search consortia. Academy of Management Journal, 59(6), 2232-2255.
+Oswald, F. L., Behrend, T. S., Putka, D. J., & Sinar, E. (2020). Big data in industrial-organizational psychology
+and human resource management: Forward progress for organizational research and practice. Annual
+Review of Organizational Psychology and Organizational Behavior, 7(1). https://doi.org/10.1146/
+annurev-orgpsych-032117-104553
+*Palmer, I., Kabanoff, B., & Dunford, R. (1997). Managerial accounts of downsizing. Journal of
+Organizational Behavior, 18(1997), 623-639. https://doi.org/10.1002/(SICI)1099-1379(199711)18:
+1þ<623::AID-JOB909>3.0.CO;2-T
+*Palrecha, R., Spangler, W. D., & Yammarino, F. J. (2012). A comparative study of three leadership approaches
+in India. Leadership Quarterly, 23(1), 146-162. https://doi.org/10.1016/j.leaqua.2011.11.012
+Pandey, S., & Pandey, S. K. (2019). Applying natural language processing capabilities in computerized textual
+analysis to measure organizational culture. Organizational Research Methods, 22(3), 765-797. https://doi.
+org/10.1177/1094428117745648
+Park, G., Schwartz, H. A., Eichstaedt, J. C., Kern, M. L., Kosinski, M., Stillwell, D. J., Ungar, L. H., &
+Seligman, M. E. P. (2015). Automatic personality assessment through social media language. Journal of
+Personality and Social Psychology, 108(6), 934-952. https://doi.org/10.1037/pspp0000020
+Pennebaker, J. W., Booth, R. J., Boyd, R. L., & Francis, M. E. (2015). Linguistic Inquiry and Word Count:
+LIWC 2015 operator’s manual. University of Texas at Austin.
+Pennebaker, J. W., Boyd, R. L., Jordan, K., & Blackburn, K. (2015). The development and psychometric
+properties of LIWC2015. University of Texas at Austin.
+Pennebaker, J. W., Mehl, M. R., & Niederhoffer, K. G. (2003). Psychological aspects of natural language use:
+Our words, our selves. Annual Review of Organizational Psychology and Organizational Behavior, 54,
+547-577. https://doi.org/10.1146/annurev.psych.54.101601.145041
+*Piezunka, H., & Dahlander, L. (2015). Distant search, narrow attention: How crowding alters organizations’
+filtering of suggestions in crowdsourcing. Academy of Management Journal, 58(3), 856-880. https://doi.org/
+10.5465/amj.2012.0458
+*Piezunka, H., & Dahlander, L. (2019). Idea rejected, tie formed: Organizations’ feedback on crowdsourced
+ideas. Academy of Management Journal, 62(2), 503-530. https://doi.org/10.5465/amj.2016.0703
+Pollach, I. (2012). Taming textual data: The contribution of corpus linguistics to computer-aided text analysis.
+Organizational Research Methods, 15(2), 263-287. https://doi.org/10.1177/1094428111417451
+*Porac, J. F., Wade, J. B., & Pollock, T. G. (1999). Industry categories and the politics of the comparable firm in
+CEO compensation. Administrative Science Quarterly, 44(1), 112-144. https://doi.org/10.2307/2667033
+142
+Organizational Research Methods 25(1)
+
+
+Porter, M. F. (1980). An algorithm for suffix stripping. Program, 14(3), 130-137.
+*Quigley, T. J., Hubbard, T. D., Ward, A., & Graffin, S. D. (2020). Unintended consequences: Information
+releases and CEO stock option grants. Academy of Management Journal, 63(1), 155-180.
+*Rhee, E. Y., & Fiss, P. C. (2014). Framing controversial actions: Regulatory focus, source credibility, and
+stock market reaction to poison pill adoption. Academy of Management Journal, 57(6), 1734-1758.
+*Ridge, J. W., & Ingram, A. (2017). Modesty in the top management team: Investor reaction and performance
+implications. Journal of Management, 43(4), 1283-1306. https://doi.org/10.1177/0149206314551796
+*Roy, A., Ghorai, T., Ghosh, K., & Ghosh, S. (2017). Combining local and global word embeddings for
+microblog stemming. In Proceedings of the 2017 ACM on Conference on Information and Knowledge
+Management (pp. 2267-2270). Association for Computing Machinery.
+Sajjadiani, S., Sojourner, A. J., Kammeyer-Mueller, J. D., & Mykerezi, E. (2019). Using machine learning to
+translate applicant work history into predictors of performance and turnover. Journal of Applied Psychology,
+104(10), 1207-1225. https://doi.org/10.1037/apl0000405
+Sandve, G. K., Nekrutenko, A., Taylor, J., & Hovig, E. (2013). Ten simple rules for reproducible computational
+research. PLoS Computational Biology, 9(10), Article e1003285. https://doi.org/10.1371/journal.pcbi.1003
+285
+*Savani, K., & King, D. (2015). Perceiving outcomes as determined by external forces: The role of event
+construal in attenuating the outcome bias. Organizational Behavior and Human Decision Processes, 130,
+136-146.
+Schmidt, F. L., & Hunter, J. E. (1998). The validity and utility of selection methods in personnel psychology:
+Practical and theoretical implications of 85 years of research findings. Psychological Bulletin, 124(2),
+262-274.
+Schmiedel, T., Mu¨ller, O., & vom Brocke, J. (2019). Topic modeling as a strategy of inquiry in organizational
+research: A tutorial with an application example on organizational culture. Organizational Research
+Methods, 22(4), 941-968. https://doi.org/10.1177/1094428118773858
+*Schofield, A., Magnusson, M., & Mimno, D. (2017). Pulling out the stops: Rethinking stopword removal for
+topic models. In 15th Conference of the European Chapter of the Association for Computational Linguistics:
+Volume 2, Short Papers (pp. 432-436). Association for Computational Linguistics. https://doi.org/10.18653/
+v1/e17-2069
+*Schofield, A., & Mimno, D. (2016). Comparing apples to apple: The effects of stemmers on topic models.
+Transactions of the Association for Computational Linguistics, 4, 287-300. https://doi.org/10.1162/tacl_a_
+00099
+Schwartz, H. A., Eichstaedt, J., Blanco, E., Dziurzynski, L., Kern, M., Ramones, S., Seligman, M., & Ungar,
+L. (2013). Choosing the right words: Characterizing and reducing error of the word count approach. In
+Second Joint Conference on Lexical and Computational Semantics, Volume 1: Proceedings of the Main
+Conference and the Shared Task: Semantic Textual Similarity (pp. 296-305). Association for
+Computational Linguistics.
+Schwartz, H. A., Eichstaedt, J. C., Kern, M. L., Dziurzynski, L., Ramones, S. M., Agrawal, M., Shah, A.,
+Kosinski, M., Stillwell, D., Seligman, M. E. P., & Ungar, L. H. (2013). Personality, gender, and age in the
+language of social media: The open-vocabulary approach. PLoS ONE, 8(9), Article e73791. https://doi.org/
+10.1371/journal.pone.0073791
+*Seyranian, V., & Bligh, M. C. (2008). Presidential charismatic leadership: Exploring the rhetoric of social
+change. The Leadership Quarterly, 19(1), 54-76.
+*Shantz, A., & Latham, G. P. (2009). An exploratory field experiment of the effect of subconscious and
+conscious goals on employee performance. Organizational Behavior and Human Decision Processes,
+109(1), 9-17. https://doi.org/10.1016/j.obhdp.2009.01.001
+*Shi, W., Zhang, Y., & Hoskisson, R. E. (2019). Examination of CEO-CFO social interaction through language
+style matching: Outcomes for the CFO and the organization. Academy of Management Journal, 62(2),
+383-414.
+143
+Hickman et al.
+
+
+Short, J. C., Broberg, J. C., Cogliser, C. C., & Brigham, K. H. (2010). Construct validation using computer-
+aided text analysis (CATA). Organizational Research Methods, 13(2), 320-347. https://doi.org/10.1177/
+1094428109335949
+Short, J. C., & Palmer, T. B. (2008). The application of DICTION to content analysis research in strategic
+management. Organizational Research Methods, 11(4), 727-752.
+Simmons, J. P., Nelson, L. D., & Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in
+data collection and analysis allows presenting anything as significant. Psychological Science, 22(11),
+1359-1366. https://doi.org/10.1177/0956797611417632
+*Smith, E., Greco, N., Bosnjak, M., & Vlachos, A. (2015). A strong lexical matching method for the machine
+comprehension test. In Proceedings of the 2015 Conference on Empirical Methods in Natural Language
+Processing (pp. 1693-1698). Association for Computational Linguistics.
+*Spangler, W. D., Gupta, A., Kim, D. H., & Nazarian, S. (2012). Developing and validating historiometric
+measures of leader individual differences by computerized content analysis of documents. The Leadership
+Quarterly, 23(6), 1152-1172.
+Spa¨rck Jones, K. (1972). A statistical interpretation of term specificity and its application in retrieval. The
+Journal of Documentation, 28, 11-21. http://dx.doi.org/10.1108/eb026526
+*Speer, A. B. (2018). Quantifying with words: An investigation of the validity of narrative-derived perfor-
+mance scores. Personnel Psychology, 71(3), 299-333. https://doi.org/10.1111/peps.12263
+*Speer, A. B., Schwendeman, M. G., Reich, C. C., Tenbrink, A. P., & Siver, S. R. (2019). Investigating the
+construct validity of performance comments: Creation of the great eight narrative dictionary. Journal of
+Business and Psychology, 34, 747-767. https://doi.org/10.1007/s10869-018-9599-9
+*Spell, C. S., & Blum, T. C. (2005). Adoption of workplace substance abuse prevention programs: Strategic
+choice and institutional perspectives. Academy of Management Journal, 48(6), 1125-1142.
+*Stab, C., & Gurevych, I. (2014). Identifying argumentative discourse structures in persuasive essays. In
+Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP)
+(pp. 46-56). Association for Computational Linguistics.
+*Suadaa, L. H., & Purwarianti, A. (2016). Combination of latent dirichlet allocation (LDA) and term frequency-
+inverse cluster frequency (TFxICF) in Indonesian text clustering with labeling. In 2016 4th International
+Conference on Information and Communication Technology (ICoICT) (pp. 1-6). IEEE.
+*Sulaiman, S., Omar, K., Omar, N., Murah, M. Z., & Rahman, H. A. (2014). The effectiveness of a Jawi
+stemmer for retrieving relevant Malay documents in Jawi characters. ACM Transactions on Asian Language
+Information Processing, 13(2), Article 6. https://doi.org/10.1145/2540988
+*Sun, F., Belatreche, A., Coleman, S., McGinnity, T. M., & Li, Y. (2014). Pre-processing online financial text
+for sentiment classification: A natural language processing approach. In 2014 IEEE Conference on
+Computational Intelligence for Financial Engineering & Economics (CIFEr) (pp. 122-129). IEEE.
+Tausczik, Y. R., & Pennebaker, J. W. (2010). The psychological meaning of words: LIWC and computerized
+text analysis methods. Journal of Language and Social Psychology, 29(1), 24-54. https://doi.org/10.1177/
+0261927X09351676
+Tay, L., Ng, V., Malik, A., Zhang, J., Chae, J., Ebert, D. S., Ding, Y., Zhao, J., & Kern, M. (2018). Big data
+visualizations in organizational science. Organizational Research Methods, 21(3), 660-688. https://doi.org/
+10.1177/1094428117720014
+*Titus, V. K., Jr., Parker, O., & Bass, A. E. (2018). Ripping off the band-aid: Scrutiny bundling in the wake of
+social disapproval. Academy of Management Journal, 61(2), 637-660.
+*Titus, V., House, J. M., & Covin, J. G. (2017). The influence of exploration on external corporate venturing
+activity. Journal of Management, 43(5), 1609-1630. https://doi.org/10.1177/0149206314562426
+*Uysal, A. K., & Gunal, S. (2014). The impact of preprocessing on text classification. Information Processing
+& Management, 50(1), 104-112.
+144
+Organizational Research Methods 25(1)
+
+
+*van Dijke, M., Wildschut, T., Leunissen, J. M., & Sedikides, C. (2015). Nostalgia buffers the negative impact
+of low procedural justice on cooperation. Organizational Behavior and Human Decision Processes, 127,
+15-29.
+van Halteren, H., Baayen, H., Tweedie, F., Haverkort, M., & Neijt, A. (2005). New machine learning
+methods demonstrate the existence of a human stylome. Journal of Quantitative Linguistics, 12(1),
+65-77.
+*Wade, J. B., Porac, J. F., & Pollock, T. G. (1997). Worth, words, and the justification of executive pay. Journal
+of Organizational Behavior, 18(S1), 641-664. https://doi.org/10.1002/(SICI)1099-1379(199711)18:
+1þ<641::AID-JOB910>3.0.CO;2-M
+*Walker, D. D., van Jaarsveld, D. D., & Skarlicki, D. P. (2017). Sticks and stones can break my bones but words
+can also hurt me: The relationship between customer verbal aggression and employee incivility. Journal of
+Applied Psychology, 102(2), 163-179. https://doi.org/10.1037/apl0000170
+*Wang, T., Wezel, F. C., & Forgues, B. (2016). Protecting market identity: When and how do organizations
+respond to consumers’ devaluations? Academy of Management Journal, 59(1), 135-162.
+Wanous, J. P., Sullivan, S. E., & Malinak, J. (1989). The role of judgment calls in. Journal of Applied
+Psychology, 74(2), 259-264.
+*Wasike, B. (2017). Charismatic rhetoric, integrative complexity and the US presidency: An analysis of the
+State of the Union Address (SOTU) from George Washington to Barack Obama. The Leadership Quarterly,
+28(6), 812-826.
+*Waung, M., McAuslan, P., DiMambro, J. M., & Mi˛egoc´, N. (2017). Impression management use in resumes
+and cover letters. Journal of Business and Psychology, 32(6), 727-746.
+*Weiss, M., Kolbe, M., Grote, G., Spahn, D. R., & Grande, B. (2018). We can do it! Inclusive leader language
+promotes voice behavior in multi-professional teams. The Leadership Quarterly, 29(3), 389-402.
+Woo, S. E., Jebb, A. T., Tay, L., & Parrigon, S. (2018). Putting the “person” in the center: Review and synthesis
+of person-centered approaches and methods in organizational science. Organizational Research Methods,
+21(4), 814-845. https://doi.org/10.1177/1094428117752467
+Yang, C., & Srinivasan, P. (2016). Life satisfaction and the pursuit of happiness on twitter. PLoS ONE, 11(3),
+Article e0150881. https://doi.org/10.1371/journal.pone.0150881
+*Zavyalova, A., Pfarrer, M. D., & Reger, R. K. (2010). Managing the message: The effects of firm actions and
+industry spillovers on media coverage. Academy of Management Journal, 55(5), 1079-1101. https://doi.org/
+10.5465/amj.2010.0608
+*Zeroual, I., & Lakhouaja, A. (2017). Arabic information retrieval: Stemming or lemmatization? In 2017
+Intelligent Systems and Computer Vision (ISCV) (pp. 1-6). IEEE.
+*Zeroual, I., Boudchiche, M., Mazroui, A., & Lakhouaja, A. (2017). Developing and performance evaluation of
+a new Arabic heavy/light stemmer. In Proceedings of the 2nd international Conference on Big Data, Cloud
+and Applications (Article 17). Association for Computational Linguistics.
+Author Biographies
+Louis Hickman is a PhD candidate in Industrial-Organizational Psychology at Purdue University, and holds his
+MS in Computer and Information Technology specializing in natural language processing. His research focuses
+on the application of modern analytic methods, including machine learning and affective computing, to advance
+psychological measurement and pre-employment assessment. His proposed dissertation, Algorithmic Cognitive
+Ability Prediction in Video Interviews, was awarded a Society for Human Resource Management (SHRM)
+Foundation Dissertation Grant.
+Stuti Thapa is a PhD candidate in Industrial-Organizational Psychology at Purdue University. Her current
+research interests include emotion dynamics, well-being, statistical analyses, research methods and cross-
+cultural research.
+145
+Hickman et al.
+
+
+Louis Tay is the William C. Byham associate professor in Industrial-Organizational Psychology at Purdue
+University. His research interests are in well-being, vocational interests, measurement, taxonometrics, latent
+class modeling, and data science. His lab website is www.wam-lab.com. He is the founder of ExpiWell
+(www.expiwell.com) a technology startup enabling researchers to conduct better experience sampling
+studies.
+Mengyang Cao is a people research manager at Facebook, Inc. His research focuses on the assessment of
+individual differences, including personality, vocational interest, and emotional intelligence. He also conducted
+research on the application of measurement models to address issues in personnel selection (e.g., candidate
+faking).
+Padmini Srinivasan is a professor in Computer Science at the University of Iowa. She joined the University as
+an assistant professor in 1989. Prior to that she was an assistant professor at George Mason University. She
+received her doctorate from the School of Information Studies, Syracuse University in 1985. Her expertise is in
+text retrieval and text mining. Current research includes investigations of: linguistic style across communities
+and collections; user privacy and security in the context of social media posts and other writings; detecting/
+mitigating bias in text classifiers.
+146
+Organizational Research Methods 25(1)
+
+
