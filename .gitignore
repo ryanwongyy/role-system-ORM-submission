@@ -47,3 +47,6 @@ __pycache__/
 # but vary in redistribution licensing — exclude from public repo,
 # document only via STATUS.md and manifest.md
 11_manuscript/20_citations/expanded_reference_library/pdfs/
+
+# Modern-replacement PDFs (author deposits; same conservative redistribution policy)
+11_manuscript/20_citations/expanded_reference_library/modern_replacements/pdfs/
