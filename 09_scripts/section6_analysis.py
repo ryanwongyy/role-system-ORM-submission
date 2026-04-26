@@ -2,11 +2,15 @@
 """
 Analysis script for §6 of "From Repository to Role System" (ORM submission).
 
-Reproduces every numeric value reported in §6:
-  * Cell-level Monte-Carlo permutation p-values (family = 0.0001, capability = 0.0011)
-  * Case-level Monte-Carlo permutation p-values (family = 0.57, capability = 0.31)
+Reproduces every inferential value reported in §6 (the reliability values in §6
+— Cohen's κ, Krippendorff's α, per-status κ, bootstrap κ CI — are reproduced by
+the companion script `appendix_b_reliability.py`, NOT by this file):
+  * Cell-level Monte-Carlo permutation p-values (family ≈ 0.0002, capability ≈ 0.0012;
+    point values within MC noise of 1/(N_PERM+1); manuscript reports 0.0002 / 0.0012)
+  * Case-level Monte-Carlo permutation p-values (family ≈ 0.58, capability ≈ 0.33;
+    manuscript reports 0.58 / 0.33)
   * Cramér's V point estimates (V_family = 0.260, V_capability = 0.240)
-  * Case-cluster bootstrap 95% CIs on V and on V_gap
+  * Case-cluster bootstrap 95% CIs on V and on V_gap (B = 2,000)
   * Paired sign test on per-role V gaps (14 positive / 16 defined, p = 0.004)
   * Wilcoxon signed-rank on defined roles (W = 7, p = 0.0006)
   * High-confidence-only V gap (V_family = 0.267, V_capability = 0.205; gap = 0.062)
@@ -14,6 +18,12 @@ Reproduces every numeric value reported in §6:
   * Case-configuration count for durable-on-all-three H1 roles (12 of 36)
   * Consistency/coverage for ground-truth-rich × has-shrinking (0.857 / 0.500)
   * Holm-adjusted p-values across the six confirmatory/robustness tests
+
+Note on Monte-Carlo noise: cell-level p-values are stable to roughly ±1/(N_PERM+1)
+and case-level p-values are stable to roughly ±1/(N_PERM_CASE+1). Manuscript values
+are point estimates from the seeded run below; small variations across runs at the
+same seeds reflect the discrete count of extreme permutations and are within the
+expected MC tolerance.
 
 Dependencies (see requirements.txt):
   python >= 3.9
