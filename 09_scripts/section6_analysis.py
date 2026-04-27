@@ -47,14 +47,14 @@ Usage:
   python scripts/section6_analysis.py \\
       --coding data/role_coding_master.csv \\
       --registry data/cases_master.csv \\
-      --output analysis_output.json
+      --output 06_analysis_tables/section6_analysis_output.json
 
 Or, with default paths:
   python scripts/section6_analysis.py
 
 Output:
-  analysis_output.json — machine-readable record of every statistic reported in §6.
-  Also writes a human-readable table to stdout.
+  06_analysis_tables/section6_analysis_output.json — machine-readable record of
+  every statistic reported in §6. Also writes a human-readable table to stdout.
 """
 from __future__ import annotations
 
@@ -69,6 +69,7 @@ from scipy import stats
 
 DEFAULT_CODING = Path("/Users/ryanwong/Human roles/p1_role_systems_db/06_analysis_tables/role_coding_master.csv")
 DEFAULT_REGISTRY = Path("/Users/ryanwong/Human roles/p1_role_systems_db/01_registry/cases_master.csv")
+DEFAULT_OUTPUT = Path("/Users/ryanwong/Human roles/p1_role_systems_db/06_analysis_tables/section6_analysis_output.json")
 
 # Seeds — load-bearing; do not change without updating the manuscript.
 SEED_MC_CELL_FAMILY = 20260423
@@ -365,7 +366,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--coding", type=Path, default=DEFAULT_CODING)
     parser.add_argument("--registry", type=Path, default=DEFAULT_REGISTRY)
-    parser.add_argument("--output", type=Path, default=Path("analysis_output.json"))
+    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--n-perm-cell", type=int, default=N_PERM_CELL)
     parser.add_argument("--n-perm-case", type=int, default=N_PERM_CASE)
     parser.add_argument("--n-bootstrap", type=int, default=N_BOOTSTRAP)
