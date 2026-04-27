@@ -345,13 +345,19 @@ def consistency_coverage(merged: pd.DataFrame) -> dict:
 
 
 def holm_correction(p_values: dict) -> dict:
-    """Holm step-down correction across the family-wise p-values in §6."""
+    """Holm step-down correction across the family-wise p-values in §6.
+
+    Returns Holm-adjusted p-values enforcing monotone non-decreasing order
+    in raw-p rank (the running-max step the standard Holm procedure requires).
+    """
     sorted_ps = sorted(p_values.items(), key=lambda kv: kv[1])
     m = len(sorted_ps)
     adjusted = {}
+    running_max = 0.0
     for i, (name, p) in enumerate(sorted_ps):
-        adj = min(1.0, p * (m - i))
-        adjusted[name] = round(adj, 4)
+        raw_adj = min(1.0, p * (m - i))
+        running_max = max(running_max, raw_adj)
+        adjusted[name] = round(running_max, 4)
     return adjusted
 
 
