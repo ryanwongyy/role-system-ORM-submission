@@ -2,7 +2,11 @@
 
 ## Resolved positioning
 
-The manuscript is now positioned as a methods/framework contribution rather than as a general theory of automated science. Its novelty lies in changing the unit of analysis. Instead of treating AI-in-research as a human-versus-model contest or as a collection of isolated benchmark tasks, the paper treats the repository as a role-system dataset and compares which roles remain robust, conditional, transformed, shrinking, or mis-specified across 36 cases.
+The manuscript is positioned as a methods/framework contribution rather than as a general theory of automated science. Its novelty lies in changing the unit of analysis: instead of treating AI-in-research as a human-versus-model contest or as a collection of isolated benchmark tasks, the paper treats the repository as a role-system dataset and compares which roles remain robust, conditional, transformed, shrinking, or mis-specified across 36 cases.
+
+## Theoretical foundation of the typology (deductive + inductive)
+
+The six-status typology is constructed under both deductive and inductive forces. Its **deductive anchor** is the automation-augmentation paradox literature (Raisch & Krakowski, 2021; Autor, 2015): the four allocation states (robust → conditional → transformed → shrinking) are discrete points along the augmentation–automation continuum at which case-text language consistently changed. Its **inductive component** is the two specification operations (split pressure, merge pressure), which emerged through constant comparison across Cases 3 and 10 when the allocation continuum could not accommodate the observed pattern. This dual provenance is load-bearing for the manuscript's claim ceiling: the allocation continuum carries theoretical anchoring from prior literature; the specification operations carry empirical anchoring from the audit. Concepts may be added or adjusted to fit cases provided the deductive anchor and the inductive operations both remain coherent.
 
 ## Broader literatures now explicitly bridged
 

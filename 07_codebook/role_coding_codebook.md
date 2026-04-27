@@ -1,5 +1,9 @@
 # Role Coding Codebook
 
+## Theoretical foundation of the status set
+
+The six statuses sort onto two axes of distinct theoretical provenance. The four *allocation* statuses (robust → conditional → transformed → shrinking) are deductively anchored to the automation-augmentation paradox literature on how human work is reorganized when machines are embedded in the workflow (Raisch & Krakowski, 2021; Autor, 2015): *robust* corresponds to human-as-sole-performer (augmentation-only), *conditional* to moderator-gated mixed performance, *transformed* to content-redefinition with humans retained at the redefined task, and *shrinking* to substitution with humans as exception-handlers. The two *specification* operations (split pressure, merge pressure) emerged inductively through constant comparison across cases that the allocation continuum could not accommodate (Cases 3 and 10 in particular); they are recorded under Furnari et al.'s (2021) *scoping* and *linking* configurational heuristics. The starting role set below is the v0.4 working list; concepts may be added or adjusted to fit observed cases provided the deductive anchor (allocation continuum) and inductive operations (split / merge) remain coherent.
+
 ## Starting roles
 
 ### Relevance adjudicator

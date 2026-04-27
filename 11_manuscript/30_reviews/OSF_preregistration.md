@@ -9,7 +9,7 @@
 
 ## 1. Background and hypotheses
 
-The main manuscript proposes a six-status role-status rubric (*robust, conditional, transformed, shrinking, split pressure, merge pressure*) with behavioral anchors and a conditional-vs-transformed tie-breaker. All role × case cells (n = 612) were coded by the first author against this rubric. This preregistration covers a stratified 10% subsample to be independently re-coded by a second coder for reliability assessment.
+The main manuscript proposes a six-status role-status rubric (*robust, conditional, transformed, shrinking, split pressure, merge pressure*) with behavioral anchors and a conditional-vs-transformed tie-breaker. The four allocation statuses are deductively anchored to the automation-augmentation paradox literature (Raisch & Krakowski, 2021; Autor, 2015); the two specification operations (split / merge pressure) emerged inductively from constant comparison across cases. All role × case cells (n = 612) were coded by the first author against this rubric. This preregistration covers a stratified 10% subsample to be independently re-coded by a second coder for reliability assessment.
 
 The hypotheses H1–H3 and the statistical analysis plan (including the sign test as single pre-registered confirmatory test, the Holm correction across robustness checks, and the case-cluster bootstrap for V confidence intervals) were fixed before the full-coding pass per the manuscript's Transparency and Disclosures pre-specification table. This preregistration is therefore an addition to — not a replacement for — that earlier commitment.
 
