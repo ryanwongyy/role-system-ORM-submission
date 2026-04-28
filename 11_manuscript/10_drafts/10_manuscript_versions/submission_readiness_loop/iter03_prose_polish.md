@@ -320,8 +320,6 @@ Cronbach, L. J., & Meehl, P. E. (1955). Construct validity in psychological test
 
 Delbridge, R., & Fiss, P. C. (2013). Editors' comments: Styles of theorizing and the social organization of knowledge. *Academy of Management Review*, *38*(3), 325–331.
 
-Diamantopoulos, A., & Winklhofer, H. M. (2001). Index construction with formative indicators: An alternative to scale development. *Journal of Marketing Research*, *38*(2), 269–277.
-
 Doty, D. H., & Glick, W. H. (1994). Typologies as a unique form of theory building: Toward improved understanding and modeling. *Academy of Management Review*, *19*(2), 230–251.
 
 Duriau, V. J., Reger, R. K., & Pfarrer, M. D. (2007). A content analysis of the content analysis literature in organization studies. *Organizational Research Methods*, *10*(1), 5–34.

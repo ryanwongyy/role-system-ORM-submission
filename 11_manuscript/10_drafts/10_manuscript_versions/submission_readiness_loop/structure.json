@@ -1,0 +1,195 @@
+{
+  "total_word_count": 10984,
+  "section_count": 27,
+  "sections": [
+    {
+      "title": "A Comparative Typology of Role-System Change Under AI Embedding: Evidence from 36 Cases",
+      "level": 1,
+      "start_line": 1,
+      "end_line": 2,
+      "word_count": 0
+    },
+    {
+      "title": "Abstract",
+      "level": 2,
+      "start_line": 3,
+      "end_line": 6,
+      "word_count": 218
+    },
+    {
+      "title": "1. Introduction",
+      "level": 2,
+      "start_line": 7,
+      "end_line": 28,
+      "word_count": 1033
+    },
+    {
+      "title": "2. Data and Design",
+      "level": 2,
+      "start_line": 29,
+      "end_line": 30,
+      "word_count": 0
+    },
+    {
+      "title": "2.1 Sampling and case selection",
+      "level": 3,
+      "start_line": 31,
+      "end_line": 36,
+      "word_count": 254
+    },
+    {
+      "title": "2.2 Database, recording units, and coding logic",
+      "level": 3,
+      "start_line": 37,
+      "end_line": 44,
+      "word_count": 393
+    },
+    {
+      "title": "2.3 Rubric development (v0.1 → v0.4)",
+      "level": 3,
+      "start_line": 45,
+      "end_line": 56,
+      "word_count": 473
+    },
+    {
+      "title": "2.4 Construct form, scope conditions, and edge cases",
+      "level": 3,
+      "start_line": 57,
+      "end_line": 64,
+      "word_count": 385
+    },
+    {
+      "title": "2.5 Decision flow and rubric",
+      "level": 3,
+      "start_line": 65,
+      "end_line": 109,
+      "word_count": 1001
+    },
+    {
+      "title": "3. Durable Roles: Procedure, Boundary Setting, and Calibration",
+      "level": 2,
+      "start_line": 110,
+      "end_line": 111,
+      "word_count": 0
+    },
+    {
+      "title": "3.1 Exemplars",
+      "level": 3,
+      "start_line": 112,
+      "end_line": 119,
+      "word_count": 486
+    },
+    {
+      "title": "3.2 The procedural cluster: protocol-and-provenance, calibration, and accountability",
+      "level": 3,
+      "start_line": 120,
+      "end_line": 133,
+      "word_count": 694
+    },
+    {
+      "title": "4. Shrinkage and Transformation: Throughput Tasks Are Not Whole Roles",
+      "level": 2,
+      "start_line": 134,
+      "end_line": 145,
+      "word_count": 749
+    },
+    {
+      "title": "5. Split Pressure and Boundary Cases",
+      "level": 2,
+      "start_line": 146,
+      "end_line": 157,
+      "word_count": 546
+    },
+    {
+      "title": "6. Rival Explanations and Limits",
+      "level": 2,
+      "start_line": 158,
+      "end_line": 159,
+      "word_count": 0
+    },
+    {
+      "title": "6.1 Rival explanations",
+      "level": 3,
+      "start_line": 160,
+      "end_line": 167,
+      "word_count": 163
+    },
+    {
+      "title": "6.2 Inter-coder reliability",
+      "level": 3,
+      "start_line": 168,
+      "end_line": 173,
+      "word_count": 324
+    },
+    {
+      "title": "6.3 Robustness checks",
+      "level": 3,
+      "start_line": 174,
+      "end_line": 177,
+      "word_count": 126
+    },
+    {
+      "title": "6.4 H3 confirmatory test (two complementary lenses)",
+      "level": 3,
+      "start_line": 178,
+      "end_line": 227,
+      "word_count": 851
+    },
+    {
+      "title": "6.5 Bounded claims",
+      "level": 3,
+      "start_line": 228,
+      "end_line": 235,
+      "word_count": 245
+    },
+    {
+      "title": "7. Conclusion",
+      "level": 2,
+      "start_line": 236,
+      "end_line": 237,
+      "word_count": 0
+    },
+    {
+      "title": "7.1 Findings synthesis",
+      "level": 3,
+      "start_line": 238,
+      "end_line": 243,
+      "word_count": 195
+    },
+    {
+      "title": "7.2 Three propositions for the 2027 hold-out",
+      "level": 3,
+      "start_line": 244,
+      "end_line": 247,
+      "word_count": 56
+    },
+    {
+      "title": "7.3 Stakeholder recommendations",
+      "level": 3,
+      "start_line": 248,
+      "end_line": 272,
+      "word_count": 897
+    },
+    {
+      "title": "Data and Code Availability",
+      "level": 2,
+      "start_line": 273,
+      "end_line": 276,
+      "word_count": 203
+    },
+    {
+      "title": "Transparency and Disclosures",
+      "level": 2,
+      "start_line": 277,
+      "end_line": 280,
+      "word_count": 192
+    },
+    {
+      "title": "References",
+      "level": 2,
+      "start_line": 281,
+      "end_line": 449,
+      "word_count": 1396
+    }
+  ]
+}

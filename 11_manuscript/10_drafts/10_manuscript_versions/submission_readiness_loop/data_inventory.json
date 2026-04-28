@@ -1,0 +1,182 @@
+{
+  "purpose": "Ground-truth statistics and counts for Agent F (Data Integrity Auditor). Every numeric claim in the manuscript must be cross-referenced against this inventory.",
+  "sources": {
+    "case_registry": "01_registry/cases_master.csv",
+    "role_coding": "06_analysis_tables/role_coding_master.csv",
+    "evidence_extracts": "06_analysis_tables/evidence_extracts_master.csv",
+    "sources_master": "06_analysis_tables/sources_master.csv",
+    "artifacts_master": "06_analysis_tables/artifacts_master.csv",
+    "secondcoder_subsample": "06_analysis_tables/role_coding_secondcoder_subsample.csv",
+    "section6_stats": "06_analysis_tables/section6_analysis_output.json",
+    "intercoder_stats": "11_manuscript/30_reviews/intercoder_agreement_stats.json"
+  },
+  "counts": {
+    "n_cases": 36,
+    "n_role_codings": 612,
+    "n_distinct_roles": 17,
+    "n_evidence_extracts": 144,
+    "n_sources": 93,
+    "n_artifacts": 143,
+    "n_secondcoder_cells": 68,
+    "n_secondcoder_cases": 4
+  },
+  "role_labels": [
+    "Accountability and labor allocator",
+    "Calibration architect",
+    "Construct and perspective boundary setter",
+    "Construct boundary setter",
+    "Context witness",
+    "Corpus pluralist",
+    "Counterfactual / transportability judge",
+    "Counterfactual and transportability judge",
+    "Mechanism disciplinarian",
+    "Perspective sampler",
+    "Protocol and provenance architect",
+    "Relevance adjudicator",
+    "Routine coder on high-consensus, ground-truth-rich tasks",
+    "Routine first-pass screener",
+    "Situated interlocutor",
+    "Situated interlocutor / context witness",
+    "Structural prose polisher / drafter"
+  ],
+  "role_label_pairs_to_check": [
+    "Construct and perspective boundary setter / Construct boundary setter — appear as 2 separate role_labels with 36 cells each. Codebook should clarify whether these are distinct roles or coding artifacts. Current per-role V table treats them separately.",
+    "Counterfactual / transportability judge / Counterfactual and transportability judge — same pattern.",
+    "Situated interlocutor / Situated interlocutor / context witness — same pattern."
+  ],
+  "status_distribution_full_612": {
+    "not_applicable": 316,
+    "conditional": 92,
+    "robust": 56,
+    "shrinking": 40,
+    "split_pressure": 39,
+    "unclear": 37,
+    "transformed": 30,
+    "merge_pressure": 2
+  },
+  "observability_distribution": {
+    "no": 316,
+    "yes": 193,
+    "partial": 103
+  },
+  "confidence_distribution": {
+    "high": 437,
+    "medium": 165,
+    "low": 10
+  },
+  "headline_inferential_stats": {
+    "chi2_family": 87.67,
+    "df_family": 35,
+    "V_family": 0.260,
+    "chi2_capability": 29.80,
+    "df_capability": 10,
+    "V_capability": 0.240,
+    "mc_cell_family_p": 0.0002,
+    "mc_cell_capability_p": 0.0012,
+    "mc_case_family_p": 0.5755,
+    "mc_case_capability_p": 0.3277,
+    "mc_n_perm_cell": 10000,
+    "mc_n_perm_case": 5000,
+    "V_family_CI95": [0.261, 0.43],
+    "V_capability_CI95": [0.193, 0.451],
+    "V_gap_CI95": [-0.096, 0.156],
+    "P_V_gap_positive": 0.694,
+    "bootstrap_B": 2000,
+    "n_cells_high_confidence": 204,
+    "V_family_high_confidence": 0.267,
+    "V_capability_high_confidence": 0.205,
+    "wilcoxon_W": 7,
+    "wilcoxon_p": 0.0006,
+    "sign_test_p": 0.0042,
+    "median_V_family": 0.587,
+    "median_V_capability": 0.441,
+    "n_roles_paired": 16,
+    "n_positive_paired": 14,
+    "n_negative_paired": 2,
+    "holm_adjusted": {
+      "mc_cell_family": 0.0012,
+      "wilcoxon": 0.003,
+      "mc_cell_capability": 0.0048,
+      "sign_test": 0.0126,
+      "mc_case_family": 0.6554,
+      "mc_case_capability": 0.6554
+    },
+    "case_configuration": {
+      "all_three_durable": 12,
+      "at_least_two_durable": 24,
+      "expected_under_independence_baseline": "12/36 / (12/36 expected) ≈ 1.52× lift — reported in manuscript abstract as 'durable configuration in 12 of 36 cases, 1.52× the count expected under marginal independence'."
+    },
+    "consistency_coverage": {
+      "n_ground_truth_rich_cases": 14,
+      "n_shrinking_cases": 24,
+      "n_both": 12,
+      "sufficiency_gt_for_shrink": 0.857,
+      "necessity_gt_for_shrink": 0.5
+    },
+    "pilot_holdout": {
+      "n_cases": 32,
+      "n_obs_rows": 234,
+      "V_family": 0.253,
+      "V_capability": 0.208,
+      "wilcoxon_W": 6,
+      "wilcoxon_p": 0.0009,
+      "sign_test_p": 0.0074
+    }
+  },
+  "intercoder_reliability": {
+    "kappa_pooled_7cat": 0.289,
+    "kappa_CI95": [0.147, 0.439],
+    "kappa_alpha_7cat": 0.278,
+    "kappa_alpha_8cat": 0.298,
+    "agreement_rate_raw": 0.529,
+    "n_disagreements": 32,
+    "per_status_kappa": {
+      "robust": 0.402,
+      "conditional": 0.009,
+      "transformed": 0.0,
+      "shrinking": 0.549,
+      "split_pressure": 0.0,
+      "merge_pressure": null
+    },
+    "n_secondcoder_cases": 4,
+    "n_secondcoder_cells": 68,
+    "subsample_pct": 10,
+    "bootstrap_B": 2000,
+    "bootstrap_seed": 20260423,
+    "pre_committed_threshold": 0.60,
+    "result": "FAILED — 0.289 < 0.60"
+  },
+  "seeds": {
+    "mc_cell_family": 20260423,
+    "mc_cell_capability": 20260424,
+    "mc_case": 20260423,
+    "bootstrap": 20260425,
+    "kappa_bootstrap": 20260423
+  },
+  "exemplar_assignments": {
+    "robust": "Keith (2026), Case 2, Construct and perspective boundary setter",
+    "conditional": "Baccolini (2026), Case 7, Protocol and provenance architect",
+    "transformed": "Yin (n.d.), Case 29, Accountability and labor allocator",
+    "shrinking": "Tornberg (2025), Case 1 (referenced in manuscript)",
+    "note": "Verify exemplar tuples (case author / case # / role label) match status_in_case in role_coding_master.csv."
+  },
+  "release_artifacts_referenced_in_text": [
+    "role_coding_master.csv (612 rows, CC-BY-4.0)",
+    "cases_master.csv (36 cases, CC-BY-4.0)",
+    "role_coding_secondcoder_subsample.csv (68 rows)",
+    "codebook (with date-stamped version history)",
+    "scripts/section6_analysis.py (MIT)",
+    "scripts/appendix_b_reliability.py (MIT)",
+    "Appendix E (coder checklist)",
+    "Appendix F (reviewer-audit checklist)",
+    "v1.0.0-ORM-submission release tag at https://github.com/ryanwongyy/role-system-ORM-submission"
+  ],
+  "appendices_referenced_in_text": [
+    "Appendix A — (verify presence and content)",
+    "Appendix B — kappa (file: appendix_B_kappa.md)",
+    "Appendix C — application protocol (file: appendix_C_application_protocol.md)",
+    "Appendix D — sensitivity full role table (file: appendix_D_sensitivity_full_role_table.md)",
+    "Appendix E — coder checklist (file: appendix_E_coder_checklist.md)",
+    "Appendix F — reviewer audit (file: appendix_F_reviewer_audit.md)"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "loop": "submission_readiness_loop",
+  "task": "ensure the manuscript is ready for submission",
+  "target_venue": "Organizational Research Methods (ORM)",
+  "baseline_version": "v39_title_revised + TR5 (uncommitted; 42-word §6.2 insertion)",
+  "started": "2026-04-28T20:56:12Z",
+  "max_iterations": 5,
+  "iteration": 0,
+  "agents": {
+    "A": "Methodology Specialist (ORM construct-validity, BARS, formative measurement)",
+    "B": "Domain Theory Expert (typology theory, role theory, AI-in-research)",
+    "C": "Journal Editor / Prose (ORM register, hedging, claim ceiling)",
+    "D": "Comparative Methods Expert (cross-case sampling, inference under N=36)",
+    "E": "Submission-Process Auditor (compliance with ORM submission requirements)",
+    "F": "Data Integrity Auditor (manuscript stats vs. 06_analysis_tables/ ground truth)"
+  },
+  "do_not_change": [
+    "All inferential statistics (chi2, Cramer V, p, kappa, CIs) — must match section6_analysis_output.json and intercoder_agreement_stats.json byte-for-byte",
+    "Title (just shipped at v39 after deliberate revision)",
+    "Case IDs and exemplar assignments",
+    "Pre-registered hypotheses (H1, H2, H3) and tie-breaker rules",
+    "Release tag v1.0.0-ORM-submission and Zenodo references"
+  ],
+  "scope_includes": [
+    "TR5 (already applied) — verify integration",
+    "Submission-readiness gaps surfaced by reviewer agents",
+    "Data-manuscript alignment (Agent F)",
+    "Cross-section consistency on shared statistics",
+    "Reference list integrity",
+    "ORM-style register/hedging consistency"
+  ],
+  "scores": [],
+  "agent_history": [],
+  "convergence": null
+}
