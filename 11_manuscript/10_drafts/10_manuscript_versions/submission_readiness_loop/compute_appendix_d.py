@@ -8,8 +8,13 @@ from collections import defaultdict
 
 EXCLUDE = {'25', '26', '32', '33', '34'}
 
+# v42: filter to v1.0' inferential base before computing the sensitivity table
+with open('/Users/ryanwong/Human roles/p1_role_systems_db/01_registry/cases_master.csv') as f:
+    cases = list(csv.DictReader(f))
+V1_0_CASES = {c['Case ID'] for c in cases if c['analysis_ready'] == 'yes'}
+
 with open('/Users/ryanwong/Human roles/p1_role_systems_db/06_analysis_tables/role_coding_master.csv') as f:
-    rows = list(csv.DictReader(f))
+    rows = [r for r in csv.DictReader(f) if r['case_id'] in V1_0_CASES]
 
 # Role group ordering per the existing Appendix D placeholder
 role_order = [

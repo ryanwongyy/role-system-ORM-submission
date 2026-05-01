@@ -100,14 +100,20 @@ GROUND_TRUTH_RICH_FAMILIES = {
 }
 
 # Pilot cases (per manuscript §2 typology-derivation paragraph)
-PILOT_CASE_IDS = {1, 2, 7, 21}
+PILOT_CASE_IDS = {"1", "2", "7", "21"}
 
 
 def load_data(coding_path: Path, registry_path: Path) -> pd.DataFrame:
-    """Load and merge the coding and registry tables."""
+    """Load and merge the coding and registry tables.
+
+    Filters to v1.0 inferential base: cases with analysis_ready == 'yes'.
+    Cases marked 'v1.1_design' (e.g., proposed pedagogical configurations whose
+    codings are design-time projections) are held back from the v1.0 analysis
+    and released as pre-registered v1.1 hold-out entries.
+    """
     coding = pd.read_csv(coding_path)
     registry = pd.read_csv(registry_path)[
-        ["Case ID", "Case family", "Primary AI capability"]
+        ["Case ID", "Case family", "Primary AI capability", "analysis_ready"]
     ].rename(
         columns={
             "Case ID": "case_id",
@@ -115,7 +121,12 @@ def load_data(coding_path: Path, registry_path: Path) -> pd.DataFrame:
             "Primary AI capability": "capability",
         }
     )
-    merged = coding.merge(registry, on="case_id", how="left")
+    coding["case_id"] = coding["case_id"].astype(str)
+    registry["case_id"] = registry["case_id"].astype(str)
+    v1_0_cases = registry[registry["analysis_ready"] == "yes"]["case_id"].tolist()
+    merged = coding[coding["case_id"].isin(v1_0_cases)].merge(
+        registry[["case_id", "family", "capability"]], on="case_id", how="left"
+    )
     return merged
 
 
@@ -286,7 +297,7 @@ def pilot_holdout(merged: pd.DataFrame) -> dict:
     _, V_f = chi2_V(ct_fam)
     _, V_c = chi2_V(ct_cap)
     return {
-        "n_cases": 36 - len(PILOT_CASE_IDS),
+        "n_cases": int(holdout["case_id"].nunique()),
         "n_obs_rows": int(len(obs_h)),
         "V_family": round(V_f, 3),
         "V_capability": round(V_c, 3),

@@ -1,79 +1,79 @@
 {
   "headline": {
     "family": {
-      "chi2": 87.67,
+      "chi2": 100.68,
       "df": 35,
-      "V": 0.26,
+      "V": 0.286,
       "n_cells_total": 48,
       "n_cells_exp_lt_5": 26,
       "pct_cells_exp_lt_5": 54.2
     },
     "capability": {
-      "chi2": 29.8,
+      "chi2": 34.7,
       "df": 10,
-      "V": 0.24,
+      "V": 0.266,
       "n_cells_total": 18,
-      "n_cells_exp_lt_5": 3,
-      "pct_cells_exp_lt_5": 16.7
+      "n_cells_exp_lt_5": 6,
+      "pct_cells_exp_lt_5": 33.3
     }
   },
   "mc_cell_level": {
-    "family_p": 0.0002,
-    "capability_p": 0.0012,
+    "family_p": 0.0001,
+    "capability_p": 0.0005,
     "n_perm": 10000
   },
   "mc_case_level": {
-    "family_p": 0.5755,
-    "capability_p": 0.3277,
+    "family_p": 0.3365,
+    "capability_p": 0.2062,
     "n_perm": 5000
   },
   "bootstrap_V_CIs": {
     "V_family_CI95": [
-      0.261,
-      0.43
+      0.273,
+      0.45
     ],
     "V_capability_CI95": [
-      0.193,
-      0.451
+      0.204,
+      0.483
     ],
     "V_gap_CI95": [
-      -0.096,
-      0.156
+      -0.117,
+      0.159
     ],
-    "P_gap_positive": 0.694,
+    "P_gap_positive": 0.645,
     "B": 2000,
     "successful_reps": 2000
   },
   "per_role_V_table": [
     {
       "role": "Accountability and labor allocator",
-      "V_family": 0.527,
-      "V_capability": 0.463,
-      "diff": 0.065
+      "V_family": 0.542,
+      "V_capability": 0.401,
+      "diff": 0.141
     },
     {
       "role": "Calibration architect",
-      "V_family": 0.565,
-      "V_capability": 0.602,
-      "diff": -0.037
+      "V_family": 0.553,
+      "V_capability": 0.583,
+      "diff": -0.031
     },
     {
       "role": "Construct and perspective boundary setter",
-      "V_family": 0.511,
-      "V_capability": 0.37,
-      "diff": 0.142
+      "V_family": 0.466,
+      "V_capability": 0.444,
+      "diff": 0.023
     },
     {
       "role": "Construct boundary setter",
-      "V_family": 0.596,
-      "V_capability": 0.369,
-      "diff": 0.227
+      "V_family": 0.566,
+      "V_capability": 0.417,
+      "diff": 0.15
     },
     {
       "role": "Context witness",
-      "V_family": 0.753,
-      "V_capability": 0.403,
-      "diff": 0.35
+      "V_family": 0.744,
+      "V_capability": 0.484,
+      "diff": 0.26
     },
     {
       "role": "Corpus pluralist",
@@ -83,96 +83,96 @@
     },
     {
       "role": "Counterfactual / transportability judge",
-      "V_family": 0.707,
-      "V_capability": 0.5,
-      "diff": 0.207
+      "V_family": 0.701,
+      "V_capability": 0.615,
+      "diff": 0.086
     },
     {
       "role": "Counterfactual and transportability judge",
-      "V_family": 0.505,
-      "V_capability": 0.45,
-      "diff": 0.055
+      "V_family": 0.5,
+      "V_capability": 0.536,
+      "diff": -0.036
     },
     {
       "role": "Mechanism disciplinarian",
-      "V_family": 0.669,
-      "V_capability": 0.365,
-      "diff": 0.303
+      "V_family": 0.651,
+      "V_capability": 0.403,
+      "diff": 0.248
     },
     {
       "role": "Perspective sampler",
-      "V_family": 0.764,
-      "V_capability": 0.403,
-      "diff": 0.361
+      "V_family": 0.645,
+      "V_capability": 0.387,
+      "diff": 0.258
     },
     {
       "role": "Protocol and provenance architect",
-      "V_family": 0.417,
-      "V_capability": 0.261,
-      "diff": 0.156
+      "V_family": 0.451,
+      "V_capability": 0.282,
+      "diff": 0.169
     },
     {
       "role": "Relevance adjudicator",
-      "V_family": 0.7,
-      "V_capability": 0.824,
-      "diff": -0.124
+      "V_family": 0.484,
+      "V_capability": 0.598,
+      "diff": -0.113
     },
     {
       "role": "Routine coder on high-consensus, ground-truth-rich tasks",
-      "V_family": 0.554,
-      "V_capability": 0.433,
-      "diff": 0.121
+      "V_family": 0.551,
+      "V_capability": 0.522,
+      "diff": 0.029
     },
     {
       "role": "Situated interlocutor",
       "V_family": 0.764,
-      "V_capability": 0.565,
-      "diff": 0.199
+      "V_capability": 0.645,
+      "diff": 0.118
     },
     {
       "role": "Situated interlocutor / context witness",
-      "V_family": 0.577,
-      "V_capability": 0.535,
-      "diff": 0.043
+      "V_family": 0.683,
+      "V_capability": 0.655,
+      "diff": 0.028
     },
     {
       "role": "Structural prose polisher / drafter",
-      "V_family": 0.503,
-      "V_capability": 0.378,
-      "diff": 0.125
+      "V_family": 0.453,
+      "V_capability": 0.468,
+      "diff": -0.015
     }
   ],
   "paired_tests": {
     "n_roles_defined": 16,
-    "n_positive": 14,
-    "n_negative": 2,
-    "sign_test_p_two_sided": 0.0042,
-    "wilcoxon_W": 7.0,
-    "wilcoxon_p_two_sided": 0.0006,
-    "median_V_family": 0.587,
-    "median_V_capability": 0.441
+    "n_positive": 12,
+    "n_negative": 4,
+    "sign_test_p_two_sided": 0.0768,
+    "wilcoxon_W": 20.0,
+    "wilcoxon_p_two_sided": 0.011,
+    "median_V_family": 0.56,
+    "median_V_capability": 0.503
   },
   "high_confidence_Vs": {
-    "n_rows": 204,
-    "V_family": 0.267,
-    "V_capability": 0.205,
-    "V_gap": 0.062
+    "n_rows": 198,
+    "V_family": 0.292,
+    "V_capability": 0.209,
+    "V_gap": 0.083
   },
   "pilot_holdout": {
-    "n_cases": 32,
-    "n_obs_rows": 234,
-    "V_family": 0.253,
-    "V_capability": 0.208,
-    "V_gap": 0.045,
+    "n_cases": 31,
+    "n_obs_rows": 221,
+    "V_family": 0.279,
+    "V_capability": 0.209,
+    "V_gap": 0.07,
     "paired_tests": {
       "n_roles_defined": 15,
-      "n_positive": 13,
-      "n_negative": 2,
-      "sign_test_p_two_sided": 0.0074,
-      "wilcoxon_W": 6.0,
-      "wilcoxon_p_two_sided": 0.0009,
-      "median_V_family": 0.64,
-      "median_V_capability": 0.449
+      "n_positive": 11,
+      "n_negative": 4,
+      "sign_test_p_two_sided": 0.1185,
+      "wilcoxon_W": 12.0,
+      "wilcoxon_p_two_sided": 0.0043,
+      "median_V_family": 0.624,
+      "median_V_capability": 0.484
     }
   },
   "case_configuration": {
@@ -180,7 +180,7 @@
     "at_least_two_durable": 24,
     "top_configurations": {
       "durable|durable|durable": 12,
-      "durable|na|durable": 7,
+      "durable|na|durable": 8,
       "na|durable|durable": 4,
       "na|na|durable": 3,
       "pressure|na|pressure": 2
@@ -194,12 +194,12 @@
     "necessity_gt_for_shrink": 0.5
   },
   "holm_adjusted_p": {
-    "mc_cell_family": 0.0012,
-    "wilcoxon": 0.003,
-    "mc_cell_capability": 0.0048,
-    "sign_test": 0.0126,
-    "mc_case_capability": 0.6554,
-    "mc_case_family": 0.6554
+    "mc_cell_family": 0.0006,
+    "mc_cell_capability": 0.0025,
+    "wilcoxon": 0.044,
+    "sign_test": 0.2304,
+    "mc_case_capability": 0.4124,
+    "mc_case_family": 0.4124
   },
   "seeds": {
     "mc_cell_family": 20260423,

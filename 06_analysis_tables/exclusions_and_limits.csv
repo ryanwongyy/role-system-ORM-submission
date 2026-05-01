@@ -1,3 +1,4 @@
 case_id,missing_item,reason,severity,whether_case_still_analysis_ready
 1,full usable primary source evidence,Primary source access is limited; case is usable with explicit caveats and landing-page evidence.,medium,partial
 5,full usable primary source evidence,Primary source access is limited; case is usable with explicit caveats and landing-page evidence.,medium,partial
+36,executed-study evidence base,Proposed pedagogical configuration; codings are design-time projections of a hypothetical doctoral methods course. Primary source URL (arxiv 2504.01167) is the empirical LLM-prediction precedent shared with Case 23. Held back from v1.0 inferential base; pre-registered for v1.1 hold-out adjudication.,high,no_v1_0_held_for_v1_1
