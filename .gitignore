@@ -24,6 +24,7 @@ __pycache__/
 # so we release DOIs/URLs (in 01_registry/) but not the PDFs or extracts.
 03_raw_sources/
 04_extracted_text/
+04_extracted_text_cleaned/
 00_input/
 
 # Case notes (private researcher annotations; not part of the reproducible coding)
