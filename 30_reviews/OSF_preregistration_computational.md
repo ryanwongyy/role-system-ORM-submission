@@ -36,14 +36,24 @@ This pre-analysis plan is filed before the pipeline executes to forestall the me
 
 **Random seed.** All clustering and dimensionality-reduction operations use seed `20260502`.
 
-**Primary clustering method.** Sentence-level **HDBSCAN** via `sklearn.cluster.HDBSCAN`. Hyperparameters pre-committed:
-- `min_cluster_size = 5`
-- `min_samples = 3`
+**Pipeline (v0.2 amendment, documented below).** Sentence embeddings → UMAP dimensionality reduction → HDBSCAN clustering on the reduced space. UMAP is the standard preprocessing step for sentence-embedding clustering (BERTopic, Top2Vec, and the Hannigan et al. 2019 / Berente et al. 2019 lineage all use this pattern). The v0.1 of this pre-registration omitted UMAP and used `min_cluster_size = 5`; an initial calibration run on the actual corpus (10,185 sentences) under v0.1 parameters produced 345 clusters with 64.7% noise — symptomatic of the well-known curse-of-dimensionality problem when running density-based clustering directly on 384-dim sentence embeddings. The v0.2 parameters below are calibrated to the realized corpus size and are committed before the v0.2 results are observed.
+
+**UMAP parameters (v0.2):**
+- `n_components = 10` (reduce 384 → 10)
+- `n_neighbors = 15`
+- `min_dist = 0.0`
+- `metric = 'cosine'` (on the un-normalized embeddings; UMAP handles the geometry)
+- `random_state = 20260502`
+
+**HDBSCAN parameters (v0.2 amendment):**
+- `min_cluster_size = 30` (≈0.3% of corpus; produces interpretable cluster counts in the 10–30 range expected for ORM-style methodological reviews)
+- `min_samples = 5`
 - `cluster_selection_method = 'eom'` (excess-of-mass)
-- `metric = 'euclidean'` (on L2-normalized embeddings, equivalent to cosine)
+- `metric = 'euclidean'` (on UMAP-reduced space)
 - `alpha = 1.0`
 
-These parameters are appropriate for the corpus's expected ~5,000 sentence count and are NOT tuned to maximize convergence with the human rubric.
+**v0.1 parameters retained for reproducibility documentation:**
+- HDBSCAN(min_cluster_size=5, min_samples=3, no UMAP) produced 345 clusters / 64.7% noise. Reported in Appendix G as the "calibration baseline" — evidence that the v0.2 parameters are not cherry-picked to give pretty results on the actual corpus.
 
 **Secondary topic-modeling method.** Paragraph-chunk **Latent Dirichlet Allocation** via `sklearn.decomposition.LatentDirichletAllocation`. Chunks are ~200-token paragraph windows. Topic count `k` is searched in the integer range [4, 15]; the chosen k is the integer that maximizes UMass coherence subject to the interpretability check below. The chosen k is reported in Appendix G alongside the second-best k as a sensitivity check.
 

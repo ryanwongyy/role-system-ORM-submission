@@ -1,0 +1,2245 @@
+{
+  "n_corpus_sentences": 10185,
+  "n_evidence_extracts": 72,
+  "n_evidence_extracts_v1_0": 156,
+  "n_clusters_with_3plus_extracts": 20,
+  "macro_precision": 0.539,
+  "convergence_supports_threshold_0_40": true,
+  "falsification_fired": false,
+  "n_procedural_validity_clusters": 8,
+  "procedural_validity_clusters": [
+    {
+      "cluster_id": 38,
+      "n_proc": 2,
+      "total": 4,
+      "share": 0.5
+    },
+    {
+      "cluster_id": 1,
+      "n_proc": 2,
+      "total": 3,
+      "share": 0.6667
+    },
+    {
+      "cluster_id": 79,
+      "n_proc": 2,
+      "total": 4,
+      "share": 0.5
+    },
+    {
+      "cluster_id": 33,
+      "n_proc": 6,
+      "total": 10,
+      "share": 0.6
+    },
+    {
+      "cluster_id": 8,
+      "n_proc": 2,
+      "total": 4,
+      "share": 0.5
+    },
+    {
+      "cluster_id": 55,
+      "n_proc": 2,
+      "total": 3,
+      "share": 0.6667
+    },
+    {
+      "cluster_id": 66,
+      "n_proc": 2,
+      "total": 4,
+      "share": 0.5
+    },
+    {
+      "cluster_id": 69,
+      "n_proc": 2,
+      "total": 4,
+      "share": 0.5
+    }
+  ],
+  "n_throughput_shrinkage_clusters": 1,
+  "throughput_shrinkage_clusters": [
+    {
+      "cluster_id": 66,
+      "n_throughput": 2,
+      "total": 4,
+      "share": 0.5
+    }
+  ],
+  "cluster_precision_by_id": {
+    "91": {
+      "n_extracts": 7,
+      "modal_status": "conditional",
+      "modal_share": 0.4286,
+      "status_distribution": {
+        "conditional": 3,
+        "shrinking": 1,
+        "robust": 3
+      },
+      "top_roles": {
+        "Construct boundary setter": 5,
+        "Routine coder on high-consensus, ground-truth-rich tasks": 1,
+        "Perspective sampler": 1
+      }
+    },
+    "27": {
+      "n_extracts": 7,
+      "modal_status": "transformed",
+      "modal_share": 0.4286,
+      "status_distribution": {
+        "conditional": 1,
+        "shrinking": 1,
+        "robust": 2,
+        "transformed": 3
+      },
+      "top_roles": {
+        "Construct boundary setter": 2,
+        "Protocol and provenance architect": 2,
+        "Routine coder on high-consensus, ground-truth-rich tasks": 1
+      }
+    },
+    "-1": {
+      "n_extracts": 32,
+      "modal_status": "robust",
+      "modal_share": 0.2812,
+      "status_distribution": {
+        "robust": 9,
+        "transformed": 9,
+        "conditional": 8,
+        "split_pressure": 4,
+        "unclear": 2
+      },
+      "top_roles": {
+        "Accountability and labor allocator": 7,
+        "Relevance adjudicator": 6,
+        "Protocol and provenance architect": 5
+      }
+    },
+    "84": {
+      "n_extracts": 6,
+      "modal_status": "robust",
+      "modal_share": 1.0,
+      "status_distribution": {
+        "robust": 6
+      },
+      "top_roles": {
+        "Construct boundary setter": 2,
+        "Situated interlocutor": 2,
+        "Context witness": 2
+      }
+    },
+    "74": {
+      "n_extracts": 3,
+      "modal_status": "conditional",
+      "modal_share": 0.6667,
+      "status_distribution": {
+        "conditional": 2,
+        "shrinking": 1
+      },
+      "top_roles": {
+        "Protocol and provenance architect": 1,
+        "Corpus pluralist": 1,
+        "Routine first-pass screener": 1
+      }
+    },
+    "48": {
+      "n_extracts": 12,
+      "modal_status": "conditional",
+      "modal_share": 0.5,
+      "status_distribution": {
+        "conditional": 6,
+        "shrinking": 2,
+        "split_pressure": 2,
+        "robust": 1,
+        "transformed": 1
+      },
+      "top_roles": {
+        "Relevance adjudicator": 3,
+        "Accountability and labor allocator": 3,
+        "Protocol and provenance architect": 1
+      }
+    },
+    "38": {
+      "n_extracts": 4,
+      "modal_status": "unclear",
+      "modal_share": 0.5,
+      "status_distribution": {
+        "unclear": 2,
+        "robust": 2
+      },
+      "top_roles": {
+        "Corpus pluralist": 2,
+        "Protocol and provenance architect": 2
+      }
+    },
+    "1": {
+      "n_extracts": 3,
+      "modal_status": "transformed",
+      "modal_share": 1.0,
+      "status_distribution": {
+        "transformed": 3
+      },
+      "top_roles": {
+        "Protocol and provenance architect": 1,
+        "Corpus pluralist": 1,
+        "Accountability and labor allocator": 1
+      }
+    },
+    "59": {
+      "n_extracts": 13,
+      "modal_status": "robust",
+      "modal_share": 0.4615,
+      "status_distribution": {
+        "split_pressure": 2,
+        "conditional": 2,
+        "robust": 6,
+        "transformed": 3
+      },
+      "top_roles": {
+        "Protocol and provenance architect": 4,
+        "Relevance adjudicator": 3,
+        "Accountability and labor allocator": 2
+      }
+    },
+    "47": {
+      "n_extracts": 4,
+      "modal_status": "unclear",
+      "modal_share": 1.0,
+      "status_distribution": {
+        "unclear": 4
+      },
+      "top_roles": {
+        "Relevance adjudicator": 2,
+        "Mechanism disciplinarian": 2
+      }
+    },
+    "79": {
+      "n_extracts": 4,
+      "modal_status": "conditional",
+      "modal_share": 0.5,
+      "status_distribution": {
+        "conditional": 2,
+        "robust": 2
+      },
+      "top_roles": {
+        "Situated interlocutor": 2,
+        "Accountability and labor allocator": 2
+      }
+    },
+    "75": {
+      "n_extracts": 6,
+      "modal_status": "conditional",
+      "modal_share": 1.0,
+      "status_distribution": {
+        "conditional": 6
+      },
+      "top_roles": {
+        "Situated interlocutor": 2,
+        "Context witness": 2,
+        "Protocol and provenance architect": 2
+      }
+    },
+    "26": {
+      "n_extracts": 3,
+      "modal_status": "split_pressure",
+      "modal_share": 0.6667,
+      "status_distribution": {
+        "robust": 1,
+        "split_pressure": 2
+      },
+      "top_roles": {
+        "Context witness": 1,
+        "Protocol and provenance architect": 1,
+        "Accountability and labor allocator": 1
+      }
+    },
+    "33": {
+      "n_extracts": 10,
+      "modal_status": "robust",
+      "modal_share": 0.5,
+      "status_distribution": {
+        "transformed": 4,
+        "robust": 5,
+        "shrinking": 1
+      },
+      "top_roles": {
+        "Protocol and provenance architect": 3,
+        "Accountability and labor allocator": 3,
+        "Construct boundary setter": 1
+      }
+    },
+    "50": {
+      "n_extracts": 6,
+      "modal_status": "split_pressure",
+      "modal_share": 0.6667,
+      "status_distribution": {
+        "split_pressure": 4,
+        "robust": 2
+      },
+      "top_roles": {
+        "Protocol and provenance architect": 3,
+        "Counterfactual and transportability judge": 2,
+        "Accountability and labor allocator": 1
+      }
+    },
+    "8": {
+      "n_extracts": 4,
+      "modal_status": "conditional",
+      "modal_share": 0.5,
+      "status_distribution": {
+        "conditional": 2,
+        "robust": 2
+      },
+      "top_roles": {
+        "Relevance adjudicator": 1,
+        "Protocol and provenance architect": 1,
+        "Counterfactual and transportability judge": 1
+      }
+    },
+    "55": {
+      "n_extracts": 3,
+      "modal_status": "transformed",
+      "modal_share": 1.0,
+      "status_distribution": {
+        "transformed": 3
+      },
+      "top_roles": {
+        "Relevance adjudicator": 1,
+        "Accountability and labor allocator": 1,
+        "Protocol and provenance architect": 1
+      }
+    },
+    "66": {
+      "n_extracts": 4,
+      "modal_status": "robust",
+      "modal_share": 0.5,
+      "status_distribution": {
+        "robust": 2,
+        "shrinking": 2
+      },
+      "top_roles": {
+        "Protocol and provenance architect": 2,
+        "Routine coder on high-consensus, ground-truth-rich tasks": 2
+      }
+    },
+    "63": {
+      "n_extracts": 6,
+      "modal_status": "unclear",
+      "modal_share": 0.6667,
+      "status_distribution": {
+        "robust": 2,
+        "unclear": 4
+      },
+      "top_roles": {
+        "Protocol and provenance architect": 2,
+        "Accountability and labor allocator": 2,
+        "Relevance adjudicator": 2
+      }
+    },
+    "69": {
+      "n_extracts": 4,
+      "modal_status": "robust",
+      "modal_share": 0.5,
+      "status_distribution": {
+        "robust": 2,
+        "split_pressure": 2
+      },
+      "top_roles": {
+        "Calibration architect": 2,
+        "Counterfactual and transportability judge": 2
+      }
+    }
+  },
+  "status_recall": {
+    "conditional": {
+      "n_extracts": 32,
+      "modal_cluster": -1,
+      "modal_share": 0.25,
+      "cluster_distribution": {
+        "91": 3,
+        "27": 1,
+        "74": 2,
+        "48": 6,
+        "-1": 8,
+        "79": 2,
+        "75": 6,
+        "8": 2,
+        "59": 2
+      }
+    },
+    "shrinking": {
+      "n_extracts": 8,
+      "modal_cluster": 48,
+      "modal_share": 0.25,
+      "cluster_distribution": {
+        "91": 1,
+        "27": 1,
+        "74": 1,
+        "48": 2,
+        "66": 2,
+        "33": 1
+      }
+    },
+    "robust": {
+      "n_extracts": 54,
+      "modal_cluster": -1,
+      "modal_share": 0.1667,
+      "cluster_distribution": {
+        "91": 3,
+        "-1": 9,
+        "92": 1,
+        "27": 2,
+        "84": 6,
+        "38": 2,
+        "79": 2,
+        "26": 1,
+        "68": 2,
+        "36": 2,
+        "44": 1,
+        "58": 1,
+        "33": 5,
+        "48": 1,
+        "8": 2,
+        "59": 6,
+        "50": 2,
+        "66": 2,
+        "63": 2,
+        "69": 2
+      }
+    },
+    "transformed": {
+      "n_extracts": 30,
+      "modal_cluster": -1,
+      "modal_share": 0.3,
+      "cluster_distribution": {
+        "-1": 9,
+        "27": 3,
+        "1": 3,
+        "33": 4,
+        "44": 1,
+        "58": 1,
+        "55": 3,
+        "59": 3,
+        "48": 1,
+        "32": 2
+      }
+    },
+    "unclear": {
+      "n_extracts": 12,
+      "modal_cluster": 47,
+      "modal_share": 0.3333,
+      "cluster_distribution": {
+        "38": 2,
+        "47": 4,
+        "-1": 2,
+        "63": 4
+      }
+    },
+    "merge_pressure": {
+      "n_extracts": 4,
+      "modal_cluster": 20,
+      "modal_share": 0.5,
+      "cluster_distribution": {
+        "20": 2,
+        "17": 2
+      }
+    },
+    "split_pressure": {
+      "n_extracts": 16,
+      "modal_cluster": -1,
+      "modal_share": 0.25,
+      "cluster_distribution": {
+        "59": 2,
+        "48": 2,
+        "-1": 4,
+        "26": 2,
+        "50": 4,
+        "69": 2
+      }
+    }
+  },
+  "triangulation_per_extract": [
+    {
+      "evidence_idx": 0,
+      "case_id": "1",
+      "role_label_raw": "Construct boundary setter",
+      "role_label": "Construct boundary setter",
+      "human_status": "conditional",
+      "nearest_sentence_id": 915,
+      "cluster_id": 91,
+      "similarity": 0.6634,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 0,
+      "case_id": "1",
+      "role_label_raw": "shrinking routine coder",
+      "role_label": "Routine coder on high-consensus, ground-truth-rich tasks",
+      "human_status": "shrinking",
+      "nearest_sentence_id": 915,
+      "cluster_id": 91,
+      "similarity": 0.6634,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 1,
+      "case_id": "1",
+      "role_label_raw": "Construct boundary setter",
+      "role_label": "Construct boundary setter",
+      "human_status": "conditional",
+      "nearest_sentence_id": 6610,
+      "cluster_id": 27,
+      "similarity": 0.3887,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 1,
+      "case_id": "1",
+      "role_label_raw": "shrinking routine coder",
+      "role_label": "Routine coder on high-consensus, ground-truth-rich tasks",
+      "human_status": "shrinking",
+      "nearest_sentence_id": 6610,
+      "cluster_id": 27,
+      "similarity": 0.3887,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 2,
+      "case_id": "2",
+      "role_label_raw": "Construct boundary setter",
+      "role_label": "Construct boundary setter",
+      "human_status": "conditional",
+      "nearest_sentence_id": 478,
+      "cluster_id": 91,
+      "similarity": 0.5791,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 3,
+      "case_id": "2",
+      "role_label_raw": "Construct boundary setter",
+      "role_label": "Construct boundary setter",
+      "human_status": "conditional",
+      "nearest_sentence_id": 584,
+      "cluster_id": 91,
+      "similarity": 0.8075,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 4,
+      "case_id": "3",
+      "role_label_raw": "Construct boundary setter",
+      "role_label": "Construct boundary setter",
+      "human_status": "robust",
+      "nearest_sentence_id": 1610,
+      "cluster_id": 91,
+      "similarity": 0.6127,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 4,
+      "case_id": "3",
+      "role_label_raw": "perspective sampler",
+      "role_label": "Perspective sampler",
+      "human_status": "robust",
+      "nearest_sentence_id": 1610,
+      "cluster_id": 91,
+      "similarity": 0.6127,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 5,
+      "case_id": "3",
+      "role_label_raw": "Construct boundary setter",
+      "role_label": "Construct boundary setter",
+      "human_status": "robust",
+      "nearest_sentence_id": 702,
+      "cluster_id": -1,
+      "similarity": 0.8039,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 5,
+      "case_id": "3",
+      "role_label_raw": "perspective sampler",
+      "role_label": "Perspective sampler",
+      "human_status": "robust",
+      "nearest_sentence_id": 702,
+      "cluster_id": -1,
+      "similarity": 0.8039,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 6,
+      "case_id": "4",
+      "role_label_raw": "Construct boundary setter",
+      "role_label": "Construct boundary setter",
+      "human_status": "robust",
+      "nearest_sentence_id": 912,
+      "cluster_id": 91,
+      "similarity": 0.6671,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 7,
+      "case_id": "4",
+      "role_label_raw": "Construct boundary setter",
+      "role_label": "Construct boundary setter",
+      "human_status": "robust",
+      "nearest_sentence_id": 892,
+      "cluster_id": 92,
+      "similarity": 0.8107,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 8,
+      "case_id": "5",
+      "role_label_raw": "Construct boundary setter",
+      "role_label": "Construct boundary setter",
+      "human_status": "robust",
+      "nearest_sentence_id": 1116,
+      "cluster_id": -1,
+      "similarity": 0.6811,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 8,
+      "case_id": "5",
+      "role_label_raw": "context witness",
+      "role_label": "Context witness",
+      "human_status": "robust",
+      "nearest_sentence_id": 1116,
+      "cluster_id": -1,
+      "similarity": 0.6811,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 8,
+      "case_id": "5",
+      "role_label_raw": "protocol architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "transformed",
+      "nearest_sentence_id": 1116,
+      "cluster_id": -1,
+      "similarity": 0.6811,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 9,
+      "case_id": "5",
+      "role_label_raw": "Construct boundary setter",
+      "role_label": "Construct boundary setter",
+      "human_status": "robust",
+      "nearest_sentence_id": 6610,
+      "cluster_id": 27,
+      "similarity": 0.3887,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 9,
+      "case_id": "5",
+      "role_label_raw": "context witness",
+      "role_label": "Context witness",
+      "human_status": "robust",
+      "nearest_sentence_id": 6610,
+      "cluster_id": 27,
+      "similarity": 0.3887,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 9,
+      "case_id": "5",
+      "role_label_raw": "protocol architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "transformed",
+      "nearest_sentence_id": 6610,
+      "cluster_id": 27,
+      "similarity": 0.3887,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 10,
+      "case_id": "6",
+      "role_label_raw": "Construct boundary setter",
+      "role_label": "Construct boundary setter",
+      "human_status": "robust",
+      "nearest_sentence_id": 1846,
+      "cluster_id": 84,
+      "similarity": 0.7118,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 10,
+      "case_id": "6",
+      "role_label_raw": "situated interlocutor",
+      "role_label": "Situated interlocutor",
+      "human_status": "robust",
+      "nearest_sentence_id": 1846,
+      "cluster_id": 84,
+      "similarity": 0.7118,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 10,
+      "case_id": "6",
+      "role_label_raw": "context witness",
+      "role_label": "Context witness",
+      "human_status": "robust",
+      "nearest_sentence_id": 1846,
+      "cluster_id": 84,
+      "similarity": 0.7118,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 11,
+      "case_id": "6",
+      "role_label_raw": "Construct boundary setter",
+      "role_label": "Construct boundary setter",
+      "human_status": "robust",
+      "nearest_sentence_id": 1843,
+      "cluster_id": 84,
+      "similarity": 0.6108,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 11,
+      "case_id": "6",
+      "role_label_raw": "situated interlocutor",
+      "role_label": "Situated interlocutor",
+      "human_status": "robust",
+      "nearest_sentence_id": 1843,
+      "cluster_id": 84,
+      "similarity": 0.6108,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 11,
+      "case_id": "6",
+      "role_label_raw": "context witness",
+      "role_label": "Context witness",
+      "human_status": "robust",
+      "nearest_sentence_id": 1843,
+      "cluster_id": 84,
+      "similarity": 0.6108,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 12,
+      "case_id": "7",
+      "role_label_raw": "Protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "conditional",
+      "nearest_sentence_id": 1827,
+      "cluster_id": 74,
+      "similarity": 0.505,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 12,
+      "case_id": "7",
+      "role_label_raw": "corpus pluralist",
+      "role_label": "Corpus pluralist",
+      "human_status": "conditional",
+      "nearest_sentence_id": 1827,
+      "cluster_id": 74,
+      "similarity": 0.505,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 12,
+      "case_id": "7",
+      "role_label_raw": "shrinking first-pass screener",
+      "role_label": "Routine first-pass screener",
+      "human_status": "shrinking",
+      "nearest_sentence_id": 1827,
+      "cluster_id": 74,
+      "similarity": 0.505,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 13,
+      "case_id": "7",
+      "role_label_raw": "Protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "conditional",
+      "nearest_sentence_id": 5650,
+      "cluster_id": 48,
+      "similarity": 0.673,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 13,
+      "case_id": "7",
+      "role_label_raw": "corpus pluralist",
+      "role_label": "Corpus pluralist",
+      "human_status": "conditional",
+      "nearest_sentence_id": 5650,
+      "cluster_id": 48,
+      "similarity": 0.673,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 13,
+      "case_id": "7",
+      "role_label_raw": "shrinking first-pass screener",
+      "role_label": "Routine first-pass screener",
+      "human_status": "shrinking",
+      "nearest_sentence_id": 5650,
+      "cluster_id": 48,
+      "similarity": 0.673,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 14,
+      "case_id": "8",
+      "role_label_raw": "Corpus pluralist",
+      "role_label": "Corpus pluralist",
+      "human_status": "unclear",
+      "nearest_sentence_id": 2218,
+      "cluster_id": 38,
+      "similarity": 0.5679,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 14,
+      "case_id": "8",
+      "role_label_raw": "protocol architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 2218,
+      "cluster_id": 38,
+      "similarity": 0.5679,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 15,
+      "case_id": "8",
+      "role_label_raw": "Corpus pluralist",
+      "role_label": "Corpus pluralist",
+      "human_status": "unclear",
+      "nearest_sentence_id": 2342,
+      "cluster_id": 38,
+      "similarity": 0.5864,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 15,
+      "case_id": "8",
+      "role_label_raw": "protocol architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 2342,
+      "cluster_id": 38,
+      "similarity": 0.5864,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 16,
+      "case_id": "9",
+      "role_label_raw": "Protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "transformed",
+      "nearest_sentence_id": 2758,
+      "cluster_id": -1,
+      "similarity": 0.5381,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 16,
+      "case_id": "9",
+      "role_label_raw": "corpus pluralist",
+      "role_label": "Corpus pluralist",
+      "human_status": "transformed",
+      "nearest_sentence_id": 2758,
+      "cluster_id": -1,
+      "similarity": 0.5381,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 16,
+      "case_id": "9",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "transformed",
+      "nearest_sentence_id": 2758,
+      "cluster_id": -1,
+      "similarity": 0.5381,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 17,
+      "case_id": "9",
+      "role_label_raw": "Protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "transformed",
+      "nearest_sentence_id": 2410,
+      "cluster_id": 1,
+      "similarity": 0.8732,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 17,
+      "case_id": "9",
+      "role_label_raw": "corpus pluralist",
+      "role_label": "Corpus pluralist",
+      "human_status": "transformed",
+      "nearest_sentence_id": 2410,
+      "cluster_id": 1,
+      "similarity": 0.8732,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 17,
+      "case_id": "9",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "transformed",
+      "nearest_sentence_id": 2410,
+      "cluster_id": 1,
+      "similarity": 0.8732,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 18,
+      "case_id": "10",
+      "role_label_raw": "Accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "merge_pressure",
+      "nearest_sentence_id": 2895,
+      "cluster_id": 20,
+      "similarity": 0.7452,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 18,
+      "case_id": "10",
+      "role_label_raw": "protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "merge_pressure",
+      "nearest_sentence_id": 2895,
+      "cluster_id": 20,
+      "similarity": 0.7452,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 19,
+      "case_id": "10",
+      "role_label_raw": "Accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "merge_pressure",
+      "nearest_sentence_id": 2793,
+      "cluster_id": 17,
+      "similarity": 0.8436,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 19,
+      "case_id": "10",
+      "role_label_raw": "protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "merge_pressure",
+      "nearest_sentence_id": 2793,
+      "cluster_id": 17,
+      "similarity": 0.8436,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 20,
+      "case_id": "11",
+      "role_label_raw": "Relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "conditional",
+      "nearest_sentence_id": 3754,
+      "cluster_id": -1,
+      "similarity": 0.645,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 20,
+      "case_id": "11",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "conditional",
+      "nearest_sentence_id": 3754,
+      "cluster_id": -1,
+      "similarity": 0.645,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 21,
+      "case_id": "11",
+      "role_label_raw": "Relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "conditional",
+      "nearest_sentence_id": 3562,
+      "cluster_id": 48,
+      "similarity": 0.8155,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 21,
+      "case_id": "11",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "conditional",
+      "nearest_sentence_id": 3562,
+      "cluster_id": 48,
+      "similarity": 0.8155,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 22,
+      "case_id": "12",
+      "role_label_raw": "Relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "conditional",
+      "nearest_sentence_id": 8051,
+      "cluster_id": -1,
+      "similarity": 0.6127,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 22,
+      "case_id": "12",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "conditional",
+      "nearest_sentence_id": 8051,
+      "cluster_id": -1,
+      "similarity": 0.6127,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 23,
+      "case_id": "12",
+      "role_label_raw": "Relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "conditional",
+      "nearest_sentence_id": 3562,
+      "cluster_id": 48,
+      "similarity": 0.8155,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 23,
+      "case_id": "12",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "conditional",
+      "nearest_sentence_id": 3562,
+      "cluster_id": 48,
+      "similarity": 0.8155,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 24,
+      "case_id": "13",
+      "role_label_raw": "Relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "conditional",
+      "nearest_sentence_id": 3947,
+      "cluster_id": -1,
+      "similarity": 0.7716,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 24,
+      "case_id": "13",
+      "role_label_raw": "mechanism disciplinarian",
+      "role_label": "Mechanism disciplinarian",
+      "human_status": "conditional",
+      "nearest_sentence_id": 3947,
+      "cluster_id": -1,
+      "similarity": 0.7716,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 25,
+      "case_id": "13",
+      "role_label_raw": "Relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "conditional",
+      "nearest_sentence_id": 3946,
+      "cluster_id": -1,
+      "similarity": 0.9002,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 25,
+      "case_id": "13",
+      "role_label_raw": "mechanism disciplinarian",
+      "role_label": "Mechanism disciplinarian",
+      "human_status": "conditional",
+      "nearest_sentence_id": 3946,
+      "cluster_id": -1,
+      "similarity": 0.9002,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 26,
+      "case_id": "14",
+      "role_label_raw": "Mechanism disciplinarian",
+      "role_label": "Mechanism disciplinarian",
+      "human_status": "split_pressure",
+      "nearest_sentence_id": 6607,
+      "cluster_id": 59,
+      "similarity": 0.6004,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 26,
+      "case_id": "14",
+      "role_label_raw": "relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "split_pressure",
+      "nearest_sentence_id": 6607,
+      "cluster_id": 59,
+      "similarity": 0.6004,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 27,
+      "case_id": "14",
+      "role_label_raw": "Mechanism disciplinarian",
+      "role_label": "Mechanism disciplinarian",
+      "human_status": "split_pressure",
+      "nearest_sentence_id": 4102,
+      "cluster_id": 48,
+      "similarity": 0.8369,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 27,
+      "case_id": "14",
+      "role_label_raw": "relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "split_pressure",
+      "nearest_sentence_id": 4102,
+      "cluster_id": 48,
+      "similarity": 0.8369,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 28,
+      "case_id": "15",
+      "role_label_raw": "Relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "unclear",
+      "nearest_sentence_id": 4334,
+      "cluster_id": 47,
+      "similarity": 0.6495,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 28,
+      "case_id": "15",
+      "role_label_raw": "mechanism disciplinarian",
+      "role_label": "Mechanism disciplinarian",
+      "human_status": "unclear",
+      "nearest_sentence_id": 4334,
+      "cluster_id": 47,
+      "similarity": 0.6495,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 29,
+      "case_id": "15",
+      "role_label_raw": "Relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "unclear",
+      "nearest_sentence_id": 4265,
+      "cluster_id": 47,
+      "similarity": 0.7786,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 29,
+      "case_id": "15",
+      "role_label_raw": "mechanism disciplinarian",
+      "role_label": "Mechanism disciplinarian",
+      "human_status": "unclear",
+      "nearest_sentence_id": 4265,
+      "cluster_id": 47,
+      "similarity": 0.7786,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 30,
+      "case_id": "16",
+      "role_label_raw": "Situated interlocutor",
+      "role_label": "Situated interlocutor",
+      "human_status": "conditional",
+      "nearest_sentence_id": 4720,
+      "cluster_id": 79,
+      "similarity": 0.6856,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 30,
+      "case_id": "16",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "robust",
+      "nearest_sentence_id": 4720,
+      "cluster_id": 79,
+      "similarity": 0.6856,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 31,
+      "case_id": "16",
+      "role_label_raw": "Situated interlocutor",
+      "role_label": "Situated interlocutor",
+      "human_status": "conditional",
+      "nearest_sentence_id": 4610,
+      "cluster_id": 79,
+      "similarity": 0.8476,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 31,
+      "case_id": "16",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "robust",
+      "nearest_sentence_id": 4610,
+      "cluster_id": 79,
+      "similarity": 0.8476,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 32,
+      "case_id": "17",
+      "role_label_raw": "Situated interlocutor",
+      "role_label": "Situated interlocutor",
+      "human_status": "conditional",
+      "nearest_sentence_id": 4986,
+      "cluster_id": 75,
+      "similarity": 0.7355,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 32,
+      "case_id": "17",
+      "role_label_raw": "context witness",
+      "role_label": "Context witness",
+      "human_status": "conditional",
+      "nearest_sentence_id": 4986,
+      "cluster_id": 75,
+      "similarity": 0.7355,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 32,
+      "case_id": "17",
+      "role_label_raw": "protocol architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "conditional",
+      "nearest_sentence_id": 4986,
+      "cluster_id": 75,
+      "similarity": 0.7355,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 33,
+      "case_id": "17",
+      "role_label_raw": "Situated interlocutor",
+      "role_label": "Situated interlocutor",
+      "human_status": "conditional",
+      "nearest_sentence_id": 4762,
+      "cluster_id": 75,
+      "similarity": 0.7143,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 33,
+      "case_id": "17",
+      "role_label_raw": "context witness",
+      "role_label": "Context witness",
+      "human_status": "conditional",
+      "nearest_sentence_id": 4762,
+      "cluster_id": 75,
+      "similarity": 0.7143,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 33,
+      "case_id": "17",
+      "role_label_raw": "protocol architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "conditional",
+      "nearest_sentence_id": 4762,
+      "cluster_id": 75,
+      "similarity": 0.7143,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 34,
+      "case_id": "18",
+      "role_label_raw": "Context witness",
+      "role_label": "Context witness",
+      "human_status": "robust",
+      "nearest_sentence_id": 1891,
+      "cluster_id": -1,
+      "similarity": 0.6856,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 34,
+      "case_id": "18",
+      "role_label_raw": "protocol architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "split_pressure",
+      "nearest_sentence_id": 1891,
+      "cluster_id": -1,
+      "similarity": 0.6856,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 34,
+      "case_id": "18",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "split_pressure",
+      "nearest_sentence_id": 1891,
+      "cluster_id": -1,
+      "similarity": 0.6856,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 35,
+      "case_id": "18",
+      "role_label_raw": "Context witness",
+      "role_label": "Context witness",
+      "human_status": "robust",
+      "nearest_sentence_id": 4921,
+      "cluster_id": 26,
+      "similarity": 0.8033,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 35,
+      "case_id": "18",
+      "role_label_raw": "protocol architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "split_pressure",
+      "nearest_sentence_id": 4921,
+      "cluster_id": 26,
+      "similarity": 0.8033,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 35,
+      "case_id": "18",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "split_pressure",
+      "nearest_sentence_id": 4921,
+      "cluster_id": 26,
+      "similarity": 0.8033,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 36,
+      "case_id": "19",
+      "role_label_raw": "Context witness",
+      "role_label": "Context witness",
+      "human_status": "robust",
+      "nearest_sentence_id": 9756,
+      "cluster_id": 68,
+      "similarity": 0.5543,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 36,
+      "case_id": "19",
+      "role_label_raw": "mechanism disciplinarian",
+      "role_label": "Mechanism disciplinarian",
+      "human_status": "robust",
+      "nearest_sentence_id": 9756,
+      "cluster_id": 68,
+      "similarity": 0.5543,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 37,
+      "case_id": "19",
+      "role_label_raw": "Context witness",
+      "role_label": "Context witness",
+      "human_status": "robust",
+      "nearest_sentence_id": 5231,
+      "cluster_id": 36,
+      "similarity": 0.7554,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 37,
+      "case_id": "19",
+      "role_label_raw": "mechanism disciplinarian",
+      "role_label": "Mechanism disciplinarian",
+      "human_status": "robust",
+      "nearest_sentence_id": 5231,
+      "cluster_id": 36,
+      "similarity": 0.7554,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 38,
+      "case_id": "20",
+      "role_label_raw": "Construct boundary setter",
+      "role_label": "Construct boundary setter",
+      "human_status": "transformed",
+      "nearest_sentence_id": 8084,
+      "cluster_id": 33,
+      "similarity": 0.6359,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 38,
+      "case_id": "20",
+      "role_label_raw": "context witness",
+      "role_label": "Context witness",
+      "human_status": "transformed",
+      "nearest_sentence_id": 8084,
+      "cluster_id": 33,
+      "similarity": 0.6359,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 38,
+      "case_id": "20",
+      "role_label_raw": "protocol architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "transformed",
+      "nearest_sentence_id": 8084,
+      "cluster_id": 33,
+      "similarity": 0.6359,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 39,
+      "case_id": "20",
+      "role_label_raw": "Construct boundary setter",
+      "role_label": "Construct boundary setter",
+      "human_status": "transformed",
+      "nearest_sentence_id": 5590,
+      "cluster_id": -1,
+      "similarity": 0.652,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 39,
+      "case_id": "20",
+      "role_label_raw": "context witness",
+      "role_label": "Context witness",
+      "human_status": "transformed",
+      "nearest_sentence_id": 5590,
+      "cluster_id": -1,
+      "similarity": 0.652,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 39,
+      "case_id": "20",
+      "role_label_raw": "protocol architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "transformed",
+      "nearest_sentence_id": 5590,
+      "cluster_id": -1,
+      "similarity": 0.652,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 40,
+      "case_id": "21",
+      "role_label_raw": "Counterfactual and transportability judge",
+      "role_label": "Counterfactual and transportability judge",
+      "human_status": "split_pressure",
+      "nearest_sentence_id": 6141,
+      "cluster_id": -1,
+      "similarity": 0.651,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 40,
+      "case_id": "21",
+      "role_label_raw": "calibration architect",
+      "role_label": "Calibration architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 6141,
+      "cluster_id": -1,
+      "similarity": 0.651,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 41,
+      "case_id": "21",
+      "role_label_raw": "Counterfactual and transportability judge",
+      "role_label": "Counterfactual and transportability judge",
+      "human_status": "split_pressure",
+      "nearest_sentence_id": 5653,
+      "cluster_id": -1,
+      "similarity": 0.8097,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 41,
+      "case_id": "21",
+      "role_label_raw": "calibration architect",
+      "role_label": "Calibration architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 5653,
+      "cluster_id": -1,
+      "similarity": 0.8097,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 42,
+      "case_id": "22",
+      "role_label_raw": "Calibration architect",
+      "role_label": "Calibration architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 1639,
+      "cluster_id": 44,
+      "similarity": 0.5904,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 42,
+      "case_id": "22",
+      "role_label_raw": "counterfactual and transportability judge",
+      "role_label": "Counterfactual and transportability judge",
+      "human_status": "transformed",
+      "nearest_sentence_id": 1639,
+      "cluster_id": 44,
+      "similarity": 0.5904,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 43,
+      "case_id": "22",
+      "role_label_raw": "Calibration architect",
+      "role_label": "Calibration architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 6082,
+      "cluster_id": 58,
+      "similarity": 0.7292,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 43,
+      "case_id": "22",
+      "role_label_raw": "counterfactual and transportability judge",
+      "role_label": "Counterfactual and transportability judge",
+      "human_status": "transformed",
+      "nearest_sentence_id": 6082,
+      "cluster_id": 58,
+      "similarity": 0.7292,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 44,
+      "case_id": "23",
+      "role_label_raw": "Counterfactual and transportability judge",
+      "role_label": "Counterfactual and transportability judge",
+      "human_status": "robust",
+      "nearest_sentence_id": 8001,
+      "cluster_id": 33,
+      "similarity": 0.5755,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 45,
+      "case_id": "23",
+      "role_label_raw": "Counterfactual and transportability judge",
+      "role_label": "Counterfactual and transportability judge",
+      "human_status": "robust",
+      "nearest_sentence_id": 6476,
+      "cluster_id": 48,
+      "similarity": 0.9055,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 46,
+      "case_id": "24",
+      "role_label_raw": "Counterfactual and transportability judge",
+      "role_label": "Counterfactual and transportability judge",
+      "human_status": "split_pressure",
+      "nearest_sentence_id": 6522,
+      "cluster_id": 50,
+      "similarity": 0.6892,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 46,
+      "case_id": "24",
+      "role_label_raw": "protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "split_pressure",
+      "nearest_sentence_id": 6522,
+      "cluster_id": 50,
+      "similarity": 0.6892,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 47,
+      "case_id": "24",
+      "role_label_raw": "Counterfactual and transportability judge",
+      "role_label": "Counterfactual and transportability judge",
+      "human_status": "split_pressure",
+      "nearest_sentence_id": 6490,
+      "cluster_id": 50,
+      "similarity": 0.7759,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 47,
+      "case_id": "24",
+      "role_label_raw": "protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "split_pressure",
+      "nearest_sentence_id": 6490,
+      "cluster_id": 50,
+      "similarity": 0.7759,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 48,
+      "case_id": "25",
+      "role_label_raw": "Relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "conditional",
+      "nearest_sentence_id": 6623,
+      "cluster_id": 8,
+      "similarity": 0.6657,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 48,
+      "case_id": "25",
+      "role_label_raw": "protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 6623,
+      "cluster_id": 8,
+      "similarity": 0.6657,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 48,
+      "case_id": "25",
+      "role_label_raw": "counterfactual and transportability judge",
+      "role_label": "Counterfactual and transportability judge",
+      "human_status": "conditional",
+      "nearest_sentence_id": 6623,
+      "cluster_id": 8,
+      "similarity": 0.6657,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 48,
+      "case_id": "25",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "robust",
+      "nearest_sentence_id": 6623,
+      "cluster_id": 8,
+      "similarity": 0.6657,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 49,
+      "case_id": "25",
+      "role_label_raw": "Relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "conditional",
+      "nearest_sentence_id": 6598,
+      "cluster_id": 59,
+      "similarity": 0.7804,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 49,
+      "case_id": "25",
+      "role_label_raw": "protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 6598,
+      "cluster_id": 59,
+      "similarity": 0.7804,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 49,
+      "case_id": "25",
+      "role_label_raw": "counterfactual and transportability judge",
+      "role_label": "Counterfactual and transportability judge",
+      "human_status": "conditional",
+      "nearest_sentence_id": 6598,
+      "cluster_id": 59,
+      "similarity": 0.7804,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 49,
+      "case_id": "25",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "robust",
+      "nearest_sentence_id": 6598,
+      "cluster_id": 59,
+      "similarity": 0.7804,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 50,
+      "case_id": "26",
+      "role_label_raw": "Relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "transformed",
+      "nearest_sentence_id": 1422,
+      "cluster_id": 55,
+      "similarity": 0.5281,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 50,
+      "case_id": "26",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "transformed",
+      "nearest_sentence_id": 1422,
+      "cluster_id": 55,
+      "similarity": 0.5281,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 50,
+      "case_id": "26",
+      "role_label_raw": "protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "transformed",
+      "nearest_sentence_id": 1422,
+      "cluster_id": 55,
+      "similarity": 0.5281,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 51,
+      "case_id": "26",
+      "role_label_raw": "Relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "transformed",
+      "nearest_sentence_id": 6765,
+      "cluster_id": 59,
+      "similarity": 0.7035,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 51,
+      "case_id": "26",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "transformed",
+      "nearest_sentence_id": 6765,
+      "cluster_id": 59,
+      "similarity": 0.7035,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 51,
+      "case_id": "26",
+      "role_label_raw": "protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "transformed",
+      "nearest_sentence_id": 6765,
+      "cluster_id": 59,
+      "similarity": 0.7035,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 52,
+      "case_id": "27",
+      "role_label_raw": "Protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 6959,
+      "cluster_id": 50,
+      "similarity": 0.7311,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 52,
+      "case_id": "27",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "robust",
+      "nearest_sentence_id": 6959,
+      "cluster_id": 50,
+      "similarity": 0.7311,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 53,
+      "case_id": "27",
+      "role_label_raw": "Protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 7106,
+      "cluster_id": -1,
+      "similarity": 0.6258,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 53,
+      "case_id": "27",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "robust",
+      "nearest_sentence_id": 7106,
+      "cluster_id": -1,
+      "similarity": 0.6258,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 54,
+      "case_id": "28",
+      "role_label_raw": "Protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 7175,
+      "cluster_id": 66,
+      "similarity": 0.7539,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 54,
+      "case_id": "28",
+      "role_label_raw": "shrinking routine repair labor",
+      "role_label": "Routine coder on high-consensus, ground-truth-rich tasks",
+      "human_status": "shrinking",
+      "nearest_sentence_id": 7175,
+      "cluster_id": 66,
+      "similarity": 0.7539,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 55,
+      "case_id": "28",
+      "role_label_raw": "Protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 7113,
+      "cluster_id": 66,
+      "similarity": 0.7712,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 55,
+      "case_id": "28",
+      "role_label_raw": "shrinking routine repair labor",
+      "role_label": "Routine coder on high-consensus, ground-truth-rich tasks",
+      "human_status": "shrinking",
+      "nearest_sentence_id": 7113,
+      "cluster_id": 66,
+      "similarity": 0.7712,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 56,
+      "case_id": "29",
+      "role_label_raw": "Accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "transformed",
+      "nearest_sentence_id": 8001,
+      "cluster_id": 33,
+      "similarity": 0.5988,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 56,
+      "case_id": "29",
+      "role_label_raw": "shrinking structural prose polisher",
+      "role_label": "Structural prose polisher / drafter",
+      "human_status": "shrinking",
+      "nearest_sentence_id": 8001,
+      "cluster_id": 33,
+      "similarity": 0.5988,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 57,
+      "case_id": "29",
+      "role_label_raw": "Accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "transformed",
+      "nearest_sentence_id": 8209,
+      "cluster_id": 48,
+      "similarity": 0.8583,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 57,
+      "case_id": "29",
+      "role_label_raw": "shrinking structural prose polisher",
+      "role_label": "Structural prose polisher / drafter",
+      "human_status": "shrinking",
+      "nearest_sentence_id": 8209,
+      "cluster_id": 48,
+      "similarity": 0.8583,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 58,
+      "case_id": "30",
+      "role_label_raw": "Accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "robust",
+      "nearest_sentence_id": 8189,
+      "cluster_id": 33,
+      "similarity": 0.8443,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 58,
+      "case_id": "30",
+      "role_label_raw": "protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 8189,
+      "cluster_id": 33,
+      "similarity": 0.8443,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 59,
+      "case_id": "30",
+      "role_label_raw": "Accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "robust",
+      "nearest_sentence_id": 8189,
+      "cluster_id": 33,
+      "similarity": 0.7769,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 59,
+      "case_id": "30",
+      "role_label_raw": "protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 8189,
+      "cluster_id": 33,
+      "similarity": 0.7769,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 60,
+      "case_id": "31",
+      "role_label_raw": "Accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "transformed",
+      "nearest_sentence_id": 8199,
+      "cluster_id": -1,
+      "similarity": 0.8043,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 60,
+      "case_id": "31",
+      "role_label_raw": "relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "unclear",
+      "nearest_sentence_id": 8199,
+      "cluster_id": -1,
+      "similarity": 0.8043,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 61,
+      "case_id": "31",
+      "role_label_raw": "Accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "transformed",
+      "nearest_sentence_id": 8197,
+      "cluster_id": -1,
+      "similarity": 0.8715,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 61,
+      "case_id": "31",
+      "role_label_raw": "relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "unclear",
+      "nearest_sentence_id": 8197,
+      "cluster_id": -1,
+      "similarity": 0.8715,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 62,
+      "case_id": "32",
+      "role_label_raw": "Protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 8376,
+      "cluster_id": 63,
+      "similarity": 0.6481,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 62,
+      "case_id": "32",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "unclear",
+      "nearest_sentence_id": 8376,
+      "cluster_id": 63,
+      "similarity": 0.6481,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 62,
+      "case_id": "32",
+      "role_label_raw": "relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "unclear",
+      "nearest_sentence_id": 8376,
+      "cluster_id": 63,
+      "similarity": 0.6481,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 63,
+      "case_id": "32",
+      "role_label_raw": "Protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 8221,
+      "cluster_id": 63,
+      "similarity": 0.8399,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 63,
+      "case_id": "32",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "unclear",
+      "nearest_sentence_id": 8221,
+      "cluster_id": 63,
+      "similarity": 0.8399,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 63,
+      "case_id": "32",
+      "role_label_raw": "relevance adjudicator",
+      "role_label": "Relevance adjudicator",
+      "human_status": "unclear",
+      "nearest_sentence_id": 8221,
+      "cluster_id": 63,
+      "similarity": 0.8399,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 64,
+      "case_id": "33",
+      "role_label_raw": "Corpus pluralist",
+      "role_label": "Corpus pluralist",
+      "human_status": "robust",
+      "nearest_sentence_id": 8522,
+      "cluster_id": 59,
+      "similarity": 0.5864,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 64,
+      "case_id": "33",
+      "role_label_raw": "protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 8522,
+      "cluster_id": 59,
+      "similarity": 0.5864,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 65,
+      "case_id": "33",
+      "role_label_raw": "Corpus pluralist",
+      "role_label": "Corpus pluralist",
+      "human_status": "robust",
+      "nearest_sentence_id": 8520,
+      "cluster_id": 59,
+      "similarity": 0.8011,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 65,
+      "case_id": "33",
+      "role_label_raw": "protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 8520,
+      "cluster_id": 59,
+      "similarity": 0.8011,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 66,
+      "case_id": "34",
+      "role_label_raw": "Calibration architect",
+      "role_label": "Calibration architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 8973,
+      "cluster_id": 69,
+      "similarity": 0.7066,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 66,
+      "case_id": "34",
+      "role_label_raw": "counterfactual and transportability judge",
+      "role_label": "Counterfactual and transportability judge",
+      "human_status": "split_pressure",
+      "nearest_sentence_id": 8973,
+      "cluster_id": 69,
+      "similarity": 0.7066,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 67,
+      "case_id": "34",
+      "role_label_raw": "Calibration architect",
+      "role_label": "Calibration architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 8921,
+      "cluster_id": 69,
+      "similarity": 0.8347,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 67,
+      "case_id": "34",
+      "role_label_raw": "counterfactual and transportability judge",
+      "role_label": "Counterfactual and transportability judge",
+      "human_status": "split_pressure",
+      "nearest_sentence_id": 8921,
+      "cluster_id": 69,
+      "similarity": 0.8347,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 68,
+      "case_id": "35",
+      "role_label_raw": "Protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "transformed",
+      "nearest_sentence_id": 9140,
+      "cluster_id": 32,
+      "similarity": 0.6419,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 68,
+      "case_id": "35",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "transformed",
+      "nearest_sentence_id": 9140,
+      "cluster_id": 32,
+      "similarity": 0.6419,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 69,
+      "case_id": "35",
+      "role_label_raw": "Protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "transformed",
+      "nearest_sentence_id": 6610,
+      "cluster_id": 27,
+      "similarity": 0.3887,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 69,
+      "case_id": "35",
+      "role_label_raw": "accountability and labor allocator",
+      "role_label": "Accountability and labor allocator",
+      "human_status": "transformed",
+      "nearest_sentence_id": 6610,
+      "cluster_id": 27,
+      "similarity": 0.3887,
+      "in_v1_0": true
+    },
+    {
+      "evidence_idx": 70,
+      "case_id": "36",
+      "role_label_raw": "Counterfactual and transportability judge",
+      "role_label": "Counterfactual and transportability judge",
+      "human_status": "conditional",
+      "nearest_sentence_id": 9358,
+      "cluster_id": -1,
+      "similarity": 0.5082,
+      "in_v1_0": false
+    },
+    {
+      "evidence_idx": 70,
+      "case_id": "36",
+      "role_label_raw": "calibration architect",
+      "role_label": "Calibration architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 9358,
+      "cluster_id": -1,
+      "similarity": 0.5082,
+      "in_v1_0": false
+    },
+    {
+      "evidence_idx": 70,
+      "case_id": "36",
+      "role_label_raw": "protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 9358,
+      "cluster_id": -1,
+      "similarity": 0.5082,
+      "in_v1_0": false
+    },
+    {
+      "evidence_idx": 71,
+      "case_id": "36",
+      "role_label_raw": "Counterfactual and transportability judge",
+      "role_label": "Counterfactual and transportability judge",
+      "human_status": "conditional",
+      "nearest_sentence_id": 6476,
+      "cluster_id": 48,
+      "similarity": 0.9055,
+      "in_v1_0": false
+    },
+    {
+      "evidence_idx": 71,
+      "case_id": "36",
+      "role_label_raw": "calibration architect",
+      "role_label": "Calibration architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 6476,
+      "cluster_id": 48,
+      "similarity": 0.9055,
+      "in_v1_0": false
+    },
+    {
+      "evidence_idx": 71,
+      "case_id": "36",
+      "role_label_raw": "protocol and provenance architect",
+      "role_label": "Protocol and provenance architect",
+      "human_status": "robust",
+      "nearest_sentence_id": 6476,
+      "cluster_id": 48,
+      "similarity": 0.9055,
+      "in_v1_0": false
+    }
+  ]
+}
