@@ -726,3 +726,90 @@ After v0.6, every case in the candidate sample has a firm verdict (no more CHECK
 5. **Pending:** Draft the constitutive/throughput coding protocol (the third coding protocol, complement to inferential-commitment-extraction and methodological-detail decomposition)
 6. **Pending:** Begin two-coder calibration on a 20% subsample (~9 cases stratified across stages and capabilities)
 7. **Pending:** OSF timestamping of the preregistration document
+
+---
+
+# v0.7 update — Path A Round 1 (2026-05-03)
+
+## Round 1 of Path A searching: 2 PASS + 1 EXCLUDE + 1 unverified
+
+Per OSF preregistration §6, search continues until N=8 consecutive screened cases produce zero new function-classifications. Round 1 targeted 4 of the 6 priority stages.
+
+### NEW Case M — Xu & Yang (2026) "Scaling Reproducibility: An AI-Assisted Workflow for Large-Scale Replication and Reanalysis"
+
+| Field | Value |
+|---|---|
+| Citation | Xu (Stanford) & Yang (HKBU) 2026 |
+| Primary URL | https://arxiv.org/abs/2602.16733 |
+| Stage | Replication studies (target stage from preregistration §6) |
+| Capability | Agentic (multi-agent task routing) + generative |
+| Evidence status | Preprint |
+| Year | 2026 |
+
+**C1:** Pre-DA-RT 29.6% reproducibility → post-DA-RT 79.8%; 94.4% (237/251) of papers fully reproducible conditional on accessible packages; 3,382 empirical models across 384 studies (APSR/AJPS/JOP 2010-2025); 92 studies (215 specifications) for IV diagnostics
+
+**C2:** 5-step pipeline (material retrieval → environment reconstruction → code execution → output matching → diagnostic application) + multi-agent routing
+
+**C3:** WEAK — no specific AI models named (Claude Code and ChatGPT used per author disclosure)
+
+**C4:** Scalability rationale ("full-paper replication at scale to verify published results efficiently"); manual verification doesn't scale
+
+**Verdict: PASS.** **6 new function-classifications added** (counter resets to 0).
+
+### NEW Case N — ChemAgents (2025) AI-Driven Autonomous Laboratory for Chemical Discovery
+
+| Field | Value |
+|---|---|
+| Primary URL | https://www.oaepublish.com/articles/cs.2025.66 |
+| Stage | Self-driving labs / autonomous chemistry (NEW STAGE — gap-filler) |
+| Capability | Agentic + generative + autonomous hardware-controlled |
+| Evidence status | Peer-reviewed article |
+| Year | 2025 |
+
+**C1:** A-Lab (Szymanski et al. 2023) referenced: 71% success rate (41/58 materials), 17 days continuous operation; ChemAgents executed 7 task categories successfully (synthesis+FTIR, PXRD, fluorescence, factorial optimization, screening, MOF discovery, photocatalytic debromination across labs)
+
+**C2:** 4-agent hierarchical architecture (Literature Reader / Experiment Designer / Computation Performer / Robot Operator) + 7 demonstrated tasks decomposed by category (Make&Measure / Exploration&Screening / Discovery&Optimization / Portability&Adaptability)
+
+**C3:** WEAK — "open source LLMs" generic; specific model names not in this excerpt (likely full paper has them)
+
+**C4:** Adequate — "autonomous scaling," "democratize discovery," "dramatically accelerating research"
+
+**Verdict: PASS.** **7 new function-classifications added** (counter resets to 0).
+
+### EXCLUDE — Frontiers Three-Stage Framework for IRB review of AIHSR (2026)
+
+Verified WEAK: explicitly framework/perspective paper, not empirical workflow study. Only 28+ institutional presentations + 21+ institution adoption claim; no quantitative validation data. Does not pass C1 (no inferential commitments backed by evidence) — **fails E1**. Not counted toward saturation.
+
+### UNVERIFIED — Nature 2026 self-driving lab article
+
+303 redirect on fetch. ChemAgents already covers the chemistry-self-driving-lab stage; defer to next round only if needed.
+
+## Updated v0.7 sample composition
+
+| Partition | Count |
+|---|---|
+| Direct PASS from existing | 12 |
+| CHECK resolved to PASS | 18 |
+| Conditional PASS pending | 0 |
+| NEW main-sample cases (Round 0: A, B, D, H, I, K, L) | 7 |
+| **NEW main-sample cases (Round 1: M, N)** | **+2** |
+| C7 boundary | 5 (cap reached) |
+| **Total v0.7 sample** | **44** |
+
+## Saturation counter status
+
+**Counter: 0 of N=8** after Round 1.
+
+Both Round-1 PASS cases introduced new function-classifications (Case M: 6 new; Case N: 7 new). The function inventory has expanded from 59 to 71 entries.
+
+Path A continues. Next-round target stages (still under-saturated):
+1. **Lab notebook / experimental record automation** — Round 1 search was thin (vendor announcements dominant); search needs sharper academic focus
+2. **AI in IRB review (empirical)** — the Frontiers framework was conceptual; need an empirical implementation study (Mann et al. fine-tuned LLM was mentioned in search results; worth chasing)
+3. **AI in citation management / bibliographic workflows** — not yet searched
+4. **AI in survey-item generation / scale development** — not yet searched
+5. **More biology/chemistry methods automation** — Case N opened the domain; more cases would help saturate within-domain function inventory
+6. **AI in psychology research workflow** — not yet searched
+
+## Estimated rounds remaining to saturation
+
+If new cases continue surfacing 5-7 new function-classifications per addition (the Round-1 rate), saturation requires the search to find domains where the function inventory is more complete. Conservatively: 3-5 more rounds before the counter starts incrementing reliably. The Path A commitment is to continue regardless; the resource cost is documented.
