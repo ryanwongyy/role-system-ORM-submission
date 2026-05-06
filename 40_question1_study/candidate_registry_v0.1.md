@@ -503,3 +503,96 @@ Per E10 + E5 logic, only Case 23 is in the v1.0 sample. This is consistent with 
 | **Total estimated v0.3 sample** | **~40** | within 30–50 target |
 
 The conditional-PASS slot is now empty. All slot-by-slot inclusion verdicts are firm except for the 17 CHECK cases pending manual C4 review.
+
+---
+
+# v0.4 update — Soft gap CLOSED with NEW Case L (2026-05-03)
+
+## NEW Case L — Large Language Models: An Applied Econometric Framework
+
+The previously-identified soft gap (statistical analysis assistance / methods choice) is closed by this strong candidate. Ludwig & Mullainathan's framework paper is itself a theorization of the constitutive/throughput delegation problem — the paper specifies *which* econometric functions are constitutive of valid inference vs. which are throughput-delegable to LLMs, with formal conditions and validation-sample remedies.
+
+| Field | Value |
+|---|---|
+| Citation | Ludwig & Mullainathan (2025) "Large Language Models: An Applied Econometric Framework" |
+| Primary URL | https://www.nber.org/papers/w33344 |
+| Arxiv preprint | https://arxiv.org/abs/2412.07031 |
+| BFI working paper | https://bfi.uchicago.edu/wp-content/uploads/2025/01/BFI_WP_2025-10.pdf |
+| Stage | Statistical analysis / measurement automation / causal inference |
+| Capability | Generative (LLMs as measurement instruments) |
+| Evidence status | NBER working paper (peer-review-equivalent in economics) |
+| Year | 2025 |
+
+**C1 (commitments):**
+- Two formal econometric requirements pre-committed:
+  - For *prediction problems*: "no training leakage" between LLM training corpus and researcher's evaluation dataset (Assumption 1: independence of sampling indicators across strings + invariance of expected sample size to LLM training data)
+  - For *estimation problems*: validation sample required because "absent a validation sample, researchers cannot assess the magnitude or pattern of errors in LLM outputs"
+- Empirical demonstration: "seemingly innocuous choices — which LLM to use, how to phrase the prompt — lead to dramatically different parameter estimates" with "coefficients varying in magnitude, sign, and significance"
+- Validation-sample debiasing claim: "consistency and asymptotic normality" preserved in downstream inference
+
+**C2 (function decomposition):**
+- *Human researcher functions:* define measurement procedure f*(·); collect validation data; enforce design ensuring no training leakage; implement debiasing corrections
+- *LLM functions:* text generation m̂(·; t); feature extraction via embeddings (optional); label generation V̂ᵣ = m̂(r; t) for economic concepts
+- *Validation functions:* (i) quantifying measurement error magnitude; (ii) enabling bias-corrected coefficient estimation that "substantially improve[s] the precision of downstream estimates"
+
+**C3 (AI disclosure):**
+Detailed framework for disclosure requirements:
+- Training dataset composition + cutoff date
+- Model weights status (published vs proprietary/evolving)
+- Architectural choices (temperature, sampling parameters)
+- Training stages beyond pretraining (instruction fine-tuning, RLHF, RLVR)
+- Exact prompt text used (prompt-level disclosure)
+- Temporal disclosure: time-stamped training data OR open-source LLMs with fixed published weights paired with evaluation samples post-dating training cutoff
+- Examples reference Llama 2/3 (open-source); proprietary systems mentioned but unnamed
+
+**C4 (rationale):**
+- "Potemkin understanding" framing: LLMs exhibit strong benchmark performance without robust concept mastery; errors are "not noise around accurate world models"
+- Validation data sidesteps the "jagged frontier" problem (researchers cannot generalize from benchmarks to their task)
+- Borrows from classical measurement error correction (Lee-Sepanski 1995; Chen 2005) — "well-studied in econometrics"
+- Imperfect LLM outputs framed as "amplifiers of validation samples" rather than replacements
+
+**Verdict:** STRONG PASS. **The case fills the statistical-analysis gap with a paper that is itself theorizing the constitutive/throughput question.** This is among the strongest candidates for the Question-1 sample because the paper's framework directly addresses what Question 1 asks: which econometric functions can be delegated to LLMs without losing inferential validity.
+
+## Verified WEAK / not added
+
+- Forum Qualitative Sozialforschung "Automatic Transcription of English and German Qualitative Interviews" — fetched as binary PDF (478KB), couldn't extract text. Lower priority since the broader Whisper/qualitative-transcription topic is well-covered by Case 6 (Maternal-health interview coding) and Case 19 (AI-assisted memoing). Defer.
+- PMC12164621 (mental health researcher survey) — would have been C7 candidate but C7 cap is closed
+- Springer A.I. Review "Frontiers of LLMs in psychological applications" — review/survey paper, fails E5
+
+## v0.4 sample composition
+
+| Partition | Count |
+|---|---|
+| Direct PASS from existing | 12 |
+| CHECK pending manual C4 review | 17 |
+| Conditional PASS pending re-extraction | 0 |
+| **NEW main-sample cases** | **7 (A, B, D, H, I, K, L)** |
+| C7 boundary | 5 |
+| **Total estimated v0.4 sample** | **~41** |
+
+## v0.4 stage coverage — complete
+
+| Stage | Coverage |
+|---|---|
+| Coding / measurement | ✓ |
+| Synthesis / literature review | ✓ |
+| Qualitative coding | ✓ |
+| Survey / data collection | ✓ NEW B |
+| Data cleaning | ✓ NEW I |
+| Hypothesis generation | ✓ NEW H |
+| Protocol / preregistration | ✓ NEW K |
+| **Statistical analysis / econometric** | **✓ NEW L** (gap CLOSED) |
+| Reproducibility / replication | ✓ |
+| Manuscript writing | ✓ |
+| Peer review | ✓ NEW A + D |
+| Disclosure / governance / institutional | ✓ |
+| Pedagogy / training | ✓ |
+
+**No remaining gaps. Sample saturation reached.** Recommend stopping further searching and locking the candidate sample.
+
+## Recommended next moves
+
+1. **Lock the candidate sample at v0.4** — stop searching; further additions risk dilution rather than coverage gain
+2. **Manual C4 review** of the 17 CHECK cases (the only remaining within-sample uncertainty)
+3. **Pre-register** the candidate sample + protocols on OSF
+4. **Begin two-coder calibration** on a 20% subsample (~8 cases stratified across stages and capabilities)
