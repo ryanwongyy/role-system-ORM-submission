@@ -175,3 +175,75 @@ The git commit history of this file in `40_question1_study/OSF_preregistration_q
 - Any constitutive/throughput coding pass
 
 OSF timestamping (uploading this document to OSF as a Registration) is the recommended next step for stronger external proof; the current registration is in-repository only.
+
+---
+
+# Amendment v0.5.1 — C8 social-science scope criterion added (2026-05-03)
+
+Per design-decision Option B: the inclusion criteria are tightened to explicitly scope the sample to social-science domains, mirroring the existing 36-case corpus's implicit `Fit to social science` filter.
+
+## C8 — Social-science scope (NEW)
+
+**Rule:** The case's primary substantive research question must be in a social-science domain (political science, sociology, economics, psychology, communication, public health methodology, organization studies, education research, science and technology studies) **OR** an explicitly cross-domain methodological-research topic (peer review processes, replication infrastructure, scientific integrity, scholarly authorship governance, research methodology generally) that operates without primary commitment to a natural-science substantive question.
+
+Cases whose primary research question is in biology, chemistry, materials science, physics, engineering, or medicine — without a social-science or methodological-cross-domain framing — are excluded.
+
+**Boundary admittance:** "Boundary / adjacent" cases that the prior corpus's `Fit to social science` field already labeled as such (benchmark / governance / social simulation / higher-education) are admitted.
+
+**Borderline disclosure:** Cases where the application context is non-social-science but the workflow is a social-science methodology (e.g., survey collection methodology applied to health data; integrity-detection methodology applied to biomedical literature) are admitted with explicit BORDERLINE flag and disclosure in §2.1 of the eventual manuscript.
+
+## Rationale
+
+The Question-1 study reframes Cronbach-Meehl-Messick construct validity at the function level for AI-embedded scientific work. The original 36-case corpus implicitly scoped to social-science (per its `Fit to social science` field with values "Direct social-science", "Boundary / adjacent benchmark", etc.). My fresh-start design earlier in this preregistration drafted Path A target-stages without scoping (e.g., "physics / chemistry methods automation"), which introduced natural-science cases (H, I, K, N) inconsistent with the prior corpus's scope. C8 corrects this gap.
+
+Restricting to social science:
+- Preserves continuity with the existing manuscript-rubric study (better cross-paper comparability)
+- Keeps the constitutive/throughput typology empirically defensible within a coherent methodological tradition (validity discourse in social-science measurement)
+- Pre-empts the "but does it generalize across natural sciences?" reviewer objection by explicitly stating the scope condition rather than trying to claim cross-domain generalization without sufficient natural-science cases
+
+## C8 re-screen verdicts (applied to v0.7 sample)
+
+| Case | C8 verdict | Note |
+|---|---|---|
+| 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 16, 17, 18, 19, 20, 21, 22, 23, 24, 27, 28, 29, 35 | PASS | Fit field: Direct social-science |
+| 9, 13, 14, 15, 30, 31, 32, 33 | PASS (boundary-adjacent) | Fit field: Boundary / adjacent (benchmark / governance / social simulation) |
+| A | PASS | Methodological-cross-domain (peer review) |
+| B | PASS (borderline) | Survey methodology, biomedical application context — admitted with BORDERLINE flag |
+| D | PASS | Methodological-cross-domain (peer review feedback) |
+| **H** | **EXCLUDE** | **Primary domain biology (breast cancer); no social-science framing** |
+| **I** | **EXCLUDE** | **Primary domain biomedical clinical trials; no social-science framing** |
+| **K** | **EXCLUDE** | **Primary domain biomedical/clinical trials; no social-science framing** |
+| L | PASS | Direct social-science (economics, NBER) |
+| M | PASS | Direct social-science (political science replication) |
+| **N** | **EXCLUDE** | **Primary domain chemistry/materials; no social-science framing** |
+| C | PASS (boundary) | Methodological-cross-domain meta-research |
+| E | PASS | Direct social-science (sociology of academic policy) |
+| G | PASS | Direct social-science (cross-society incl. non-academic corpora) |
+| J | PASS (boundary) | Application is cancer literature but research question is sociological (paper-mill detection in scientific publishing) |
+
+**4 cases excluded under C8: H, I, K, N**
+
+## Updated v0.8 sample composition under C8
+
+| Partition | Count |
+|---|---|
+| Direct PASS from existing corpus (v0.7 minus those excluded earlier) | 23 |
+| Boundary-adjacent from existing corpus (under v0.7 Boundary fit values) | 7 (Cases 9, 13, 14, 15, 30, 32, 33; Case 31 listed under C7 boundary) |
+| NEW main-sample cases retained | 5 (A, B, D, L, M; H/I/K/N excluded) |
+| C7 boundary | 5 (31, C, E, G, J) |
+| **Total v0.8** | **40** |
+
+## Function inventory impact
+
+Functions whose first-seen case is C8-excluded are removed from the inventory:
+- From Case H: 5 functions removed (#31-35)
+- From Case I: 4 functions removed (#36-39)
+- From Case K: 3 functions removed (#40-42)
+- From Case N: 7 functions removed (#66-72)
+
+Total functions removed: 19. Inventory: 71 → 52.
+
+## Saturation counter status under C8
+
+Most recent retained addition: Case M (Round 1). Case M added 6 new function-classifications. Counter: **0 of N=8** (unchanged).
+

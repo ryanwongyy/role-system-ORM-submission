@@ -209,3 +209,50 @@ The function inventory expanded substantially in Round 1. This is the **expected
 - AI in citation-management / bibliographic workflows
 - AI in survey-item generation / scale development
 - Additional chemistry/materials/biology lab automation cases (function inventory still expanding in this domain)
+
+---
+
+# v1.2 update — C8 social-science scope applied; 19 functions removed (2026-05-03)
+
+Per the Option-B decision, the following 19 function-classifications are REMOVED from the inventory because their first-seen case (H, I, K, or N) is excluded under C8:
+
+## Removed (first-seen in Case H — biology, breast cancer)
+
+- #31 Drug-pair hypothesis generation with mechanistic rationale
+- #32 Iterative refinement based on experimental feedback
+- #33 Cell-line selection (MCF7 vs MCF10A)
+- #34 SynergyFinder 3.0 / IC50 / ANOVA wet-lab validation
+- #35 Biological-error documentation
+
+## Removed (first-seen in Case I — biomedical clinical trials)
+
+- #36 Tabular medical data error processing
+- #37 Domain-heuristic-augmented LLM cleaning
+- #38 Database-lock acceleration
+- #39 False-positive query reduction
+
+## Removed (first-seen in Case K — biomedical / clinical trials)
+
+- #40 Retrieval-augmented protocol section extraction
+- #41 Clinical Research Coordinator (CRC) human baseline
+- #42 Vision-based tabular data extraction
+
+## Removed (first-seen in Case N — chemistry/materials)
+
+- #66 Hierarchical multi-agent architecture (Lit. Reader / Exp. Designer / Comp. Performer / Robot Operator)
+- #67 Wet-lab experimental protocol generation by LLM
+- #68 Autonomous computational chemistry calculations
+- #69 Hardware-execution-via-robot-operator
+- #70 Bayesian optimization with LLM coordination
+- #71 PXRD / FTIR / fluorescence multi-modal characterization
+- #72 Cross-facility autonomous-system redeployment
+
+## v1.2 inventory total
+
+71 (v1.1) − 19 = **52 function-classifications**.
+
+The removed functions remain documented here for the audit trail. They could be re-introduced if (a) future cases retained under C8 surface them, or (b) a separate natural-science-extension study is conducted.
+
+## Saturation counter status
+
+Counter: **0 of N=8** (unchanged from v1.1 status; Case M still the most recent retained addition with 6 new functions).

@@ -813,3 +813,67 @@ Path A continues. Next-round target stages (still under-saturated):
 ## Estimated rounds remaining to saturation
 
 If new cases continue surfacing 5-7 new function-classifications per addition (the Round-1 rate), saturation requires the search to find domains where the function inventory is more complete. Conservatively: 3-5 more rounds before the counter starts incrementing reliably. The Path A commitment is to continue regardless; the resource cost is documented.
+
+---
+
+# v0.8 update — C8 social-science scope applied (2026-05-03)
+
+Per Option-B decision: C8 social-science scope criterion added to the inclusion criteria. Re-screened the v0.7 sample case-by-case.
+
+## C8 verdicts (case-by-case)
+
+**Existing 30 in-sample cases:** all retain (per their `Fit to social science` field values: 23 "Direct social-science" + 7 "Boundary / adjacent benchmark/governance/etc."). No existing case excluded under C8.
+
+**NEW main-sample cases:**
+
+| Case | C8 verdict | Note |
+|---|---|---|
+| A (peer review detection) | PASS | Methodological-cross-domain |
+| B (survey collection) | PASS-borderline | Survey methodology / biomedical application — admitted with BORDERLINE flag |
+| D (peer review feedback) | PASS | Methodological-cross-domain |
+| H (breast cancer hypothesis) | **EXCLUDE** | Primary domain biology |
+| I (medical data cleaning) | **EXCLUDE** | Primary domain biomedical clinical trials |
+| K (clinical trial protocols) | **EXCLUDE** | Primary domain biomedical clinical trials |
+| L (econometric framework) | PASS | Direct social-science (economics) |
+| M (political-science replication) | PASS | Direct social-science |
+| N (chemistry self-driving labs) | **EXCLUDE** | Primary domain chemistry/materials |
+
+**C7 boundary cases:** all 5 retain (31, C, E, G, J). J flagged as borderline within C7 (cancer-literature corpus but sociological research question).
+
+## Sample composition v0.8
+
+| Partition | Count |
+|---|---|
+| Existing direct PASS | 12 |
+| Existing CHECK resolved to PASS | 18 |
+| NEW main retained | 4 (A, B, D, L) |
+| NEW Round 1 retained | 1 (M) |
+| C7 boundary | 5 |
+| **Total v0.8** | **40** |
+
+## Cases EXCLUDED under C8 (previously in v0.7)
+
+| Case | Title | Why C8 excludes |
+|---|---|---|
+| H | LLM hypothesis generation in breast cancer (Royal Society Interface 2025) | Primary research question is biology |
+| I | Medical Data Cleaning AI vs Traditional (Octozi 2025) | Primary domain biomedical clinical trials |
+| K | AI-assisted protocol information extraction (arxiv 2602.00052) | Primary domain biomedical/clinical trials |
+| N | ChemAgents autonomous chemistry laboratory (oaepublish 2025) | Primary domain chemistry/materials |
+
+These 4 cases are documented in `dropped_cases_c8.csv` for transparency. They are valuable cases for a future natural-science-extension study but are out of scope for Question 1's social-science focus.
+
+## Function inventory impact
+
+Functions whose first-seen case is C8-excluded are REMOVED from v1.1 inventory:
+- 19 function-classifications removed (5 from H, 4 from I, 3 from K, 7 from N)
+- Inventory: 71 → 52
+
+## Saturation counter under C8
+
+Most recent retained addition: Case M (Round 1). Case M added 6 new function-classifications. Counter: 0 of N=8 (Path A continues; the C8 exclusion didn't restore saturation).
+
+## Rationale for Option B (preserved from prior conversation)
+
+- **Preserves continuity** with the existing manuscript-rubric study (better cross-paper comparability)
+- **Keeps the typology empirically defensible** within social-science measurement-tradition validity discourse
+- **Pre-empts the "but does it generalize across natural sciences?" reviewer objection** by explicitly stating the scope condition rather than claiming cross-domain generalization without sufficient natural-science cases
