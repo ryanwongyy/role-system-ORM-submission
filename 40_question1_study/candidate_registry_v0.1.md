@@ -596,3 +596,59 @@ Detailed framework for disclosure requirements:
 2. **Manual C4 review** of the 17 CHECK cases (the only remaining within-sample uncertainty)
 3. **Pre-register** the candidate sample + protocols on OSF
 4. **Begin two-coder calibration** on a 20% subsample (~8 cases stratified across stages and capabilities)
+
+---
+
+# v0.5 update — Saturation rule modified; v0.4 saturation claim retracted (2026-05-03)
+
+## Rule change
+
+Per user direction, the theoretical-saturation rule is **modified to a stricter form**:
+
+**v0.4 (prior) rule:** *"Stop adding cases when three consecutive new cases produce no new function-classifications outside those already classified."*
+
+**v0.5 (current) rule:** **"Stop adding cases only when no new cases are producing new function-classifications outside those already classified."**
+
+The "three consecutive" allowance is removed. Under the new rule, **any** new case that produces a new function-classification disqualifies saturation. The bar is binary: either (a) the next batch of evaluated cases all surface only previously-classified functions, in which case saturation is supported, or (b) at least one case in the recent batch surfaces a new function-classification, in which case the search must continue.
+
+This is stricter than Glaser & Strauss's original "constant comparison until no new categories emerge" formulation by removing any explicit lookback-window allowance for noise. It also more conservatively guards against premature saturation declarations (a known pitfall in grounded-theory practice — Bowen 2008; Saunders et al. 2018).
+
+## Re-evaluation of v0.4 saturation claim
+
+**Retracted.** Case L (the most recent addition) introduced **new function-classifications** that weren't previously present in the sample's function inventory:
+
+- *Validation-sample collection for measurement-error correction* (LeeSepanski 1995 / Chen 2005 lineage) — distinct from any prior case's calibration role; specific to the bias-corrected coefficient estimation workflow
+- *Training-leakage check* (Assumption 1: independence of sampling indicators across strings) — a specifically econometric design constraint not previously coded
+- *Prompt-text-as-disclosure* (treating prompt as part of the published methodology) — distinct from the AI-disclosure decomposition seen in other cases
+- *Temporal-disclosure of model weights status* (open-source vs. proprietary, weight-publication date relative to sample-construction date) — a meta-methodological function distinct from C3's standard AI-disclosure
+
+So Case L added at least 4 new function-classifications beyond what the prior 40 cases surfaced. Under the v0.5 rule, this means saturation is NOT reached.
+
+## Implication for sample lock
+
+The sample is **NOT yet at saturation**. The previous v0.4 recommendation to "lock the sample" is retracted. Two possible paths:
+
+**Path A — Continue searching until new additions stop producing new function-classifications.**
+This is the strict-rule-honoring path. Recruit additional cases (e.g., from disciplines or stages still under-represented per Case L's introduction of new function types) and stop only when a batch of N consecutively-screened cases all map to function-classifications already in the inventory. The N here is set in the OSF preregistration; reasonable values are 5–10 (a conservative window that doesn't reintroduce the noise allowance the v0.5 rule eliminates).
+
+**Path B — Document the open function inventory and proceed with v0.4 sample explicitly.**
+Acknowledge in the manuscript that the function inventory is open (cases the sample doesn't include may add functions); ship v0.4 as is, with the explicit acknowledgement that saturation in the strict sense is not claimed. Use the explicit boundary-condition framing already in C7 to limit the validity claim to the function inventory the sample has surfaced.
+
+**Recommendation:** Path A is more defensible for the OSF preregistration's transparency commitment. Path B is more pragmatic if the sample has already exceeded the resource budget. The choice should be pre-registered, not made post-hoc.
+
+## Updated sample status
+
+| Status | v0.4 | v0.5 |
+|---|---|---|
+| Total cases | ~41 | ~41 |
+| **Saturation claim** | **Reached** (under v0.4 rule) | **NOT reached** (under v0.5 rule) |
+| Sample lock recommendation | Lock now | Continue under Path A or document Path B |
+| Function inventory | Closed | Open — at minimum the 4 new function-classifications from Case L need consolidation |
+
+## Updated next moves
+
+1. **Document the v0.5 saturation rule in the OSF preregistration** before any further coding work (timestamping the rule before it's empirically tested)
+2. **Choose between Path A and Path B** explicitly; record the choice in the preregistration with rationale
+3. If Path A: continue searching for additional cases — particularly in disciplines / stages where the function inventory may still be under-saturated (e.g., physics/chemistry methods automation, lab-notebook automation, replication-study workflows, AI in IRB review)
+4. If Path B: write an explicit "function-inventory-openness" disclosure in §2 of the manuscript and bound the analytical claim to functions actually surfaced
+5. Continue manual C4 review of the 17 CHECK cases regardless of Path A vs B
