@@ -437,3 +437,69 @@ Soft gap remaining: statistical analysis assistance / methods choice. Could be f
 31, **C, E, G, J**
 
 **Excluded (5 cases):** 12 (E10), 25, 26, 34, 36
+
+---
+
+# v0.3 update — Case 23 RESCUED via PDF re-extraction (2026-05-03)
+
+## Action taken
+
+The arxiv full PDF for Case 23 (Chen, Hu & Lu, "Predicting Field Experiments with Large Language Models", arxiv 2504.01167) was downloaded directly from `https://arxiv.org/pdf/2504.01167` (the local `C023_P1_pdf.pdf` was 0 bytes — download had failed at original build time). Extracted via pymupdf and cleaned through the standard `clean_extracted_text.py` pipeline.
+
+## Re-extraction outcome
+
+| Metric | Before (HTML landing-page only) | After (full PDF) | Change |
+|---|---|---|---|
+| Cleaned tokens | 574 | 7,172 | **12.5× increase** |
+| Pages | (landing page only) | 12 | full paper |
+
+## C1–C4 audit on re-extracted text
+
+| Criterion | Threshold | Hits | Verdict |
+|---|---|---|---|
+| C1 (inferential commitments) | ≥3 | **14** | PASS |
+| C2 (function decomposition) | ≥3 | **7** | PASS |
+| C3 (AI disclosure at function level) | ≥3 | **233** | PASS |
+| C4 (rationale for delegation) | ≥2 | **3** | PASS |
+
+**Overall verdict: PASS** (no longer conditional). Sample evidence:
+
+- C1 commitments include: "accuracy of 78%", "validity of these automated processes", "framework achieves an average prediction accuracy of 78%", "results show a certain degree of invariability to repeat numbers"
+- C2 functions include explicit Section 3 "Data Collection and Filtering" workflow + Section 4 framework evaluation
+- C3: 233 LLM-language hits across the paper (saturated)
+- C4 rationale includes limitation language: "these studies tested their simulation strategies on only a small number of experiments, restricting generalizability" + "to address these concerns, we conduct three manual screenings"
+
+## Updated case-23 registry entry
+
+| Field | Value (post-rescue) |
+|---|---|
+| Citation | Chen, Hu & Lu (2025) "Predicting Field Experiments with Large Language Models" |
+| Authors | Yaoyu Chen, Yuheng Hu, Yingda Lu — University of Illinois at Chicago, Department of Information and Decision Sciences |
+| Primary URL | https://arxiv.org/abs/2504.01167 |
+| Stage | Hypothesis screening / experimental forecasting |
+| Capability | Generative (LLMs) |
+| Evidence status | Preprint (12 pages) |
+| Year | 2025 |
+| Verdict | **PASS (rescued from CONDITIONAL via full PDF re-extraction)** |
+
+## Note on Case 23 / Case 36 pair
+
+Case 36 was previously held in EXCLUDE (E5 — proposed pedagogical configuration using this paper as precedent). The pair-relationship via shared primary URL stands:
+
+- **Case 23**: codes the executed empirical study itself (Chen et al. 2025 LLM-prediction-of-field-experiments work) — INCLUDED
+- **Case 36**: would have coded a hypothetical pedagogical experiment using Chen et al. as precedent — EXCLUDED
+
+Per E10 + E5 logic, only Case 23 is in the v1.0 sample. This is consistent with v0.1 verdict.
+
+## Updated v0.3 sample composition
+
+| Partition | Count | Notes |
+|---|---|---|
+| Direct PASS from existing | **12** | 1, 4, 7, **23 (RESCUED)**, 9, 10, 18, 19, 22, 24, 30, 33 |
+| CHECK pending manual C4 review | 17 | unchanged |
+| Conditional PASS pending re-extraction | **0** | (was Case 23; now resolved) |
+| NEW main-sample cases | 6 | A, B, D, H, I, K |
+| C7 boundary | 5 | 31, C, E, G, J (cap reached) |
+| **Total estimated v0.3 sample** | **~40** | within 30–50 target |
+
+The conditional-PASS slot is now empty. All slot-by-slot inclusion verdicts are firm except for the 17 CHECK cases pending manual C4 review.
