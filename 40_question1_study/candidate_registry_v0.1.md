@@ -287,3 +287,153 @@ The new cases meaningfully fill prior gaps:
 4. Lock the candidate sample
 5. Pre-register on OSF: this candidate registry + the inferential-commitment-extraction protocol + the methodological-detail decomposition rubric + the constitutive/throughput coding protocol (still to be drafted)
 6. Begin two-coder calibration on a 20% subsample
+
+---
+
+# v0.2 update — 4 additional cases verified (2026-05-03)
+
+## NEW Case H — LLM hypothesis generation in breast cancer treatment
+
+| Field | Value |
+|---|---|
+| Citation | (Authors TBD) Royal Society Interface 2025 |
+| Primary URL | https://royalsocietypublishing.org/rsif/article/22/227/20240674/235871 |
+| Mirror | https://pmc.ncbi.nlm.nih.gov/articles/PMC12134935/ |
+| Stage | Hypothesis generation (NEW STAGE — gap-filler) |
+| Capability | Generative (GPT-4) + experimental wet-lab validation |
+| Evidence status | Peer-reviewed article |
+| Year | 2025 |
+
+**C1 (commitments):** 3/12 drug combinations validated with synergy scores above positive controls in round 1; 3/4 in round 2; HSA score 10.58 for disulfiram + simvastatin; MCF7 specificity demonstrated; ANOVA + IC50 + n≥3 replicates.
+
+**C2 (function decomposition):**
+- GPT-4: 12 initial hypotheses, mechanistic rationales, controls, iterative refinement, third-iteration suggestions
+- Humans + wet-lab: prompt engineering, cell-line selection (MCF7 vs MCF10A), experimental execution, statistical analysis, literature cross-reference
+
+**C3 (AI disclosure):** GPT-4 named primary; Gemini + PubMedGPT secondary comparison; biological error documented (itraconazole false claim about ergosterol/mammalian membranes).
+
+**C4 (rationale):** "Explore regions of hypothesis space humans may miss"; "make expertise in drug design more accessible to non-specialists."
+
+---
+
+## NEW Case I — Medical Data Cleaning AI-Assisted vs Traditional (Octozi platform)
+
+| Field | Value |
+|---|---|
+| Primary URL | https://arxiv.org/abs/2508.05519 |
+| Stage | Data cleaning (NEW STAGE — gap-filler) |
+| Capability | Generative (LLMs) + heuristic |
+| Evidence status | Preprint |
+| Year | 2025 |
+
+**C1 (commitments):** Throughput 6.03×; cleaning errors 54.67% → 8.48% (6.44× improvement); false positives reduced 15.48×; database-lock 33% acceleration; $5.1M cost savings in Phase III oncology trials.
+
+**C2 (function decomposition):** Hybrid delegation (LLM + domain-specific heuristics); 10 human reviewers; granular step-by-step weak (full paper review needed).
+
+**C3 (AI disclosure):** Octozi platform named; specific LLMs powering it not disclosed (C3 weakness flagged).
+
+**C4 (rationale):** Efficiency under regulatory constraints ("critical bottleneck", "exponentially increasing data volumes"); "maintaining regulatory compliance" as guardrail.
+
+---
+
+## NEW Case J — AI-Based Screening of Cancer Research Publications (paper-mill detection) — **C7 BOUNDARY**
+
+| Field | Value |
+|---|---|
+| Citation | Scancar, Byrne, Causeur, Barnett (2025) bioRxiv |
+| Primary URL | https://www.biorxiv.org/content/10.1101/2025.08.29.673016v2.full |
+| Coverage | Nature 2025 article (d41586-025-02906-y) |
+| Stage | Scientific integrity / paper-mill detection |
+| Capability | Predictive (BERT-based text classification) |
+| Evidence status | Preprint (bioRxiv) |
+| Year | 2025 |
+| **Admitted under** | **C7 boundary-condition (slot 5/5 — cap reached)** |
+
+**C1 (commitments):** Trained on 2,202 retracted paper-mill papers; screened 2.6M cancer research papers; 9.87% flagged for paper-mill similarities; **prediction accuracy 0.91** (titles + abstracts only).
+
+**C2 (function decomposition):** Humans designed BERT classifier + curated training set; ML model performs at-scale screening; image integrity experts validated independently.
+
+**C3 (AI disclosure):** BERT-based text classification model; specific architecture documented; predictive (not generative) AI.
+
+**C4 (rationale):** At-scale detection (2.6M papers) cannot be done manually; "reveal the iceberg" of paper-mill prevalence as system-level integrity question.
+
+---
+
+## NEW Case K — AI-assisted protocol information extraction in clinical trial workflows
+
+| Field | Value |
+|---|---|
+| Primary URL | https://arxiv.org/abs/2602.00052 |
+| Stage | Protocol / preregistration / extraction |
+| Capability | Generative + agentic (RAG) |
+| Evidence status | Preprint |
+| Year | 2026 |
+
+**C1 (commitments):** Clinical-trial-specific RAG extraction accuracy **89.0%** vs standalone LLMs 62.6%; AI-assisted tasks completed **≥40% faster**; tasks "rated as less cognitively demanding."
+
+**C2 (function decomposition):** Three modes contrasted — (i) clinical-trial-specific RAG, (ii) standalone LLMs with fine-tuned prompts, (iii) Clinical Research Coordinators (human baseline). Comparison across modes is the core methodology.
+
+**C3 (AI disclosure):** "Generative LLMs" generic; specific models not named (C3 weakness flagged).
+
+**C4 (rationale):** Burden reduction under "protocol complexity, amendments, and challenges around knowledge management"; "expert oversight remains essential" as guardrail.
+
+---
+
+## C7 boundary cap status: CLOSED at 5/5
+
+| Slot | Case | Angle |
+|---|---|---|
+| 1 | Case 31 — Project Rachel | Identity governance / action research |
+| 2 | Case C — Liang Nature Human Behaviour | Academic LLM adoption tracking |
+| 3 | Case E — He & Bu PNAS | Policy effectiveness |
+| 4 | Case G — Liang Patterns (Pair-C with C) | Cross-society LLM adoption |
+| 5 | **Case J — Scancar bioRxiv** | **Paper-mill detection / integrity** |
+
+**Case F (Wiley Learned Publishing 439 journals) DROPPED** — would have been a 6th C7 case; held in reserve as fallback if any C7 case fails final coding.
+
+---
+
+## v0.2 sample composition
+
+| Partition | Count |
+|---|---|
+| Direct PASS from existing | 11 |
+| CHECK pending manual C4 review (likely PASS) | 17 |
+| Conditional PASS pending re-extraction (Case 23) | 1 |
+| **NEW main-sample cases** | **6 (A, B, D, H, I, K)** |
+| C7 boundary cases | 5 (31, C, E, G, J) |
+| **Total estimated sample** | **~40** |
+
+## v0.2 stage coverage
+
+All major stages now covered:
+
+| Stage | Cases |
+|---|---|
+| Coding / measurement | 1, 2, 4, 5, 6, 8 (+ CHECK) |
+| Synthesis / literature review | 9, 10, 33 |
+| Qualitative coding | 18, 19, 20 |
+| Survey / data collection | NEW B |
+| **Data cleaning** | **NEW I** |
+| Hypothesis generation | 13, 14, 15 + **NEW H (lab-validated)** |
+| **Protocol / preregistration** | **NEW K** |
+| Statistical analysis assistance | Case 24 (still soft-gap; defer to v0.3) |
+| Reproducibility / replication | 27, 28 |
+| Manuscript writing | 29 |
+| **Peer review** | **NEW A + NEW D** |
+| Disclosure / governance | 30, 31, C, E, G, J |
+| Pedagogy / training | Case 35 |
+
+Soft gap remaining: statistical analysis assistance / methods choice. Could be filled in v0.3 if a strong candidate surfaces.
+
+---
+
+## Total v0.2 cases (final list for the candidate sample)
+
+**Main sample (~35 cases after CHECK resolution):**
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 (conditional), 24, 27, 28, 29, 30, 32, 33, 35, **A, B, D, H, I, K**
+
+**C7 boundary (5 cases):**
+31, **C, E, G, J**
+
+**Excluded (5 cases):** 12 (E10), 25, 26, 34, 36
